@@ -1,1 +1,2 @@
-# vis4dsr
+# Visualization for Data Science with R
+
