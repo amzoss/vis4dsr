@@ -1,0 +1,6 @@
+# Basic accessibility for static visualizations {#accessibility-for-visualizations}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+

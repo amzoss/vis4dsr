@@ -1,0 +1,6 @@
+# Customizing the design of ggplot2 visualizations {#customizing-visualization-design}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+

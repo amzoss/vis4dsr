@@ -1,0 +1,6 @@
+# Building ggplot2 visualizations into print publications {#print-publications}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+

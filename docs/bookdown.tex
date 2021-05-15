@@ -204,23 +204,71 @@ without whom I should have finished this book two years earlier
 }
 \listoftables
 \listoffigures
-\hypertarget{preface}{%
-\chapter*{Preface}\label{preface}}
+\hypertarget{proposal}{%
+\chapter*{Proposal}\label{proposal}}
 
 
-Hi there, this is my great book.
+\textbf{Note: This book is a work in progress, with a full draft expected in April of 2022.}
+
+This book combines instruction on writing R code with building basic graphic design skills in a way that is unusual in data science literature. The book will guide readers through a series of projects, each designed to cover both how visualizations work in R and how visualizations can be designed to have the greatest impact. Far more than a ``do this, then this'' checklist, this book will focus on building understanding, confidence, and the ability to transfer skills to other tools and design contexts. It will avoid technical jargon that our target audience is unlikely to have encountered before. To accommodate learners who don't have time to work through an entire book, each chapter will operate independently, covering a specific set of tasks that all make sense together as part of a visualization project. For those who would like extra practice, there will be several types of hands-on exercises, from those that are entirely prescribed to those that allow readers to apply new techniques to problems in their own areas.
+
+The book will have solutions (in the form of completed code and sample output) for all exercises. While not a textbook, the book will also include a brief teacher's guide for courses that might want to use one or more chapters to structure lessons in a course. The book will also have a website, including links to Open Access content, solutions, and related resources like video tutorials.
+
+The target audience of this book would be professionals who are having to learn data science techniques on the job, likely at an under-resourced organization or company. These newly minted data professionals may feel comfortable in Excel but have only just started to learn R for processing data. They have never used a programming language to build a visualization before, and even creating charts in Excel has often been a frustrating and mystifying process. They appreciate that R is freely available and are able to get started on a data science project, but the idea of creating publication-quality visualizations using only code is daunting.
+
+Increasingly, programs of study with a focus on preparing students for professional careers in under-resourced fields, like public policy and even management, include courses on data analysis and communication using freely available software. This book, while not a textbook, could easily be used for a semester-long course, titled something like ``Practical data visualization for the modern workforce.'' A chapter could be covered each week, and larger projects could help learners synthesize chapters into a complete set of analyses and communication materials.
 
 \hypertarget{why-read-this-book}{%
 \section*{Why read this book}\label{why-read-this-book}}
 
 
-It is very important\ldots{}
+This book will be:
+
+\begin{itemize}
+\tightlist
+\item
+  Written for non-academics, beginning programmers
+\item
+  Each chapter stands alone
+\item
+  Covers pressing modern issues, like accessibility and ethics
+\item
+  Focuses on freely available software
+\item
+  Combines hands-on exercises with basic graphic design principles
+\end{itemize}
 
 \hypertarget{structure-of-the-book}{%
 \section*{Structure of the book}\label{structure-of-the-book}}
 
 
-Chapters \ref{introduction} introduces a new topic, and \ldots{}
+\begin{itemize}
+\tightlist
+\item
+  Chapter \ref{reading-visualizations}: Overview of common visualizations and how to read them
+\item
+  Chapter \ref{building-basic-visualizations}: Building basic visualizations with ggplot2
+\item
+  Chapter \ref{text-data-visualizations}: Working with textual data in ggplot2
+\item
+  Chapter \ref{customizing-visualization-design}: Customizing the design of ggplot2 visualizations
+\item
+  Chapter \ref{ethical-design-practices}: Avoiding unethical design practices
+\item
+  Chapter \ref{print-publications}: Building ggplot2 visualizations into print publications
+\item
+  Chapter \ref{accessibility-for-visualizations}: Basic accessibility for static visualizations
+\item
+  Chapter \ref{interactive-visualizations}: Exploring interactivity in visualizations with plotly and crosstalk
+\item
+  Chapter \ref{rmarkdown-websites}: Using RMarkdown to build websites for projects
+\item
+  Chapter \ref{rmarkdown-dashboards}: Using RMarkdown to build dashboards for projects
+\item
+  Chapter \ref{usability-for-visualizations}: Basic usability for interactive visualizations
+\item
+  Chapter \ref{teachers-guide}: Teacher's guide
+\end{itemize}
 
 \hypertarget{software-information-and-conventions}{%
 \section*{Software information and conventions}\label{software-information-and-conventions}}
@@ -267,22 +315,25 @@ Package names are in bold text (e.g., \textbf{rmarkdown}), and inline code and f
 A lot of people helped me when I was writing the book.
 
 \begin{flushright}
-Frida Gomam\\
-on the Mars
+Angela Zoss
 \end{flushright}
 
 \hypertarget{about-the-author}{%
 \chapter*{About the Author}\label{about-the-author}}
 
 
-Frida Gomam is a famous lady. Police will always let her go.
+\begin{figure}
+\includegraphics[width=0.328\linewidth]{images/angela_zoss} \caption{Angela M. Zoss, Ph.D.}\label{fig:knitr-logo}
+\end{figure}
+
+Angela is the \href{https://library.duke.edu/about/directory/staff/angela.zoss}{Assessment \& Data Visualization Analyst} in the \href{https://library.duke.edu/about/depts/assessment-user-experience}{Assessment \& User Experience Department} in the \href{https://library.duke.edu/}{Duke University Libraries}. She has many years of experience in teaching and training, predominantly focusing on teaching data visualization to university students, faculty, and staff. She is also active in several open source development projects, including \href{https://github.com/folio-org/}{FOLIO} and \href{https://github.com/minicomp/wax}{Wax}.
 
 \mainmatter
 
-\hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\hypertarget{reading-visualizations}{%
+\chapter{Overview of common visualizations and how to read them}\label{reading-visualizations}}
 
-Now unplug your Internet cable, and start doing some serious work.
+\emph{sample text}
 
 We have a nice figure in Figure \ref{fig:hello}, and also a table in Table \ref{tab:iris}.
 
@@ -327,8 +378,80 @@ Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
 
 More chapters to come in \texttt{02-foo.Rmd}, \texttt{03-bar}.Rmd, \ldots{}
 
-\hypertarget{the-foo-method}{%
-\chapter{The FOO Method}\label{the-foo-method}}
+\hypertarget{building-basic-visualizations}{%
+\chapter{Building basic visualizations with ggplot2}\label{building-basic-visualizations}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{text-data-visualizations}{%
+\chapter{Working with textual data in ggplot2}\label{text-data-visualizations}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{customizing-visualization-design}{%
+\chapter{Customizing the design of ggplot2 visualizations}\label{customizing-visualization-design}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{ethical-design-practices}{%
+\chapter{Avoiding unethical design practices}\label{ethical-design-practices}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{print-publications}{%
+\chapter{Building ggplot2 visualizations into print publications}\label{print-publications}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{accessibility-for-visualizations}{%
+\chapter{Basic accessibility for static visualizations}\label{accessibility-for-visualizations}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{interactive-visualizations}{%
+\chapter{Exploring interactivity in visualizations with plotly and crosstalk}\label{interactive-visualizations}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{rmarkdown-websites}{%
+\chapter{Using RMarkdown to build websites for projects}\label{rmarkdown-websites}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{rmarkdown-dashboards}{%
+\chapter{Using RMarkdown to build dashboards for projects}\label{rmarkdown-dashboards}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{usability-for-visualizations}{%
+\chapter{Basic usability for interactive visualizations}\label{usability-for-visualizations}}
+
+\emph{sample text}
+
+We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{teachers-guide}{%
+\chapter{Teacher's guide}\label{teachers-guide}}
+
+\emph{sample text}
 
 We talk about the \emph{FOO} method\index{FOO} in this chapter.
 
@@ -338,10 +461,10 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 \appendix \addcontentsline{toc}{chapter}{\appendixname}}
 
 
-\hypertarget{more-to-say}{%
-\chapter{More to Say}\label{more-to-say}}
+\hypertarget{appendix-placeholder}{%
+\chapter{Appendix Placeholder}\label{appendix-placeholder}}
 
-Yeah! I have finished my book, but I have more to say about some topics. Let me explain them in this appendix.
+Placeholder text for the appendix.
 
 To know more about \textbf{bookdown}, see \url{https://bookdown.org}.
 

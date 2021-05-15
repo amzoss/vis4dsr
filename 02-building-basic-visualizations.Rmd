@@ -1,0 +1,6 @@
+# Building basic visualizations with ggplot2 {#building-basic-visualizations}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+

@@ -1,0 +1,6 @@
+# Using RMarkdown to build websites for projects {#rmarkdown-websites}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+

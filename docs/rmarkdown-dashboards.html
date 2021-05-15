@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualization for Data Science with R</title>
+  <title>Chapter 10 Using RMarkdown to build dashboards for projects | Visualization for Data Science with R</title>
   <meta name="description" content="A practical instructional guide to creating well-designed data visualizations in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualization for Data Science with R" />
+  <meta property="og:title" content="Chapter 10 Using RMarkdown to build dashboards for projects | Visualization for Data Science with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="amzoss/vis4dsr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualization for Data Science with R" />
+  <meta name="twitter:title" content="Chapter 10 Using RMarkdown to build dashboards for projects | Visualization for Data Science with R" />
   
   <meta name="twitter:description" content="A practical instructional guide to creating well-designed data visualizations in R." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="about-the-author.html"/>
+<link rel="prev" href="rmarkdown-websites.html"/>
+<link rel="next" href="usability-for-visualizations.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -176,91 +176,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Visualization for Data Science with R</h1>
-<p class="author"><em>Angela M. Zoss, Ph.D.</em></p>
-<p class="date"><em>2021-05-15</em></p>
-</div>
-<div id="proposal" class="section level1 unnumbered">
-<h1>Proposal</h1>
-<p><strong>Note: This book is a work in progress, with a full draft expected in April of 2022.</strong></p>
-<p>This book combines instruction on writing R code with building basic graphic design skills in a way that is unusual in data science literature. The book will guide readers through a series of projects, each designed to cover both how visualizations work in R and how visualizations can be designed to have the greatest impact. Far more than a “do this, then this” checklist, this book will focus on building understanding, confidence, and the ability to transfer skills to other tools and design contexts. It will avoid technical jargon that our target audience is unlikely to have encountered before. To accommodate learners who don’t have time to work through an entire book, each chapter will operate independently, covering a specific set of tasks that all make sense together as part of a visualization project. For those who would like extra practice, there will be several types of hands-on exercises, from those that are entirely prescribed to those that allow readers to apply new techniques to problems in their own areas.</p>
-<p>The book will have solutions (in the form of completed code and sample output) for all exercises. While not a textbook, the book will also include a brief teacher’s guide for courses that might want to use one or more chapters to structure lessons in a course. The book will also have a website, including links to Open Access content, solutions, and related resources like video tutorials.</p>
-<p>The target audience of this book would be professionals who are having to learn data science techniques on the job, likely at an under-resourced organization or company. These newly minted data professionals may feel comfortable in Excel but have only just started to learn R for processing data. They have never used a programming language to build a visualization before, and even creating charts in Excel has often been a frustrating and mystifying process. They appreciate that R is freely available and are able to get started on a data science project, but the idea of creating publication-quality visualizations using only code is daunting.</p>
-<p>Increasingly, programs of study with a focus on preparing students for professional careers in under-resourced fields, like public policy and even management, include courses on data analysis and communication using freely available software. This book, while not a textbook, could easily be used for a semester-long course, titled something like “Practical data visualization for the modern workforce.” A chapter could be covered each week, and larger projects could help learners synthesize chapters into a complete set of analyses and communication materials.</p>
-<div id="why-read-this-book" class="section level2 unnumbered">
-<h2>Why read this book</h2>
-<p>This book will be:</p>
-<ul>
-<li>Written for non-academics, beginning programmers</li>
-<li>Each chapter stands alone</li>
-<li>Covers pressing modern issues, like accessibility and ethics</li>
-<li>Focuses on freely available software</li>
-<li>Combines hands-on exercises with basic graphic design principles</li>
-</ul>
-</div>
-<div id="structure-of-the-book" class="section level2 unnumbered">
-<h2>Structure of the book</h2>
-<!--Chapters \@ref(introduction) introduces a new topic, and ...-->
-<ul>
-<li>Chapter <a href="reading-visualizations.html#reading-visualizations">1</a>: Overview of common visualizations and how to read them</li>
-<li>Chapter <a href="building-basic-visualizations.html#building-basic-visualizations">2</a>: Building basic visualizations with ggplot2</li>
-<li>Chapter <a href="text-data-visualizations.html#text-data-visualizations">3</a>: Working with textual data in ggplot2</li>
-<li>Chapter <a href="customizing-visualization-design.html#customizing-visualization-design">4</a>: Customizing the design of ggplot2 visualizations</li>
-<li>Chapter <a href="ethical-design-practices.html#ethical-design-practices">5</a>: Avoiding unethical design practices</li>
-<li>Chapter <a href="print-publications.html#print-publications">6</a>: Building ggplot2 visualizations into print publications</li>
-<li>Chapter <a href="accessibility-for-visualizations.html#accessibility-for-visualizations">7</a>: Basic accessibility for static visualizations</li>
-<li>Chapter <a href="interactive-visualizations.html#interactive-visualizations">8</a>: Exploring interactivity in visualizations with plotly and crosstalk</li>
-<li>Chapter <a href="rmarkdown-websites.html#rmarkdown-websites">9</a>: Using RMarkdown to build websites for projects</li>
-<li>Chapter <a href="rmarkdown-dashboards.html#rmarkdown-dashboards">10</a>: Using RMarkdown to build dashboards for projects</li>
-<li>Chapter <a href="usability-for-visualizations.html#usability-for-visualizations">11</a>: Basic usability for interactive visualizations</li>
-<li>Chapter <a href="teachers-guide.html#teachers-guide">12</a>: Teacher’s guide</li>
-</ul>
-</div>
-<div id="software-information-and-conventions" class="section level2 unnumbered">
-<h2>Software information and conventions</h2>
-<p>I used the <strong>knitr</strong> package <span class="citation">(<a href="references.html#ref-xie2015" role="doc-biblioref">Xie 2015</a>)</span> and the <strong>bookdown</strong> package <span class="citation">(<a href="references.html#ref-R-bookdown" role="doc-biblioref">Xie 2020</a>)</span> to compile my book. My R session information is shown below:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>xfun<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## R version 4.0.3 (2020-10-10)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Big Sur 10.16
-## 
-## Locale: en_US.UTF-8 / en_US.UTF-8 / en_US.UTF-8 / C / en_US.UTF-8 / en_US.UTF-8
-## 
-## Package version:
-##   base64enc_0.1.3   bookdown_0.21    
-##   compiler_4.0.3    digest_0.6.27    
-##   evaluate_0.14     glue_1.4.2       
-##   graphics_4.0.3    grDevices_4.0.3  
-##   highr_0.8         htmltools_0.5.1.1
-##   jsonlite_1.7.2    knitr_1.31       
-##   magrittr_2.0.1    markdown_1.1     
-##   methods_4.0.3     mime_0.9         
-##   rlang_0.4.10      rmarkdown_2.6    
-##   rstudioapi_0.13   stats_4.0.3      
-##   stringi_1.5.3     stringr_1.4.0    
-##   tinytex_0.31      tools_4.0.3      
-##   utils_4.0.3       xfun_0.20        
-##   yaml_2.2.1</code></pre>
-<p>Package names are in bold text (e.g., <strong>rmarkdown</strong>), and inline code and filenames are formatted in a typewriter font (e.g., <code>knitr::knit('foo.Rmd')</code>). Function names are followed by parentheses (e.g., <code>bookdown::render_book()</code>).</p>
-</div>
-<div id="acknowledgments" class="section level2 unnumbered">
-<h2>Acknowledgments</h2>
-<p>A lot of people helped me when I was writing the book.</p>
+<div id="rmarkdown-dashboards" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Using RMarkdown to build dashboards for projects</h1>
+<p><em>sample text</em></p>
+<p>We talk about the <em>FOO</em> method in this chapter.</p>
 
-<p class="flushright">
-Angela Zoss
-</p>
-
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="about-the-author.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rmarkdown-websites.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="usability-for-visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -291,7 +219,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/amzoss/vis4dsr/edit/main/index.Rmd",
+"link": "https://github.com/amzoss/vis4dsr/edit/main/10-rmarkdown-dashboards.Rmd",
 "text": "Edit"
 },
 "history": {

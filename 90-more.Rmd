@@ -2,8 +2,8 @@
 
 # (APPENDIX) Appendix {-}
 
-# More to Say
+# Appendix Placeholder
 
-Yeah! I have finished my book, but I have more to say about some topics. Let me explain them in this appendix.
+Placeholder text for the appendix.
 
 To know more about **bookdown**, see https://bookdown.org.

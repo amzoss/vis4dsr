@@ -1,0 +1,6 @@
+# Using RMarkdown to build dashboards for projects {#rmarkdown-dashboards}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+

@@ -1,8 +1,8 @@
 \mainmatter
 
-# Introduction
+# Overview of common visualizations and how to read them {#reading-visualizations}
 
-Now unplug your Internet cable, and start doing some serious work.
+*sample text*
 
 We have a nice figure in Figure \@ref(fig:hello), and also a table in Table \@ref(tab:iris).
 

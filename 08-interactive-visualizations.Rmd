@@ -1,0 +1,6 @@
+# Exploring interactivity in visualizations with plotly and crosstalk {#interactive-visualizations}
+
+*sample text*
+
+We talk about the _FOO_ method\index{FOO} in this chapter.
+
