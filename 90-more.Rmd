@@ -7,3 +7,102 @@
 Placeholder text for the appendix.
 
 To know more about **bookdown**, see https://bookdown.org.
+
+## Possible datasets
+
+**check again for licenses**
+
+**need data good for text, repeated reports, interactive charts...** 
+
+* [Duke enrollment](https://doi.org/10.7924/r4db82p1j)
+* [Songbird color perception](https://doi.org/10.7924/r4rx96r99)
+* [Wetlands and shorebirds](https://doi.org/10.7924/r47w6b882)
+* [Better Baboon Breakups](https://doi.org/10.7924/r4bz67v25)
+* [Electricity markets](https://doi.org/10.7924/r40k2dx36)
+* [Truncating bar charts](https://osf.io/ytq3h/) - and related [paper](https://doi.org/10.1016/j.jarmac.2020.10.002)
+* [Primate maternal death](https://doi.org/10.7924/r44f1tk8k)
+* [Protecting coral reefs](https://doi.org/10.7924/G8348HFP)
+* [Mountain rainfall](https://doi.org/10.7924/G8CJ8BJK)
+* [Antitrust and preferential trade agreements](https://doi.org/10.7924/r4h70c24h)
+* [Research vessel logs](https://doi.org/10.7924/r41j9fq8z)
+* [SELF-PERCEPTIONS OF CREATIVITY & ARTS PARTICIPATION](https://doi.org/10.3886/ICPSR37853.v1)
+* [Getty Provenance Index](https://github.com/thegetty/provenance-index-csv)
+* [Investigating and Archiving the Scholarly Git Experience](https://doi.org/10.5064/F6VOIB8H) - CC-BY-SA-4.0
+    * have to register for data, but maybe can use [GitLab dataset?](https://gitlab.com/investigating-archiving-git/survey-analysis/-/tree/main)
+    * see also https://investigating-archiving-git.gitlab.io/updates/iasge-data-published/
+* Wilkins, Luke (2021). Exploring the Emotional Well-being and Mental Health of Individuals who Play Fantasy Football, 2021. [Data Collection]. Colchester, Essex: UK Data Service. [10.5255/UKDA-SN-854823](https://dx.doi.org/10.5255/UKDA-SN-854823)
+* Meadows, Angela (2020). Weight stigma resistance scale validation study 2018-2019. [Data Collection]. Colchester, Essex: UK Data Service. [10.5255/UKDA-SN-854091](https://dx.doi.org/10.5255/UKDA-SN-854091)
+* Meadows, Angela (2020). A social identity model of weight stigma resistance in high-weight individuals 2015. [Data Collection]. Colchester, Essex: UK Data Service. [10.5255/UKDA-SN-854100](https://dx.doi.org/10.5255/UKDA-SN-854100)
+* Meadows, Angela (2020). Workplace wellbeing study 2018-2019. [Data Collection]. Colchester, Essex: UK Data Service. [10.5255/UKDA-SN-854102](https://dx.doi.org/10.5255/UKDA-SN-854102)
+* Mulugeta, Mercy and Pertaub, David-Paul and Stevenson, Jed and Tekle Loyale, Dessalegn (2019). Retrospective household and livelihoods survey in Nyangatom District, South Omo, Ethiopia 2019. [Data Collection]. Colchester, Essex: UK Data Service. [10.5255/UKDA-SN-854024](https://dx.doi.org/10.5255/UKDA-SN-854024)
+* http://nesstar.ukdataservice.ac.uk/webview/index.jsp?v=2&mode=documentation&submode=abstract&study=http://nesstar.ukdataservice.ac.uk:80/obj/fStudy/7913&top=yes
+* http://nesstar.ukdataservice.ac.uk/webview/index.jsp?v=2&mode=documentation&submode=abstract&study=http://nesstar.ukdataservice.ac.uk:80/obj/fStudy/8150&top=yes
+* https://www.icpsr.umich.edu/web/appfed/search/studies
+* https://www.icpsr.umich.edu/web/RCMD/search/studies?start=0&sort=score%20desc%2CTITLE_SORT%20asc&RESTRICTED_DATA_TYPE=Public%20Use&ARCHIVE=RCMD&PUBLISH_STATUS=PUBLISHED&FORMAT_FACET=Delimited&rows=50&q=
+* https://www.openicpsr.org/openicpsr/search/studies?start=0&sort=DATEUPDATED%20desc&GEOGRAPHY_FACET=United%20States&RESTRICTED_DATA_TYPE=Public%20Use&ARCHIVE=openicpsr&rows=346
+* https://www.icpsr.umich.edu/web/DAIRL/search/studies?start=0&ARCHIVE=DAIRL&PUBLISH_STATUS=PUBLISHED&RESTRICTED_DATA_TYPE=Public%20Use&sort=TITLE_SORT%20asc&rows=50
+* https://belonging.berkeley.edu/inclusivenessindex/data-and-resources
+* https://www.nsf.gov/statistics/srvyrecentgrads/#tabs-2
+* https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/
+* http://millionsongdataset.com/pages/getting-dataset/
+* https://www.sciencebase.gov/catalog/item/57bdfd8fe4b03fd6b7df5ff9
+* https://w2.weather.gov/climate/
+* https://vincentarelbundock.github.io/Rdatasets/datasets.html
+* https://github.com/higgi13425/medicaldata
+* https://wholeads.us/datasets/
+    * https://wholeads.us/research/rising-tide-ballot-demographics/ - includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, Race, Gender, Race/Gender Category, Office Level; 4 years (2012, 2014, 2016, 2018), over 40k records
+* https://reports.nlihc.org/oor/alabama
+* https://nhc.org/paycheck-to-paycheck/
+* https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=downloads
+* https://tracktherecovery.org/
+* https://www.epi.org/data/
+* https://livingwage.mit.edu/
+* https://www.epi.org/resources/budget/
+
+** to consider: what kind of data would people see in different business
+contexts? as opposed to research projects... **
+
+* orders/product usage
+* website usage
+* satisfaction surveys
+* donations in response to media campaigns
+* email click rate? other engagement in relation to media campaigns?
+* something for health? trying to predict/understand types of human behavior?
+* 
+
+## Duke Enrollment Data
+
+```{r, include=FALSE}
+
+library(tidyverse)
+
+```
+
+```{r}
+
+duke_enrollment <- read_csv('data/duke_enrollment/UberMegaMaster_70S-20F-V5.csv') %>%
+  dplyr::select(-X1, -X.2, -X.1, -X)
+
+duke_enrollment_by_status <- duke_enrollment %>%
+  dplyr::select(Year, Semester, Origin, Region, Sex, All_UG, All_Grad) %>%
+  rename("Undergraduate" = "All_UG", "Graduate" = "All_Grad") %>%
+  pivot_longer(cols = c(Undergraduate, Graduate), 
+               names_to = "Student_Status", 
+               values_to = "Count") %>%
+  dplyr::filter(Count > 0)
+
+duke_enrollment_by_school <- duke_enrollment %>%
+  dplyr::select(Year, Semester, Origin, Region, Sex, Trinity, Nursing, 
+                Engineering, Graduate, Divinity, Law, Business, Environment, 
+                Medicine, Graduate.Nursing, Allied.Health) %>%
+  pivot_longer(cols = c(Trinity, Nursing, Engineering, Graduate, Divinity, Law, 
+                        Business, Environment, Medicine, Graduate.Nursing, 
+                        Allied.Health), names_to = "School", values_to = "Count") %>%
+  dplyr::filter(Count > 0)
+
+write_csv(duke_enrollment_by_status, "data/duke_enrollment/duke_enrollment_by_status.csv")
+write_csv(duke_enrollment_by_school, "data/duke_enrollment/duke_enrollment_by_school.csv")
+
+
+```
+

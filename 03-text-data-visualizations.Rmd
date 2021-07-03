@@ -2,5 +2,6 @@
 
 *sample text*
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
-
+Cleaning data: use duke_enrollment (either by status or school) to talk about factors. 
+Have Semester, which is really a time-based variable. Need to combine with Year
+to get the real sequence of enrollment.
