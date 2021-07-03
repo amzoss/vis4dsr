@@ -2,7 +2,8 @@ bookdown::gitbook:
   css: css/style.css
   config:
     toc:
-      collapse: none
+      collapse: section
+      scroll_highlight: yes
       before: |
         <li><a href="./">Visualization for Data Science with R</a></li>
       after: |

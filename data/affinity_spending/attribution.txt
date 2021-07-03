@@ -1,0 +1,3 @@
+"The Economic Impacts of COVID-19: Evidence from a New Public Database Built Using Private Sector Data", by Raj Chetty, John Friedman, Nathaniel Hendren, Michael Stepner, and the Opportunity Insights Team. November 2020. Available at: https://opportunityinsights.org/wp-content/uploads/2020/05/tracker_paper.pdf
+
+Credit/debit card spending data from Affinity Solutions (https://www.affinity.solutions/dataforgood), downloaded from https://github.com/OpportunityInsights/EconomicTracker

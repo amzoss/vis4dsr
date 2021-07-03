@@ -22,7 +22,7 @@ options(
 )
 
 # install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
-lapply(c('tidyverse'), function(pkg) {
+lapply(c('xfun','tidyverse','readxl','lubridate'), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```
@@ -76,9 +76,9 @@ xfun::session_info()
 
 Package names are in bold text (e.g., **rmarkdown**), and inline code and filenames are formatted in a typewriter font (e.g., `knitr::knit('foo.Rmd')`). Function names are followed by parentheses (e.g., `bookdown::render_book()`).
 
-## Acknowledgments {-}
+<!--## Acknowledgments {-}
 
-A lot of people helped me when I was writing the book.
+A lot of people helped me when I was writing the book.-->
 
 ```{block2, type='flushright', html.tag='p'}
 Angela Zoss
