@@ -1,0 +1,6 @@
+source('data/affinity_spending/load_affinity_spending.R')
+source('data/candidate_demographics/load_candidate_demographics.R')
+source('data/coral_resilience/load_coral_resilience.R')
+source('data/duke_enrollment/load_duke_enrollment.R')
+source('data/git_experience/load_git_experience.R')
+source('data/inclusiveness_index/load_inclusiveness_index.R')
