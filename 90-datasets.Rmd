@@ -4,56 +4,43 @@
 
 # Datasets
 
+```{r, include=FALSE}
+
+source('data/load_all_data.R')
+
+```
+
 ## Duke Enrollment {-}
 
 [Duke enrollment](https://doi.org/10.7924/r4db82p1j)
 
-```{r, include=FALSE}
+Sample of Duke Enrollment By School dataset, Table \@ref(tab:duke-school-tab).
 
-library(tidyverse)
+```{r duke-school-tab, echo=FALSE}
 
-```
-
-```{r}
-
-duke_enrollment <- read_csv('data/duke_enrollment/UberMegaMaster_70S-20F-V5.csv') %>%
-  dplyr::select(-X1, -X.2, -X.1, -X)
-
-duke_enrollment_by_status <- duke_enrollment %>%
-  dplyr::select(Year, Semester, Origin, Region, Sex, All_UG, All_Grad) %>%
-  rename("Undergraduate" = "All_UG", "Graduate" = "All_Grad") %>%
-  pivot_longer(cols = c(Undergraduate, Graduate), 
-               names_to = "Student_Status", 
-               values_to = "Count") %>%
-  dplyr::filter(Count > 0)
-
-duke_enrollment_by_school <- duke_enrollment %>%
-  dplyr::select(Year, Semester, Origin, Region, Sex, Trinity, Nursing, 
-                Engineering, Graduate, Divinity, Law, Business, Environment, 
-                Medicine, Graduate.Nursing, Allied.Health) %>%
-  pivot_longer(cols = c(Trinity, Nursing, Engineering, Graduate, Divinity, Law, 
-                        Business, Environment, Medicine, Graduate.Nursing, 
-                        Allied.Health), names_to = "School", values_to = "Count") %>%
-  dplyr::filter(Count > 0)
-
-write_csv(duke_enrollment_by_status, "data/duke_enrollment/duke_enrollment_by_status.csv")
-write_csv(duke_enrollment_by_school, "data/duke_enrollment/duke_enrollment_by_school.csv")
-
+knitr::kable(
+  head(duke_enrollment_by_school), caption = 'A sample from the Duke Enrollment By School dataset.',
+  booktabs = TRUE
+)
 
 ```
+
+
 
 ## Coral Resilience Data {-}
 
 [Protecting coral reefs](https://doi.org/10.7924/G8348HFP)
 
-```{r}
+Figure \@ref(fig:coral-resilience-point).
 
-coral_resilience <- read_csv('data/coral_resilience/Raw_Data_Experiment.csv')
+```{r coral-resilience-point, fig.cap='Log of tissue loss by snail density', out.width='90%', echo=FALSE}
 
 # chart from p. 68 of https://hdl.handle.net/10161/16819 
 #   (also published in https://doi.org/10.1038/s41559-018-0589-0)
 ggplot(coral_resilience, aes(x=snails_exp, y=log(tissue_loss), color=treatment)) + geom_point()
+```
 
+```{r, include=FALSE}
 # Could make a map with reef coordinates from the thesis (p.46):
 
 #Site Name,Protection Status,Florida Keys Region,GPS Location
@@ -72,109 +59,25 @@ ggplot(coral_resilience, aes(x=snails_exp, y=log(tissue_loss), color=treatment))
 # 30 similarly-sized colonies (~159.1 ± 15.5 cm 2 surface area) that were already 
 # harboring C. abbreviata."
 
-
 ```
 
 ## Git Experience {-}
 
 [A Behavioral Approach to Understanding the Git Experience](https://osf.io/57tb8/)
 
-```{r}
-
-git_experience <- read_csv('data/git_experience/2020-07-12_processed-survey.csv') %>%
-  dplyr::select(-X1) %>%
-  mutate(year_vcs = as.numeric(year_vcs),
-         across(.cols = c(first_bazaar, first_cvs, first_git, first_hg, 
-                          first_monotone, first_svn, first_other, use_bitbucket, 
-                          use_github, use_gitlab, use_sourceforge, use_selfhost, 
-                          use_nothing, use_other_platform, use_local_gui,
-                          use_local_term, use_local_other, how_learn_books, 
-                          how_learn_credit_course, how_learn_online_course, 
-                          how_learn_rtfm, how_learn_accel, how_learn_webinar, 
-                          how_learn_workshop, how_learn_other, teach_inperson,
-                          teach_vasync, teach_vsync, use_ci, use_annotation, 
-                          use_fork_pr, use_issues, use_pages, use_boards, 
-                          use_wikis, use_other_feat, private_fund, public_fund,
-                          dontknow_fund, no_funds, other_fund, scholexp_collab, 
-                          scholexp_edu, scholexp_method, scholexp_peerprod, 
-                          scholexp_peer_review, scholexp_pub, scholexp_qa, 
-                          scholexp_repro, scholexp_other, archive_figshare, 
-                          archive_ir, archive_osf, archive_sh, archive_zenodo, 
-                          archive_other), 
-                as.logical))
-
-
-```
 
 ## Inclusiveness Index {-}
 
 [Inclusiveness Index](https://belonging.berkeley.edu/inclusivenessindex/data-and-resources)
 
-```{r}
-
-library(readxl)
-
-```
-
-```{r}
-
-inclusiveness_index <- read_excel('data/inclusiveness_index/global_data_for_website_2020.xlsx', na="9999")
-
-```
-
-
 ## Candidate Demographics {-}
 
 [Candidate Demographics](https://wholeads.us/research/rising-tide-ballot-demographics/)
 
-```{r}
-
-#https://wholeads.us/research/rising-tide-ballot-demographics/ - includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, Race, Gender, Race/Gender Category, Office Level; 4 years (2012, 2014, 2016, 2018), over 40k records
-
-candidate_demographics <- bind_rows(
-  read_excel('data/candidate_demographics/RD-Candidate-Analysis-2012-8.xlsx', sheet=1) %>% 
-    mutate(year = 2018),
-  read_excel('data/candidate_demographics/RD-Candidate-Analysis-2012-8.xlsx', sheet=2) %>% 
-    mutate(year = 2016),
-  read_excel('data/candidate_demographics/RD-Candidate-Analysis-2012-8.xlsx', sheet=3) %>% 
-    mutate(year = 2014),
-  read_excel('data/candidate_demographics/RD-Candidate-Analysis-2012-8.xlsx', sheet=4) %>% 
-    mutate(year = 2012)
-    )
-
-```
+Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, Race, Gender, Race/Gender Category, Office Level; 4 years (2012, 2014, 2016, 2018), over 40k records
 
 ## Affinity Spending {-}
 
 [Affinity Spending](https://github.com/OpportunityInsights/EconomicTracker)
 
-```{r}
-
-library(lubridate)
-
-```
-
-
-```{r}
-
-affinity_spending <- read_csv('data/affinity_spending/Affinity - National - Daily.csv', na=".") %>%
-  mutate(date = ymd(paste(year, month, day, sep="-"))) %>%
-  dplyr::select(-starts_with("spend_s_")) %>%
-  pivot_longer(cols =  starts_with("spend_"), names_to = "spending_category", values_to = "spending_proportion") %>%
-  mutate(spending_category = str_replace(str_remove(spending_category, "spend_"), "_q", "|q")) %>%
-  separate(spending_category, into=c("spending_category", "income_quartile"), sep="[|]") %>%
-  dplyr::filter(!is.na(spending_proportion) & 
-                  !is.na(income_quartile) & 
-                  spending_category %in% c("retail_w_grocery", "retail_no_grocery", 
-                                           "durables", "nondurables", 
-                                           "remoteservices", "inpersonmisc")) %>%
-  dplyr::select(date, income_quartile, spending_category, 
-                spending_proportion, freq, provisional)
-
-ggplot(affinity_spending, aes(x=date, y=spending_proportion, color=income_quartile)) +
-  geom_line() +
-  facet_wrap(vars(spending_category))
-
-
-```
 

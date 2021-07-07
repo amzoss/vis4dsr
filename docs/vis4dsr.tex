@@ -175,7 +175,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2021-07-03}
+\date{2021-07-07}
 
 \begin{document}
 \maketitle
@@ -327,50 +327,14 @@ Angela is the \href{https://library.duke.edu/about/directory/staff/angela.zoss}{
 \hypertarget{reading-visualizations}{%
 \chapter{Overview of common visualizations and how to read them}\label{reading-visualizations}}
 
-\emph{sample text}
+\hypertarget{bar-chart}{%
+\section{Bar Chart}\label{bar-chart}}
 
-We have a nice figure in Figure \ref{fig:hello}, and also a table in Table \ref{tab:iris}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Figure \ref{fig:duke-school-bar}.
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{vis4dsr_files/figure-latex/hello-1} \caption{Hello World!}\label{fig:hello}
+\includegraphics[width=0.9\linewidth]{vis4dsr_files/figure-latex/duke-school-bar-1} \caption{Total Duke Enrollment by School}\label{fig:duke-school-bar}
 \end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(iris), }\AttributeTok{caption =} \StringTok{\textquotesingle{}The boring iris data.\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:iris}The boring iris data.}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-More chapters to come in \texttt{02-foo.Rmd}, \texttt{03-bar}.Rmd, \ldots{}
 
 \hypertarget{building-basic-visualizations}{%
 \chapter{Building basic visualizations with ggplot2}\label{building-basic-visualizations}}
@@ -466,53 +430,26 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 
 \href{https://doi.org/10.7924/r4db82p1j}{Duke enrollment}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{duke\_enrollment }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/duke\_enrollment/UberMegaMaster\_70S{-}20F{-}V5.csv\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{X1, }\SpecialCharTok{{-}}\NormalTok{X}\FloatTok{.2}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{X}\FloatTok{.1}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{X)}
-\end{Highlighting}
-\end{Shaded}
+Sample of Duke Enrollment By School dataset, Table \ref{tab:duke-school-tab}.
 
-\begin{verbatim}
-## Warning: Missing column names filled in: 'X1' [1]
-\end{verbatim}
+\begin{table}
 
-\begin{verbatim}
-## 
-## -- Column specification -------------------------------
-## cols(
-##   .default = col_double(),
-##   Semester = col_character(),
-##   Origin = col_character(),
-##   Sex = col_character(),
-##   Region = col_character()
-## )
-## i Use `spec()` for the full column specifications.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{duke\_enrollment\_by\_status }\OtherTok{\textless{}{-}}\NormalTok{ duke\_enrollment }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(Year, Semester, Origin, Region, Sex, All\_UG, All\_Grad) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{rename}\NormalTok{(}\StringTok{"Undergraduate"} \OtherTok{=} \StringTok{"All\_UG"}\NormalTok{, }\StringTok{"Graduate"} \OtherTok{=} \StringTok{"All\_Grad"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Undergraduate, Graduate), }
-               \AttributeTok{names\_to =} \StringTok{"Student\_Status"}\NormalTok{, }
-               \AttributeTok{values\_to =} \StringTok{"Count"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Count }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
-
-\NormalTok{duke\_enrollment\_by\_school }\OtherTok{\textless{}{-}}\NormalTok{ duke\_enrollment }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(Year, Semester, Origin, Region, Sex, Trinity, Nursing, }
-\NormalTok{                Engineering, Graduate, Divinity, Law, Business, Environment, }
-\NormalTok{                Medicine, Graduate.Nursing, Allied.Health) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Trinity, Nursing, Engineering, Graduate, Divinity, Law, }
-\NormalTok{                        Business, Environment, Medicine, Graduate.Nursing, }
-\NormalTok{                        Allied.Health), }\AttributeTok{names\_to =} \StringTok{"School"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"Count"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Count }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
-
-\FunctionTok{write\_csv}\NormalTok{(duke\_enrollment\_by\_status, }\StringTok{"data/duke\_enrollment/duke\_enrollment\_by\_status.csv"}\NormalTok{)}
-\FunctionTok{write\_csv}\NormalTok{(duke\_enrollment\_by\_school, }\StringTok{"data/duke\_enrollment/duke\_enrollment\_by\_school.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\caption{\label{tab:duke-school-tab}A sample from the Duke Enrollment By School dataset.}
+\centering
+\begin{tabular}[t]{rlllllr}
+\toprule
+Year & Semester & Origin & Region & Sex & School & Count\\
+\midrule
+1970 & Fall & Alabama & United States & Female & Trinity & 11\\
+1970 & Fall & Alabama & United States & Female & Graduate & 7\\
+1970 & Fall & Alabama & United States & Female & Divinity & 1\\
+1970 & Fall & Alabama & United States & Female & Law & 1\\
+1970 & Fall & Alaska & United States & Female & Trinity & 1\\
+\addlinespace
+1970 & Fall & Alaska & United States & Female & Graduate & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \hypertarget{coral-resilience-data}{%
 \section*{Coral Resilience Data}\label{coral-resilience-data}}
@@ -520,66 +457,16 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 
 \href{https://doi.org/10.7924/G8348HFP}{Protecting coral reefs}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{coral\_resilience }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/coral\_resilience/Raw\_Data\_Experiment.csv\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## -- Column specification -------------------------------
-## cols(
-##   coral_id = col_double(),
-##   circumf_1 = col_double(),
-##   circumf_2 = col_double(),
-##   coral_surfarea = col_double(),
-##   temp_avg = col_double(),
-##   treatment = col_character(),
-##   snails_exp = col_double(),
-##   tissue_loss = col_double(),
-##   snails_bleaching = col_double(),
-##   bleaching = col_double(),
-##   mort_postbleach = col_double()
-## )
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# chart from p. 68 of https://hdl.handle.net/10161/16819 }
-\CommentTok{\#   (also published in https://doi.org/10.1038/s41559{-}018{-}0589{-}0)}
-\FunctionTok{ggplot}\NormalTok{(coral\_resilience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{snails\_exp, }\AttributeTok{y=}\FunctionTok{log}\NormalTok{(tissue\_loss), }\AttributeTok{color=}\NormalTok{treatment)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+Figure \ref{fig:coral-resilience-point}.
 
 \begin{verbatim}
 ## Warning: Removed 1 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-5-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Could make a map with reef coordinates from the thesis (p.46):}
-
-\CommentTok{\#Site Name,Protection Status,Florida Keys Region,GPS Location}
-\CommentTok{\#Molasses Reef,SPA/ No{-}take,Upper Keys,N 25 0.579, W 80 22.471}
-\CommentTok{\#Conch Reef,SPA/ No{-}take,Upper Keys,N 24 57.110, W 80 27.564}
-\CommentTok{\#Coffins Patch,SPA/ No{-}take,Middle Keys,N 24 41.400, W 80 57.850}
-\CommentTok{\#Pickles Reef,Fishing allowed,Upper Keys,N 24 59.170, W 80 24.940}
-\CommentTok{\#Horseshoe Reef,Fishing allowed,Middle Keys,N 24 39.670, W 80 59.650}
-\CommentTok{\#American Shoals,Fishing allowed,Lower Keys,N 24 31.568, W 81 31.383}
-
-\CommentTok{\# but all of the experiment data comes from multiple colonies in one reef.}
-\CommentTok{\# p. 46 of thesis:}
-
-\CommentTok{\# "This experiment was conducted at Pickles Reef in Key Largo, Florida,}
-\CommentTok{\# USA from mid{-}June to mid{-}August 2014. Within the experimental site, I selected }
-\CommentTok{\# 30 similarly{-}sized colonies (\textasciitilde{}159.1 ± 15.5 cm 2 surface area) that were already }
-\CommentTok{\# harboring C. abbreviata."}
-\end{Highlighting}
-\end{Shaded}
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{vis4dsr_files/figure-latex/coral-resilience-point-1} \caption{Log of tissue loss by snail density}\label{fig:coral-resilience-point}
+\end{figure}
 
 \hypertarget{git-experience}{%
 \section*{Git Experience}\label{git-experience}}
@@ -587,88 +474,11 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 
 \href{https://osf.io/57tb8/}{A Behavioral Approach to Understanding the Git Experience}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{git\_experience }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/git\_experience/2020{-}07{-}12\_processed{-}survey.csv\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{X1) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year\_vcs =} \FunctionTok{as.numeric}\NormalTok{(year\_vcs),}
-         \FunctionTok{across}\NormalTok{(}\AttributeTok{.cols =} \FunctionTok{c}\NormalTok{(first\_bazaar, first\_cvs, first\_git, first\_hg, }
-\NormalTok{                          first\_monotone, first\_svn, first\_other, use\_bitbucket, }
-\NormalTok{                          use\_github, use\_gitlab, use\_sourceforge, use\_selfhost, }
-\NormalTok{                          use\_nothing, use\_other\_platform, use\_local\_gui,}
-\NormalTok{                          use\_local\_term, use\_local\_other, how\_learn\_books, }
-\NormalTok{                          how\_learn\_credit\_course, how\_learn\_online\_course, }
-\NormalTok{                          how\_learn\_rtfm, how\_learn\_accel, how\_learn\_webinar, }
-\NormalTok{                          how\_learn\_workshop, how\_learn\_other, teach\_inperson,}
-\NormalTok{                          teach\_vasync, teach\_vsync, use\_ci, use\_annotation, }
-\NormalTok{                          use\_fork\_pr, use\_issues, use\_pages, use\_boards, }
-\NormalTok{                          use\_wikis, use\_other\_feat, private\_fund, public\_fund,}
-\NormalTok{                          dontknow\_fund, no\_funds, other\_fund, scholexp\_collab, }
-\NormalTok{                          scholexp\_edu, scholexp\_method, scholexp\_peerprod, }
-\NormalTok{                          scholexp\_peer\_review, scholexp\_pub, scholexp\_qa, }
-\NormalTok{                          scholexp\_repro, scholexp\_other, archive\_figshare, }
-\NormalTok{                          archive\_ir, archive\_osf, archive\_sh, archive\_zenodo, }
-\NormalTok{                          archive\_other), }
-\NormalTok{                as.logical))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: Missing column names filled in: 'X1' [1]
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## -- Column specification -------------------------------
-## cols(
-##   .default = col_double(),
-##   year_vcs = col_character(),
-##   first_vcs = col_character(),
-##   first_vcs_other = col_character(),
-##   first_other_text = col_character(),
-##   use_selfhost_text = col_character(),
-##   use_other_platform_text = col_character(),
-##   why_no_platform = col_character(),
-##   freq_git = col_character(),
-##   freq_git_text = col_character(),
-##   freq_platform = col_character(),
-##   freq_platform_text = col_character(),
-##   use_local_other_text = col_character(),
-##   why_vcs = col_character(),
-##   why_vcs_text = col_character(),
-##   how_learn_other_text = col_character(),
-##   who_taught_git = col_character(),
-##   when_learn_git = col_character(),
-##   when_learn_git_other = col_character(),
-##   freq_reteach = col_character(),
-##   freq_reteach_text = col_character()
-##   # ... with 27 more columns
-## )
-## i Use `spec()` for the full column specifications.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in mask$eval_all_mutate(quo): NAs introduced by
-## coercion
-\end{verbatim}
-
 \hypertarget{inclusiveness-index}{%
 \section*{Inclusiveness Index}\label{inclusiveness-index}}
 
 
 \href{https://belonging.berkeley.edu/inclusivenessindex/data-and-resources}{Inclusiveness Index}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(readxl)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}data/inclusiveness\_index/global\_data\_for\_website\_2020.xlsx\textquotesingle{}}\NormalTok{, }\AttributeTok{na=}\StringTok{"9999"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{candidate-demographics}{%
 \section*{Candidate Demographics}\label{candidate-demographics}}
@@ -676,89 +486,13 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 
 \href{https://wholeads.us/research/rising-tide-ballot-demographics/}{Candidate Demographics}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#https://wholeads.us/research/rising{-}tide{-}ballot{-}demographics/ {-} includes State, Candidate Name, Candidate Party, Office Name, White/Non{-}White, Race, Gender, Race/Gender Category, Office Level; 4 years (2012, 2014, 2016, 2018), over 40k records}
-
-\NormalTok{candidate\_demographics }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
-  \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}data/candidate\_demographics/RD{-}Candidate{-}Analysis{-}2012{-}8.xlsx\textquotesingle{}}\NormalTok{, }\AttributeTok{sheet=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year =} \DecValTok{2018}\NormalTok{),}
-  \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}data/candidate\_demographics/RD{-}Candidate{-}Analysis{-}2012{-}8.xlsx\textquotesingle{}}\NormalTok{, }\AttributeTok{sheet=}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year =} \DecValTok{2016}\NormalTok{),}
-  \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}data/candidate\_demographics/RD{-}Candidate{-}Analysis{-}2012{-}8.xlsx\textquotesingle{}}\NormalTok{, }\AttributeTok{sheet=}\DecValTok{3}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year =} \DecValTok{2014}\NormalTok{),}
-  \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}data/candidate\_demographics/RD{-}Candidate{-}Analysis{-}2012{-}8.xlsx\textquotesingle{}}\NormalTok{, }\AttributeTok{sheet=}\DecValTok{4}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{year =} \DecValTok{2012}\NormalTok{)}
-\NormalTok{    )}
-\end{Highlighting}
-\end{Shaded}
+Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, Race, Gender, Race/Gender Category, Office Level; 4 years (2012, 2014, 2016, 2018), over 40k records
 
 \hypertarget{affinity-spending}{%
 \section*{Affinity Spending}\label{affinity-spending}}
 
 
 \href{https://github.com/OpportunityInsights/EconomicTracker}{Affinity Spending}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(lubridate)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'lubridate'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{affinity\_spending }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/affinity\_spending/Affinity {-} National {-} Daily.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{na=}\StringTok{"."}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{date =} \FunctionTok{ymd}\NormalTok{(}\FunctionTok{paste}\NormalTok{(year, month, day, }\AttributeTok{sep=}\StringTok{"{-}"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"spend\_s\_"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =}  \FunctionTok{starts\_with}\NormalTok{(}\StringTok{"spend\_"}\NormalTok{), }\AttributeTok{names\_to =} \StringTok{"spending\_category"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"spending\_proportion"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{spending\_category =} \FunctionTok{str\_replace}\NormalTok{(}\FunctionTok{str\_remove}\NormalTok{(spending\_category, }\StringTok{"spend\_"}\NormalTok{), }\StringTok{"\_q"}\NormalTok{, }\StringTok{"|q"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{separate}\NormalTok{(spending\_category, }\AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"spending\_category"}\NormalTok{, }\StringTok{"income\_quartile"}\NormalTok{), }\AttributeTok{sep=}\StringTok{"[|]"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(spending\_proportion) }\SpecialCharTok{\&} 
-                  \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(income\_quartile) }\SpecialCharTok{\&} 
-\NormalTok{                  spending\_category }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"retail\_w\_grocery"}\NormalTok{, }\StringTok{"retail\_no\_grocery"}\NormalTok{, }
-                                           \StringTok{"durables"}\NormalTok{, }\StringTok{"nondurables"}\NormalTok{, }
-                                           \StringTok{"remoteservices"}\NormalTok{, }\StringTok{"inpersonmisc"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(date, income\_quartile, spending\_category, }
-\NormalTok{                spending\_proportion, freq, provisional)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## -- Column specification -------------------------------
-## cols(
-##   .default = col_double(),
-##   freq = col_character()
-## )
-## i Use `spec()` for the full column specifications.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Expected 2 pieces. Missing pieces filled with
-## `NA` in 15894 rows [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
-## 12, 13, 14, 15, 16, 17, 18, 87, 88, ...].
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(affinity\_spending, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{date, }\AttributeTok{y=}\NormalTok{spending\_proportion, }\AttributeTok{color=}\NormalTok{income\_quartile)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{facet\_wrap}\NormalTok{(}\FunctionTok{vars}\NormalTok{(spending\_category))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 

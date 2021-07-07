@@ -1,7 +1,9 @@
 fig:knitr-logo
-fig:hello
-tab:iris
+fig:duke-school-bar
+tab:duke-school-tab
+fig:coral-resilience-point
 reading-visualizations
+bar-chart
 building-basic-visualizations
 text-data-visualizations
 customizing-visualization-design

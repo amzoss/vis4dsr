@@ -51,8 +51,6 @@ This book will be:
 
 ## Structure of the book {-}
 
-<!--Chapters \@ref(introduction) introduces a new topic, and ...-->
-
 * Chapter \@ref(reading-visualizations): Overview of common visualizations and how to read them
 * Chapter \@ref(building-basic-visualizations): Building basic visualizations with ggplot2
 * Chapter \@ref(text-data-visualizations): Working with textual data in ggplot2

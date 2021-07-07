@@ -2,20 +2,23 @@
 
 # Overview of common visualizations and how to read them {#reading-visualizations}
 
-*sample text*
+```{r, include=FALSE}
 
-We have a nice figure in Figure \@ref(fig:hello), and also a table in Table \@ref(tab:iris).
+source('data/load_all_data.R')
 
-```{r hello, fig.cap='Hello World!', out.width='90%'}
-par(mar = c(4, 4, 1, .1))
-plot(cars, pch = 19)
 ```
 
-```{r iris}
-knitr::kable(
-  head(iris), caption = 'The boring iris data.',
-  booktabs = TRUE
-)
+## Bar Chart
+
+Figure \@ref(fig:duke-school-bar).
+
+```{r duke-school-bar, fig.cap='Total Duke Enrollment by School', out.width='90%', echo=FALSE}
+
+ggplot(duke_enrollment_by_school %>% 
+         mutate(School = 
+                  School %>% as_factor() %>% fct_infreq() %>% fct_rev()), 
+       aes(y=School)) +
+  geom_bar()
+
 ```
 
-More chapters to come in `02-foo.Rmd`, `03-bar`.Rmd, ...

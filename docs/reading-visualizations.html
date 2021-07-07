@@ -24,7 +24,7 @@
 <meta name="author" content="Angela M. Zoss, Ph.D." />
 
 
-<meta name="date" content="2021-07-03" />
+<meta name="date" content="2021-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventions"><i class="fa fa-check"></i>Software information and conventions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
-<li class="chapter" data-level="1" data-path="reading-visualizations.html"><a href="reading-visualizations.html"><i class="fa fa-check"></i><b>1</b> Overview of common visualizations and how to read them</a></li>
+<li class="chapter" data-level="1" data-path="reading-visualizations.html"><a href="reading-visualizations.html"><i class="fa fa-check"></i><b>1</b> Overview of common visualizations and how to read them</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#bar-chart"><i class="fa fa-check"></i><b>1.1</b> Bar Chart</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html"><i class="fa fa-check"></i><b>2</b> Building basic visualizations with ggplot2</a></li>
 <li class="chapter" data-level="3" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html"><i class="fa fa-check"></i><b>3</b> Working with textual data in ggplot2</a></li>
 <li class="chapter" data-level="4" data-path="customizing-visualization-design.html"><a href="customizing-visualization-design.html"><i class="fa fa-check"></i><b>4</b> Customizing the design of ggplot2 visualizations</a></li>
@@ -185,78 +188,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="reading-visualizations" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Overview of common visualizations and how to read them</h1>
-<p><em>sample text</em></p>
-<p>We have a nice figure in Figure <a href="reading-visualizations.html#fig:hello">1.1</a>, and also a table in Table <a href="reading-visualizations.html#tab:iris">1.1</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="reading-visualizations.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>, .<span class="dv">1</span>))</span>
-<span id="cb3-2"><a href="reading-visualizations.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:hello"></span>
-<img src="vis4dsr_files/figure-html/hello-1.png" alt="Hello World!" width="90%" />
+<div id="bar-chart" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Bar Chart</h2>
+<p>Figure <a href="reading-visualizations.html#fig:duke-school-bar">1.1</a>.</p>
+<div class="figure"><span id="fig:duke-school-bar"></span>
+<img src="vis4dsr_files/figure-html/duke-school-bar-1.png" alt="Total Duke Enrollment by School" width="90%" />
 <p class="caption">
-FIGURE 1.1: Hello World!
+FIGURE 1.1: Total Duke Enrollment by School
 </p>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="reading-visualizations.html#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb4-2"><a href="reading-visualizations.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(iris), <span class="at">caption =</span> <span class="st">&#39;The boring iris data.&#39;</span>,</span>
-<span id="cb4-3"><a href="reading-visualizations.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-4"><a href="reading-visualizations.html#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<table>
-<caption><span id="tab:iris">TABLE 1.1: </span>The boring iris data.</caption>
-<thead>
-<tr class="header">
-<th align="right">Sepal.Length</th>
-<th align="right">Sepal.Width</th>
-<th align="right">Petal.Length</th>
-<th align="right">Petal.Width</th>
-<th align="left">Species</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.7</td>
-<td align="right">3.2</td>
-<td align="right">1.3</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.6</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.0</td>
-<td align="right">3.6</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.7</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-</tbody>
-</table>
-<p>More chapters to come in <code>02-foo.Rmd</code>, <code>03-bar</code>.Rmd, …</p>
 
+</div>
 </div>
             </section>
 
