@@ -1,6 +1,64 @@
 # Basic accessibility for static visualizations {#accessibility-for-visualizations}
 
-*sample text*
+## Low Vision
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+-   Large text
 
+    -   ["output-examples" file](https://github.com/amzoss/RVis-2Day/blob/master/Day%201/templates/output-examples.md)
+
+-   High color contrast
+
+    -   Both marks/text on background and labels on marks
+
+    -   Check with [savonliquide package](https://github.com/feddelegrand7/savonliquide)
+
+## Color Vision Deficiency
+
+### Dual encoding (never just color)
+
+-   Line color -- also vary line type
+
+-   Point color -- also vary point shape
+
+-   <https://www.youtube.com/watch?v=mbi_JVC1arM>
+
+### Color palettes
+
+-   [colorspace package](http://colorspace.r-forge.r-project.org/index.html)
+
+## Alternative Text for Screen Readers
+
+In R, R Markdown:
+
+-   [fig.alt](https://blog.rstudio.com/2021/04/20/knitr-fig-alt/) in code chunk (new, just for HTML output)
+
+-   [fig.cap](https://bookdown.org/yihui/rmarkdown/r-code.html) in code chunk as backup
+
+-   embedded images:\
+    ![alt text or image title](path/to/image)
+
+-   New: ggplot2 v3.3.4 adds [alt option in labs()](https://ggplot2.tidyverse.org/reference/labs.html), with plans to propagate to Rmd, Shiny
+
+[Writing good alt text for visualizations](https://nightingaledvs.com/writing-alt-text-for-data-visualization/)
+
+Longer descriptions: [savonliquide package](https://github.com/feddelegrand7/savonliquide)
+
+## Converting graphics to sound, touch, text
+
+-   sonify package
+
+-   tactileR package
+
+-   [BrailleR package](https://r-resources.massey.ac.nz/BrailleRInAction/GGPlot.html)
+
+    -   Note: set plot title, subtitle, caption using labs()
+
+[Accessible Data Science for the Blind Using R](https://jooyoungseo.com/post/ds4blind/)
+
+## Accessibility Resources
+
+-   [savonliquide package](https://github.com/feddelegrand7/savonliquide)
+
+-   [Making betteR figures: Accessibility and Universal Design](https://bookdown.org/ybrandvain/Applied-Biostats/betteRfigs.html#accessibility-and-universal-design)
+
+-   [Highlights from the DVS accessibility fireside chat](https://nightingaledvs.com/highlights-from-the-dvs-accessibility-fireside-chat/)
