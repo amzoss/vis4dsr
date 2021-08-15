@@ -1,6 +1,69 @@
 # Building basic visualizations with ggplot2 {#building-basic-visualizations}
 
-*sample text*
+## Basic ggplot2 syntax
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+```{r, echo=FALSE}
+
+ggplot(tibble()) + 
+  geom_point() + 
+  xlim(0, 100) + 
+  ylim(38, 78) +
+  coord_equal() +
+  annotate("rect", xmin = 70, xmax = 100, ymin = 38, 
+           ymax = 71, fill = "white", color = "black") +
+  annotate("text", x = 85, y = 75, label = "plot", size = 8) +
+  annotate("text", x = 85, y = 68, label = "geom", size = 6) +
+  annotate("text", x = 85, y = 64, label = "(chart type or shape)", size = 3) +
+  annotate("segment", x = 85, xend = 85, y = 62, yend = 52, 
+           arrow = arrow(type = "closed", length = unit(.13, "inches"))) +
+  annotate("text", x = 85, y = 49, label = "aesthetics", size = 6) +
+  annotate("text", x = 85, y = 43, label = "(visual properties,\nlike x position, color)", 
+           size = 3) +
+  annotate("text", x = 54, y = 49, label = "mapping", size = 6) +
+  annotate("segment", x = 63, xend = 74, y = 48.5, yend = 48.5, 
+           arrow = arrow(type = "closed", length = unit(.13, "inches"))) +
+  annotate("text", x = 17, y = 75, label = "data", size = 8) +
+  annotate("rect", xmin = 0, xmax = 33, ymin = 38, 
+           ymax = 71, fill = "white") +
+  annotate("rect", xmin = 1, xmax = 8, ymin = 63, 
+           ymax = 70, fill = "grey60") +
+  annotate("rect", xmin = 9, xmax = 16, ymin = 63, 
+           ymax = 70, fill = "grey60") +
+  annotate("rect", xmin = 17, xmax = 24, ymin = 63, 
+           ymax = 70, fill = "grey60") +
+  annotate("rect", xmin = 25, xmax = 32, ymin = 63, 
+           ymax = 70, fill = "grey60") +
+  annotate("rect", xmin = 1, xmax = 8, ymin = 55, 
+           ymax = 62, fill = "grey90") +
+  annotate("rect", xmin = 9, xmax = 16, ymin = 55, 
+           ymax = 62, fill = "grey90") +
+  annotate("rect", xmin = 17, xmax = 24, ymin = 55, 
+           ymax = 62, fill = "grey90") +
+  annotate("rect", xmin = 25, xmax = 32, ymin = 55, 
+           ymax = 62, fill = "grey90") +
+  annotate("rect", xmin = 1, xmax = 8, ymin = 47, 
+           ymax = 54, fill = "grey80") +
+  annotate("rect", xmin = 9, xmax = 16, ymin = 47, 
+           ymax = 54, fill = "grey80") +
+  annotate("rect", xmin = 17, xmax = 24, ymin = 47, 
+           ymax = 54, fill = "grey80") +
+  annotate("rect", xmin = 25, xmax = 32, ymin = 47, 
+           ymax = 54, fill = "grey80") +
+  annotate("rect", xmin = 1, xmax = 8, ymin = 39, 
+           ymax = 46, fill = "grey90") +
+  annotate("rect", xmin = 9, xmax = 16, ymin = 39, 
+           ymax = 46, fill = "grey90") +
+  annotate("rect", xmin = 17, xmax = 24, ymin = 39, 
+           ymax = 46, fill = "grey90") +
+  annotate("rect", xmin = 25, xmax = 32, ymin = 39, 
+           ymax = 46, fill = "grey90") +
+  annotate("segment", x = 45, xend = 34, y = 48.5, yend = 48.5, 
+           arrow = arrow(type = "closed", length = unit(.13, "inches"))) +
+  theme_void()
+
+  
+
+
+
+```
 
