@@ -67,3 +67,16 @@ ggplot(tibble()) +
 
 ```
 
+```{r, eval=FALSE}
+
+# start with the main plot function and set the data frame
+ggplot(data = data_frame) + 
+# next add a geometry layer and create the mapping between data frame and aesthetics
+  geom_...(mapping = aes(...))
+
+# to create the mapping, compose a list of aesthetics assignments 
+# using the following format:
+#   aesthetics = data_field
+
+```
+
