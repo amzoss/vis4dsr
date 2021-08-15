@@ -1,9 +1,17 @@
 fig:knitr-logo
-fig:duke-school-bar
 tab:duke-school-tab
+fig:duke-school-bar
 fig:coral-resilience-point
 reading-visualizations
 bar-chart
+scatter-plot
+line-chart
+pie-chart
+heat-map
+histogram
+box-plot
+maps
+movies
 building-basic-visualizations
 basic-ggplot2-syntax
 text-data-visualizations
@@ -24,3 +32,4 @@ rmarkdown-dashboards
 usability-for-visualizations
 teachers-guide
 datasets
+bar-chart-1
