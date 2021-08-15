@@ -375,9 +375,104 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 \hypertarget{accessibility-for-visualizations}{%
 \chapter{Basic accessibility for static visualizations}\label{accessibility-for-visualizations}}
 
-\emph{sample text}
+\hypertarget{low-vision}{%
+\section{Low Vision}\label{low-vision}}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\begin{itemize}
+\item
+  Large text
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://github.com/amzoss/RVis-2Day/blob/master/Day\%201/templates/output-examples.md}{``output-examples'' file}
+  \end{itemize}
+\item
+  High color contrast
+
+  \begin{itemize}
+  \item
+    Both marks/text on background and labels on marks
+  \item
+    Check with \href{https://github.com/feddelegrand7/savonliquide}{savonliquide package}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{color-vision-deficiency}{%
+\section{Color Vision Deficiency}\label{color-vision-deficiency}}
+
+\hypertarget{dual-encoding-never-just-color}{%
+\subsection{Dual encoding (never just color)}\label{dual-encoding-never-just-color}}
+
+\begin{itemize}
+\item
+  Line color -- also vary line type
+\item
+  Point color -- also vary point shape
+\item
+  \url{https://www.youtube.com/watch?v=mbi_JVC1arM}
+\end{itemize}
+
+\hypertarget{color-palettes}{%
+\subsection{Color palettes}\label{color-palettes}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://colorspace.r-forge.r-project.org/index.html}{colorspace package}
+\end{itemize}
+
+\hypertarget{alternative-text-for-screen-readers}{%
+\section{Alternative Text for Screen Readers}\label{alternative-text-for-screen-readers}}
+
+In R, R Markdown:
+
+\begin{itemize}
+\item
+  \href{https://blog.rstudio.com/2021/04/20/knitr-fig-alt/}{fig.alt} in code chunk (new, just for HTML output)
+\item
+  \href{https://bookdown.org/yihui/rmarkdown/r-code.html}{fig.cap} in code chunk as backup
+\item
+  embedded images: write alt text between square brackets
+\item
+  New: ggplot2 v3.3.4 adds \href{https://ggplot2.tidyverse.org/reference/labs.html}{alt option in labs()}, with plans to propagate to Rmd, Shiny
+\end{itemize}
+
+\href{https://nightingaledvs.com/writing-alt-text-for-data-visualization/}{Writing good alt text for visualizations}
+
+Longer descriptions: \href{https://github.com/feddelegrand7/savonliquide}{savonliquide package}
+
+\hypertarget{converting-graphics-to-sound-touch-text}{%
+\section{Converting graphics to sound, touch, text}\label{converting-graphics-to-sound-touch-text}}
+
+\begin{itemize}
+\item
+  sonify package
+\item
+  tactileR package
+\item
+  \href{https://r-resources.massey.ac.nz/BrailleRInAction/GGPlot.html}{BrailleR package}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Note: set plot title, subtitle, caption using labs()
+  \end{itemize}
+\end{itemize}
+
+\href{https://jooyoungseo.com/post/ds4blind/}{Accessible Data Science for the Blind Using R}
+
+\hypertarget{accessibility-resources}{%
+\section{Accessibility Resources}\label{accessibility-resources}}
+
+\begin{itemize}
+\item
+  \href{https://github.com/feddelegrand7/savonliquide}{savonliquide package}
+\item
+  \href{https://bookdown.org/ybrandvain/Applied-Biostats/betteRfigs.html\#accessibility-and-universal-design}{Making betteR figures: Accessibility and Universal Design}
+\item
+  \href{https://nightingaledvs.com/highlights-from-the-dvs-accessibility-fireside-chat/}{Highlights from the DVS accessibility fireside chat}
+\end{itemize}
 
 \hypertarget{interactive-visualizations}{%
 \chapter{Exploring interactivity in visualizations with plotly and crosstalk}\label{interactive-visualizations}}

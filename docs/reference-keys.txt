@@ -10,6 +10,13 @@ customizing-visualization-design
 ethical-design-practices
 print-publications
 accessibility-for-visualizations
+low-vision
+color-vision-deficiency
+dual-encoding-never-just-color
+color-palettes
+alternative-text-for-screen-readers
+converting-graphics-to-sound-touch-text
+accessibility-resources
 interactive-visualizations
 rmarkdown-websites
 rmarkdown-dashboards
