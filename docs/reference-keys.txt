@@ -5,6 +5,7 @@ fig:coral-resilience-point
 reading-visualizations
 bar-chart
 building-basic-visualizations
+basic-ggplot2-syntax
 text-data-visualizations
 customizing-visualization-design
 ethical-design-practices
