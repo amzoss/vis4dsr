@@ -65,10 +65,270 @@ ggplot(coral_resilience, aes(x=snails_exp, y=log(tissue_loss), color=treatment))
 
 [A Behavioral Approach to Understanding the Git Experience](https://osf.io/57tb8/)
 
+```{r}
+
+# won't work without aggregation
+#ggplot(git_experience, aes(x=year_vcs)) +
+#  geom_line()
+
+ggplot(git_experience %>% count(year_vcs), aes(x=year_vcs, y=n)) +
+  geom_line()
+
+ggplot(git_experience %>% count(year_vcs, first_vcs), aes(x=year_vcs, y=n, color=first_vcs)) +
+  geom_line()
+
+```
+
+
+```{r}
+
+# First use vs. now use
+
+first_used <- git_experience %>% 
+  count(first_vcs) %>%
+  rename("n_first_used" = "n", "system" = "first_vcs")
+
+now_use <- git_experience %>%
+  pivot_longer(cols=c(first_bazaar,first_cvs,first_git,
+                      first_hg,first_monotone,first_svn, first_other),
+               names_to = "system") %>%
+  dplyr::filter(value == TRUE) %>%
+  count(system) %>%
+  rename("n_now_use" = "n") %>%
+  mutate(system = case_when(
+    system == "first_bazaar" ~ "Bazaar",
+    system == "first_cvs" ~ "CVS",
+    system ==  "first_git" ~ "Git",
+    system ==  "first_hg" ~ "Mercurial",
+    system ==  "first_monotone" ~ "Monotone",
+    system ==  "first_svn" ~ "SVN", 
+    system ==  "first_other" ~ "Other"
+  ))
+
+combined <- first_used %>% left_join(now_use) %>%
+  pivot_longer(cols = c(n_first_used, n_now_use), 
+               names_to = "time",
+               values_to = "count") %>%
+  drop_na()
+
+ggplot(combined, aes(x=as_factor(time), y=count, group=system, color=system)) +
+  geom_line()
+
+```
+
+```{r}
+
+ggplot(git_experience, aes(x=first_vcs)) +
+  geom_bar()
+
+ggplot(git_experience %>%
+         drop_na(first_vcs) %>%
+         mutate(first_vcs = as_factor(first_vcs) %>% 
+             fct_infreq()), 
+         aes(x=first_vcs)) +
+  geom_bar()
+
+
+#How difficult was it for you to learn how to use git on your local computer?
+# 1 - Very easy (1)
+# 2 - Easy (2)
+# 3 - Neutral (Neither easy nor difficult) (3)
+# 4 - Difficult (4)
+# 5 - Very difficult (5)
+
+ggplot(git_experience %>% 
+         drop_na(local_ease) %>%
+         mutate(local_ease = as_factor(local_ease) %>% 
+             fct_recode("Very easy"="1", 
+                        "Easy"="2", "Neutral"="3", 
+                        "Difficult"="4", "Very difficult"="5")), 
+       aes(local_ease)) +
+  geom_bar()
+
+#How difficult was it for you to learn how to use the git hosting platform (e.g. GitLab, GitHub, etc.)?
+# 1 - Very easy (1)
+# 2 - Easy (2)
+# 3 - Neutral (Neither easy nor difficult) (3)
+# 4 - Difficult (4)
+# 5 - Very difficult (5)
+ggplot(git_experience %>% 
+         drop_na(ghp_ease) %>%
+         mutate(ghp_ease = as_factor(ghp_ease) %>% 
+             fct_recode("Very easy"="1", 
+                        "Easy"="2", "Neutral"="3", 
+                        "Difficult"="4", "Very difficult"="5")), 
+       aes(ghp_ease)) +
+  geom_bar()
+
+# How proficient do you think you are with git?
+# 1 - Fundamental Awareness (basic knowledge) (1)
+# 2 - Novice (limited experience) (2)
+# 3 - Intermediate (practical application) (3)
+# 4 - Advanced (applied theory) (4)
+# 5 - Expert (recognized authority) (5)
+ggplot(git_experience %>% 
+         drop_na(proficiency) %>%
+         mutate(proficiency = as_factor(proficiency) %>% 
+             fct_recode("Basic Knowledge"="1", 
+                        "Novice"="2", "Intermediate"="3", 
+                        "Advanced"="4", "Expert"="5")), 
+       aes(proficiency)) +
+  geom_bar()
+
+# How frequently do you have to reteach yourself git?
+# Daily (1)
+# Weekly (2)
+# Once a semester (3)
+# Once a year (4)
+# Never (5)
+# Other: (6)
+ggplot(git_experience %>%
+         drop_na(freq_reteach) %>%
+         mutate(freq_reteach = as_factor(freq_reteach) %>% 
+             fct_relevel("Daily", "Weekly", "Once a semester",
+                         "Once a year", "Never", "Other:")), 
+       aes(freq_reteach)) +
+  geom_bar()
+
+
+
+```
+
+```{r}
+
+git_experience %>% drop_na(first_vcs) %>%
+  group_by(first_vcs) %>% 
+  summarise(count = n(), mean_prof = mean(proficiency, na.rm=TRUE)) %>%
+  ggplot(aes(x=first_vcs, y=mean_prof)) +
+    geom_col()
+
+git_experience %>% 
+  drop_na(first_vcs) %>%
+  group_by(first_vcs) %>% 
+  summarise(count = n(), mean_proficiency = mean(proficiency, na.rm=TRUE)) %>%
+  mutate(first_vcs = as_factor(first_vcs) %>% 
+           fct_reorder(mean_proficiency) %>% fct_rev()) %>%
+  ggplot(aes(x=first_vcs, y=mean_proficiency)) +
+    geom_col()
+
+
+```
+
+```{r}
+
+ggplot(git_experience, aes(x=year_vcs, y=first_vcs)) +
+  geom_count()
+
+git_experience %>%
+  drop_na(year_vcs, first_vcs) %>%
+  group_by(year_vcs, first_vcs) %>%
+  summarize(min_year = min(year_vcs),
+            count=n()) %>%
+  mutate(first_vcs = as_factor(first_vcs) %>% 
+           fct_reorder(min_year)) %>%
+  ggplot(aes(x=year_vcs, y=first_vcs, size=count)) +
+  geom_point()
+
+git_experience %>%
+  drop_na(first_vcs) %>%
+  mutate(first_vcs = as_factor(first_vcs) %>% 
+           fct_reorder(year_vcs, .fun=min)) %>%
+  ggplot(aes(x=year_vcs, y=first_vcs)) +
+  geom_count()
+
+ggplot(git_experience %>% count(year_vcs, first_vcs), 
+       aes(x=year_vcs, y=first_vcs, size=n)) +
+  geom_point()
+
+ggplot(git_experience, aes(x=year_vcs, y=first_vcs)) +
+  geom_point()
+
+ggplot(git_experience, aes(x=year_vcs, y=first_vcs, color=first_vcs)) +
+  geom_jitter()
+
+ggplot(git_experience %>% count(year_vcs, first_vcs), 
+       aes(x=year_vcs, y=first_vcs, fill=n)) +
+  geom_tile()
+
+```
+
+```{r}
+
+ggplot(git_experience %>% drop_na(use_gitlab), aes(y="",fill=use_gitlab)) +
+  geom_bar(position=position_fill()) +
+  coord_polar()
+
+```
+
 
 ## Inclusiveness Index {-}
 
 [Inclusiveness Index](https://belonging.berkeley.edu/inclusivenessindex/data-and-resources)
+
+```{r}
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.General.Population, 
+           y = Z.score.Gender,
+           color = Continent)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) + 
+  facet_wrap(vars(Continent))
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.General.Population, 
+           y = Z.score.Sexual.Orientation)) +
+  geom_point(aes(color = Continent)) +
+  geom_smooth(method="lm", se=FALSE)
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.General.Population, 
+           y = Inclusiveness.index.2020)) +
+  geom_point(aes(color = Continent)) +
+  geom_smooth(method="lm", se=FALSE)
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.Gender, 
+           y = Z.score.Sexual.Orientation)) +
+  geom_point(aes(color = Continent)) +
+  geom_smooth(method="lm", se=FALSE)
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.Gender, 
+           y = Z.score.Religion)) +
+  geom_point(aes(color = Continent)) +
+  geom_smooth(method="lm", se=FALSE)
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.Gender, 
+           y = Inclusiveness.index.2020)) +
+  geom_point(aes(color = Continent)) +
+  geom_smooth(method="lm", se=FALSE)
+
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.Sexual.Orientation, 
+           y = Inclusiveness.index.2020)) +
+  geom_point(aes(color = Continent)) +
+  geom_text(data = inclusiveness_index %>% 
+              dplyr::filter(Inclusiveness.index.2020 == max(Inclusiveness.index.2020, na.rm=TRUE) | Inclusiveness.index.2020 == min(Inclusiveness.index.2020, na.rm=TRUE)), aes(label = Country)) +
+  geom_smooth(method="lm", se=FALSE)
+
+### USE THIS ONE? ###
+ggplot(inclusiveness_index, 
+       aes(x = Z.score.Religion, 
+           y = Inclusiveness.index.2020)) +
+  geom_point(aes(color = Continent)) +
+  geom_text(data = inclusiveness_index %>% 
+              dplyr::filter(Inclusiveness.index.2020 == max(Inclusiveness.index.2020, na.rm=TRUE) | Inclusiveness.index.2020 == min(Inclusiveness.index.2020, na.rm=TRUE)), aes(label = Country)) + 
+  geom_smooth(method="lm", se=FALSE)
+
+ggplot(inclusiveness_index, 
+       aes(group = Z.score.Disability, 
+           y = Inclusiveness.index.2020)) +
+  geom_boxplot()
+
+
+```
 
 ## Candidate Demographics {-}
 

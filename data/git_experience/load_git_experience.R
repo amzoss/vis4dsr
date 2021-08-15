@@ -1,7 +1,8 @@
 library(tidyverse)
 
 git_experience <- read_csv('data/git_experience/2020-07-12_processed-survey.csv') %>%
-  dplyr::select(-X1) %>%
+  #dplyr::select(-X1) %>% # For older versions of readr
+  dplyr::select(-`...1`) %>%
   mutate(year_vcs = as.numeric(year_vcs),
          across(.cols = c(first_bazaar, first_cvs, first_git, first_hg,
                           first_monotone, first_svn, first_other, use_bitbucket,
