@@ -26,6 +26,20 @@ knitr::kable(
 ```
 
 
+## Bar Chart
+
+Figure \@ref(fig:duke-school-bar).
+
+```{r duke-school-bar, fig.cap='Total Duke Enrollment by School', out.width='90%', echo=FALSE}
+
+ggplot(duke_enrollment_by_school %>% 
+         mutate(School = 
+                  School %>% as_factor() %>% fct_infreq() %>% fct_rev()), 
+       aes(y=School)) +
+  geom_bar()
+
+```
+
 
 ## Coral Resilience Data {-}
 
