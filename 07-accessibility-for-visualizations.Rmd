@@ -34,8 +34,7 @@ In R, R Markdown:
 
 -   [fig.cap](https://bookdown.org/yihui/rmarkdown/r-code.html) in code chunk as backup
 
--   embedded images:\
-    ![alt text or image title](path/to/image)
+-   embedded images: write alt text between square brackets
 
 -   New: ggplot2 v3.3.4 adds [alt option in labs()](https://ggplot2.tidyverse.org/reference/labs.html), with plans to propagate to Rmd, Shiny
 
