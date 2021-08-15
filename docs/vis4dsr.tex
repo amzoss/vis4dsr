@@ -5,14 +5,13 @@
 %
 \documentclass[
 ]{krantz}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -87,7 +86,7 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -175,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2021-07-07}
+\date{2021-08-14}
 
 \begin{document}
 \maketitle
@@ -283,27 +282,27 @@ I used the \textbf{knitr}\index{knitr} package \citep{xie2015} and the \textbf{b
 \end{Shaded}
 
 \begin{verbatim}
-## R version 4.0.3 (2020-10-10)
+## R version 4.1.0 (2021-05-18)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Big Sur 10.16
 ## 
 ## Locale: en_US.UTF-8 / en_US.UTF-8 / en_US.UTF-8 / C / en_US.UTF-8 / en_US.UTF-8
 ## 
 ## Package version:
-##   base64enc_0.1.3   bookdown_0.21    
-##   compiler_4.0.3    digest_0.6.27    
+##   base64enc_0.1.3   bookdown_0.23    
+##   compiler_4.1.0    digest_0.6.27    
 ##   evaluate_0.14     glue_1.4.2       
-##   graphics_4.0.3    grDevices_4.0.3  
-##   highr_0.8         htmltools_0.5.1.1
-##   jsonlite_1.7.2    knitr_1.31       
-##   magrittr_2.0.1    markdown_1.1     
-##   methods_4.0.3     mime_0.9         
-##   rlang_0.4.10      rmarkdown_2.6    
-##   rstudioapi_0.13   stats_4.0.3      
-##   stringi_1.5.3     stringr_1.4.0    
-##   tinytex_0.31      tools_4.0.3      
-##   utils_4.0.3       xfun_0.20        
-##   yaml_2.2.1
+##   graphics_4.1.0    grDevices_4.1.0  
+##   highr_0.9         htmltools_0.5.1.1
+##   jquerylib_0.1.4   jsonlite_1.7.2   
+##   knitr_1.33        magrittr_2.0.1   
+##   markdown_1.1      methods_4.1.0    
+##   mime_0.11         rlang_0.4.11     
+##   rmarkdown_2.10    rstudioapi_0.13  
+##   stats_4.1.0       stringi_1.7.3    
+##   stringr_1.4.0     tinytex_0.33     
+##   tools_4.1.0       utils_4.1.0      
+##   xfun_0.25         yaml_2.2.1
 \end{verbatim}
 
 Package names are in bold text (e.g., \textbf{rmarkdown}), and inline code and filenames are formatted in a typewriter font (e.g., \texttt{knitr::knit(\textquotesingle{}foo.Rmd\textquotesingle{})}). Function names are followed by parentheses (e.g., \texttt{bookdown::render\_book()}).
@@ -474,11 +473,568 @@ Figure \ref{fig:coral-resilience-point}.
 
 \href{https://osf.io/57tb8/}{A Behavioral Approach to Understanding the Git Experience}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# won\textquotesingle{}t work without aggregation}
+\CommentTok{\#ggplot(git\_experience, aes(x=year\_vcs)) +}
+\CommentTok{\#  geom\_line()}
+
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{n)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 row(s) containing missing values
+## (geom_path).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs, first\_vcs), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{n, }\AttributeTok{color=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 3 row(s) containing missing values
+## (geom_path).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First use vs. now use}
+
+\NormalTok{first\_used }\OtherTok{\textless{}{-}}\NormalTok{ git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\StringTok{"n\_first\_used"} \OtherTok{=} \StringTok{"n"}\NormalTok{, }\StringTok{"system"} \OtherTok{=} \StringTok{"first\_vcs"}\NormalTok{)}
+
+\NormalTok{now\_use }\OtherTok{\textless{}{-}}\NormalTok{ git\_experience }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols=}\FunctionTok{c}\NormalTok{(first\_bazaar,first\_cvs,first\_git,}
+\NormalTok{                      first\_hg,first\_monotone,first\_svn, first\_other),}
+               \AttributeTok{names\_to =} \StringTok{"system"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(value }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(system) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\StringTok{"n\_now\_use"} \OtherTok{=} \StringTok{"n"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{system =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    system }\SpecialCharTok{==} \StringTok{"first\_bazaar"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Bazaar"}\NormalTok{,}
+\NormalTok{    system }\SpecialCharTok{==} \StringTok{"first\_cvs"} \SpecialCharTok{\textasciitilde{}} \StringTok{"CVS"}\NormalTok{,}
+\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_git"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Git"}\NormalTok{,}
+\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_hg"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Mercurial"}\NormalTok{,}
+\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_monotone"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Monotone"}\NormalTok{,}
+\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_svn"} \SpecialCharTok{\textasciitilde{}} \StringTok{"SVN"}\NormalTok{, }
+\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_other"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Other"}
+\NormalTok{  ))}
+
+\NormalTok{combined }\OtherTok{\textless{}{-}}\NormalTok{ first\_used }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(now\_use) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(n\_first\_used, n\_now\_use), }
+               \AttributeTok{names\_to =} \StringTok{"time"}\NormalTok{,}
+               \AttributeTok{values\_to =} \StringTok{"count"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "system"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(combined, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FunctionTok{as\_factor}\NormalTok{(time), }\AttributeTok{y=}\NormalTok{count, }\AttributeTok{group=}\NormalTok{system, }\AttributeTok{color=}\NormalTok{system)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
+             \FunctionTok{fct\_infreq}\NormalTok{()), }
+         \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#How difficult was it for you to learn how to use git on your local computer?}
+\CommentTok{\# 1 {-} Very easy (1)}
+\CommentTok{\# 2 {-} Easy (2)}
+\CommentTok{\# 3 {-} Neutral (Neither easy nor difficult) (3)}
+\CommentTok{\# 4 {-} Difficult (4)}
+\CommentTok{\# 5 {-} Very difficult (5)}
+
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{drop\_na}\NormalTok{(local\_ease) }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{local\_ease =} \FunctionTok{as\_factor}\NormalTok{(local\_ease) }\SpecialCharTok{\%\textgreater{}\%} 
+             \FunctionTok{fct\_recode}\NormalTok{(}\StringTok{"Very easy"}\OtherTok{=}\StringTok{"1"}\NormalTok{, }
+                        \StringTok{"Easy"}\OtherTok{=}\StringTok{"2"}\NormalTok{, }\StringTok{"Neutral"}\OtherTok{=}\StringTok{"3"}\NormalTok{, }
+                        \StringTok{"Difficult"}\OtherTok{=}\StringTok{"4"}\NormalTok{, }\StringTok{"Very difficult"}\OtherTok{=}\StringTok{"5"}\NormalTok{)), }
+       \FunctionTok{aes}\NormalTok{(local\_ease)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#How difficult was it for you to learn how to use the git hosting platform (e.g. GitLab, GitHub, etc.)?}
+\CommentTok{\# 1 {-} Very easy (1)}
+\CommentTok{\# 2 {-} Easy (2)}
+\CommentTok{\# 3 {-} Neutral (Neither easy nor difficult) (3)}
+\CommentTok{\# 4 {-} Difficult (4)}
+\CommentTok{\# 5 {-} Very difficult (5)}
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{drop\_na}\NormalTok{(ghp\_ease) }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{ghp\_ease =} \FunctionTok{as\_factor}\NormalTok{(ghp\_ease) }\SpecialCharTok{\%\textgreater{}\%} 
+             \FunctionTok{fct\_recode}\NormalTok{(}\StringTok{"Very easy"}\OtherTok{=}\StringTok{"1"}\NormalTok{, }
+                        \StringTok{"Easy"}\OtherTok{=}\StringTok{"2"}\NormalTok{, }\StringTok{"Neutral"}\OtherTok{=}\StringTok{"3"}\NormalTok{, }
+                        \StringTok{"Difficult"}\OtherTok{=}\StringTok{"4"}\NormalTok{, }\StringTok{"Very difficult"}\OtherTok{=}\StringTok{"5"}\NormalTok{)), }
+       \FunctionTok{aes}\NormalTok{(ghp\_ease)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# How proficient do you think you are with git?}
+\CommentTok{\# 1 {-} Fundamental Awareness (basic knowledge) (1)}
+\CommentTok{\# 2 {-} Novice (limited experience) (2)}
+\CommentTok{\# 3 {-} Intermediate (practical application) (3)}
+\CommentTok{\# 4 {-} Advanced (applied theory) (4)}
+\CommentTok{\# 5 {-} Expert (recognized authority) (5)}
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{drop\_na}\NormalTok{(proficiency) }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{proficiency =} \FunctionTok{as\_factor}\NormalTok{(proficiency) }\SpecialCharTok{\%\textgreater{}\%} 
+             \FunctionTok{fct\_recode}\NormalTok{(}\StringTok{"Basic Knowledge"}\OtherTok{=}\StringTok{"1"}\NormalTok{, }
+                        \StringTok{"Novice"}\OtherTok{=}\StringTok{"2"}\NormalTok{, }\StringTok{"Intermediate"}\OtherTok{=}\StringTok{"3"}\NormalTok{, }
+                        \StringTok{"Advanced"}\OtherTok{=}\StringTok{"4"}\NormalTok{, }\StringTok{"Expert"}\OtherTok{=}\StringTok{"5"}\NormalTok{)), }
+       \FunctionTok{aes}\NormalTok{(proficiency)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# How frequently do you have to reteach yourself git?}
+\CommentTok{\# Daily (1)}
+\CommentTok{\# Weekly (2)}
+\CommentTok{\# Once a semester (3)}
+\CommentTok{\# Once a year (4)}
+\CommentTok{\# Never (5)}
+\CommentTok{\# Other: (6)}
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{drop\_na}\NormalTok{(freq\_reteach) }\SpecialCharTok{\%\textgreater{}\%}
+         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq\_reteach =} \FunctionTok{as\_factor}\NormalTok{(freq\_reteach) }\SpecialCharTok{\%\textgreater{}\%} 
+             \FunctionTok{fct\_relevel}\NormalTok{(}\StringTok{"Daily"}\NormalTok{, }\StringTok{"Weekly"}\NormalTok{, }\StringTok{"Once a semester"}\NormalTok{,}
+                         \StringTok{"Once a year"}\NormalTok{, }\StringTok{"Never"}\NormalTok{, }\StringTok{"Other:"}\NormalTok{)), }
+       \FunctionTok{aes}\NormalTok{(freq\_reteach)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{mean\_prof =} \FunctionTok{mean}\NormalTok{(proficiency, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs, }\AttributeTok{y=}\NormalTok{mean\_prof)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{mean\_proficiency =} \FunctionTok{mean}\NormalTok{(proficiency, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
+           \FunctionTok{fct\_reorder}\NormalTok{(mean\_proficiency) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{fct\_rev}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs, }\AttributeTok{y=}\NormalTok{mean\_proficiency)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 15 rows containing non-finite values
+## (stat_sum).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{(year\_vcs, first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(year\_vcs, first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{min\_year =} \FunctionTok{min}\NormalTok{(year\_vcs),}
+            \AttributeTok{count=}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
+           \FunctionTok{fct\_reorder}\NormalTok{(min\_year)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{size=}\NormalTok{count)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'year_vcs'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
+           \FunctionTok{fct\_reorder}\NormalTok{(year\_vcs, }\AttributeTok{.fun=}\NormalTok{min)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 9 rows containing non-finite values
+## (stat_sum).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs, first\_vcs), }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{size=}\NormalTok{n)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 3 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 15 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{color=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 15 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs, first\_vcs), }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{fill=}\NormalTok{n)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 3 rows containing missing values
+## (geom_tile).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{(use\_gitlab), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\StringTok{""}\NormalTok{,}\AttributeTok{fill=}\NormalTok{use\_gitlab)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_fill}\NormalTok{()) }\SpecialCharTok{+}
+  \FunctionTok{coord\_polar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf}
+
 \hypertarget{inclusiveness-index}{%
 \section*{Inclusiveness Index}\label{inclusiveness-index}}
 
 
 \href{https://belonging.berkeley.edu/inclusivenessindex/data-and-resources}{Inclusiveness Index}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.General.Population, }
+           \AttributeTok{y =}\NormalTok{ Z.score.Gender,}
+           \AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{facet\_wrap}\NormalTok{(}\FunctionTok{vars}\NormalTok{(Continent))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 115 rows containing non-finite values
+## (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 115 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.General.Population, }
+           \AttributeTok{y =}\NormalTok{ Z.score.Sexual.Orientation)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 113 rows containing non-finite values
+## (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 113 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.General.Population, }
+           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing non-finite values
+## (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Gender, }
+           \AttributeTok{y =}\NormalTok{ Z.score.Sexual.Orientation)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 94 rows containing non-finite values
+## (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 94 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Gender, }
+           \AttributeTok{y =}\NormalTok{ Z.score.Religion)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 94 rows containing non-finite values
+## (stat_smooth).
+
+## Warning: Removed 94 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Gender, }
+           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing non-finite values
+## (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Sexual.Orientation, }
+           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{              dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{max}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{min}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Country)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing non-finite values
+## (stat_smooth).
+
+## Warning: Removed 117 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# USE THIS ONE? }\AlertTok{\#\#\#}
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Religion, }
+           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{              dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{max}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{min}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Country)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing non-finite values
+## (stat_smooth).
+
+## Warning: Removed 117 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Z.score.Disability, }
+           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 117 rows containing non-finite values
+## (stat_boxplot).
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-9.pdf}
 
 \hypertarget{candidate-demographics}{%
 \section*{Candidate Demographics}\label{candidate-demographics}}
