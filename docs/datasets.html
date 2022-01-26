@@ -24,7 +24,7 @@
 <meta name="author" content="Angela M. Zoss, Ph.D." />
 
 
-<meta name="date" content="2021-08-15" />
+<meta name="date" content="2022-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,15 +168,19 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
 <li class="chapter" data-level="1" data-path="reading-visualizations.html"><a href="reading-visualizations.html"><i class="fa fa-check"></i><b>1</b> Overview of common visualizations and how to read them</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#bar-chart"><i class="fa fa-check"></i><b>1.1</b> Bar Chart</a></li>
-<li class="chapter" data-level="1.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#scatter-plot"><i class="fa fa-check"></i><b>1.2</b> Scatter Plot</a></li>
-<li class="chapter" data-level="1.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#line-chart"><i class="fa fa-check"></i><b>1.3</b> Line Chart</a></li>
-<li class="chapter" data-level="1.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#pie-chart"><i class="fa fa-check"></i><b>1.4</b> Pie Chart</a></li>
-<li class="chapter" data-level="1.5" data-path="reading-visualizations.html"><a href="reading-visualizations.html#heat-map"><i class="fa fa-check"></i><b>1.5</b> Heat Map</a></li>
-<li class="chapter" data-level="1.6" data-path="reading-visualizations.html"><a href="reading-visualizations.html#histogram"><i class="fa fa-check"></i><b>1.6</b> Histogram</a></li>
-<li class="chapter" data-level="1.7" data-path="reading-visualizations.html"><a href="reading-visualizations.html#box-plot"><i class="fa fa-check"></i><b>1.7</b> Box Plot</a></li>
-<li class="chapter" data-level="1.8" data-path="reading-visualizations.html"><a href="reading-visualizations.html#maps"><i class="fa fa-check"></i><b>1.8</b> Maps</a></li>
-<li class="chapter" data-level="1.9" data-path="reading-visualizations.html"><a href="reading-visualizations.html#movies"><i class="fa fa-check"></i><b>1.9</b> Movies</a></li>
+<li class="chapter" data-level="1.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#visualization-components"><i class="fa fa-check"></i><b>1.1</b> Visualization components</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#bar-chart"><i class="fa fa-check"></i><b>1.2</b> Bar Chart</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations"><i class="fa fa-check"></i><b>1.2.1</b> Variations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a></li>
+<li class="chapter" data-level="1.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#line-chart"><i class="fa fa-check"></i><b>1.4</b> Line Chart</a></li>
+<li class="chapter" data-level="1.5" data-path="reading-visualizations.html"><a href="reading-visualizations.html#pie-chart"><i class="fa fa-check"></i><b>1.5</b> Pie Chart</a></li>
+<li class="chapter" data-level="1.6" data-path="reading-visualizations.html"><a href="reading-visualizations.html#heat-map"><i class="fa fa-check"></i><b>1.6</b> Heat Map</a></li>
+<li class="chapter" data-level="1.7" data-path="reading-visualizations.html"><a href="reading-visualizations.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram</a></li>
+<li class="chapter" data-level="1.8" data-path="reading-visualizations.html"><a href="reading-visualizations.html#box-plot"><i class="fa fa-check"></i><b>1.8</b> Box Plot</a></li>
+<li class="chapter" data-level="1.9" data-path="reading-visualizations.html"><a href="reading-visualizations.html#maps"><i class="fa fa-check"></i><b>1.9</b> Maps</a></li>
+<li class="chapter" data-level="1.10" data-path="reading-visualizations.html"><a href="reading-visualizations.html#movies"><i class="fa fa-check"></i><b>1.10</b> Movies</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html"><i class="fa fa-check"></i><b>2</b> Building basic visualizations with ggplot2</a>
 <ul>
@@ -338,298 +342,95 @@ FIGURE A.2: Log of tissue loss by snail density
 <div id="git-experience" class="section level2 unnumbered">
 <h2>Git Experience</h2>
 <p><a href="https://osf.io/57tb8/">A Behavioral Approach to Understanding the Git Experience</a></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="datasets.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># won&#39;t work without aggregation</span></span>
-<span id="cb34-2"><a href="datasets.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(git_experience, aes(x=year_vcs)) +</span></span>
-<span id="cb34-3"><a href="datasets.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_line()</span></span>
-<span id="cb34-4"><a href="datasets.html#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="datasets.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> <span class="fu">count</span>(year_vcs), <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>n)) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="datasets.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 1 row(s) containing missing values
 ## (geom_path).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="datasets.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> <span class="fu">count</span>(year_vcs, first_vcs), <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>n, <span class="at">color=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb36-2"><a href="datasets.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <pre><code>## Warning: Removed 3 row(s) containing missing values
 ## (geom_path).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="datasets.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First use vs. now use</span></span>
-<span id="cb38-2"><a href="datasets.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="datasets.html#cb38-3" aria-hidden="true" tabindex="-1"></a>first_used <span class="ot">&lt;-</span> git_experience <span class="sc">%&gt;%</span> </span>
-<span id="cb38-4"><a href="datasets.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb38-5"><a href="datasets.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;n_first_used&quot;</span> <span class="ot">=</span> <span class="st">&quot;n&quot;</span>, <span class="st">&quot;system&quot;</span> <span class="ot">=</span> <span class="st">&quot;first_vcs&quot;</span>)</span>
-<span id="cb38-6"><a href="datasets.html#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="datasets.html#cb38-7" aria-hidden="true" tabindex="-1"></a>now_use <span class="ot">&lt;-</span> git_experience <span class="sc">%&gt;%</span></span>
-<span id="cb38-8"><a href="datasets.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(first_bazaar,first_cvs,first_git,</span>
-<span id="cb38-9"><a href="datasets.html#cb38-9" aria-hidden="true" tabindex="-1"></a>                      first_hg,first_monotone,first_svn, first_other),</span>
-<span id="cb38-10"><a href="datasets.html#cb38-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;system&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-11"><a href="datasets.html#cb38-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(value <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-12"><a href="datasets.html#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(system) <span class="sc">%&gt;%</span></span>
-<span id="cb38-13"><a href="datasets.html#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;n_now_use&quot;</span> <span class="ot">=</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-14"><a href="datasets.html#cb38-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">system =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-15"><a href="datasets.html#cb38-15" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span> <span class="st">&quot;first_bazaar&quot;</span> <span class="sc">~</span> <span class="st">&quot;Bazaar&quot;</span>,</span>
-<span id="cb38-16"><a href="datasets.html#cb38-16" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span> <span class="st">&quot;first_cvs&quot;</span> <span class="sc">~</span> <span class="st">&quot;CVS&quot;</span>,</span>
-<span id="cb38-17"><a href="datasets.html#cb38-17" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span>  <span class="st">&quot;first_git&quot;</span> <span class="sc">~</span> <span class="st">&quot;Git&quot;</span>,</span>
-<span id="cb38-18"><a href="datasets.html#cb38-18" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span>  <span class="st">&quot;first_hg&quot;</span> <span class="sc">~</span> <span class="st">&quot;Mercurial&quot;</span>,</span>
-<span id="cb38-19"><a href="datasets.html#cb38-19" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span>  <span class="st">&quot;first_monotone&quot;</span> <span class="sc">~</span> <span class="st">&quot;Monotone&quot;</span>,</span>
-<span id="cb38-20"><a href="datasets.html#cb38-20" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span>  <span class="st">&quot;first_svn&quot;</span> <span class="sc">~</span> <span class="st">&quot;SVN&quot;</span>, </span>
-<span id="cb38-21"><a href="datasets.html#cb38-21" aria-hidden="true" tabindex="-1"></a>    system <span class="sc">==</span>  <span class="st">&quot;first_other&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span></span>
-<span id="cb38-22"><a href="datasets.html#cb38-22" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb38-23"><a href="datasets.html#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-24"><a href="datasets.html#cb38-24" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> first_used <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(now_use) <span class="sc">%&gt;%</span></span>
-<span id="cb38-25"><a href="datasets.html#cb38-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(n_first_used, n_now_use), </span>
-<span id="cb38-26"><a href="datasets.html#cb38-26" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;time&quot;</span>,</span>
-<span id="cb38-27"><a href="datasets.html#cb38-27" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-28"><a href="datasets.html#cb38-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
 <pre><code>## Joining, by = &quot;system&quot;</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="datasets.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as_factor</span>(time), <span class="at">y=</span>count, <span class="at">group=</span>system, <span class="at">color=</span>system)) <span class="sc">+</span></span>
-<span id="cb40-2"><a href="datasets.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="datasets.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience, <span class="fu">aes</span>(<span class="at">x=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb41-2"><a href="datasets.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="datasets.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span></span>
-<span id="cb42-2"><a href="datasets.html#cb42-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">drop_na</span>(first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb42-3"><a href="datasets.html#cb42-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">mutate</span>(<span class="at">first_vcs =</span> <span class="fu">as_factor</span>(first_vcs) <span class="sc">%&gt;%</span> </span>
-<span id="cb42-4"><a href="datasets.html#cb42-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">fct_infreq</span>()), </span>
-<span id="cb42-5"><a href="datasets.html#cb42-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb42-6"><a href="datasets.html#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="datasets.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How difficult was it for you to learn how to use git on your local computer?</span></span>
-<span id="cb43-2"><a href="datasets.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 - Very easy (1)</span></span>
-<span id="cb43-3"><a href="datasets.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 - Easy (2)</span></span>
-<span id="cb43-4"><a href="datasets.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 - Neutral (Neither easy nor difficult) (3)</span></span>
-<span id="cb43-5"><a href="datasets.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 - Difficult (4)</span></span>
-<span id="cb43-6"><a href="datasets.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 - Very difficult (5)</span></span>
-<span id="cb43-7"><a href="datasets.html#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="datasets.html#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> </span>
-<span id="cb43-9"><a href="datasets.html#cb43-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">drop_na</span>(local_ease) <span class="sc">%&gt;%</span></span>
-<span id="cb43-10"><a href="datasets.html#cb43-10" aria-hidden="true" tabindex="-1"></a>         <span class="fu">mutate</span>(<span class="at">local_ease =</span> <span class="fu">as_factor</span>(local_ease) <span class="sc">%&gt;%</span> </span>
-<span id="cb43-11"><a href="datasets.html#cb43-11" aria-hidden="true" tabindex="-1"></a>             <span class="fu">fct_recode</span>(<span class="st">&quot;Very easy&quot;</span><span class="ot">=</span><span class="st">&quot;1&quot;</span>, </span>
-<span id="cb43-12"><a href="datasets.html#cb43-12" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Easy&quot;</span><span class="ot">=</span><span class="st">&quot;2&quot;</span>, <span class="st">&quot;Neutral&quot;</span><span class="ot">=</span><span class="st">&quot;3&quot;</span>, </span>
-<span id="cb43-13"><a href="datasets.html#cb43-13" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Difficult&quot;</span><span class="ot">=</span><span class="st">&quot;4&quot;</span>, <span class="st">&quot;Very difficult&quot;</span><span class="ot">=</span><span class="st">&quot;5&quot;</span>)), </span>
-<span id="cb43-14"><a href="datasets.html#cb43-14" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(local_ease)) <span class="sc">+</span></span>
-<span id="cb43-15"><a href="datasets.html#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-3.png" width="672" /></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="datasets.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How difficult was it for you to learn how to use the git hosting platform (e.g. GitLab, GitHub, etc.)?</span></span>
-<span id="cb44-2"><a href="datasets.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 - Very easy (1)</span></span>
-<span id="cb44-3"><a href="datasets.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 - Easy (2)</span></span>
-<span id="cb44-4"><a href="datasets.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 - Neutral (Neither easy nor difficult) (3)</span></span>
-<span id="cb44-5"><a href="datasets.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 - Difficult (4)</span></span>
-<span id="cb44-6"><a href="datasets.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 - Very difficult (5)</span></span>
-<span id="cb44-7"><a href="datasets.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> </span>
-<span id="cb44-8"><a href="datasets.html#cb44-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">drop_na</span>(ghp_ease) <span class="sc">%&gt;%</span></span>
-<span id="cb44-9"><a href="datasets.html#cb44-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">mutate</span>(<span class="at">ghp_ease =</span> <span class="fu">as_factor</span>(ghp_ease) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-10"><a href="datasets.html#cb44-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">fct_recode</span>(<span class="st">&quot;Very easy&quot;</span><span class="ot">=</span><span class="st">&quot;1&quot;</span>, </span>
-<span id="cb44-11"><a href="datasets.html#cb44-11" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Easy&quot;</span><span class="ot">=</span><span class="st">&quot;2&quot;</span>, <span class="st">&quot;Neutral&quot;</span><span class="ot">=</span><span class="st">&quot;3&quot;</span>, </span>
-<span id="cb44-12"><a href="datasets.html#cb44-12" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Difficult&quot;</span><span class="ot">=</span><span class="st">&quot;4&quot;</span>, <span class="st">&quot;Very difficult&quot;</span><span class="ot">=</span><span class="st">&quot;5&quot;</span>)), </span>
-<span id="cb44-13"><a href="datasets.html#cb44-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(ghp_ease)) <span class="sc">+</span></span>
-<span id="cb44-14"><a href="datasets.html#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-4.png" width="672" /></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="datasets.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How proficient do you think you are with git?</span></span>
-<span id="cb45-2"><a href="datasets.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 - Fundamental Awareness (basic knowledge) (1)</span></span>
-<span id="cb45-3"><a href="datasets.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 - Novice (limited experience) (2)</span></span>
-<span id="cb45-4"><a href="datasets.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 - Intermediate (practical application) (3)</span></span>
-<span id="cb45-5"><a href="datasets.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 - Advanced (applied theory) (4)</span></span>
-<span id="cb45-6"><a href="datasets.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 - Expert (recognized authority) (5)</span></span>
-<span id="cb45-7"><a href="datasets.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> </span>
-<span id="cb45-8"><a href="datasets.html#cb45-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">drop_na</span>(proficiency) <span class="sc">%&gt;%</span></span>
-<span id="cb45-9"><a href="datasets.html#cb45-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">mutate</span>(<span class="at">proficiency =</span> <span class="fu">as_factor</span>(proficiency) <span class="sc">%&gt;%</span> </span>
-<span id="cb45-10"><a href="datasets.html#cb45-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">fct_recode</span>(<span class="st">&quot;Basic Knowledge&quot;</span><span class="ot">=</span><span class="st">&quot;1&quot;</span>, </span>
-<span id="cb45-11"><a href="datasets.html#cb45-11" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Novice&quot;</span><span class="ot">=</span><span class="st">&quot;2&quot;</span>, <span class="st">&quot;Intermediate&quot;</span><span class="ot">=</span><span class="st">&quot;3&quot;</span>, </span>
-<span id="cb45-12"><a href="datasets.html#cb45-12" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;Advanced&quot;</span><span class="ot">=</span><span class="st">&quot;4&quot;</span>, <span class="st">&quot;Expert&quot;</span><span class="ot">=</span><span class="st">&quot;5&quot;</span>)), </span>
-<span id="cb45-13"><a href="datasets.html#cb45-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(proficiency)) <span class="sc">+</span></span>
-<span id="cb45-14"><a href="datasets.html#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-5.png" width="672" /></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="datasets.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How frequently do you have to reteach yourself git?</span></span>
-<span id="cb46-2"><a href="datasets.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily (1)</span></span>
-<span id="cb46-3"><a href="datasets.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly (2)</span></span>
-<span id="cb46-4"><a href="datasets.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Once a semester (3)</span></span>
-<span id="cb46-5"><a href="datasets.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Once a year (4)</span></span>
-<span id="cb46-6"><a href="datasets.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Never (5)</span></span>
-<span id="cb46-7"><a href="datasets.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Other: (6)</span></span>
-<span id="cb46-8"><a href="datasets.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span></span>
-<span id="cb46-9"><a href="datasets.html#cb46-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">drop_na</span>(freq_reteach) <span class="sc">%&gt;%</span></span>
-<span id="cb46-10"><a href="datasets.html#cb46-10" aria-hidden="true" tabindex="-1"></a>         <span class="fu">mutate</span>(<span class="at">freq_reteach =</span> <span class="fu">as_factor</span>(freq_reteach) <span class="sc">%&gt;%</span> </span>
-<span id="cb46-11"><a href="datasets.html#cb46-11" aria-hidden="true" tabindex="-1"></a>             <span class="fu">fct_relevel</span>(<span class="st">&quot;Daily&quot;</span>, <span class="st">&quot;Weekly&quot;</span>, <span class="st">&quot;Once a semester&quot;</span>,</span>
-<span id="cb46-12"><a href="datasets.html#cb46-12" aria-hidden="true" tabindex="-1"></a>                         <span class="st">&quot;Once a year&quot;</span>, <span class="st">&quot;Never&quot;</span>, <span class="st">&quot;Other:&quot;</span>)), </span>
-<span id="cb46-13"><a href="datasets.html#cb46-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(freq_reteach)) <span class="sc">+</span></span>
-<span id="cb46-14"><a href="datasets.html#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-6.png" width="672" /></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="datasets.html#cb47-1" aria-hidden="true" tabindex="-1"></a>git_experience <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb47-2"><a href="datasets.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(first_vcs) <span class="sc">%&gt;%</span> </span>
-<span id="cb47-3"><a href="datasets.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">mean_prof =</span> <span class="fu">mean</span>(proficiency, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb47-4"><a href="datasets.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>first_vcs, <span class="at">y=</span>mean_prof)) <span class="sc">+</span></span>
-<span id="cb47-5"><a href="datasets.html#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="datasets.html#cb48-1" aria-hidden="true" tabindex="-1"></a>git_experience <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="datasets.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb48-3"><a href="datasets.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(first_vcs) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-4"><a href="datasets.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">mean_proficiency =</span> <span class="fu">mean</span>(proficiency, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb48-5"><a href="datasets.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">first_vcs =</span> <span class="fu">as_factor</span>(first_vcs) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-6"><a href="datasets.html#cb48-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">fct_reorder</span>(mean_proficiency) <span class="sc">%&gt;%</span> <span class="fu">fct_rev</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb48-7"><a href="datasets.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>first_vcs, <span class="at">y=</span>mean_proficiency)) <span class="sc">+</span></span>
-<span id="cb48-8"><a href="datasets.html#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="datasets.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience, <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="datasets.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-26-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-26-3.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-26-4.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-26-5.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-26-6.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <pre><code>## Warning: Removed 15 rows containing non-finite values
 ## (stat_sum).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="datasets.html#cb51-1" aria-hidden="true" tabindex="-1"></a>git_experience <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="datasets.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(year_vcs, first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="datasets.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year_vcs, first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb51-4"><a href="datasets.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_year =</span> <span class="fu">min</span>(year_vcs),</span>
-<span id="cb51-5"><a href="datasets.html#cb51-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">count=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb51-6"><a href="datasets.html#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">first_vcs =</span> <span class="fu">as_factor</span>(first_vcs) <span class="sc">%&gt;%</span> </span>
-<span id="cb51-7"><a href="datasets.html#cb51-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">fct_reorder</span>(min_year)) <span class="sc">%&gt;%</span></span>
-<span id="cb51-8"><a href="datasets.html#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs, <span class="at">size=</span>count)) <span class="sc">+</span></span>
-<span id="cb51-9"><a href="datasets.html#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <pre><code>## `summarise()` has grouped output by &#39;year_vcs&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="datasets.html#cb53-1" aria-hidden="true" tabindex="-1"></a>git_experience <span class="sc">%&gt;%</span></span>
-<span id="cb53-2"><a href="datasets.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(first_vcs) <span class="sc">%&gt;%</span></span>
-<span id="cb53-3"><a href="datasets.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">first_vcs =</span> <span class="fu">as_factor</span>(first_vcs) <span class="sc">%&gt;%</span> </span>
-<span id="cb53-4"><a href="datasets.html#cb53-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">fct_reorder</span>(year_vcs, <span class="at">.fun=</span>min)) <span class="sc">%&gt;%</span></span>
-<span id="cb53-5"><a href="datasets.html#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb53-6"><a href="datasets.html#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
 <pre><code>## Warning: Removed 9 rows containing non-finite values
 ## (stat_sum).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-3.png" width="672" /></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="datasets.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> <span class="fu">count</span>(year_vcs, first_vcs), </span>
-<span id="cb55-2"><a href="datasets.html#cb55-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs, <span class="at">size=</span>n)) <span class="sc">+</span></span>
-<span id="cb55-3"><a href="datasets.html#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-3.png" width="672" /></p>
 <pre><code>## Warning: Removed 3 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-4.png" width="672" /></p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="datasets.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience, <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb57-2"><a href="datasets.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-4.png" width="672" /></p>
 <pre><code>## Warning: Removed 15 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-5.png" width="672" /></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="datasets.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience, <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs, <span class="at">color=</span>first_vcs)) <span class="sc">+</span></span>
-<span id="cb59-2"><a href="datasets.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-5.png" width="672" /></p>
 <pre><code>## Warning: Removed 15 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-6.png" width="672" /></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="datasets.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> <span class="fu">count</span>(year_vcs, first_vcs), </span>
-<span id="cb61-2"><a href="datasets.html#cb61-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>year_vcs, <span class="at">y=</span>first_vcs, <span class="at">fill=</span>n)) <span class="sc">+</span></span>
-<span id="cb61-3"><a href="datasets.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-6.png" width="672" /></p>
 <pre><code>## Warning: Removed 3 rows containing missing values
 ## (geom_tile).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-7.png" width="672" /></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="datasets.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(git_experience <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(use_gitlab), <span class="fu">aes</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>,<span class="at">fill=</span>use_gitlab)) <span class="sc">+</span></span>
-<span id="cb63-2"><a href="datasets.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="fu">position_fill</span>()) <span class="sc">+</span></span>
-<span id="cb63-3"><a href="datasets.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code></pre></div>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-7.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="inclusiveness-index" class="section level2 unnumbered">
 <h2>Inclusiveness Index</h2>
 <p><a href="https://belonging.berkeley.edu/inclusivenessindex/data-and-resources">Inclusiveness Index</a></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="datasets.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb64-2"><a href="datasets.html#cb64-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.General.Population, </span>
-<span id="cb64-3"><a href="datasets.html#cb64-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Z.score.Gender,</span>
-<span id="cb64-4"><a href="datasets.html#cb64-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb64-5"><a href="datasets.html#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb64-6"><a href="datasets.html#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb64-7"><a href="datasets.html#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Continent))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 111 rows containing non-finite values
 ## (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 111 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="datasets.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb68-2"><a href="datasets.html#cb68-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.General.Population, </span>
-<span id="cb68-3"><a href="datasets.html#cb68-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Z.score.Sexual.Orientation)) <span class="sc">+</span></span>
-<span id="cb68-4"><a href="datasets.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb68-5"><a href="datasets.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 109 rows containing non-finite values
 ## (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 109 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="datasets.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb72-2"><a href="datasets.html#cb72-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.General.Population, </span>
-<span id="cb72-3"><a href="datasets.html#cb72-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Inclusiveness.index<span class="fl">.2020</span>)) <span class="sc">+</span></span>
-<span id="cb72-4"><a href="datasets.html#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb72-5"><a href="datasets.html#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 113 rows containing non-finite values
 ## (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 113 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-3.png" width="672" /></p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="datasets.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb76-2"><a href="datasets.html#cb76-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.Gender, </span>
-<span id="cb76-3"><a href="datasets.html#cb76-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Z.score.Sexual.Orientation)) <span class="sc">+</span></span>
-<span id="cb76-4"><a href="datasets.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb76-5"><a href="datasets.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-3.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 90 rows containing non-finite values
 ## (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 90 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-4.png" width="672" /></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="datasets.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb80-2"><a href="datasets.html#cb80-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.Gender, </span>
-<span id="cb80-3"><a href="datasets.html#cb80-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Z.score.Religion)) <span class="sc">+</span></span>
-<span id="cb80-4"><a href="datasets.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb80-5"><a href="datasets.html#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-4.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 90 rows containing non-finite values
 ## (stat_smooth).
 
 ## Warning: Removed 90 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-5.png" width="672" /></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="datasets.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb83-2"><a href="datasets.html#cb83-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.Gender, </span>
-<span id="cb83-3"><a href="datasets.html#cb83-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Inclusiveness.index<span class="fl">.2020</span>)) <span class="sc">+</span></span>
-<span id="cb83-4"><a href="datasets.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb83-5"><a href="datasets.html#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-5.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 113 rows containing non-finite values
 ## (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 113 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-6.png" width="672" /></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="datasets.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb87-2"><a href="datasets.html#cb87-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.Sexual.Orientation, </span>
-<span id="cb87-3"><a href="datasets.html#cb87-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Inclusiveness.index<span class="fl">.2020</span>)) <span class="sc">+</span></span>
-<span id="cb87-4"><a href="datasets.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb87-5"><a href="datasets.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> inclusiveness_index <span class="sc">%&gt;%</span> </span>
-<span id="cb87-6"><a href="datasets.html#cb87-6" aria-hidden="true" tabindex="-1"></a>              dplyr<span class="sc">::</span><span class="fu">filter</span>(Inclusiveness.index<span class="fl">.2020</span> <span class="sc">==</span> <span class="fu">max</span>(Inclusiveness.index<span class="fl">.2020</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">|</span> Inclusiveness.index<span class="fl">.2020</span> <span class="sc">==</span> <span class="fu">min</span>(Inclusiveness.index<span class="fl">.2020</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)), <span class="fu">aes</span>(<span class="at">label =</span> Country)) <span class="sc">+</span></span>
-<span id="cb87-7"><a href="datasets.html#cb87-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-6.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 113 rows containing non-finite values
 ## (stat_smooth).
 
 ## Warning: Removed 113 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-7.png" width="672" /></p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="datasets.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">### USE THIS ONE? </span><span class="al">###</span></span>
-<span id="cb90-2"><a href="datasets.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb90-3"><a href="datasets.html#cb90-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Z.score.Religion, </span>
-<span id="cb90-4"><a href="datasets.html#cb90-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Inclusiveness.index<span class="fl">.2020</span>)) <span class="sc">+</span></span>
-<span id="cb90-5"><a href="datasets.html#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Continent)) <span class="sc">+</span></span>
-<span id="cb90-6"><a href="datasets.html#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> inclusiveness_index <span class="sc">%&gt;%</span> </span>
-<span id="cb90-7"><a href="datasets.html#cb90-7" aria-hidden="true" tabindex="-1"></a>              dplyr<span class="sc">::</span><span class="fu">filter</span>(Inclusiveness.index<span class="fl">.2020</span> <span class="sc">==</span> <span class="fu">max</span>(Inclusiveness.index<span class="fl">.2020</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">|</span> Inclusiveness.index<span class="fl">.2020</span> <span class="sc">==</span> <span class="fu">min</span>(Inclusiveness.index<span class="fl">.2020</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)), <span class="fu">aes</span>(<span class="at">label =</span> Country)) <span class="sc">+</span> </span>
-<span id="cb90-8"><a href="datasets.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-7.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 113 rows containing non-finite values
 ## (stat_smooth).
 
 ## Warning: Removed 113 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-8.png" width="672" /></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="datasets.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inclusiveness_index, </span>
-<span id="cb93-2"><a href="datasets.html#cb93-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">group =</span> Z.score.Disability, </span>
-<span id="cb93-3"><a href="datasets.html#cb93-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Inclusiveness.index<span class="fl">.2020</span>)) <span class="sc">+</span></span>
-<span id="cb93-4"><a href="datasets.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-8.png" width="672" /></p>
 <pre><code>## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-9.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-9.png" width="672" /></p>
 </div>
 <div id="candidate-demographics" class="section level2 unnumbered">
 <h2>Candidate Demographics</h2>

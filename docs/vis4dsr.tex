@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2021-08-15}
+\date{2022-01-25}
 
 \begin{document}
 \maketitle
@@ -326,147 +326,131 @@ Angela is the \href{https://library.duke.edu/about/directory/staff/angela.zoss}{
 \hypertarget{reading-visualizations}{%
 \chapter{Overview of common visualizations and how to read them}\label{reading-visualizations}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index\_annual }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{(Inclusiveness.index) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }\AttributeTok{y =}\NormalTok{ Inclusiveness.index, }\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_jitter}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+This book will cover how to create a variety of visualizations using R. One of the
+first things you should do to improve your skills creating visualizations is to
+become familiar with the kinds of visualizations that are possible and the different
+features of each.
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-4-1.pdf}
+Effective visualization design relies on a solid understanding
+of how data properties, visualization types, and audience characteristics interact
+to help people make sense of a visualization. In this chapter, we'll look at
+a series of common visualization types, and we'll break down how each is meant to
+be read. Understanding these basic visualization types will create a solid foundation for
+communicating your data science work to a broad audience.
+
+\hypertarget{visualization-components}{%
+\section{Visualization components}\label{visualization-components}}
+
+As we discuss different visualizations, we will also be talking about different
+components within the visualizations. In figure \ref{fig:vis-components} below,
+the major components of the visualization are labeled: the main title, the subtitle,
+the x axis title, the y axis title, the panel, the horizontal and vertical gridlines,
+and the axis labels and tick marks for both axes. Almost all of the visualizations we cover
+in this book will use these basic components.
+
+\begin{figure}
+\centering
+\includegraphics{vis4dsr_files/figure-latex/vis-components-1.pdf}
+\caption{\label{fig:vis-components}Visualization components, labeled.}
+\end{figure}
+
+In this set of basic visualization components, we see two components labeled as an axis.
+These axes are called the x and y axes, and they always appear in these positions:
+the x axis always goes left to right, and the y axis always goes up and down.
 
 \hypertarget{bar-chart}{%
 \section{Bar Chart}\label{bar-chart}}
 
-bar chart / stacked bar / dot plot / dumbbell plot
+The bar chart is possibly the most common type of visualization. In this type
+of visualization, the basic shape being used to represent data values is a rectangle.
+In a traditional bar chart, each rectangle (or bar) has exactly the same width,
+and the height of the bar is representative of some data value. To create a simple
+bar chart, the data set should have one column that contains textual data and one
+column that contains numerical data. (Another common way to create a bar chart
+is to start with one textual data column and count each instance of each text
+value to create the numerical column.)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index\_annual }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{drop\_na}\NormalTok{(Inclusiveness.index) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Continent) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean\_incl\_ind =} \FunctionTok{mean}\NormalTok{(Inclusiveness.index, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Continent =}\NormalTok{ Continent }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as\_factor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{fct\_reorder}\NormalTok{(mean\_incl\_ind, }\AttributeTok{.desc =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
-\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Continent, }\AttributeTok{y =}\NormalTok{ mean\_incl\_ind)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_col}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\begin{figure}
+\centering
+\includegraphics{vis4dsr_files/figure-latex/sample-bar-1.pdf}
+\caption{\label{fig:sample-bar}A sample bar chart.}
+\end{figure}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-5-1.pdf}
+In the sample bar chart above, we see a classic style of bar chart where each
+bar has the same width and the heights are proportionate to a data value. Each
+bar has a starting value of zero on the y axis. For data values that are positive,
+the bar travels upward from zero and stops at the correct data value. For data values
+that are negative, the bar travels downward from zero and stops at the correct
+data value. The x axis title and labels appear at the bottom of the panel, below
+the lowest data values.
+
+When reading this visualization, we are comparing the lengths of bars in order to
+understand patterns within the numerical data values from our data set. The power
+of the bar chart lies in how precisely we can detect differences in the
+lengths of bars. This is something that people naturally do quite well. Bar charts
+are especially effective if the bars that have small differences in lengths appear
+close to each other. In the above chart, this is accomplished by arranging the bars
+so they appear with the highest data values on the left and the lowest data values
+on the right.
+
+For stylistic reasons, bar charts may also appear with the bars oriented horizontally
+instead of vertically. In that case, each bar will have the same height, and the widths
+of the bars will vary based on the data values. The text (or categorical) axis will then
+be the y axis, and the numerical axis will be the x axis.
+
+\begin{figure}
+\centering
+\includegraphics{vis4dsr_files/figure-latex/sample-bar-horizontal-1.pdf}
+\caption{\label{fig:sample-bar-horizontal}A sample bar chart, with the bars oriented horizonally.}
+\end{figure}
+
+\hypertarget{variations}{%
+\subsection{Variations}\label{variations}}
+
+\hypertarget{stacked-and-grouped-bar-charts}{%
+\subsubsection{Stacked and grouped bar charts}\label{stacked-and-grouped-bar-charts}}
+
+\hypertarget{dot-plots}{%
+\subsubsection{Dot plots}\label{dot-plots}}
+
+\hypertarget{dumbbell-plots}{%
+\subsubsection{Dumbbell plots}\label{dumbbell-plots}}
 
 \hypertarget{scatter-plot}{%
 \section{Scatter Plot}\label{scatter-plot}}
 
 scatter plot / scatter plot with color / bubble chart / countour plot
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{(Z.score.Religion, Inclusiveness.index}\FloatTok{.2020}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Religion, }
-             \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-6-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-5-1.pdf}
 
 \hypertarget{line-chart}{%
 \section{Line Chart}\label{line-chart}}
 
 line chart / area chart
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index\_annual }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Year, Continent) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_incl\_ind =} \FunctionTok{mean}\NormalTok{(Inclusiveness.index, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }
-           \AttributeTok{y =}\NormalTok{ mean\_incl\_ind)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+## `summarise()` has grouped output by 'Year'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'Year'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-7-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index\_annual }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Year, Continent) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_incl\_ind =} \FunctionTok{mean}\NormalTok{(Inclusiveness.index, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }
-             \AttributeTok{y =}\NormalTok{ mean\_incl\_ind,}
-             \AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## `summarise()` has grouped output by 'Year'. You can override using the `.groups` argument.
-\end{verbatim}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-7-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-6-2.pdf}
 
 \hypertarget{pie-chart}{%
 \section{Pie Chart}\label{pie-chart}}
 
 pie chart / donut chart
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# library(RColorBrewer)}
-\CommentTok{\# brewer.pal(5, "Blues")}
-
-\NormalTok{inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}
-  \CommentTok{\#dplyr::filter(Continent == "Americas") \%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \StringTok{""}\NormalTok{, }\AttributeTok{fill =}\NormalTok{ Index.categories}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_fill}\NormalTok{()) }\SpecialCharTok{+}
-    \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-    \CommentTok{\#scale\_fill\_brewer(type="seq", palette = 1, direction = {-}1) +}
-    \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#08519C"}\NormalTok{,}\StringTok{"\#3182BD"}\NormalTok{,}\StringTok{"\#6BAED6"}\NormalTok{,}\StringTok{"\#9ECAE1"}\NormalTok{,}\StringTok{"\#C6DBEF"}\NormalTok{,}\StringTok{"\#EEEEEE"}\NormalTok{)) }\SpecialCharTok{+}
-    \FunctionTok{theme\_void}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{facet\_wrap}\NormalTok{(}\FunctionTok{vars}\NormalTok{(Continent))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-7-1.pdf}
 
 \hypertarget{heat-map}{%
 \section{Heat Map}\label{heat-map}}
 
 heat map / matrix / circles with color and size
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Z"}\NormalTok{)), }
-               \AttributeTok{names\_to =} \StringTok{"index\_name"}\NormalTok{,}
-               \AttributeTok{values\_to =} \StringTok{"index\_values"}\NormalTok{,}
-               \AttributeTok{values\_drop\_na =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Index.categories}\FloatTok{.2020}\NormalTok{, index\_name) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_incl\_ind =} \FunctionTok{mean}\NormalTok{(index\_values)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{index\_name =}\NormalTok{ index\_name }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{as\_factor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{fct\_relevel}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Z.score.General.Population"}\NormalTok{, }\StringTok{"Z.score.Race"}\NormalTok{, }\StringTok{"Z.score.Gender"}\NormalTok{, }
-                         \StringTok{"Z.score.Sexual.Orientation"}\NormalTok{, }\StringTok{"Z.score.Religion"}\NormalTok{, }
-                         \StringTok{"Z.score.Disability"}\NormalTok{, }\StringTok{"Inclusiveness.index.2020"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{fct\_rev}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
-  \CommentTok{\#View() \%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ index\_name, }\AttributeTok{x =}\NormalTok{ Index.categories}\FloatTok{.2020}\NormalTok{, }\AttributeTok{fill =}\NormalTok{ mean\_incl\_ind)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{scale\_fill\_distiller}\NormalTok{(}\AttributeTok{type=}\StringTok{"div"}\NormalTok{, }\AttributeTok{palette =} \DecValTok{3}\NormalTok{, }
-                         \AttributeTok{limits=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{,}\FloatTok{1.2}\NormalTok{), }
-                         \AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_bw}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'Index.categories.2020'. You can override using the `.groups` argument.
@@ -477,271 +461,74 @@ heat map / matrix / circles with color and size
 ## Inclusiveness.index.2020
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-1.pdf}
 
 \hypertarget{histogram}{%
 \section{Histogram}\label{histogram}}
 
 histogram / density
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_histogram}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## `stat_bin()` using `bins = 30`. Pick better value
 ## with `binwidth`.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-1.pdf}
 
 \hypertarget{box-plot}{%
 \section{Box Plot}\label{box-plot}}
 
 box plot / violin plot / bee swarm
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Z.score.Disability, }
-           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 \hypertarget{maps}{%
 \section{Maps}\label{maps}}
 
 choropleth / proportional symbol map
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{map\_incl\_ind }\OtherTok{\textless{}{-}}\NormalTok{ inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Country =} \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Antigua and Barbuda"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Antigua"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Bonaire, Saint Eustatius and Saba"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Bonaire"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Cote d\textquotesingle{}Ivoire"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Ivory Coast"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"East Timor"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Timor{-}Leste"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Palestina"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Palestine"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Saint Kitts and Nevis"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Saint Kitts"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Saint Vincent and the Grenadines"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Saint Vincent"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Saint{-}Barthalemy"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Saint Barthelemy"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Saint{-}Martin"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Saint Martin"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Trinidad and Tobago"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Trinidad"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"United Kingdom"} \SpecialCharTok{\textasciitilde{}} \StringTok{"UK"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"United States"} \SpecialCharTok{\textasciitilde{}} \StringTok{"USA"}\NormalTok{,}
-\NormalTok{    Country }\SpecialCharTok{==} \StringTok{"Vatican City"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Vatican"}\NormalTok{,}
-    \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Country}
-\NormalTok{  )) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{bind\_rows}\NormalTok{(}
-\NormalTok{    inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}
-\NormalTok{      Country }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Antigua and Barbuda"}\NormalTok{, }\StringTok{"Bonaire, Saint Eustatius and Saba"}\NormalTok{,}
-                     \StringTok{"Saint Kitts and Nevis"}\NormalTok{, }\StringTok{"Saint Vincent and the Grenadines"}\NormalTok{,}
-                     \StringTok{"Trinidad and Tobago"}\NormalTok{)}
-\NormalTok{    ) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Country =} \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{      Country }\SpecialCharTok{==} \StringTok{"Antigua and Barbuda"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Barbuda"}\NormalTok{,}
-\NormalTok{      Country }\SpecialCharTok{==} \StringTok{"Bonaire, Saint Eustatius and Saba"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Sint Eustatius"}\NormalTok{,}
-\NormalTok{      Country }\SpecialCharTok{==} \StringTok{"Saint Kitts and Nevis"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Nevis"}\NormalTok{,}
-\NormalTok{      Country }\SpecialCharTok{==} \StringTok{"Saint Vincent and the Grenadines"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Grenadines"}\NormalTok{,}
-\NormalTok{      Country }\SpecialCharTok{==} \StringTok{"Trinidad and Tobago"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Tobago"}\NormalTok{,}
-      \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Country}
-\NormalTok{      )}
-\NormalTok{    ),}
-\NormalTok{    inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}
-\NormalTok{      Country }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Bonaire, Saint Eustatius and Saba"}\NormalTok{)}
-\NormalTok{    ) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Country =} \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{      Country }\SpecialCharTok{==} \StringTok{"Bonaire, Saint Eustatius and Saba"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Saba"}\NormalTok{,}
-      \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Country}
-\NormalTok{      )}
-\NormalTok{    )}
-\NormalTok{  ) }
-
-\NormalTok{map\_incl\_ind }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{left\_join}\NormalTok{(}\FunctionTok{map\_data}\NormalTok{(}\StringTok{"world2"}\NormalTok{), }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"Country"} \OtherTok{=} \StringTok{"region"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-    \FunctionTok{geom\_polygon}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ long,}
-                     \AttributeTok{y =}\NormalTok{ lat,}
-                     \AttributeTok{group=}\NormalTok{group,}
-                     \AttributeTok{fill=}\NormalTok{Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-    \FunctionTok{coord\_map}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{scale\_fill\_distiller}\NormalTok{(}\AttributeTok{type=}\StringTok{"div"}\NormalTok{, }\AttributeTok{palette =} \DecValTok{3}\NormalTok{, }
-                         \AttributeTok{limits=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{,}\FloatTok{1.2}\NormalTok{), }
-                         \AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{map\_incl\_ind }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{left\_join}\NormalTok{(}
-    \FunctionTok{map\_data}\NormalTok{(}\StringTok{"world2"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-      \FunctionTok{group\_by}\NormalTok{(region) }\SpecialCharTok{\%\textgreater{}\%}
-      \FunctionTok{summarise}\NormalTok{(}\AttributeTok{x =} \FunctionTok{mean}\NormalTok{(long),}
-                \AttributeTok{y =} \FunctionTok{mean}\NormalTok{(lat)), }
-    \AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"Country"} \OtherTok{=} \StringTok{"region"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{geom\_polygon}\NormalTok{(}
-      \AttributeTok{data =} \FunctionTok{map\_data}\NormalTok{(}\StringTok{"world2"}\NormalTok{),}
-      \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ long,}
-          \AttributeTok{y =}\NormalTok{ lat,}
-          \AttributeTok{group=}\NormalTok{group),}
-      \AttributeTok{fill =} \StringTok{"grey50"}\NormalTok{,}
-      \AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{coord\_map}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y, }
-                   \AttributeTok{fill =}\NormalTok{ Index.categories}\FloatTok{.2020}\NormalTok{, }
-                   \AttributeTok{size =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{),}
-               \AttributeTok{shape =} \DecValTok{21}\NormalTok{,}
-               \AttributeTok{alpha =}\NormalTok{ .}\DecValTok{75}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"YlGnBu"}\NormalTok{, }\AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-2.pdf}
 
 \hypertarget{movies}{%
 \section{Movies}\label{movies}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2movies) }\CommentTok{\# add to index if you use this instead}
-
-\CommentTok{\# Movies were selected for inclusion if they had a known length and had }
-\CommentTok{\# been rated by at least one imdb user.}
-\NormalTok{movies }\OtherTok{\textless{}{-}}\NormalTok{ movies}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Action, Animation, Comedy, Drama, Documentary, Romance, Short), }\AttributeTok{names\_to =} \StringTok{"genre"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{value =} \FunctionTok{as.logical}\NormalTok{(value)) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(value) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{genre =}\NormalTok{ genre }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{as\_factor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{           fct\_infreq) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{genre)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-14-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(movies, }\FunctionTok{aes}\NormalTok{(budget, rating)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 53573 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-15-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(year) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_budget =} \FunctionTok{mean}\NormalTok{(budget, }\AttributeTok{na.rm=}\NormalTok{T)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{mean\_budget)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 10 row(s) containing missing values
 ## (geom_path).
 \end{verbatim}
 
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-15-1.pdf}
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-16-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Action, Animation, Comedy, Drama, Documentary, Romance, Short), }\AttributeTok{names\_to =} \StringTok{"genre"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{value =} \FunctionTok{as.logical}\NormalTok{(value)) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(value) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{genre =}\NormalTok{ genre }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{as\_factor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{           fct\_infreq) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\StringTok{""}\NormalTok{, }\AttributeTok{fill=}\NormalTok{genre)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \FunctionTok{position\_fill}\NormalTok{()) }\SpecialCharTok{+}
-    \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Action, Animation, Comedy, Drama, Documentary, Romance, Short), }\AttributeTok{names\_to =} \StringTok{"genre"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{value =} \FunctionTok{as.logical}\NormalTok{(value)) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(value, mpaa }\SpecialCharTok{!=} \StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{genre =}\NormalTok{ genre }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{as\_factor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{           fct\_infreq) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(mpaa, genre) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{mean\_budget =} \FunctionTok{mean}\NormalTok{(budget, }\AttributeTok{na.rm=}\NormalTok{T)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{mpaa, }\AttributeTok{y=}\NormalTok{genre, }\AttributeTok{fill =}\NormalTok{ mean\_budget)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_tile}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'mpaa'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-18-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(movies, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{rating)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_histogram}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 \begin{verbatim}
 ## `stat_bin()` using `bins = 30`. Pick better value
 ## with `binwidth`.
 \end{verbatim}
 
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-18-1.pdf}
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-19-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Action, Animation, Comedy, Drama, Documentary, Romance, Short), }\AttributeTok{names\_to =} \StringTok{"genre"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{value =} \FunctionTok{as.logical}\NormalTok{(value)) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(value) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{genre =}\NormalTok{ genre }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{as\_factor}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{           fct\_infreq) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{genre, }\AttributeTok{y=}\NormalTok{rating)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_boxplot}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 (No maps, but maybe that's okay)
 
@@ -751,20 +538,7 @@ choropleth / proportional symbol map
 \hypertarget{basic-ggplot2-syntax}{%
 \section{Basic ggplot2 syntax}\label{basic-ggplot2-syntax}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# start with the main plot function and set the data frame}
-\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ data\_frame) }\SpecialCharTok{+} 
-\CommentTok{\# next add a geometry layer and create the mapping between data frame and aesthetics}
-  \FunctionTok{geom\_...}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(...))}
-
-\CommentTok{\# to create the mapping, compose a list of aesthetics assignments }
-\CommentTok{\# using the following format:}
-\CommentTok{\#   aesthetics = data\_field}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \hypertarget{text-data-visualizations}{%
 \chapter{Working with textual data in ggplot2}\label{text-data-visualizations}}
@@ -1001,355 +775,85 @@ Figure \ref{fig:coral-resilience-point}.
 
 \href{https://osf.io/57tb8/}{A Behavioral Approach to Understanding the Git Experience}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# won\textquotesingle{}t work without aggregation}
-\CommentTok{\#ggplot(git\_experience, aes(x=year\_vcs)) +}
-\CommentTok{\#  geom\_line()}
-
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{n)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## Warning: Removed 1 row(s) containing missing values
 ## (geom_path).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs, first\_vcs), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{n, }\AttributeTok{color=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 row(s) containing missing values
 ## (geom_path).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# First use vs. now use}
-
-\NormalTok{first\_used }\OtherTok{\textless{}{-}}\NormalTok{ git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{count}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{rename}\NormalTok{(}\StringTok{"n\_first\_used"} \OtherTok{=} \StringTok{"n"}\NormalTok{, }\StringTok{"system"} \OtherTok{=} \StringTok{"first\_vcs"}\NormalTok{)}
-
-\NormalTok{now\_use }\OtherTok{\textless{}{-}}\NormalTok{ git\_experience }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols=}\FunctionTok{c}\NormalTok{(first\_bazaar,first\_cvs,first\_git,}
-\NormalTok{                      first\_hg,first\_monotone,first\_svn, first\_other),}
-               \AttributeTok{names\_to =} \StringTok{"system"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(value }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{count}\NormalTok{(system) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{rename}\NormalTok{(}\StringTok{"n\_now\_use"} \OtherTok{=} \StringTok{"n"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{system =} \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{    system }\SpecialCharTok{==} \StringTok{"first\_bazaar"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Bazaar"}\NormalTok{,}
-\NormalTok{    system }\SpecialCharTok{==} \StringTok{"first\_cvs"} \SpecialCharTok{\textasciitilde{}} \StringTok{"CVS"}\NormalTok{,}
-\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_git"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Git"}\NormalTok{,}
-\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_hg"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Mercurial"}\NormalTok{,}
-\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_monotone"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Monotone"}\NormalTok{,}
-\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_svn"} \SpecialCharTok{\textasciitilde{}} \StringTok{"SVN"}\NormalTok{, }
-\NormalTok{    system }\SpecialCharTok{==}  \StringTok{"first\_other"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Other"}
-\NormalTok{  ))}
-
-\NormalTok{combined }\OtherTok{\textless{}{-}}\NormalTok{ first\_used }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(now\_use) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(n\_first\_used, n\_now\_use), }
-               \AttributeTok{names\_to =} \StringTok{"time"}\NormalTok{,}
-               \AttributeTok{values\_to =} \StringTok{"count"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-2.pdf}
 
 \begin{verbatim}
 ## Joining, by = "system"
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(combined, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FunctionTok{as\_factor}\NormalTok{(time), }\AttributeTok{y=}\NormalTok{count, }\AttributeTok{group=}\NormalTok{system, }\AttributeTok{color=}\NormalTok{system)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-6.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
-             \FunctionTok{fct\_infreq}\NormalTok{()), }
-         \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#How difficult was it for you to learn how to use git on your local computer?}
-\CommentTok{\# 1 {-} Very easy (1)}
-\CommentTok{\# 2 {-} Easy (2)}
-\CommentTok{\# 3 {-} Neutral (Neither easy nor difficult) (3)}
-\CommentTok{\# 4 {-} Difficult (4)}
-\CommentTok{\# 5 {-} Very difficult (5)}
-
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
-         \FunctionTok{drop\_na}\NormalTok{(local\_ease) }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{local\_ease =} \FunctionTok{as\_factor}\NormalTok{(local\_ease) }\SpecialCharTok{\%\textgreater{}\%} 
-             \FunctionTok{fct\_recode}\NormalTok{(}\StringTok{"Very easy"}\OtherTok{=}\StringTok{"1"}\NormalTok{, }
-                        \StringTok{"Easy"}\OtherTok{=}\StringTok{"2"}\NormalTok{, }\StringTok{"Neutral"}\OtherTok{=}\StringTok{"3"}\NormalTok{, }
-                        \StringTok{"Difficult"}\OtherTok{=}\StringTok{"4"}\NormalTok{, }\StringTok{"Very difficult"}\OtherTok{=}\StringTok{"5"}\NormalTok{)), }
-       \FunctionTok{aes}\NormalTok{(local\_ease)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-3.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#How difficult was it for you to learn how to use the git hosting platform (e.g. GitLab, GitHub, etc.)?}
-\CommentTok{\# 1 {-} Very easy (1)}
-\CommentTok{\# 2 {-} Easy (2)}
-\CommentTok{\# 3 {-} Neutral (Neither easy nor difficult) (3)}
-\CommentTok{\# 4 {-} Difficult (4)}
-\CommentTok{\# 5 {-} Very difficult (5)}
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
-         \FunctionTok{drop\_na}\NormalTok{(ghp\_ease) }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{ghp\_ease =} \FunctionTok{as\_factor}\NormalTok{(ghp\_ease) }\SpecialCharTok{\%\textgreater{}\%} 
-             \FunctionTok{fct\_recode}\NormalTok{(}\StringTok{"Very easy"}\OtherTok{=}\StringTok{"1"}\NormalTok{, }
-                        \StringTok{"Easy"}\OtherTok{=}\StringTok{"2"}\NormalTok{, }\StringTok{"Neutral"}\OtherTok{=}\StringTok{"3"}\NormalTok{, }
-                        \StringTok{"Difficult"}\OtherTok{=}\StringTok{"4"}\NormalTok{, }\StringTok{"Very difficult"}\OtherTok{=}\StringTok{"5"}\NormalTok{)), }
-       \FunctionTok{aes}\NormalTok{(ghp\_ease)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-4.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# How proficient do you think you are with git?}
-\CommentTok{\# 1 {-} Fundamental Awareness (basic knowledge) (1)}
-\CommentTok{\# 2 {-} Novice (limited experience) (2)}
-\CommentTok{\# 3 {-} Intermediate (practical application) (3)}
-\CommentTok{\# 4 {-} Advanced (applied theory) (4)}
-\CommentTok{\# 5 {-} Expert (recognized authority) (5)}
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
-         \FunctionTok{drop\_na}\NormalTok{(proficiency) }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{proficiency =} \FunctionTok{as\_factor}\NormalTok{(proficiency) }\SpecialCharTok{\%\textgreater{}\%} 
-             \FunctionTok{fct\_recode}\NormalTok{(}\StringTok{"Basic Knowledge"}\OtherTok{=}\StringTok{"1"}\NormalTok{, }
-                        \StringTok{"Novice"}\OtherTok{=}\StringTok{"2"}\NormalTok{, }\StringTok{"Intermediate"}\OtherTok{=}\StringTok{"3"}\NormalTok{, }
-                        \StringTok{"Advanced"}\OtherTok{=}\StringTok{"4"}\NormalTok{, }\StringTok{"Expert"}\OtherTok{=}\StringTok{"5"}\NormalTok{)), }
-       \FunctionTok{aes}\NormalTok{(proficiency)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-5.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# How frequently do you have to reteach yourself git?}
-\CommentTok{\# Daily (1)}
-\CommentTok{\# Weekly (2)}
-\CommentTok{\# Once a semester (3)}
-\CommentTok{\# Once a year (4)}
-\CommentTok{\# Never (5)}
-\CommentTok{\# Other: (6)}
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{drop\_na}\NormalTok{(freq\_reteach) }\SpecialCharTok{\%\textgreater{}\%}
-         \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq\_reteach =} \FunctionTok{as\_factor}\NormalTok{(freq\_reteach) }\SpecialCharTok{\%\textgreater{}\%} 
-             \FunctionTok{fct\_relevel}\NormalTok{(}\StringTok{"Daily"}\NormalTok{, }\StringTok{"Weekly"}\NormalTok{, }\StringTok{"Once a semester"}\NormalTok{,}
-                         \StringTok{"Once a year"}\NormalTok{, }\StringTok{"Never"}\NormalTok{, }\StringTok{"Other:"}\NormalTok{)), }
-       \FunctionTok{aes}\NormalTok{(freq\_reteach)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-6.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{mean\_prof =} \FunctionTok{mean}\NormalTok{(proficiency, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs, }\AttributeTok{y=}\NormalTok{mean\_prof)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_col}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{mean\_proficiency =} \FunctionTok{mean}\NormalTok{(proficiency, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
-           \FunctionTok{fct\_reorder}\NormalTok{(mean\_proficiency) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{fct\_rev}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{first\_vcs, }\AttributeTok{y=}\NormalTok{mean\_proficiency)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_col}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_count}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{(year\_vcs, first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(year\_vcs, first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{min\_year =} \FunctionTok{min}\NormalTok{(year\_vcs),}
-            \AttributeTok{count=}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
-           \FunctionTok{fct\_reorder}\NormalTok{(min\_year)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{size=}\NormalTok{count)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-1.pdf}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'year_vcs'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{git\_experience }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{drop\_na}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{first\_vcs =} \FunctionTok{as\_factor}\NormalTok{(first\_vcs) }\SpecialCharTok{\%\textgreater{}\%} 
-           \FunctionTok{fct\_reorder}\NormalTok{(year\_vcs, }\AttributeTok{.fun=}\NormalTok{min)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_count}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 9 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-3.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs, first\_vcs), }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{size=}\NormalTok{n)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-3.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-4.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-4.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-5.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{color=}\NormalTok{first\_vcs)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_jitter}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-5.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-6.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(year\_vcs, first\_vcs), }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year\_vcs, }\AttributeTok{y=}\NormalTok{first\_vcs, }\AttributeTok{fill=}\NormalTok{n)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_tile}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-6.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_tile).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-7.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(git\_experience }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{(use\_gitlab), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\StringTok{""}\NormalTok{,}\AttributeTok{fill=}\NormalTok{use\_gitlab)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_fill}\NormalTok{()) }\SpecialCharTok{+}
-  \FunctionTok{coord\_polar}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 \hypertarget{inclusiveness-index}{%
 \section*{Inclusiveness Index}\label{inclusiveness-index}}
 
 
 \href{https://belonging.berkeley.edu/inclusivenessindex/data-and-resources}{Inclusiveness Index}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.General.Population, }
-           \AttributeTok{y =}\NormalTok{ Z.score.Gender,}
-           \AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{facet\_wrap}\NormalTok{(}\FunctionTok{vars}\NormalTok{(Continent))}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1365,17 +869,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.General.Population, }
-           \AttributeTok{y =}\NormalTok{ Z.score.Sexual.Orientation)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1391,17 +885,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.General.Population, }
-           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-2.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1417,17 +901,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-3.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Gender, }
-           \AttributeTok{y =}\NormalTok{ Z.score.Sexual.Orientation)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-3.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1443,17 +917,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-4.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Gender, }
-           \AttributeTok{y =}\NormalTok{ Z.score.Religion)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-4.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1467,17 +931,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-5.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Gender, }
-           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-5.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1493,19 +947,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-6.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Sexual.Orientation, }
-           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%} 
-\NormalTok{              dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{max}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{min}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Country)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-6.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1519,20 +961,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-7.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\# USE THIS ONE? }\AlertTok{\#\#\#}
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Z.score.Religion, }
-           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Continent)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ inclusiveness\_index }\SpecialCharTok{\%\textgreater{}\%} 
-\NormalTok{              dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{max}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ Inclusiveness.index}\FloatTok{.2020} \SpecialCharTok{==} \FunctionTok{min}\NormalTok{(Inclusiveness.index}\FloatTok{.2020}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Country)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{se=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-7.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1546,23 +975,14 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-8.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(inclusiveness\_index, }
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Z.score.Disability, }
-           \AttributeTok{y =}\NormalTok{ Inclusiveness.index}\FloatTok{.2020}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-8.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-9.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-9.pdf}
 
 \hypertarget{candidate-demographics}{%
 \section*{Candidate Demographics}\label{candidate-demographics}}

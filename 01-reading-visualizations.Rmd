@@ -1,5 +1,9 @@
 \mainmatter
 
+```{r ch1-setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
 # Overview of common visualizations and how to read them {#reading-visualizations}
 
 ```{r, include=FALSE}
@@ -13,7 +17,7 @@ inclusiveness_index <- inclusiveness_index %>%
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 
 inclusiveness_index_annual %>%
   drop_na(Inclusiveness.index) %>%
@@ -22,22 +26,121 @@ inclusiveness_index_annual %>%
 
 ```
 
+This book will cover how to create a variety of visualizations using R. One of the
+first things you should do to improve your skills creating visualizations is to
+become familiar with the kinds of visualizations that are possible and the different
+features of each. 
+
+Effective visualization design relies on a solid understanding
+of how data properties, visualization types, and audience characteristics interact
+to help people make sense of a visualization.  In this chapter, we'll look at
+a series of common visualization types, and we'll break down how each is meant to
+be read. Understanding these basic visualization types will create a solid foundation for
+communicating your data science work to a broad audience.
+
+## Visualization components
+
+As we discuss different visualizations, we will also be talking about different
+components within the visualizations. In figure \@ref(fig:vis-components) below, 
+the major components of the visualization are labeled: the main title, the subtitle,
+the x axis title, the y axis title, the panel, the horizontal and vertical gridlines,
+and the axis labels and tick marks for both axes. Almost all of the visualizations we cover 
+in this book will use these basic components.
+
+```{r vis-components, fig.cap='Visualization components, labeled.'}
+
+tibble(x = c(0:4), y=c(0:4)) %>%
+  ggplot(aes(x=x,y=y)) +
+  labs(title = "Main title",
+       subtitle = "Subtitle",
+       x = "x axis title", 
+       y = "y axis title") +
+  coord_cartesian(xlim=c(0,4), ylim=c(0,4)) +
+  annotate("text", x = 0, y = 3.7, label = "panel", size = 5.5, hjust=0) + 
+  annotate("text", x = .9, y = 3.1, label = "horizontal gridlines", size = 4, hjust=0) +
+  annotate("text", x = 2.45, y = 2.2, label = "vertical gridlines", size = 4, hjust=0, angle=90) + 
+  annotate("text", x = .25, y = .75, label = "y axis labels and tick marks", size = 4, hjust=0) +
+  annotate("segment", x = .2, xend = -.1, y = .745, yend = 1, 
+           arrow = arrow(type = "closed", length = unit(.07, "inches"))) +
+  annotate("segment", x = .2, xend = -.1, y = .745, yend = 0, 
+           arrow = arrow(type = "closed", length = unit(.07, "inches"))) +
+  annotate("text", x = 3.5, y = .75, label = "x axis labels and tick marks", size = 4) +
+  annotate("segment", x = 3.5, xend = 3, y = .6, yend = 0, 
+           arrow = arrow(type = "closed", length = unit(.07, "inches"))) +
+  annotate("segment", x = 3.5, xend = 4, y = .6, yend = 0, 
+           arrow = arrow(type = "closed", length = unit(.07, "inches"))) + 
+  theme_grey(base_size=13) 
+
+```
+
+In this set of basic visualization components, we see two components labeled as an axis. 
+These axes are called the x and y axes, and they always appear in these positions: 
+the x axis always goes left to right, and the y axis always goes up and down.
 
 ## Bar Chart
 
-bar chart / stacked bar / dot plot / dumbbell plot
+The bar chart is possibly the most common type of visualization. In this type
+of visualization, the basic shape being used to represent data values is a rectangle. 
+In a traditional bar chart, each rectangle (or bar) has exactly the same width, 
+and the height of the bar is representative of some data value. To create a simple
+bar chart, the data set should have one column that contains textual data and one
+column that contains numerical data. (Another common way to create a bar chart
+is to start with one textual data column and count each instance of each text
+value to create the numerical column.)
 
-```{r}
+```{r sample-bar, fig.cap='A sample bar chart.'}
 
 inclusiveness_index_annual %>% 
   drop_na(Inclusiveness.index) %>%
   group_by(Continent) %>%
-  summarize(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE)) %>%
-  mutate(Continent = Continent %>% as_factor() %>% fct_reorder(mean_incl_ind, .desc = TRUE)) %>% 
-ggplot(mapping = aes(x = Continent, y = mean_incl_ind)) +
+  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index)) %>%
+  mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`, .desc = TRUE)) %>% 
+ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
   geom_col()
 
 ```
+
+In the sample bar chart above, we see a classic style of bar chart where each
+bar has the same width and the heights are proportionate to a data value. Each 
+bar has a starting value of zero on the y axis. For data values that are positive,
+the bar travels upward from zero and stops at the correct data value. For data values
+that are negative, the bar travels downward from zero and stops at the correct
+data value. The x axis title and labels appear at the bottom of the panel, below
+the lowest data values.
+
+When reading this visualization, we are comparing the lengths of bars in order to
+understand patterns within the numerical data values from our data set. The power 
+of the bar chart lies in how precisely we can detect differences in the
+lengths of bars. This is something that people naturally do quite well. Bar charts 
+are especially effective if the bars that have small differences in lengths appear 
+close to each other. In the above chart, this is accomplished by arranging the bars 
+so they appear with the highest data values on the left and the lowest data values 
+on the right.
+
+For stylistic reasons, bar charts may also appear with the bars oriented horizontally
+instead of vertically. In that case, each bar will have the same height, and the widths
+of the bars will vary based on the data values. The text (or categorical) axis will then
+be the y axis, and the numerical axis will be the x axis.
+
+```{r sample-bar-horizontal, fig.cap='A sample bar chart, with the bars oriented horizonally.'}
+
+inclusiveness_index_annual %>% 
+  drop_na(Inclusiveness.index) %>%
+  group_by(Continent) %>%
+  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index)) %>%
+  mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`)) %>% 
+ggplot(mapping = aes(y = Continent, x = `Mean Inclusiveness Index`)) +
+  geom_col()
+
+```
+
+### Variations
+
+#### Stacked and grouped bar charts
+
+#### Dot plots
+
+#### Dumbbell plots
 
 
 ## Scatter Plot

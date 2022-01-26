@@ -1,9 +1,17 @@
 fig:knitr-logo
+fig:vis-components
+fig:sample-bar
+fig:sample-bar-horizontal
 tab:duke-school-tab
 fig:duke-school-bar
 fig:coral-resilience-point
 reading-visualizations
+visualization-components
 bar-chart
+variations
+stacked-and-grouped-bar-charts
+dot-plots
+dumbbell-plots
 scatter-plot
 line-chart
 pie-chart
