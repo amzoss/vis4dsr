@@ -443,17 +443,186 @@ the lengths of shapes when they don’t have the same baseline.</p>
 </div>
 <div id="scatter-plot" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Scatter Plot</h2>
+<p>The scatter plot is another common visualization type. This type of visualization
+displays one circle for each record in the data set. The position of the circle is
+based on the values of two different numerical variables, one of which is associated
+with the x axis and the other of which is associated with the y axis.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-scatter"></span>
+<img src="vis4dsr_files/figure-html/sample-scatter-1.png" alt="A sample scatter plot." width="672" />
+<p class="caption">
+FIGURE 1.13: A sample scatter plot.
+</p>
+</div>
+<p>This visualization is a way to show a relationship between the two numerical variables
+displayed on the axes. A relationship between the variables means that a change in one
+variable would predict a specific kind of change in the other variable. For example,
+one kind of relationship is a positive correlation, which means that an increase in
+one variable is associated with an increase in the other variable. Points with higher
+values on the x axis tend to have higher values on the y axis. Similarly, points
+with lower values on one axis tend to have lower values on the other axis.</p>
+<p>When two numerical variables have a positive correlation, it shows up on the scatter
+plot as a diagonal pattern of circles, from the bottom left corner of the chart to
+the upper right corner of the chart. The closer it looks to a straight line, rather
+than a diffuse pattern, the stronger the relationship is.</p>
+<p>There are a few types of patterns that might show up when looking at a scatter plot.
+Instead of a positive correlation, the variables could have a negative correlation:
+high values of one variable are associated with low values of the other variable. This
+relationship shows up on the scatter plot as a diagonal patter from the top left
+corner to the bottom right corner.</p>
+<p>Both positive and negative correlations are linear relationships - they look like
+lines on the chart. There are also nonlinear relationships that look like different
+kinds of curves. An exponential relationship looks like a curve that starts
+mostly horizontal and then curves up dramatically, ending up almost vertical.
+A logarithmic relationship is a curve that starts mostly vertical and bends
+over dramatically, ending up almost horizontal. Other curvilinear patterns of dots
+might be better represented by other mathematical functions.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-relationships"></span>
+<img src="vis4dsr_files/figure-html/sample-relationships-1.png" alt="Different relationships between numerical variables." width="672" />
+<p class="caption">
+FIGURE 1.14: Different relationships between numerical variables.
+</p>
+</div>
+<p>What does it mean to see a shape in a scatter plot? A detectable shape in a scatter
+plot is a suggestion that there might be a statistically powerful relationship
+between these variables. The chart, however, is not a substitute for a statistical
+analysis. Using statistical analyses to explore the relationship between two variables
+is called modeling.</p>
+<p>Sometimes a scatter plot will be combined with a statistical model to explore
+the connection between the data points and an ideal relationship. For example, you
+may see a scatter plot where there is a correlation between the variables
+combined with a linear model (represented by a straight line drawn on top of the points).</p>
+<div class="figure"><span style="display:block;" id="fig:sample-scatter-lm"></span>
+<img src="vis4dsr_files/figure-html/sample-scatter-lm-1.png" alt="A sample scatter plot with a linear model overlaid over the points." width="672" />
+<p class="caption">
+FIGURE 1.15: A sample scatter plot with a linear model overlaid over the points.
+</p>
+</div>
+<p>When you see a line on a scatter plot like this, it is showing the linear model
+that best represents the relationship between the x and y variables. In this case,
+the relationship between the variables is not very strong, so the points look more
+like a cloud than the straight line of the linear model.</p>
 <div id="variations-1" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Variations</h3>
-<div id="scatter-plot-with-color" class="section level4" number="1.3.1.1">
-<h4><span class="header-section-number">1.3.1.1</span> Scatter plot with color</h4>
+<p>The following charts are variations on a scatter plot. They either summarize the
+patterns in the data or incorporate additional variables.</p>
+<div id="contour-or-density-plot" class="section level4" number="1.3.1.1">
+<h4><span class="header-section-number">1.3.1.1</span> Contour or density plot</h4>
+<p>Sometimes a dataset is too large for a scatter plot to be effective. With a large
+number of data points, there can be too much overlap between the circles to see
+the dominant patterns. In this instance, it can be helpful to calculate the density
+of data points across the chart and visualize the density instead of (or in addition to)
+the points. This is called a contour or density plot.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-contour"></span>
+<img src="vis4dsr_files/figure-html/sample-contour-1.png" alt="A sample contour plot with scatter plot points on top." width="672" />
+<p class="caption">
+FIGURE 1.16: A sample contour plot with scatter plot points on top.
+</p>
 </div>
-<div id="bubble-chart" class="section level4" number="1.3.1.2">
-<h4><span class="header-section-number">1.3.1.2</span> Bubble chart</h4>
 </div>
-<div id="countour-plot" class="section level4" number="1.3.1.3">
-<h4><span class="header-section-number">1.3.1.3</span> Countour plot</h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div id="binned-scatter-plot" class="section level4" number="1.3.1.2">
+<h4><span class="header-section-number">1.3.1.2</span> Binned scatter plot</h4>
+<p>In a contour plot, the density calculation detects regions of high density in a
+scatter plot. Another way of summarizing the distribution of points across the plot
+is to divide the plot into an even grid and then to count the points inside each
+region. This is often called “binning.” Common types of binning are rectangular
+(splitting the plot up using a rectangular grid) and hexagonal (splitting the
+plot up using a grid of interlocking hexagons).</p>
+<div class="figure"><span style="display:block;" id="fig:sample-bin2d"></span>
+<img src="vis4dsr_files/figure-html/sample-bin2d-1.png" alt="A sample scatter plot binned with a rectangular grid." width="672" />
+<p class="caption">
+FIGURE 1.17: A sample scatter plot binned with a rectangular grid.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:sample-hex"></span>
+<img src="vis4dsr_files/figure-html/sample-hex-1.png" alt="A sample scatter plot binned with a hexagonal grid." width="672" />
+<p class="caption">
+FIGURE 1.18: A sample scatter plot binned with a hexagonal grid.
+</p>
+</div>
+</div>
+<div id="scatter-plot-with-color" class="section level4" number="1.3.1.3">
+<h4><span class="header-section-number">1.3.1.3</span> Scatter plot with color</h4>
+<p>So far, our scatter plots have still only been used to visualize the relationship
+between two numerical variables. In some datasets, it can be helpful to consider
+how an additional variable interacts with the scatter plot pattern. One way to
+incorporate an additional variable is to change the color of the points in the
+scatter plot according to the third variable. For example, you can associate the
+color of the points with a categorical variable to show whether different subsets
+of the points cluster in different parts of the graph.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-scatter-color"></span>
+<img src="vis4dsr_files/figure-html/sample-scatter-color-1.png" alt="A sample scatter plot with color categories." width="672" />
+<p class="caption">
+FIGURE 1.19: A sample scatter plot with color categories.
+</p>
+</div>
+<p>In the above chart, the color represents the continent; that is, each continent shows
+as a separate color. We’re looking for a relationship between the pattern of the colors
+and the spatial pattern of the points. In this chart, the points associated with
+Europe do overall seem to cluster in the upper-right corner of the graph, meaning that
+on the whole the European countries tend to rate highly on both the Z-score value
+for religious inclusiveness and the overall inclusiveness score. African countries
+also tend to have high scores for religious inclusiveness, but they don’t rate as
+highly for overall inclusiveness.</p>
+<p>You can also use color to visualize a third numerical variable instead of a
+categorical variable.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-scatter-color-grad"></span>
+<img src="vis4dsr_files/figure-html/sample-scatter-color-grad-1.png" alt="A sample scatter plot with a color gradient." width="672" />
+<p class="caption">
+FIGURE 1.20: A sample scatter plot with a color gradient.
+</p>
+</div>
+<p>In this chart, the values in the “Z-score, Gender” variable are associated with
+a color gradient. Positive values of this new variable show in the chart as
+increasingly darker shades of purple. Negative values show as increasingly darker
+shades of green.</p>
+<p>With any chart, adding more variables runs the risk of creating visual confusion
+that makes it harder (not easier) to see interesting patterns. For example,
+in the chart above, we see that purples mostly occur on the top half of the chart
+and greens on the lower half of the chart. Beyond that, though, it’s hard to identify
+a strong relationship between the strength of the color values and either of the axes.
+If colors are not concentrating in a particular region of the plot, adding a third
+variable may not be necessary for this chart.</p>
+</div>
+<div id="bubble-chart" class="section level4" number="1.3.1.4">
+<h4><span class="header-section-number">1.3.1.4</span> Bubble chart</h4>
+<p>A bubble chart is another way of adding a third variable to a scatter plot. Unlike
+adding color to the chart, however, a bubble plot works best when you are adding a
+third numerical variable. That’s because in a bubble plot, the additional variable
+is represented by changing the size of the bubble. Representing a categorical variable
+by changing the size of the circle isn’t as natural as using different colors. It’s
+hard to focus on all of the bubbles of a particular size to try to identify clusters.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-bubble-cat"></span>
+<img src="vis4dsr_files/figure-html/sample-bubble-cat-1.png" alt="A sample bubble chart with categories." width="672" />
+<p class="caption">
+FIGURE 1.21: A sample bubble chart with categories.
+</p>
+</div>
+<p>If you use a numerical variable to size the bubbles, the goal of the chart becomes
+similar to when color is used to add a third numerical variable: explore whether
+the sizes of the bubbles changes in a meaningful way in relation to the axes.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-bubble-grad"></span>
+<img src="vis4dsr_files/figure-html/sample-bubble-grad-1.png" alt="A sample bubble chart with a size gradient." width="672" />
+<p class="caption">
+FIGURE 1.22: A sample bubble chart with a size gradient.
+</p>
+</div>
+<p>There is one property of bubble charts that is different from scatter plots with
+added color. When you have a variable that has both positive and negative values,
+it may be a slightly less natural fit for the size of the bubbles. The size of an
+object like a circle is naturally a positive value. A circle doesn’t itself have
+negative size. If the variable uses negative and positive in an abstract sense,
+though, the size of a bubble can still help differentiate low and high values.</p>
+<p>With bubble charts, color is still available to display another variable if there
+is anything else that might interact with the three numerical variables.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-bubble-color"></span>
+<img src="vis4dsr_files/figure-html/sample-bubble-color-1.png" alt="A sample bubble chart with color categories." width="672" />
+<p class="caption">
+FIGURE 1.23: A sample bubble chart with color categories.
+</p>
+</div>
+<p>Be cautious, again, with adding too many variables to a single chart. If adding
+a variable doesn’t reveal anything new about the data, it is probably getting in the
+way of a pattern that does exist.</p>
 </div>
 </div>
 </div>
@@ -461,14 +630,14 @@ the lengths of shapes when they don’t have the same baseline.</p>
 <h2><span class="header-section-number">1.4</span> Line Chart</h2>
 <p>line chart / area chart</p>
 <pre><code>## `summarise()` has grouped output by &#39;Year&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre><code>## `summarise()` has grouped output by &#39;Year&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 </div>
 <div id="pie-chart" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Pie Chart</h2>
 <p>pie chart / donut chart</p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="heat-map" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Heat Map</h2>
@@ -476,43 +645,43 @@ the lengths of shapes when they don’t have the same baseline.</p>
 <pre><code>## `summarise()` has grouped output by &#39;Index.categories.2020&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## Warning: Unknown levels in `f`:
 ## Inclusiveness.index.2020</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="histogram" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> Histogram</h2>
 <p>histogram / density</p>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value
 ## with `binwidth`.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="box-plot" class="section level2" number="1.8">
 <h2><span class="header-section-number">1.8</span> Box Plot</h2>
 <p>box plot / violin plot / bee swarm</p>
 <pre><code>## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="maps" class="section level2" number="1.9">
 <h2><span class="header-section-number">1.9</span> Maps</h2>
 <p>choropleth / proportional symbol map</p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-11-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-10-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
 </div>
 <div id="movies" class="section level2" number="1.10">
 <h2><span class="header-section-number">1.10</span> Movies</h2>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre><code>## Warning: Removed 53573 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre><code>## Warning: Removed 10 row(s) containing missing values
 ## (geom_path).</code></pre>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre><code>## `summarise()` has grouped output by &#39;mpaa&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value
 ## with `binwidth`.</code></pre>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>(No maps, but maybe that’s okay)</p>
 
 </div>
