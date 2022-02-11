@@ -10,10 +10,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 source('data/inclusiveness_index/load_inclusiveness_index.R')
 
+inclusive.levels <- c("High", "Medium-High", "Medium", "Medium-Low", "Low", "No data")
+
 inclusiveness_index <- inclusiveness_index %>%
     mutate(Index.categories.2020 = Index.categories.2020 %>%
            as_factor() %>%
-           fct_relevel(c("High", "Medium-High", "Medium", "Medium-Low", "Low", "No data")))
+           fct_relevel(inclusive.levels))
+
+library(RColorBrewer)
+
+inclusive.colors <- rev(c("#BBBBBB", brewer.pal(7, "GnBu")[3:7]))
+inclusive.colors <- setNames(inclusive.colors, inclusive.levels)
 
 ```
 
@@ -83,39 +90,55 @@ The bar chart is possibly the most common type of visualization. In this type
 of visualization, the basic shape being used to represent data values is a rectangle. 
 In a traditional bar chart, each rectangle (or bar) has exactly the same width, 
 and the height of the bar is representative of some data value. To create a simple
-bar chart, the data set should have one column that contains textual data and one
-column that contains numerical data. (Another common way to create a bar chart
-is to start with one textual data column and count each instance of each text
-value to create the numerical column.)
+bar chart, the data set should have one column that contains textual (or categorical)
+data and one column that contains numerical data. A common way to create these two columns
+is to start with one categorical data column and count the number of records for each 
+category to create the numerical column.
 
 ```{r sample-bar, fig.cap='A sample bar chart.'}
 
-inclusiveness_index_annual %>% 
-  drop_na(Inclusiveness.index) %>%
+ggplot(
+  inclusiveness_index %>% 
+    mutate(Continent = Continent %>% as_factor() %>% fct_infreq()),
+  mapping = aes(x = Continent)) +
+  geom_bar() +
+  labs(y="Number of Records")
+
+```
+
+In the sample bar chart above, the categorical variable is displayed on the 
+x axis and the numerical variable is displayed on the y axis. This results in a 
+classic style of bar chart where each bar has the same width and the heights are 
+proportionate to a data value. Each bar has a starting value of zero on the y axis. 
+Each bar travels upward from zero and stops at the correct data value. 
+
+When reading this visualization, we are comparing the lengths of bars in order to
+understand patterns within the numerical data values from our data set. The power 
+of the bar chart lies in how precisely we can detect differences in the
+end points of the bars. This is something that people naturally do quite well 
+when all of the bars start at the same lowest point, or baseline. 
+
+Bar charts are especially effective if the bars that have small differences in 
+lengths appear close to each other. In the above chart, this is accomplished by 
+arranging the bars so they appear with the highest data values on the left and 
+the lowest data values on the right.
+
+```{r sample-bar-neg, fig.cap='A sample bar chart with both positive and negative values.'}
+
+inclusiveness_index %>% 
+  drop_na(Inclusiveness.index.2020) %>%
   group_by(Continent) %>%
-  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index)) %>%
+  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`, .desc = TRUE)) %>% 
 ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
   geom_col()
 
 ```
 
-In the sample bar chart above, we see a classic style of bar chart where each
-bar has the same width and the heights are proportionate to a data value. Each 
-bar has a starting value of zero on the y axis. For data values that are positive,
-the bar travels upward from zero and stops at the correct data value. For data values
-that are negative, the bar travels downward from zero and stops at the correct
-data value. The x axis title and labels appear at the bottom of the panel, below
-the lowest data values.
-
-When reading this visualization, we are comparing the lengths of bars in order to
-understand patterns within the numerical data values from our data set. The power 
-of the bar chart lies in how precisely we can detect differences in the
-lengths of bars. This is something that people naturally do quite well. Bar charts 
-are especially effective if the bars that have small differences in lengths appear 
-close to each other. In the above chart, this is accomplished by arranging the bars 
-so they appear with the highest data values on the left and the lowest data values 
-on the right.
+Here is another example of a bar chart where the data values include both positive
+and negative values. For data values that are negative, the bar travels downward 
+from zero and stops at the correct data value. The x axis title and labels appear 
+at the bottom of the panel, below the lowest data values.
 
 For stylistic reasons, bar charts may also appear with the bars oriented horizontally
 instead of vertically. In that case, each bar will have the same height, and the widths
@@ -124,10 +147,10 @@ be the y axis, and the numerical axis will be the x axis.
 
 ```{r sample-bar-horizontal, fig.cap='A sample bar chart, with the bars oriented horizonally.'}
 
-inclusiveness_index_annual %>% 
-  drop_na(Inclusiveness.index) %>%
+inclusiveness_index %>% 
+  drop_na(Inclusiveness.index.2020) %>%
   group_by(Continent) %>%
-  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index)) %>%
+  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`)) %>% 
 ggplot(mapping = aes(y = Continent, x = `Mean Inclusiveness Index`)) +
   geom_col()
@@ -136,16 +159,195 @@ ggplot(mapping = aes(y = Continent, x = `Mean Inclusiveness Index`)) +
 
 ### Variations
 
-#### Stacked and grouped bar charts
+The following charts are variations on a bar chart. They either incorporate
+additional variables, change the basic shape of the chart, or both.
 
-#### Dot plots
+#### Lollipop plot
 
-#### Dumbbell plots
+One quick variation of the bar chart is called the lollipop plot In a lollipop plot,
+the bars are replace by a long line with a circle at the end, creating something
+that looks like a lollipop. Apart from the different shapes used, the lollipop plot 
+works just like a bar chart. The circles draw attention to the data value, but the
+lines extending to the axis reinforce the length comparisons.
 
+```{r sample-lollipop, fig.cap='A sample lollipop plot.'}
+
+ggplot(
+  inclusiveness_index %>% 
+    count(Continent) %>%
+    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .desc = TRUE)),
+  mapping = aes(x = Continent, y=n)) +
+  geom_col(width=.03) +
+  geom_point(size=4) +
+  labs(y="Number of Records")
+
+```
+
+```{r sample-lolli-neg, fig.cap='A sample lollipop plot with both positive and negative values.'}
+
+inclusiveness_index %>% 
+  drop_na(Inclusiveness.index.2020) %>%
+  group_by(Continent) %>%
+  summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
+  mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`, .desc = TRUE)) %>% 
+ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
+  geom_col(width=.03) +
+  geom_point(size=4) 
+
+```
+
+#### Bar charts with color
+
+A simple bar chart includes one categorical variable and one numerical variable.
+Sometimes, however, it is useful to explore the patterns in relation to a second
+categorical variable. Adding another categorical variable to a bar chart usually
+means using color to represent the extra variable.
+
+With a stacked bar chart, the additional variable is used to segment the bars into
+separate, colored regions. In this example, the bar for each continent is subdivided
+into groups of countries based on their values for Inclusive Index.
+
+
+```{r sample-stacked-bar, fig.cap='A sample stacked bar chart.'}
+
+ggplot(
+  inclusiveness_index %>% 
+    count(Continent, Index.categories.2020) %>%
+    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)),
+  mapping = aes(x = Continent, y = n, fill = Index.categories.2020)) +
+  geom_col() +
+  labs(y="Number of Records", fill="Inclusiveness Index") +
+  scale_fill_manual(values=inclusive.colors)
+
+```
+
+With this stacked bar chart, you can still see the total number of records for each Continent,
+but what happens when you try to compare the different segments inside the
+bar chart? Starting at the bottom, it seems to work out okay. All of the bars
+for the "No data" category start at the same baseline (the x axis), and we can
+read these segments like a normal bar chart. But what happens with the "Low" segments
+right above them? And the "Medium-Low" segments above those? Every time we have
+a group of segments that aren't lined up with each other, we have to try to guess
+how tall the bar is in comparison to the other bars in the group. The farther
+apart the segments are, the harder it is to make that comparison.
+
+Another variation of the stacked bar chart is the "filled" stacked bar chart.
+Instead of using the raw counts to determine the lengths of the bars, in the
+filled stacked bar chart, the full bars are all stretched to have the same height,
+and each segment becomes the percentage of the records in each bar. (Notice how
+the y axis changes from "Number" to "Percentage.") This is useful if the percentages 
+matter more than the raw counts, but it doesn't fix any of the concerns with 
+comparing different segments without a common baseline.
+
+```{r sample-filled-stacked-bar, fig.cap='A sample filled stacked bar chart.'}
+
+ggplot(
+  inclusiveness_index %>% 
+    count(Continent, Index.categories.2020) %>%
+    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)),
+  mapping = aes(x = Continent, y = n, fill = Index.categories.2020)) +
+  geom_col(position = "fill") +
+  labs(y="Percentage of Records", fill="Inclusiveness Index") +
+  scale_fill_manual(values=inclusive.colors)
+
+```
+
+An alternative to the stacked bar chart is called the grouped bar chart. In the
+grouped bar chart, every segment starts from the x axis. Each continent forms a
+group of bars, and each option of the Inclusiveness Index is a separate bar.
+
+```{r sample-grouped-bar, fig.cap='A sample grouped bar chart.'}
+
+ggplot(
+  inclusiveness_index,
+  mapping = aes(x = Continent, fill = Index.categories.2020)) +
+  geom_bar(position = position_dodge2(preserve="single")) +
+  labs(y="Number of Records", fill="Inclusiveness Index") +
+  scale_fill_manual(values=inclusive.colors)
+
+```
+
+#### Dumbbell plot
+
+Stacked and grouped bar charts show some of the limitations of bar charts for
+making complex comparisons. The rectangles in the bar chart take up a large amount
+of space. Think back to the lollipop plot, where it's the circles that directly
+represent the data value. Converting bars to something like circles opens up the
+ability to make more direct comparisons.
+
+For example, let's say we want to compare two continents more directly: Asia and Europe.
+
+```{r sample-grouped-bar-2-cont, fig.cap='A grouped bar chart focusing on two continents.'}
+
+ggplot(
+  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")),
+  mapping = aes(x = Continent, fill = Index.categories.2020)) +
+  geom_bar(position = position_dodge2(preserve="single")) +
+  labs(y="Number of Records", fill="Inclusiveness Index") +
+  scale_fill_manual(values=inclusive.colors)
+
+```
+
+This chart groups all of the segments by continent, which makes it easy to compare
+different Index categories within a single continent. What if we want to bring more
+attention to the difference between continents for each category? We could always
+switch which category is the primary division on the x axis and which is 
+represented by color.
+
+```{r sample-grouped-bar-2-cont-switched, fig.cap='The same grouped bar chart with a different arrangement of the categorical variables.'}
+
+ggplot(
+  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")),
+  mapping = aes(x = Index.categories.2020, fill = Continent)) +
+  geom_bar(position = position_dodge2(preserve="single")) +
+  labs(y="Number of Records", x="Inclusiveness Index") +
+  scale_fill_manual(values=c(as.character(inclusive.colors["Medium-Low"]), 
+                             as.character(inclusive.colors["High"])))
+
+```
+
+This improves our ability to compare the continents directly because the bars are
+directly next to each other. The amount of space the bars take up is still pretty
+large, though. If we combine this chart with something like a lollipop plot, we
+get one last variation: a dumbbell plot.
+
+With a dumbbell plot, we use a circle to represent the data values, just like the
+lollipop. Instead of having a line that extends all the way to the axis, though,
+we use a line to connect the two dots in each category of Inclusiveness Index.
+
+
+```{r sample-dumbbell, fig.cap='A dumbbell plot comparing two continents.'}
+
+ggplot(
+  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")) %>%
+    count(Continent, Index.categories.2020),
+  mapping = aes(x = Index.categories.2020, y=n)) +
+  geom_line(aes(group=Index.categories.2020), color="#555555", size=1) +
+  geom_point(aes(color = Continent), size=6) +
+  labs(y="Number of Records", x="Inclusiveness Index") +
+  scale_color_manual(values=c(as.character(inclusive.colors["Medium-Low"]), 
+                             as.character(inclusive.colors["High"])))
+
+```
+
+With a dumbbell plot, there are three main trends we can explore in the chart. We
+can focus on the green circles to see the pattern in the Asia data values. We can
+focus on the blue circles to see the pattern in the Europe data values. Finally, 
+we can focus on the lengths of the lines connecting the circles to compare the 
+continents at each level of the Inclusiveness Index. This chart time is an efficient
+way to compare these data values, but remember that it can be difficult to compare
+the lengths of shapes when they don't have the same baseline.
 
 ## Scatter Plot
 
-scatter plot / scatter plot with color / bubble chart / countour plot
+
+### Variations
+
+#### Scatter plot with color 
+
+#### Bubble chart
+
+#### Countour plot
 
 ```{r}
 

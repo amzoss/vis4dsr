@@ -24,7 +24,7 @@
 <meta name="author" content="Angela M. Zoss, Ph.D." />
 
 
-<meta name="date" content="2022-01-25" />
+<meta name="date" content="2022-02-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,7 +173,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations"><i class="fa fa-check"></i><b>1.2.1</b> Variations</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a></li>
+<li class="chapter" data-level="1.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-1"><i class="fa fa-check"></i><b>1.3.1</b> Variations</a></li>
+</ul></li>
 <li class="chapter" data-level="1.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#line-chart"><i class="fa fa-check"></i><b>1.4</b> Line Chart</a></li>
 <li class="chapter" data-level="1.5" data-path="reading-visualizations.html"><a href="reading-visualizations.html#pie-chart"><i class="fa fa-check"></i><b>1.5</b> Pie Chart</a></li>
 <li class="chapter" data-level="1.6" data-path="reading-visualizations.html"><a href="reading-visualizations.html#heat-map"><i class="fa fa-check"></i><b>1.6</b> Heat Map</a></li>
@@ -275,31 +278,40 @@ the x axis always goes left to right, and the y axis always goes up and down.</p
 of visualization, the basic shape being used to represent data values is a rectangle.
 In a traditional bar chart, each rectangle (or bar) has exactly the same width,
 and the height of the bar is representative of some data value. To create a simple
-bar chart, the data set should have one column that contains textual data and one
-column that contains numerical data. (Another common way to create a bar chart
-is to start with one textual data column and count each instance of each text
-value to create the numerical column.)</p>
+bar chart, the data set should have one column that contains textual (or categorical)
+data and one column that contains numerical data. A common way to create these two columns
+is to start with one categorical data column and count the number of records for each
+category to create the numerical column.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-bar"></span>
 <img src="vis4dsr_files/figure-html/sample-bar-1.png" alt="A sample bar chart." width="672" />
 <p class="caption">
 FIGURE 1.2: A sample bar chart.
 </p>
 </div>
-<p>In the sample bar chart above, we see a classic style of bar chart where each
-bar has the same width and the heights are proportionate to a data value. Each
-bar has a starting value of zero on the y axis. For data values that are positive,
-the bar travels upward from zero and stops at the correct data value. For data values
-that are negative, the bar travels downward from zero and stops at the correct
-data value. The x axis title and labels appear at the bottom of the panel, below
-the lowest data values.</p>
+<p>In the sample bar chart above, the categorical variable is displayed on the
+x axis and the numerical variable is displayed on the y axis. This results in a
+classic style of bar chart where each bar has the same width and the heights are
+proportionate to a data value. Each bar has a starting value of zero on the y axis.
+Each bar travels upward from zero and stops at the correct data value.</p>
 <p>When reading this visualization, we are comparing the lengths of bars in order to
 understand patterns within the numerical data values from our data set. The power
 of the bar chart lies in how precisely we can detect differences in the
-lengths of bars. This is something that people naturally do quite well. Bar charts
-are especially effective if the bars that have small differences in lengths appear
-close to each other. In the above chart, this is accomplished by arranging the bars
-so they appear with the highest data values on the left and the lowest data values
-on the right.</p>
+end points of the bars. This is something that people naturally do quite well
+when all of the bars start at the same lowest point, or baseline.</p>
+<p>Bar charts are especially effective if the bars that have small differences in
+lengths appear close to each other. In the above chart, this is accomplished by
+arranging the bars so they appear with the highest data values on the left and
+the lowest data values on the right.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-bar-neg"></span>
+<img src="vis4dsr_files/figure-html/sample-bar-neg-1.png" alt="A sample bar chart with both positive and negative values." width="672" />
+<p class="caption">
+FIGURE 1.3: A sample bar chart with both positive and negative values.
+</p>
+</div>
+<p>Here is another example of a bar chart where the data values include both positive
+and negative values. For data values that are negative, the bar travels downward
+from zero and stops at the correct data value. The x axis title and labels appear
+at the bottom of the panel, below the lowest data values.</p>
 <p>For stylistic reasons, bar charts may also appear with the bars oriented horizontally
 instead of vertically. In that case, each bar will have the same height, and the widths
 of the bars will vary based on the data values. The text (or categorical) axis will then
@@ -307,26 +319,143 @@ be the y axis, and the numerical axis will be the x axis.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-bar-horizontal"></span>
 <img src="vis4dsr_files/figure-html/sample-bar-horizontal-1.png" alt="A sample bar chart, with the bars oriented horizonally." width="672" />
 <p class="caption">
-FIGURE 1.3: A sample bar chart, with the bars oriented horizonally.
+FIGURE 1.4: A sample bar chart, with the bars oriented horizonally.
 </p>
 </div>
 <div id="variations" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Variations</h3>
-<div id="stacked-and-grouped-bar-charts" class="section level4" number="1.2.1.1">
-<h4><span class="header-section-number">1.2.1.1</span> Stacked and grouped bar charts</h4>
+<p>The following charts are variations on a bar chart. They either incorporate
+additional variables, change the basic shape of the chart, or both.</p>
+<div id="lollipop-plot" class="section level4" number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> Lollipop plot</h4>
+<p>One quick variation of the bar chart is called the lollipop plot In a lollipop plot,
+the bars are replace by a long line with a circle at the end, creating something
+that looks like a lollipop. Apart from the different shapes used, the lollipop plot
+works just like a bar chart. The circles draw attention to the data value, but the
+lines extending to the axis reinforce the length comparisons.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-lollipop"></span>
+<img src="vis4dsr_files/figure-html/sample-lollipop-1.png" alt="A sample lollipop plot." width="672" />
+<p class="caption">
+FIGURE 1.5: A sample lollipop plot.
+</p>
 </div>
-<div id="dot-plots" class="section level4" number="1.2.1.2">
-<h4><span class="header-section-number">1.2.1.2</span> Dot plots</h4>
+<div class="figure"><span style="display:block;" id="fig:sample-lolli-neg"></span>
+<img src="vis4dsr_files/figure-html/sample-lolli-neg-1.png" alt="A sample lollipop plot with both positive and negative values." width="672" />
+<p class="caption">
+FIGURE 1.6: A sample lollipop plot with both positive and negative values.
+</p>
 </div>
-<div id="dumbbell-plots" class="section level4" number="1.2.1.3">
-<h4><span class="header-section-number">1.2.1.3</span> Dumbbell plots</h4>
+</div>
+<div id="bar-charts-with-color" class="section level4" number="1.2.1.2">
+<h4><span class="header-section-number">1.2.1.2</span> Bar charts with color</h4>
+<p>A simple bar chart includes one categorical variable and one numerical variable.
+Sometimes, however, it is useful to explore the patterns in relation to a second
+categorical variable. Adding another categorical variable to a bar chart usually
+means using color to represent the extra variable.</p>
+<p>With a stacked bar chart, the additional variable is used to segment the bars into
+separate, colored regions. In this example, the bar for each continent is subdivided
+into groups of countries based on their values for Inclusive Index.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-stacked-bar"></span>
+<img src="vis4dsr_files/figure-html/sample-stacked-bar-1.png" alt="A sample stacked bar chart." width="672" />
+<p class="caption">
+FIGURE 1.7: A sample stacked bar chart.
+</p>
+</div>
+<p>With this stacked bar chart, you can still see the total number of records for each Continent,
+but what happens when you try to compare the different segments inside the
+bar chart? Starting at the bottom, it seems to work out okay. All of the bars
+for the “No data” category start at the same baseline (the x axis), and we can
+read these segments like a normal bar chart. But what happens with the “Low” segments
+right above them? And the “Medium-Low” segments above those? Every time we have
+a group of segments that aren’t lined up with each other, we have to try to guess
+how tall the bar is in comparison to the other bars in the group. The farther
+apart the segments are, the harder it is to make that comparison.</p>
+<p>Another variation of the stacked bar chart is the “filled” stacked bar chart.
+Instead of using the raw counts to determine the lengths of the bars, in the
+filled stacked bar chart, the full bars are all stretched to have the same height,
+and each segment becomes the percentage of the records in each bar. (Notice how
+the y axis changes from “Number” to “Percentage.”) This is useful if the percentages
+matter more than the raw counts, but it doesn’t fix any of the concerns with
+comparing different segments without a common baseline.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-filled-stacked-bar"></span>
+<img src="vis4dsr_files/figure-html/sample-filled-stacked-bar-1.png" alt="A sample filled stacked bar chart." width="672" />
+<p class="caption">
+FIGURE 1.8: A sample filled stacked bar chart.
+</p>
+</div>
+<p>An alternative to the stacked bar chart is called the grouped bar chart. In the
+grouped bar chart, every segment starts from the x axis. Each continent forms a
+group of bars, and each option of the Inclusiveness Index is a separate bar.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-grouped-bar"></span>
+<img src="vis4dsr_files/figure-html/sample-grouped-bar-1.png" alt="A sample grouped bar chart." width="672" />
+<p class="caption">
+FIGURE 1.9: A sample grouped bar chart.
+</p>
+</div>
+</div>
+<div id="dumbbell-plot" class="section level4" number="1.2.1.3">
+<h4><span class="header-section-number">1.2.1.3</span> Dumbbell plot</h4>
+<p>Stacked and grouped bar charts show some of the limitations of bar charts for
+making complex comparisons. The rectangles in the bar chart take up a large amount
+of space. Think back to the lollipop plot, where it’s the circles that directly
+represent the data value. Converting bars to something like circles opens up the
+ability to make more direct comparisons.</p>
+<p>For example, let’s say we want to compare two continents more directly: Asia and Europe.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-grouped-bar-2-cont"></span>
+<img src="vis4dsr_files/figure-html/sample-grouped-bar-2-cont-1.png" alt="A grouped bar chart focusing on two continents." width="672" />
+<p class="caption">
+FIGURE 1.10: A grouped bar chart focusing on two continents.
+</p>
+</div>
+<p>This chart groups all of the segments by continent, which makes it easy to compare
+different Index categories within a single continent. What if we want to bring more
+attention to the difference between continents for each category? We could always
+switch which category is the primary division on the x axis and which is
+represented by color.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-grouped-bar-2-cont-switched"></span>
+<img src="vis4dsr_files/figure-html/sample-grouped-bar-2-cont-switched-1.png" alt="The same grouped bar chart with a different arrangement of the categorical variables." width="672" />
+<p class="caption">
+FIGURE 1.11: The same grouped bar chart with a different arrangement of the categorical variables.
+</p>
+</div>
+<p>This improves our ability to compare the continents directly because the bars are
+directly next to each other. The amount of space the bars take up is still pretty
+large, though. If we combine this chart with something like a lollipop plot, we
+get one last variation: a dumbbell plot.</p>
+<p>With a dumbbell plot, we use a circle to represent the data values, just like the
+lollipop. Instead of having a line that extends all the way to the axis, though,
+we use a line to connect the two dots in each category of Inclusiveness Index.</p>
+<div class="figure"><span style="display:block;" id="fig:sample-dumbbell"></span>
+<img src="vis4dsr_files/figure-html/sample-dumbbell-1.png" alt="A dumbbell plot comparing two continents." width="672" />
+<p class="caption">
+FIGURE 1.12: A dumbbell plot comparing two continents.
+</p>
+</div>
+<p>With a dumbbell plot, there are three main trends we can explore in the chart. We
+can focus on the green circles to see the pattern in the Asia data values. We can
+focus on the blue circles to see the pattern in the Europe data values. Finally,
+we can focus on the lengths of the lines connecting the circles to compare the
+continents at each level of the Inclusiveness Index. This chart time is an efficient
+way to compare these data values, but remember that it can be difficult to compare
+the lengths of shapes when they don’t have the same baseline.</p>
 </div>
 </div>
 </div>
 <div id="scatter-plot" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Scatter Plot</h2>
-<p>scatter plot / scatter plot with color / bubble chart / countour plot</p>
+<div id="variations-1" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Variations</h3>
+<div id="scatter-plot-with-color" class="section level4" number="1.3.1.1">
+<h4><span class="header-section-number">1.3.1.1</span> Scatter plot with color</h4>
+</div>
+<div id="bubble-chart" class="section level4" number="1.3.1.2">
+<h4><span class="header-section-number">1.3.1.2</span> Bubble chart</h4>
+</div>
+<div id="countour-plot" class="section level4" number="1.3.1.3">
+<h4><span class="header-section-number">1.3.1.3</span> Countour plot</h4>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
 </div>
 <div id="line-chart" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Line Chart</h2>
