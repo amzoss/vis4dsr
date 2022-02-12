@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2022-02-11}
+\date{2022-02-12}
 
 \begin{document}
 \maketitle
@@ -898,38 +898,191 @@ way of a pattern that does exist.
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-1.pdf}
 
+\hypertarget{add-main-plot-function}{%
+\subsection{Add Main Plot Function}\label{add-main-plot-function}}
+
+\hypertarget{set-the-data}{%
+\subsection{Set the Data}\label{set-the-data}}
+
+\hypertarget{choose-a-shape-layer}{%
+\subsection{Choose a shape layer}\label{choose-a-shape-layer}}
+
+\hypertarget{map-variables-to-aesthetics}{%
+\subsection{Map Variables to Aesthetics}\label{map-variables-to-aesthetics}}
+
+\hypertarget{add-non-variable-adjustments}{%
+\subsection{Add Non-Variable Adjustments}\label{add-non-variable-adjustments}}
+
+\hypertarget{simple-plot-template}{%
+\subsection{Simple Plot Template}\label{simple-plot-template}}
+
+\hypertarget{inheritance}{%
+\subsection{Inheritance}\label{inheritance}}
+
+\hypertarget{how-to-debug-code}{%
+\subsection{How to Debug Code}\label{how-to-debug-code}}
+
 \hypertarget{text-data-visualizations}{%
 \chapter{Working with textual data in ggplot2}\label{text-data-visualizations}}
 
-\emph{sample text}
-
-Cleaning data: use duke\_enrollment (either by status or school) to talk about factors.
+Note on cleaning data: use duke\_enrollment (either by status or school) to talk about factors.
 Have Semester, which is really a time-based variable. Need to combine with Year
 to get the real sequence of enrollment.
+
+\hypertarget{what-is-a-text-variable}{%
+\section{What is a text variable?}\label{what-is-a-text-variable}}
+
+\hypertarget{visualizing-text-variables}{%
+\section{Visualizing text variables}\label{visualizing-text-variables}}
+
+\hypertarget{common-mappings-for-text-variables}{%
+\subsection{Common mappings for text variables}\label{common-mappings-for-text-variables}}
+
+\hypertarget{ordering}{%
+\subsection{Ordering}\label{ordering}}
+
+\hypertarget{long-text-labels}{%
+\subsection{Long Text Labels}\label{long-text-labels}}
+
+\hypertarget{picking-colors}{%
+\subsection{Picking Colors}\label{picking-colors}}
+
+\hypertarget{small-multiples}{%
+\subsection{Small Multiples}\label{small-multiples}}
 
 \hypertarget{customizing-visualization-design}{%
 \chapter{Customizing the design of ggplot2 visualizations}\label{customizing-visualization-design}}
 
-\emph{sample text}
+\hypertarget{common-data-modifications}{%
+\section{Common Data Modifications}\label{common-data-modifications}}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\hypertarget{labels}{%
+\section{Labels}\label{labels}}
+
+\hypertarget{scales}{%
+\section{Scales}\label{scales}}
+
+\hypertarget{themes}{%
+\section{Themes}\label{themes}}
 
 \hypertarget{ethical-design-practices}{%
 \chapter{Avoiding unethical design practices}\label{ethical-design-practices}}
 
-\emph{sample text}
+\hypertarget{due-diligence-for-analysis}{%
+\section{Due Diligence for Analysis}\label{due-diligence-for-analysis}}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\begin{itemize}
+\tightlist
+\item
+  If your visualization is making a claim, you need to have investigated other
+  explanations of the patterns, have a reasonable certainty that the pattern is
+  meaningful, trust/verify that the data were corrected appropriately and are
+  appropriate for the analysis you're conducting
+\end{itemize}
+
+\hypertarget{promote-dignity-and-agency}{%
+\section{Promote Dignity and Agency}\label{promote-dignity-and-agency}}
+
+\begin{itemize}
+\tightlist
+\item
+  Nothing about us without us
+\item
+  Choosing labels and colors
+\item
+  Provide sufficient information for users to make their own meaning
+\end{itemize}
+
+\hypertarget{reduce-distortion}{%
+\section{Reduce Distortion}\label{reduce-distortion}}
+
+\hypertarget{color}{%
+\subsection{Color}\label{color}}
+
+\hypertarget{shapes}{%
+\subsection{Shapes}\label{shapes}}
+
+\begin{itemize}
+\tightlist
+\item
+  If shape changes in both dimensions (width and height), make sure data is
+  represented correctly by area, not just one dimension
+\end{itemize}
+
+\hypertarget{truncated-axes}{%
+\subsection{Truncated Axes}\label{truncated-axes}}
+
+\hypertarget{compare-like-things}{%
+\section{Compare Like Things}\label{compare-like-things}}
+
+\hypertarget{dual-axis}{%
+\subsection{Dual Axis}\label{dual-axis}}
+
+\hypertarget{normalizing-raw-data}{%
+\subsection{Normalizing Raw Data}\label{normalizing-raw-data}}
+
+\hypertarget{be-true-to-the-data}{%
+\section{Be True to the Data}\label{be-true-to-the-data}}
+
+\hypertarget{dont-cherry-pick-data}{%
+\subsection{Don't Cherry-Pick Data}\label{dont-cherry-pick-data}}
+
+\hypertarget{matching-data-with-chart-type}{%
+\subsection{Matching Data With Chart Type}\label{matching-data-with-chart-type}}
+
+\hypertarget{beware-of-conflicts-of-interest}{%
+\subsection{Beware of Conflicts of Interest}\label{beware-of-conflicts-of-interest}}
+
+\hypertarget{check-if-subsets-exhibit-different-patterns-simpsons-paradox}{%
+\subsection{Check if subsets exhibit different patterns (Simpson's Paradox)}\label{check-if-subsets-exhibit-different-patterns-simpsons-paradox}}
+
+\hypertarget{careful-binning}{%
+\subsection{Careful Binning}\label{careful-binning}}
+
+\hypertarget{proper-citation-and-documentation}{%
+\section{Proper Citation and Documentation}\label{proper-citation-and-documentation}}
+
+\hypertarget{transparent-practices}{%
+\subsection{Transparent Practices}\label{transparent-practices}}
 
 \hypertarget{print-publications}{%
 \chapter{Building ggplot2 visualizations into print publications}\label{print-publications}}
 
-\emph{sample text}
+\hypertarget{exporting-ggplot2-visualizations}{%
+\section{Exporting ggplot2 Visualizations}\label{exporting-ggplot2-visualizations}}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\hypertarget{using-rmarkdown-to-create-pdf-reports}{%
+\section{Using RMarkdown to create PDF reports}\label{using-rmarkdown-to-create-pdf-reports}}
+
+\hypertarget{using-r-packages-to-build-word-and-powerpoint-files}{%
+\section{Using R Packages to Build Word and PowerPoint Files}\label{using-r-packages-to-build-word-and-powerpoint-files}}
 
 \hypertarget{accessibility-for-visualizations}{%
 \chapter{Basic accessibility for static visualizations}\label{accessibility-for-visualizations}}
+
+\hypertarget{accessible-text-accompanying-the-visualization}{%
+\section{Accessible Text Accompanying the Visualization}\label{accessible-text-accompanying-the-visualization}}
+
+\begin{itemize}
+\tightlist
+\item
+  Accessible Font
+\item
+  Embedded tags/styles
+\item
+  Large Text
+\item
+  High Contrast
+\end{itemize}
+
+\hypertarget{neurodivergence}{%
+\section{Neurodivergence}\label{neurodivergence}}
+
+\begin{itemize}
+\tightlist
+\item
+  Limited Visual Confusion
+\end{itemize}
 
 \hypertarget{low-vision}{%
 \section{Low Vision}\label{low-vision}}
@@ -978,8 +1131,11 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
   \href{http://colorspace.r-forge.r-project.org/index.html}{colorspace package}
 \end{itemize}
 
-\hypertarget{alternative-text-for-screen-readers}{%
-\section{Alternative Text for Screen Readers}\label{alternative-text-for-screen-readers}}
+\hypertarget{screen-reader-users}{%
+\section{Screen Reader Users}\label{screen-reader-users}}
+
+\hypertarget{alternative-text}{%
+\subsection{Alternative Text}\label{alternative-text}}
 
 In R, R Markdown:
 
@@ -996,10 +1152,13 @@ In R, R Markdown:
 
 \href{https://nightingaledvs.com/writing-alt-text-for-data-visualization/}{Writing good alt text for visualizations}
 
+\hypertarget{longer-descriptions}{%
+\subsection{Longer Descriptions}\label{longer-descriptions}}
+
 Longer descriptions: \href{https://github.com/feddelegrand7/savonliquide}{savonliquide package}
 
-\hypertarget{converting-graphics-to-sound-touch-text}{%
-\section{Converting graphics to sound, touch, text}\label{converting-graphics-to-sound-touch-text}}
+\hypertarget{converting-graphics-to-sound-touch-text-table}{%
+\subsection{Converting graphics to sound, touch, text, table}\label{converting-graphics-to-sound-touch-text-table}}
 
 \begin{itemize}
 \item
@@ -1033,30 +1192,294 @@ Longer descriptions: \href{https://github.com/feddelegrand7/savonliquide}{savonl
 \hypertarget{interactive-visualizations}{%
 \chapter{Exploring interactivity in visualizations with plotly and crosstalk}\label{interactive-visualizations}}
 
-\emph{sample text}
+\hypertarget{interactivity-for-exploration}{%
+\section{Interactivity for Exploration}\label{interactivity-for-exploration}}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\begin{itemize}
+\tightlist
+\item
+  Components: Picking the right visual elements
+\item
+  Input: Giving users the right controls
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Can support generalized workflows, custom subsetting, changing parameters, personalizing output
+  \end{itemize}
+\item
+  Layout Arranging everything in the right place
+\end{itemize}
+
+\hypertarget{interactive-components}{%
+\section{Interactive Components}\label{interactive-components}}
+
+\begin{itemize}
+\tightlist
+\item
+  functionality built in for users to change appearance of chart or what is included/in focus
+\end{itemize}
+
+\hypertarget{about-websites-and-html}{%
+\subsection{About Websites and HTML}\label{about-websites-and-html}}
+
+\hypertarget{simple-markdown-websites}{%
+\subsection{Simple Markdown Websites}\label{simple-markdown-websites}}
+
+\hypertarget{html-widgets}{%
+\section{HTML Widgets}\label{html-widgets}}
+
+\hypertarget{plotly}{%
+\subsection{Plotly}\label{plotly}}
+
+\hypertarget{datatables}{%
+\subsection{DataTables}\label{datatables}}
+
+\hypertarget{crosstalk}{%
+\section{CrossTalk}\label{crosstalk}}
+
+\begin{itemize}
+\tightlist
+\item
+  Coordinated Views
+\item
+  Input Controls
+\end{itemize}
 
 \hypertarget{rmarkdown-websites}{%
 \chapter{Using RMarkdown to build websites for projects}\label{rmarkdown-websites}}
 
-\emph{sample text}
+\emph{move before interactive visualizations? combine?}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\hypertarget{static-websites}{%
+\section{Static Websites}\label{static-websites}}
+
+\hypertarget{hosting}{%
+\section{Hosting}\label{hosting}}
+
+\hypertarget{associating-a-website-with-an-r-project}{%
+\section{Associating a Website with an R Project}\label{associating-a-website-with-an-r-project}}
 
 \hypertarget{rmarkdown-dashboards}{%
 \chapter{Using RMarkdown to build dashboards for projects}\label{rmarkdown-dashboards}}
 
-\emph{sample text}
+\hypertarget{what-is-a-dashboard}{%
+\section{What is a dashboard?}\label{what-is-a-dashboard}}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+\hypertarget{using-flexdashboards-to-arrange-components}{%
+\section{Using flexdashboards to arrange components}\label{using-flexdashboards-to-arrange-components}}
+
+\hypertarget{blending-crosstalk-with-flexdashboards}{%
+\section{Blending Crosstalk with Flexdashboards}\label{blending-crosstalk-with-flexdashboards}}
+
+\hypertarget{basic-dashboard-design}{%
+\section{Basic Dashboard Design}\label{basic-dashboard-design}}
 
 \hypertarget{usability-for-visualizations}{%
 \chapter{Basic usability for interactive visualizations}\label{usability-for-visualizations}}
 
-\emph{sample text}
+\emph{move earlier?}
 
-We talk about the \emph{FOO} method\index{FOO} in this chapter.
+How to measure usability?
+
+MEELS
+
+\begin{itemize}
+\tightlist
+\item
+  Memorability
+\item
+  Efficiency
+\item
+  Errors
+\item
+  Learnability
+\item
+  Satisfaction
+\end{itemize}
+
+\url{https://www.nngroup.com/articles/usability-101-introduction-to-usability/}
+
+Three independent measures
+* Accuracy (Percent Correct)
+* Time to Complete Each Scenario
+* Satisfaction
+
+\url{https://www.usability.gov/get-involved/blog/2006/03/complete-picture-with-usability-testing.html}
+
+\hypertarget{what-do-users-want-to-do-with-a-dashboard}{%
+\section{What do users want to do with a dashboard}\label{what-do-users-want-to-do-with-a-dashboard}}
+
+Typical User Performance Tasks
+
+\begin{itemize}
+\item
+  Retrieve absolute value: ``What was the price of barrel of oil in February 2015?''
+\item
+  Retrieve ratio value: ``About what is the ratio of the cost of a sandwich to the
+  total cost of room service in Seattle?''
+\item
+  Find extremum: ``In which country is the average internet speed the fastest?''
+\item
+  Make comparisons: ``Which metro system has more ridership?''
+\item
+  Find correlations/trends: ``What is the relationship between the height
+  and weight of these individuals?''
+\end{itemize}
+
+\url{http://dx.doi.org/10.1109/TVCG.2016.2598920}
+
+Dashboard activities
+
+\begin{itemize}
+\tightlist
+\item
+  Navigation between pages
+\item
+  Customizing page content with searches, filters
+\item
+  Locating relevant content
+\item
+  Reading content and charts
+\end{itemize}
+
+Tasks for dashboards
+* Check that things are going ok
+* Check that a process had completed
+* Troubleshoot a problem
+* Support a tactical decision
+* Decide where to allocate resources
+* Try to better understand a complex system
+
+\url{http://www.jeromecukier.net/2015/02/07/dashboards-as-products/}
+
+\hypertarget{conducting-an-initial-user-study}{%
+\subsection{Conducting an Initial User Study}\label{conducting-an-initial-user-study}}
+
+\hypertarget{how-to-test-a-dashboard}{%
+\section{How to Test a Dashboard}\label{how-to-test-a-dashboard}}
+
+Different things to test
+
+\begin{itemize}
+\tightlist
+\item
+  Tone and style
+\item
+  Comprehension
+\item
+  Usefulness
+\item
+  Readability
+\item
+  Organization
+\item
+  Navigation
+\item
+  Interaction
+\item
+  Engagement and influence
+\end{itemize}
+
+\url{https://www.uxmatters.com/mt/archives/2009/12/testing-content-concepts.php}
+
+\hypertarget{preliminary-questions}{%
+\subsection{Preliminary Questions}\label{preliminary-questions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Can act as a warm up before scenarios/tasks
+\item
+  Good for first impressions
+\item
+  Avoid leading, closed, or vague questions
+\end{itemize}
+
+\url{https://www.nngroup.com/articles/leading-questions/}
+
+Sample Preliminary Questions
+
+Ask: ``Have you heard of {[}site{]}?''
+\_\_\_\_Yes \_\_\_\_No
+
+If yes, ask:
+``Tell me what you know about them.''
+
+Bring the test participant to {[}site{]}.
+Ask:
+``Just from looking at this site, what kinds of information do you think you could get from this site? Please be specific.''
+
+Ask: ``Who do you think this site is designed for? Why?''
+(Probe: public, health professionals, etc.)
+
+\url{https://www.usability.gov/how-to-and-tools/resources/templates/what-testnote-takers-guide.html}
+
+\hypertarget{second-test-for-first-impressions}{%
+\subsection{5-second test for first impressions}\label{second-test-for-first-impressions}}
+
+Evaluating memorability, style, satisfaction
+
+Show the page for only 5 seconds, then ask (e.g.):
+* ``What is the purpose of the page?''
+* ``What are the main elements you can recall?''
+* ``Who do you think the intended audience is?''
+* ``Did the design/brand appear trustworthy?''
+* ``What was your impression of the design?''
+
+\url{https://fivesecondtest.com/}
+
+\hypertarget{think-aloud-scenarios}{%
+\subsection{Think-aloud Scenarios}\label{think-aloud-scenarios}}
+
+Evaluating efficiency, errors, learnability
+
+Present 3-5 Think-Aloud Scenarios
+
+Specific tasks you designed the visualization for, based on initial user testing
+* Make the task realistic
+* Make the task actionable
+* Avoid giving clues and describing the steps
+
+\url{https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/}
+\url{https://www.nngroup.com/articles/task-scenarios-usability-testing/}
+
+``First click'' testing as a variation
+
+Describe scenario, then ask what participant would click on first
+\url{https://www.usability.gov/how-to-and-tools/methods/first-click-testing.html}
+
+\hypertarget{closing-questions}{%
+\subsection{Closing Questions}\label{closing-questions}}
+
+Evaluating memorability, style, satisfaction
+
+\begin{itemize}
+\tightlist
+\item
+  What is your overall impression to {[}site{]}?
+\item
+  What is your impression of the search capability?
+\item
+  Do you feel this site is current? Why?
+\item
+  What did you like best about the site?
+\item
+  What did you like least about the site?
+\end{itemize}
+
+\url{https://www.usability.gov/how-to-and-tools/resources/templates/what-testnote-takers-guide.html}
+
+One question to rule them all
+
+Single Ease Question (SEQ)
+
+Overall, this task was?
+
+Very Difficult\ldots Very Easy
+(7-point scale)
+
+\url{https://measuringu.com/single-question/}
 
 \hypertarget{teachers-guide}{%
 \chapter{Teacher's guide}\label{teachers-guide}}
@@ -1064,6 +1487,12 @@ We talk about the \emph{FOO} method\index{FOO} in this chapter.
 \emph{sample text}
 
 We talk about the \emph{FOO} method\index{FOO} in this chapter.
+
+\hypertarget{live-coding}{%
+\section{Live Coding}\label{live-coding}}
+
+\hypertarget{sample-data}{%
+\section{Sample Data}\label{sample-data}}
 
 \cleardoublepage
 

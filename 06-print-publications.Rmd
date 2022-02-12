@@ -1,6 +1,8 @@
 # Building ggplot2 visualizations into print publications {#print-publications}
 
-*sample text*
+## Exporting ggplot2 Visualizations
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+## Using RMarkdown to create PDF reports
+
+## Using R Packages to Build Word and PowerPoint Files
 

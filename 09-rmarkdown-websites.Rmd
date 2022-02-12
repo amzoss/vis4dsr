@@ -1,6 +1,10 @@
 # Using RMarkdown to build websites for projects {#rmarkdown-websites}
 
-*sample text*
+*move before interactive visualizations? combine?*
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+## Static Websites
+
+## Hosting
+
+## Associating a Website with an R Project
 

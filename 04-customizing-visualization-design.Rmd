@@ -1,6 +1,10 @@
 # Customizing the design of ggplot2 visualizations {#customizing-visualization-design}
 
-*sample text*
+## Common Data Modifications
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+## Labels
+
+## Scales
+
+## Themes
 

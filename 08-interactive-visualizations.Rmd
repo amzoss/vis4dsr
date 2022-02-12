@@ -1,6 +1,27 @@
 # Exploring interactivity in visualizations with plotly and crosstalk {#interactive-visualizations}
 
-*sample text*
+## Interactivity for Exploration
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+* Components: Picking the right visual elements
+* Input: Giving users the right controls
+  * Can support generalized workflows, custom subsetting, changing parameters, personalizing output
+* Layout Arranging everything in the right place
 
+## Interactive Components
+
+* functionality built in for users to change appearance of chart or what is included/in focus
+
+### About Websites and HTML
+
+### Simple Markdown Websites
+
+## HTML Widgets
+
+### Plotly
+
+### DataTables
+
+## CrossTalk
+
+* Coordinated Views
+* Input Controls

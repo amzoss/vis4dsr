@@ -1,6 +1,160 @@
 # Basic usability for interactive visualizations {#usability-for-visualizations}
 
-*sample text*
+*move earlier?*
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+How to measure usability?
 
+MEELS
+
+* Memorability
+* Efficiency
+* Errors
+* Learnability
+* Satisfaction
+
+https://www.nngroup.com/articles/usability-101-introduction-to-usability/
+
+Three independent measures
+* Accuracy (Percent Correct)
+* Time to Complete Each Scenario
+* Satisfaction
+
+https://www.usability.gov/get-involved/blog/2006/03/complete-picture-with-usability-testing.html
+
+
+## What do users want to do with a dashboard
+
+Typical User Performance Tasks
+
+* Retrieve absolute value: “What was the price of barrel of oil in February 2015?”
+
+* Retrieve ratio value: “About what is the ratio of the cost of a sandwich to the 
+total cost of room service in Seattle?”
+
+* Find extremum: “In which country is the average internet speed the fastest?”
+
+* Make comparisons: “Which metro system has more ridership?”
+
+* Find correlations/trends: “What is the relationship between the height
+and weight of these individuals?”
+
+http://dx.doi.org/10.1109/TVCG.2016.2598920
+
+Dashboard activities
+
+* Navigation between pages
+* Customizing page content with searches, filters
+* Locating relevant content
+* Reading content and charts
+
+Tasks for dashboards
+* Check that things are going ok
+* Check that a process had completed
+* Troubleshoot a problem
+* Support a tactical decision
+* Decide where to allocate resources
+* Try to better understand a complex system
+
+http://www.jeromecukier.net/2015/02/07/dashboards-as-products/
+
+
+### Conducting an Initial User Study
+
+
+## How to Test a Dashboard
+
+Different things to test
+
+* Tone and style
+* Comprehension
+* Usefulness
+* Readability
+* Organization
+* Navigation
+* Interaction
+* Engagement and influence
+
+https://www.uxmatters.com/mt/archives/2009/12/testing-content-concepts.php
+
+
+### Preliminary Questions
+
+* Can act as a warm up before scenarios/tasks
+* Good for first impressions
+* Avoid leading, closed, or vague questions
+
+https://www.nngroup.com/articles/leading-questions/
+
+Sample Preliminary Questions
+
+Ask: “Have you heard of [site]?”
+____Yes ____No
+
+If yes, ask:
+“Tell me what you know about them.”
+
+Bring the test participant to [site].
+Ask:
+“Just from looking at this site, what kinds of information do you think you could get from this site? Please be specific.”
+
+Ask: “Who do you think this site is designed for? Why?”
+(Probe: public, health professionals, etc.)
+
+https://www.usability.gov/how-to-and-tools/resources/templates/what-testnote-takers-guide.html
+
+### 5-second test for first impressions
+
+Evaluating memorability, style, satisfaction
+
+Show the page for only 5 seconds, then ask (e.g.):
+* “What is the purpose of the page?”
+* “What are the main elements you can recall?”
+* “Who do you think the intended audience is?”
+* “Did the design/brand appear trustworthy?”
+* “What was your impression of the design?”
+
+https://fivesecondtest.com/
+
+
+### Think-aloud Scenarios
+
+Evaluating efficiency, errors, learnability
+
+
+Present 3-5 Think-Aloud Scenarios
+
+Specific tasks you designed the visualization for, based on initial user testing
+* Make the task realistic
+* Make the task actionable
+* Avoid giving clues and describing the steps
+
+https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/
+https://www.nngroup.com/articles/task-scenarios-usability-testing/
+
+“First click” testing as a variation
+
+Describe scenario, then ask what participant would click on first
+https://www.usability.gov/how-to-and-tools/methods/first-click-testing.html
+
+### Closing Questions
+
+Evaluating memorability, style, satisfaction
+
+* What is your overall impression to [site]?
+* What is your impression of the search capability?
+* Do you feel this site is current? Why?
+* What did you like best about the site?
+* What did you like least about the site?
+
+https://www.usability.gov/how-to-and-tools/resources/templates/what-testnote-takers-guide.html
+
+One question to rule them all
+
+Single Ease Question (SEQ)
+
+Overall, this task was?
+
+Very Difficult...Very Easy
+(7-point scale)
+
+https://measuringu.com/single-question/

@@ -1,6 +1,47 @@
 # Avoiding unethical design practices {#ethical-design-practices}
 
-*sample text*
+## Due Diligence for Analysis
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+* If your visualization is making a claim, you need to have investigated other
+explanations of the patterns, have a reasonable certainty that the pattern is
+meaningful, trust/verify that the data were corrected appropriately and are
+appropriate for the analysis you're conducting
 
+## Promote Dignity and Agency
+
+* Nothing about us without us
+* Choosing labels and colors
+* Provide sufficient information for users to make their own meaning
+
+## Reduce Distortion
+
+### Color
+
+### Shapes
+
+* If shape changes in both dimensions (width and height), make sure data is 
+represented correctly by area, not just one dimension
+
+### Truncated Axes
+
+## Compare Like Things
+
+### Dual Axis
+
+### Normalizing Raw Data
+
+## Be True to the Data
+
+### Don't Cherry-Pick Data
+
+### Matching Data With Chart Type
+
+### Beware of Conflicts of Interest
+
+### Check if subsets exhibit different patterns (Simpson's Paradox)
+
+### Careful Binning
+
+## Proper Citation and Documentation
+
+### Transparent Practices

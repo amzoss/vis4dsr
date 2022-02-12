@@ -1,5 +1,16 @@
 # Basic accessibility for static visualizations {#accessibility-for-visualizations}
 
+## Accessible Text Accompanying the Visualization
+
+* Accessible Font
+* Embedded tags/styles
+* Large Text
+* High Contrast
+
+## Neurodivergence
+
+* Limited Visual Confusion
+
 ## Low Vision
 
 -   Large text
@@ -26,7 +37,9 @@
 
 -   [colorspace package](http://colorspace.r-forge.r-project.org/index.html)
 
-## Alternative Text for Screen Readers
+## Screen Reader Users
+
+### Alternative Text
 
 In R, R Markdown:
 
@@ -40,9 +53,13 @@ In R, R Markdown:
 
 [Writing good alt text for visualizations](https://nightingaledvs.com/writing-alt-text-for-data-visualization/)
 
+
+### Longer Descriptions
+
 Longer descriptions: [savonliquide package](https://github.com/feddelegrand7/savonliquide)
 
-## Converting graphics to sound, touch, text
+
+### Converting graphics to sound, touch, text, table
 
 -   sonify package
 

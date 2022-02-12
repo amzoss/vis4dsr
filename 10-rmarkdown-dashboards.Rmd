@@ -1,6 +1,9 @@
 # Using RMarkdown to build dashboards for projects {#rmarkdown-dashboards}
 
-*sample text*
+## What is a dashboard?
 
-We talk about the _FOO_ method\index{FOO} in this chapter.
+## Using flexdashboards to arrange components
 
+## Blending Crosstalk with Flexdashboards
+
+## Basic Dashboard Design

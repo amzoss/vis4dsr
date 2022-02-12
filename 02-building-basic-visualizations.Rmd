@@ -67,16 +67,32 @@ ggplot(tibble()) +
 
 ```
 
+
+
+### Add Main Plot Function
+
+### Set the Data
+
+### Choose a shape layer
+
+### Map Variables to Aesthetics
+
+### Add Non-Variable Adjustments
+
+### Simple Plot Template
+
 ```{r, eval=FALSE}
 
 # start with the main plot function and set the data frame
 ggplot(data = data_frame) + 
+  
 # next add a geometry layer and create the mapping between data frame and aesthetics
-  geom_...(mapping = aes(...))
-
-# to create the mapping, compose a list of aesthetics assignments 
-# using the following format:
-#   aesthetics = data_field
+  geom_...(mapping = aes(aesthetics1 = data_field1, aesthetics2 = data_field))
 
 ```
 
+### Inheritance
+
+
+
+### How to Debug Code

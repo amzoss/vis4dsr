@@ -1,7 +1,26 @@
 # Working with textual data in ggplot2 {#text-data-visualizations}
 
-*sample text*
-
-Cleaning data: use duke_enrollment (either by status or school) to talk about factors. 
+Note on cleaning data: use duke_enrollment (either by status or school) to talk about factors. 
 Have Semester, which is really a time-based variable. Need to combine with Year
 to get the real sequence of enrollment.
+
+## What is a text variable?
+
+
+## Visualizing text variables
+
+
+### Common mappings for text variables
+
+
+### Ordering
+
+
+### Long Text Labels
+
+
+### Picking Colors
+
+
+
+### Small Multiples
