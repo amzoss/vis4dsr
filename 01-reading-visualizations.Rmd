@@ -22,6 +22,8 @@ library(RColorBrewer)
 inclusive.colors <- rev(c("#BBBBBB", brewer.pal(7, "GnBu")[3:7]))
 inclusive.colors <- setNames(inclusive.colors, inclusive.levels)
 
+continent.colors <- setNames(brewer.pal(5, "Set2"), sort(unique(inclusiveness_index$Continent)))
+
 library(hexbin)
 
 ```
@@ -303,8 +305,7 @@ ggplot(
   mapping = aes(x = Index.categories.2020, fill = Continent)) +
   geom_bar(position = position_dodge2(preserve="single")) +
   labs(y="Number of Records", x="Inclusiveness Index") +
-  scale_fill_manual(values=c(as.character(inclusive.colors["Medium-Low"]), 
-                             as.character(inclusive.colors["High"])))
+  scale_fill_manual(values=c(continent.colors["Asia"],continent.colors["Europe"]))
 
 ```
 
@@ -327,8 +328,7 @@ ggplot(
   geom_line(aes(group=Index.categories.2020), color="#555555", size=1) +
   geom_point(aes(color = Continent), size=6) +
   labs(y="Number of Records", x="Inclusiveness Index") +
-  scale_color_manual(values=c(as.character(inclusive.colors["Medium-Low"]), 
-                             as.character(inclusive.colors["High"])))
+  scale_color_manual(values=c(continent.colors["Asia"],continent.colors["Europe"]))
 
 ```
 
@@ -538,7 +538,7 @@ inclusiveness_index %>%
     geom_point(size=4) +
   labs(x = "Z-score, Religion",
        y = "Overall Inclusiveness") +
-  scale_color_brewer(type="qual", palette=7)
+  scale_color_manual(values=continent.colors)
 
 ```
 
@@ -648,7 +648,7 @@ inclusiveness_index %>%
   labs(x = "Z-score, Religion",
        y = "Overall Inclusiveness",
        size = "Z-score, Gender") +
-  scale_fill_brewer(type="qual", palette=7)
+  scale_fill_manual(values=continent.colors)
 
 ```
 
@@ -658,53 +658,142 @@ way of a pattern that does exist.
 
 ## Line Chart
 
-line chart / area chart
 
 ```{r}
-
 inclusiveness_index_annual %>%
   group_by(Year, Continent) %>%
-  summarise(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE)) %>%
+  summarise(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE), .groups = "drop") %>%
   dplyr::filter(Continent == "Europe") %>%
 ggplot(aes(x = Year, 
            y = mean_incl_ind)) +
   geom_line()
 
+```
+
+```{r}
+inclusiveness_index_annual %>%
+  dplyr::filter(Continent == "Africa", !is.na(Inclusiveness.index)) %>%
+  count(Year) %>%
+ggplot(aes(x = Year, 
+           y = n)) +
+  geom_line()
+
+```
+
+```{r}
+inclusiveness_index_annual %>%
+  dplyr::filter(!is.na(Inclusiveness.index)) %>%
+  count(Continent, Year) %>%
+ggplot(aes(x = Year, 
+           y = n,
+           group = Continent)) +
+  geom_line()
+
+```
+
+
+```{r}
+inclusiveness_index_annual %>%
+  dplyr::filter(!is.na(Inclusiveness.index)) %>%
+  count(Continent, Year) %>%
+ggplot(aes(x = Year, 
+           y = n,
+           color = Continent)) +
+  geom_line() +
+  scale_color_manual(values=continent.colors)
+
+```
+
+
+```{r}
 inclusiveness_index_annual %>%
   group_by(Year, Continent) %>%
-  summarise(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE)) %>%
+  summarise(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE), .groups = "drop") %>%
   ggplot(aes(x = Year, 
              y = mean_incl_ind,
              color = Continent)) +
-    geom_line()
+    geom_line() +
+  scale_color_manual(values=continent.colors)
+
+```
+
+
+```{r}
+
+inclusiveness_index_annual %>%
+  drop_na(Inclusiveness.index) %>%
+ggplot(aes(x = Year, 
+           y = Inclusiveness.index,
+           group = Country,
+           color = Continent)) +
+  geom_line(alpha = .75) +
+  geom_line(
+    data = inclusiveness_index_annual %>% 
+      group_by(Continent, Year) %>%
+      summarise(med_incl = median(Inclusiveness.index, na.rm = TRUE), .groups = "drop"),
+      aes(x = Year, y = med_incl, group = Continent), size = 3, color = "#555555"
+  ) +
+  geom_line(
+    data = inclusiveness_index_annual %>% 
+      group_by(Continent, Year) %>%
+      summarise(med_incl = median(Inclusiveness.index, na.rm = TRUE), .groups = "drop"),
+      aes(x = Year, y = med_incl, color = Continent, group = NULL), size = 2
+  ) +
+  scale_color_manual(values=continent.colors)
+
+```
+
+### Variations
+
+#### Area chart
+
+```{r}
+inclusiveness_index_annual %>%
+  dplyr::filter(!is.na(Inclusiveness.index)) %>%
+  count(Continent, Year) %>%
+  mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum)) %>%
+ggplot(aes(x = Year, 
+           y = n,
+           fill = Continent)) +
+  geom_area() +
+  scale_fill_manual(values=continent.colors, 
+                    breaks =  names(sort(table(inclusiveness_index_annual$Continent[!is.na(inclusiveness_index_annual$Inclusiveness.index)]))))
 
 ```
 
 ## Pie Chart
 
-pie chart / donut chart
-
 ```{r}
 
-# library(RColorBrewer)
-# brewer.pal(5, "Blues")
-
 inclusiveness_index %>%
-  #dplyr::filter(Continent == "Americas") %>%
   ggplot(aes(y = "", fill = Index.categories.2020)) +
     geom_bar(position=position_fill()) +
     coord_polar(direction = -1) +
-    #scale_fill_brewer(type="seq", palette = 1, direction = -1) +
-    scale_fill_manual(values = c("#08519C","#3182BD","#6BAED6","#9ECAE1","#C6DBEF","#EEEEEE")) +
+    scale_fill_manual(values = inclusive.colors) +
     theme_void() +
     facet_wrap(vars(Continent))
 
 ```
 
+### Variations
+
+#### Donut chart
+
+```{r}
+
+inclusiveness_index %>%
+  count(Continent, Index.categories.2020) %>%
+  ggplot(aes(x = 4, fill = Index.categories.2020, y=n)) +
+    geom_col(position="fill") +
+    coord_polar(theta="y", direction = -1) +
+    xlim(c(2.5, 4.5)) +
+    scale_fill_manual(values = inclusive.colors) +
+    theme_void() +
+    facet_wrap(vars(Continent))
+
+```
 
 ## Heat Map
-
-heat map / matrix / circles with color and size
 
 ```{r}
 
@@ -731,10 +820,36 @@ inclusiveness_index %>%
 
 ```
 
+### Variations
+
+#### Matrix / circles with color and size
+
+```{r}
+
+inclusiveness_index %>%
+  pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
+               names_to = "index_name",
+               values_to = "index_values",
+               values_drop_na = TRUE) %>%
+  group_by(Index.categories.2020, index_name) %>%
+  summarise(mean_incl_ind = mean(index_values), .groups="drop") %>%
+  mutate(index_name = index_name %>%
+           as_factor() %>%
+           fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
+                         "Z.score.Sexual.Orientation", "Z.score.Religion", 
+                         "Z.score.Disability", "Inclusiveness.index.2020")) %>%
+           fct_rev()) %>%
+  #View() %>%
+  ggplot(aes(y = index_name, x = Index.categories.2020, fill = mean_incl_ind)) +
+    geom_point(shape=21, size=7) +
+    scale_fill_distiller(type="div", palette = 3, 
+                         limits=c(-1.2,1.2), 
+                         direction = -1) +
+  theme_bw()
+
+```
 
 ## Histogram
-
-histogram / density
 
 ```{r}
 
@@ -746,23 +861,109 @@ inclusiveness_index %>%
 ```
 
 
-## Box Plot
+### Variations
 
-box plot / violin plot / bee swarm
+#### Dot plot
 
 ```{r}
 
-ggplot(inclusiveness_index, 
-       aes(group = Z.score.Disability, 
-           y = Inclusiveness.index.2020)) +
-  geom_boxplot()
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_dotplot()
+
+```
+
+#### Frequency Polygon
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_freqpoly()
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, color = Continent)) +
+    geom_freqpoly() +
+    scale_color_manual(values = continent.colors)
+
+```
+
+#### Density
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_density()
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
+    geom_density(alpha = .25) +
+  scale_fill_manual(values = continent.colors)
+
+```
+
+#### Box Plot
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(y = Inclusiveness.index.2020)) +
+    geom_boxplot() +
+    scale_x_continuous(limits = c(-2,2))
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_boxplot()
+
+```
+
+#### Dot plot / Bee swarm
+
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_dotplot(binaxis = "y", stackdir = "center")
+
+```
+
+#### Violin plot
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_violin()
 
 ```
 
 
 ## Maps
 
-choropleth / proportional symbol map
+### Choropleth 
 
 ```{r}
 
@@ -816,7 +1017,15 @@ map_incl_ind %>%
     coord_map() +
     scale_fill_distiller(type="div", palette = 3, 
                          limits=c(-1.2,1.2), 
-                         direction = -1)
+                         direction = 1)
+
+
+```
+
+
+### Proportional Symbol Map
+
+```{r}
 
 map_incl_ind %>%
   drop_na(Inclusiveness.index.2020) %>%
@@ -832,113 +1041,15 @@ map_incl_ind %>%
       aes(x = long,
           y = lat,
           group=group),
-      fill = "grey50",
-      color = "black") +
+      fill = "grey85",
+      color = "grey70") +
     coord_map() +
     geom_point(aes(x = x, y = y, 
                    fill = Index.categories.2020, 
                    size = Inclusiveness.index.2020),
                shape = 21,
                alpha = .75) +
-    scale_fill_brewer(palette = "YlGnBu", direction = -1)
-  
- 
+    scale_fill_manual(values = inclusive.colors[names(inclusive.colors) != "No data"]) +
+    scale_y_continuous(limits = c(-360,360))
 
 ```
-
-## Movies
-
-```{r}
-
-library(ggplot2movies) # add to index if you use this instead
-
-# Movies were selected for inclusion if they had a known length and had 
-# been rated by at least one imdb user.
-movies <- movies
-
-```
-
-```{r}
-
-movies %>% 
-  pivot_longer(cols = c(Action, Animation, Comedy, Drama, Documentary, Romance, Short), names_to = "genre") %>%
-  mutate(value = as.logical(value)) %>%
-  dplyr::filter(value) %>%
-  mutate(genre = genre %>%
-           as_factor() %>%
-           fct_infreq) %>%
-  ggplot(aes(x=genre)) +
-    geom_bar()
-```
-
-```{r}
-
-ggplot(movies, aes(budget, rating)) +
-  geom_point()
-
-```
-
-```{r}
-
-movies %>%
-  group_by(year) %>%
-  summarise(mean_budget = mean(budget, na.rm=T)) %>%
-  ggplot(aes(x=year, y=mean_budget)) +
-    geom_line()
-
-```
-
-```{r}
-
-movies %>% 
-  pivot_longer(cols = c(Action, Animation, Comedy, Drama, Documentary, Romance, Short), names_to = "genre") %>%
-  mutate(value = as.logical(value)) %>%
-  dplyr::filter(value) %>%
-  mutate(genre = genre %>%
-           as_factor() %>%
-           fct_infreq) %>%
-  ggplot(aes(y="", fill=genre)) +
-    geom_bar(position = position_fill()) +
-    coord_polar(direction = -1)
-
-```
-
-```{r}
-
-movies %>% 
-  pivot_longer(cols = c(Action, Animation, Comedy, Drama, Documentary, Romance, Short), names_to = "genre") %>%
-  mutate(value = as.logical(value)) %>%
-  dplyr::filter(value, mpaa != "") %>%
-  mutate(genre = genre %>%
-           as_factor() %>%
-           fct_infreq) %>%
-  group_by(mpaa, genre) %>%
-  summarize(n = n(), mean_budget = mean(budget, na.rm=T)) %>%
-  ggplot(aes(x=mpaa, y=genre, fill = mean_budget)) +
-    geom_tile()
-
-```
-
-```{r}
-
-ggplot(movies, aes(x=rating)) +
-  geom_histogram()
-
-```
-
-```{r}
-
-movies %>% 
-  pivot_longer(cols = c(Action, Animation, Comedy, Drama, Documentary, Romance, Short), names_to = "genre") %>%
-  mutate(value = as.logical(value)) %>%
-  dplyr::filter(value) %>%
-  mutate(genre = genre %>%
-           as_factor() %>%
-           fct_infreq) %>%
-  ggplot(aes(x=genre, y=rating)) +
-    geom_boxplot()
-  
-
-```
-
-(No maps, but maybe that's okay)

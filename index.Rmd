@@ -22,7 +22,8 @@ options(
 )
 
 # install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
-lapply(c('xfun','tidyverse','readxl','lubridate', 'maps', 'ggplot2movies'), function(pkg) {
+lapply(c('xfun','tidyverse','readxl','lubridate', 'maps', 
+         'RColorBrewer', 'hexbin'), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```
