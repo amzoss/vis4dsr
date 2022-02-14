@@ -354,4 +354,37 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 [Affinity Spending](https://github.com/OpportunityInsights/EconomicTracker)
 
+```{r}
+
+ggplot(affinity_spending_cat, aes(x=date, y=spending_prop_vs_jan_2020, color=income_quartile)) +
+  geom_line() +
+  facet_wrap(vars(spending_category))
+
+```
+
+```{r}
+
+affinity_spending_by_quartile <- affinity_spending_cat %>%
+  pivot_wider(names_from = income_quartile, values_from = spending_prop_vs_jan_2020)
+
+ggplot(affinity_spending_by_quartile %>% 
+         dplyr::filter(spending_category == "retail_w_grocery"), 
+       aes(x = q1, y = q4)) +
+  geom_point()
+
+```
+
+
+```{r, fig.height=15}
+
+affinity_spending_by_category <- affinity_spending_cat %>%
+  pivot_wider(names_from = spending_category, values_from = spending_prop_vs_jan_2020)
+
+ggplot(affinity_spending_by_category, 
+       aes(x = durables, y = nondurables, color = income_quartile)) +
+  geom_point() +
+  facet_grid(rows = vars(paste0(year(date),"-", str_pad(month(date), 2, pad="0"))),
+             cols = vars(income_quartile))
+```
+
 
