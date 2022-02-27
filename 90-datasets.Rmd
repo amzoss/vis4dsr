@@ -26,7 +26,7 @@ knitr::kable(
 ```
 
 
-## Bar Chart
+### Bar Chart {-}
 
 Figure \@ref(fig:duke-school-bar).
 
@@ -405,7 +405,7 @@ ggplot(affinity_spending_cat_monthly %>%
 ```
 
 
-## Vineyards
+## Vineyards {-}
 
 [Vineyards](https://dasl.datadescription.com/datafile/vineyards/)
 
