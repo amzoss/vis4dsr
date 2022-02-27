@@ -6,26 +6,19 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r, include=FALSE}
 
-source('data/affinity_spending/load_affinity_spending.R')
-
-affinity_spending_cat_monthly <- affinity_spending_cat %>%
-  dplyr::filter(!provisional) %>%
-  mutate(year_month = paste0(year(date),"-", str_pad(month(date), 2, pad="0"))) %>%
-  group_by(year_month, spending_category, income_quartile) %>%
-  summarise(med_spending_prop = median(spending_prop_vs_jan_2020, na.rm=T), .groups = "drop")
+source('data/vineyards/load_vineyards.R')
 
 ```
 
 ```{r}
 
-ggplot(affinity_spending_cat_monthly %>% 
-         pivot_wider(names_from = spending_category, 
-                     values_from = med_spending_prop), 
-       aes(x = durables, y = nondurables, color = income_quartile)) +
-  geom_point() +
-  geom_path()
+ggplot(vineyards, aes(x=Visitors, y=CasePrice, color=Location, size = Acres)) +
+  geom_point()
 
 ```
+
+
+
 
 
 ## Basic ggplot2 syntax
@@ -109,7 +102,7 @@ ggplot(tibble()) +
 
 ### Simple Plot Template
 
-```{r, eval=FALSE}
+```{r, echo=TRUE, eval=FALSE}
 
 # start with the main plot function and set the data frame
 ggplot(data = data_frame) + 

@@ -387,4 +387,71 @@ ggplot(affinity_spending_by_category,
              cols = vars(income_quartile))
 ```
 
+```{r}
 
+affinity_spending_cat_monthly <- affinity_spending_cat %>%
+  dplyr::filter(!provisional) %>%
+  mutate(year_month = paste0(year(date),"-", str_pad(month(date), 2, pad="0"))) %>%
+  group_by(year_month, spending_category, income_quartile) %>%
+  summarise(med_spending_prop = median(spending_prop_vs_jan_2020, na.rm=T), .groups = "drop")
+
+ggplot(affinity_spending_cat_monthly %>% 
+         pivot_wider(names_from = spending_category, 
+                     values_from = med_spending_prop), 
+       aes(x = durables, y = nondurables, color = income_quartile)) +
+  geom_point() +
+  geom_path()
+
+```
+
+
+## Vineyards
+
+[Vineyards](https://dasl.datadescription.com/datafile/vineyards/)
+
+```{r}
+
+pairs(vineyards[,c(3:6,11:18)])
+
+# sales/income, %White/Varieties, Space/Visitors, Varieties/CasePrice, 
+# Visitors/CasePrice, %White/CasePrice, Varieties/Age, %White/Age,
+# Varieties/Acres, Visitors/Sales, Visitors/Income
+
+ggplot(vineyards, aes(x=Sales, y=income, color=Domestic)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Varieties, y=`%White`, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Space, y=Visitors, color=Location, size=Acres)) +
+  geom_point(alpha=.75)
+
+ggplot(vineyards, aes(x=Varieties, y=CasePrice, color=Location)) +
+  geom_point()
+
+#Good one!
+ggplot(vineyards, aes(x=Visitors, y=CasePrice, color=Location, size = Acres)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=`%White`, y=CasePrice, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Varieties, y=Age, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=`%White`, y=Age, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Varieties, y=Acres, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Visitors, y=Sales, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Visitors, y=income, color=Location)) +
+  geom_point()
+
+ggplot(vineyards, aes(x=Space, y=income, color=Location)) +
+  geom_point()
+
+```

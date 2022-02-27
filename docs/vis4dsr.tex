@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2022-02-13}
+\date{2022-02-27}
 
 \begin{document}
 \maketitle
@@ -917,6 +917,16 @@ way of a pattern that does exist.
 
 \hypertarget{simple-plot-template}{%
 \subsection{Simple Plot Template}\label{simple-plot-template}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# start with the main plot function and set the data frame}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ data\_frame) }\SpecialCharTok{+} 
+  
+\CommentTok{\# next add a geometry layer and create the mapping between data frame and aesthetics}
+  \FunctionTok{geom\_...}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{aesthetics1 =}\NormalTok{ data\_field1, }\AttributeTok{aesthetics2 =}\NormalTok{ data\_field))}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{inheritance}{%
 \subsection{Inheritance}\label{inheritance}}
@@ -1792,6 +1802,15 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+\hypertarget{vineyards}{%
+\section{Vineyards}\label{vineyards}}
+
+\href{https://dasl.datadescription.com/datafile/vineyards/}{Vineyards}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-13.pdf}
 
   \bibliography{book.bib,packages.bib}
 
