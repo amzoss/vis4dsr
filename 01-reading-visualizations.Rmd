@@ -28,15 +28,6 @@ library(hexbin)
 
 ```
 
-```{r, eval=FALSE}
-
-inclusiveness_index_annual %>%
-  drop_na(Inclusiveness.index) %>%
-  ggplot(aes(x = Year, y = Inclusiveness.index, color = Continent)) +
-    geom_jitter()
-
-```
-
 This book will cover how to create a variety of visualizations using R. One of the
 first things you should do to improve your skills creating visualizations is to
 become familiar with the kinds of visualizations that are possible and the different

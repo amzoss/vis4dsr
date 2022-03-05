@@ -22,6 +22,7 @@ fig:sample-scatter-color-grad
 fig:sample-bubble-cat
 fig:sample-bubble-grad
 fig:sample-bubble-color
+fig:ggplot-diagram
 tab:duke-school-tab
 fig:duke-school-bar
 fig:coral-resilience-point
@@ -60,12 +61,13 @@ choropleth
 proportional-symbol-map
 building-basic-visualizations
 basic-ggplot2-syntax
-add-main-plot-function
-set-the-data
-choose-a-shape-layer
-map-variables-to-aesthetics
-add-non-variable-adjustments
 simple-plot-template
+example-vineyards-in-the-finger-lakes-region-of-new-york-state
+step-1-add-main-plot-function
+step-2-set-the-data
+step-3-choose-a-shape-layer
+step-4-map-variables-to-aesthetics
+step-5-adjust-the-defaults
 inheritance
 how-to-debug-code
 text-data-visualizations
@@ -145,5 +147,3 @@ teachers-guide
 live-coding
 sample-data
 datasets
-bar-chart-1
-vineyards

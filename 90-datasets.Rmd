@@ -344,6 +344,16 @@ ggplot(inclusiveness_index,
 
 ```
 
+
+```{r}
+
+inclusiveness_index_annual %>%
+  drop_na(Inclusiveness.index) %>%
+  ggplot(aes(x = Year, y = Inclusiveness.index, color = Continent)) +
+    geom_jitter()
+
+```
+
 ## Candidate Demographics {-}
 
 [Candidate Demographics](https://wholeads.us/research/rising-tide-ballot-demographics/)
