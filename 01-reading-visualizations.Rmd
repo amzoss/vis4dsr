@@ -25,6 +25,7 @@ inclusive.colors <- setNames(inclusive.colors, inclusive.levels)
 continent.colors <- setNames(brewer.pal(5, "Set2"), sort(unique(inclusiveness_index$Continent)))
 
 library(hexbin)
+library(mapproj)
 
 ```
 

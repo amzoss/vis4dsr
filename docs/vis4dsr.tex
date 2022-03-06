@@ -1,14 +1,14 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
 ]{krantz}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -40,10 +40,10 @@
   pdftitle={Visualization for Data Science with R},
   pdfauthor={Angela M. Zoss, Ph.D.},
   colorlinks=true,
-  linkcolor=Maroon,
-  filecolor=Maroon,
-  citecolor=Blue,
-  urlcolor=Blue,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
@@ -166,7 +166,7 @@
 \makeatother
 
 \frontmatter
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2022-03-04}
+\date{2022-03-06}
 
 \begin{document}
 \maketitle
@@ -201,8 +201,8 @@ I'm so grateful for your support.
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\listoftables
 \listoffigures
+\listoftables
 \hypertarget{proposal}{%
 \chapter*{Proposal}\label{proposal}}
 
@@ -282,27 +282,24 @@ I used the \textbf{knitr}\index{knitr} package \citep{xie2015} and the \textbf{b
 \end{Shaded}
 
 \begin{verbatim}
-## R version 4.1.0 (2021-05-18)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Big Sur 10.16
+## R version 4.1.2 (2021-11-01)
+## Platform: aarch64-apple-darwin20 (64-bit)
+## Running under: macOS Monterey 12.2.1
 ## 
 ## Locale: en_US.UTF-8 / en_US.UTF-8 / en_US.UTF-8 / C / en_US.UTF-8 / en_US.UTF-8
 ## 
 ## Package version:
-##   base64enc_0.1.3   bookdown_0.23    
-##   compiler_4.1.0    digest_0.6.27    
-##   evaluate_0.14     glue_1.4.2       
-##   graphics_4.1.0    grDevices_4.1.0  
-##   highr_0.9         htmltools_0.5.1.1
-##   jquerylib_0.1.4   jsonlite_1.7.2   
-##   knitr_1.33        magrittr_2.0.1   
-##   markdown_1.1      methods_4.1.0    
-##   mime_0.11         rlang_0.4.11     
-##   rmarkdown_2.10    rstudioapi_0.13  
-##   stats_4.1.0       stringi_1.7.3    
-##   stringr_1.4.0     tinytex_0.33     
-##   tools_4.1.0       utils_4.1.0      
-##   xfun_0.25         yaml_2.2.1
+##   base64enc_0.1.3 bookdown_0.24   bslib_0.3.1    
+##   cli_3.2.0       compiler_4.1.2  digest_0.6.29  
+##   evaluate_0.15   fastmap_1.1.0   fs_1.5.2       
+##   glue_1.6.2      graphics_4.1.2  grDevices_4.1.2
+##   highr_0.9       htmltools_0.5.2 jquerylib_0.1.4
+##   jsonlite_1.8.0  knitr_1.37      magrittr_2.0.2 
+##   methods_4.1.2   R6_2.5.1        rappdirs_0.3.3 
+##   rlang_1.0.2     rmarkdown_2.12  rstudioapi_0.13
+##   sass_0.4.0      stats_4.1.2     stringi_1.7.6  
+##   stringr_1.4.0   tinytex_0.37    tools_4.1.2    
+##   utils_4.1.2     xfun_0.30       yaml_2.3.5
 \end{verbatim}
 
 Package names are in bold text (e.g., \textbf{rmarkdown}), and inline code and filenames are formatted in a typewriter font (e.g., \texttt{knitr::knit(\textquotesingle{}foo.Rmd\textquotesingle{})}). Function names are followed by parentheses (e.g., \texttt{bookdown::render\_book()}).
@@ -792,7 +789,9 @@ way of a pattern that does exist.
 \section{Heat Map}\label{heat-map}}
 
 \begin{verbatim}
-## `summarise()` has grouped output by 'Index.categories.2020'. You can override using the `.groups` argument.
+## `summarise()` has grouped output by
+## 'Index.categories.2020'. You can override using the
+## `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -887,6 +886,11 @@ way of a pattern that does exist.
 
 \hypertarget{proportional-symbol-map}{%
 \subsection{Proportional Symbol Map}\label{proportional-symbol-map}}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values
+## (geom_point).
+\end{verbatim}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
 
@@ -1788,7 +1792,8 @@ Figure \ref{fig:coral-resilience-point}.
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \begin{verbatim}
-## `summarise()` has grouped output by 'year_vcs'. You can override using the `.groups` argument.
+## `summarise()` has grouped output by 'year_vcs'. You
+## can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-2.pdf}
@@ -1907,8 +1912,7 @@ Figure \ref{fig:coral-resilience-point}.
 \begin{verbatim}
 ## Warning: Removed 90 rows containing non-finite values
 ## (stat_smooth).
-
-## Warning: Removed 90 rows containing missing values
+## Removed 90 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
@@ -1937,8 +1941,7 @@ Figure \ref{fig:coral-resilience-point}.
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_smooth).
-
-## Warning: Removed 113 rows containing missing values
+## Removed 113 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
@@ -1951,8 +1954,7 @@ Figure \ref{fig:coral-resilience-point}.
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_smooth).
-
-## Warning: Removed 113 rows containing missing values
+## Removed 113 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
