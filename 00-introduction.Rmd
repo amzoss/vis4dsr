@@ -1,0 +1,4 @@
+# Introduction {-}
+
+* automating graphical output saves time and isn't too hard
+* communicating clearly is worth time & effort

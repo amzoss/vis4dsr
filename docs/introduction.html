@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction | Visualization for Data Science with R</title>
+  <meta name="description" content="A practical instructional guide to creating well-designed data visualizations in R." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction | Visualization for Data Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A practical instructional guide to creating well-designed data visualizations in R." />
+  <meta name="github-repo" content="amzoss/vis4dsr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction | Visualization for Data Science with R" />
+  
+  <meta name="twitter:description" content="A practical instructional guide to creating well-designed data visualizations in R." />
+  
+
+<meta name="author" content="Angela M. Zoss, Ph.D." />
+
+
+<meta name="date" content="2022-03-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="reading-visualizations.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Visualization for Data Science with R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#about-this-book">About This Book<span></span></a>
+<ul>
+<li><a href="index.html#proposal">Proposal<span></span></a>
+<ul>
+<li><a href="index.html#why-read-this-book">Why read this book<span></span></a></li>
+<li><a href="index.html#structure-of-the-book">Structure of the book<span></span></a></li>
+<li><a href="index.html#software-information-and-conventions">Software information and conventions<span></span></a></li>
+</ul></li>
+<li><a href="index.html#about-the-author">About the Author<span></span></a></li>
+</ul></li>
+<li><a href="introduction.html#introduction">Introduction<span></span></a></li>
+<li class="chapter" data-level="1" data-path="reading-visualizations.html"><a href="reading-visualizations.html"><i class="fa fa-check"></i><b>1</b> Overview of common visualizations and how to read them<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#visualization-components"><i class="fa fa-check"></i><b>1.1</b> Visualization components<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#bar-chart"><i class="fa fa-check"></i><b>1.2</b> Bar Chart<span></span></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations"><i class="fa fa-check"></i><b>1.2.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.2.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-bar-charts-with-color"><i class="fa fa-check"></i><b>1.2.2</b> Add a variable: Bar charts with color<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot<span></span></a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-1"><i class="fa fa-check"></i><b>1.3.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-scatter-plot-with-color"><i class="fa fa-check"></i><b>1.3.2</b> Add a variable: Scatter plot with color<span></span></a></li>
+<li class="chapter" data-level="1.3.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-bubble-chart"><i class="fa fa-check"></i><b>1.3.3</b> Add a variable: Bubble chart<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#line-chart"><i class="fa fa-check"></i><b>1.4</b> Line Chart<span></span></a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-2"><i class="fa fa-check"></i><b>1.4.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-line-chart-with-color"><i class="fa fa-check"></i><b>1.4.2</b> Add a variable: Line chart with color<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="reading-visualizations.html"><a href="reading-visualizations.html#pie-chart"><i class="fa fa-check"></i><b>1.5</b> Pie Chart<span></span></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-3"><i class="fa fa-check"></i><b>1.5.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.5.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-small-multiples"><i class="fa fa-check"></i><b>1.5.2</b> Add a variable: Small multiples<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="reading-visualizations.html"><a href="reading-visualizations.html#heat-map"><i class="fa fa-check"></i><b>1.6</b> Heat Map<span></span></a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-4"><i class="fa fa-check"></i><b>1.6.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.6.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-bubble-matrix"><i class="fa fa-check"></i><b>1.6.2</b> Add a variable: Bubble matrix<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="reading-visualizations.html"><a href="reading-visualizations.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram<span></span></a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-5"><i class="fa fa-check"></i><b>1.7.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.7.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis"><i class="fa fa-check"></i><b>1.7.2</b> Add a variable: Separate groups on x axis<span></span></a></li>
+<li class="chapter" data-level="1.7.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-with-color"><i class="fa fa-check"></i><b>1.7.3</b> Add a variable: Separate groups with color<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="reading-visualizations.html"><a href="reading-visualizations.html#maps"><i class="fa fa-check"></i><b>1.8</b> Maps<span></span></a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#choropleth"><i class="fa fa-check"></i><b>1.8.1</b> Choropleth<span></span></a></li>
+<li class="chapter" data-level="1.8.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#proportional-symbol-map"><i class="fa fa-check"></i><b>1.8.2</b> Proportional Symbol Map<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html"><i class="fa fa-check"></i><b>2</b> Building basic visualizations with ggplot2<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#basic-ggplot2-syntax"><i class="fa fa-check"></i><b>2.1</b> Basic ggplot2 syntax<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#simple-plot-template"><i class="fa fa-check"></i><b>2.1.1</b> Simple Plot Template<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#example-vineyards-in-the-finger-lakes-region-of-new-york-state"><i class="fa fa-check"></i><b>2.2</b> Example: Vineyards in the Finger Lakes Region of New York State<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#step-1-add-main-plot-function"><i class="fa fa-check"></i><b>2.2.1</b> Step 1: Add Main Plot Function<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#step-2-set-the-data"><i class="fa fa-check"></i><b>2.2.2</b> Step 2: Set the Data<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#step-3-choose-a-shape-layer"><i class="fa fa-check"></i><b>2.2.3</b> Step 3: Choose a shape layer<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#step-4-map-variables-to-aesthetics"><i class="fa fa-check"></i><b>2.2.4</b> Step 4: Map Variables to Aesthetics<span></span></a></li>
+<li class="chapter" data-level="2.2.5" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#step-5-adjust-the-defaults"><i class="fa fa-check"></i><b>2.2.5</b> Step 5: Adjust the Defaults<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#inheritance"><i class="fa fa-check"></i><b>2.3</b> Inheritance<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="building-basic-visualizations.html"><a href="building-basic-visualizations.html#how-to-debug-code"><i class="fa fa-check"></i><b>2.4</b> How to Debug Code<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html"><i class="fa fa-check"></i><b>3</b> Working with textual data in ggplot2<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#what-is-a-text-variable"><i class="fa fa-check"></i><b>3.1</b> What is a text variable?<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#visualizing-text-variables"><i class="fa fa-check"></i><b>3.2</b> Visualizing text variables<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#common-mappings-for-text-variables"><i class="fa fa-check"></i><b>3.2.1</b> Common mappings for text variables<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#ordering"><i class="fa fa-check"></i><b>3.2.2</b> Ordering<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#long-text-labels"><i class="fa fa-check"></i><b>3.2.3</b> Long Text Labels<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#picking-colors"><i class="fa fa-check"></i><b>3.2.4</b> Picking Colors<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="text-data-visualizations.html"><a href="text-data-visualizations.html#small-multiples"><i class="fa fa-check"></i><b>3.2.5</b> Small Multiples<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="customizing-visualization-design.html"><a href="customizing-visualization-design.html"><i class="fa fa-check"></i><b>4</b> Customizing the design of ggplot2 visualizations<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="customizing-visualization-design.html"><a href="customizing-visualization-design.html#common-data-modifications"><i class="fa fa-check"></i><b>4.1</b> Common Data Modifications<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="customizing-visualization-design.html"><a href="customizing-visualization-design.html#labels"><i class="fa fa-check"></i><b>4.2</b> Labels<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="customizing-visualization-design.html"><a href="customizing-visualization-design.html#scales"><i class="fa fa-check"></i><b>4.3</b> Scales<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="customizing-visualization-design.html"><a href="customizing-visualization-design.html#themes"><i class="fa fa-check"></i><b>4.4</b> Themes<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html"><i class="fa fa-check"></i><b>5</b> Avoiding unethical design practices<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#due-diligence-for-analysis"><i class="fa fa-check"></i><b>5.1</b> Due Diligence for Analysis<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#promote-dignity-and-agency"><i class="fa fa-check"></i><b>5.2</b> Promote Dignity and Agency<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#reduce-distortion"><i class="fa fa-check"></i><b>5.3</b> Reduce Distortion<span></span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#color"><i class="fa fa-check"></i><b>5.3.1</b> Color<span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#shapes"><i class="fa fa-check"></i><b>5.3.2</b> Shapes<span></span></a></li>
+<li class="chapter" data-level="5.3.3" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#truncated-axes"><i class="fa fa-check"></i><b>5.3.3</b> Truncated Axes<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#compare-like-things"><i class="fa fa-check"></i><b>5.4</b> Compare Like Things<span></span></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#dual-axis"><i class="fa fa-check"></i><b>5.4.1</b> Dual Axis<span></span></a></li>
+<li class="chapter" data-level="5.4.2" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#normalizing-raw-data"><i class="fa fa-check"></i><b>5.4.2</b> Normalizing Raw Data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#be-true-to-the-data"><i class="fa fa-check"></i><b>5.5</b> Be True to the Data<span></span></a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#dont-cherry-pick-data"><i class="fa fa-check"></i><b>5.5.1</b> Don’t Cherry-Pick Data<span></span></a></li>
+<li class="chapter" data-level="5.5.2" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#matching-data-with-chart-type"><i class="fa fa-check"></i><b>5.5.2</b> Matching Data With Chart Type<span></span></a></li>
+<li class="chapter" data-level="5.5.3" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#beware-of-conflicts-of-interest"><i class="fa fa-check"></i><b>5.5.3</b> Beware of Conflicts of Interest<span></span></a></li>
+<li class="chapter" data-level="5.5.4" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#check-if-subsets-exhibit-different-patterns-simpsons-paradox"><i class="fa fa-check"></i><b>5.5.4</b> Check if subsets exhibit different patterns (Simpson’s Paradox)<span></span></a></li>
+<li class="chapter" data-level="5.5.5" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#careful-binning"><i class="fa fa-check"></i><b>5.5.5</b> Careful Binning<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#proper-citation-and-documentation"><i class="fa fa-check"></i><b>5.6</b> Proper Citation and Documentation<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="ethical-design-practices.html"><a href="ethical-design-practices.html#transparent-practices"><i class="fa fa-check"></i><b>5.6.1</b> Transparent Practices<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="print-publications.html"><a href="print-publications.html"><i class="fa fa-check"></i><b>6</b> Building ggplot2 visualizations into print publications<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="print-publications.html"><a href="print-publications.html#exporting-ggplot2-visualizations"><i class="fa fa-check"></i><b>6.1</b> Exporting ggplot2 Visualizations<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="print-publications.html"><a href="print-publications.html#using-rmarkdown-to-create-pdf-reports"><i class="fa fa-check"></i><b>6.2</b> Using RMarkdown to create PDF reports<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="print-publications.html"><a href="print-publications.html#using-r-packages-to-build-word-and-powerpoint-files"><i class="fa fa-check"></i><b>6.3</b> Using R Packages to Build Word and PowerPoint Files<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html"><i class="fa fa-check"></i><b>7</b> Basic accessibility for static visualizations<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#accessible-text-accompanying-the-visualization"><i class="fa fa-check"></i><b>7.1</b> Accessible Text Accompanying the Visualization<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#neurodivergence"><i class="fa fa-check"></i><b>7.2</b> Neurodivergence<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#low-vision"><i class="fa fa-check"></i><b>7.3</b> Low Vision<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#color-vision-deficiency"><i class="fa fa-check"></i><b>7.4</b> Color Vision Deficiency<span></span></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#dual-encoding-never-just-color"><i class="fa fa-check"></i><b>7.4.1</b> Dual encoding (never just color)<span></span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#color-palettes"><i class="fa fa-check"></i><b>7.4.2</b> Color palettes<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#screen-reader-users"><i class="fa fa-check"></i><b>7.5</b> Screen Reader Users<span></span></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#alternative-text"><i class="fa fa-check"></i><b>7.5.1</b> Alternative Text<span></span></a></li>
+<li class="chapter" data-level="7.5.2" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#longer-descriptions"><i class="fa fa-check"></i><b>7.5.2</b> Longer Descriptions<span></span></a></li>
+<li class="chapter" data-level="7.5.3" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#converting-graphics-to-sound-touch-text-table"><i class="fa fa-check"></i><b>7.5.3</b> Converting graphics to sound, touch, text, table<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="accessibility-for-visualizations.html"><a href="accessibility-for-visualizations.html#accessibility-resources"><i class="fa fa-check"></i><b>7.6</b> Accessibility Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html"><i class="fa fa-check"></i><b>8</b> Exploring interactivity in visualizations with plotly and crosstalk<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#interactivity-for-exploration"><i class="fa fa-check"></i><b>8.1</b> Interactivity for Exploration<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#interactive-components"><i class="fa fa-check"></i><b>8.2</b> Interactive Components<span></span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#about-websites-and-html"><i class="fa fa-check"></i><b>8.2.1</b> About Websites and HTML<span></span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#simple-markdown-websites"><i class="fa fa-check"></i><b>8.2.2</b> Simple Markdown Websites<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#html-widgets"><i class="fa fa-check"></i><b>8.3</b> HTML Widgets<span></span></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#plotly"><i class="fa fa-check"></i><b>8.3.1</b> Plotly<span></span></a></li>
+<li class="chapter" data-level="8.3.2" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#datatables"><i class="fa fa-check"></i><b>8.3.2</b> DataTables<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="interactive-visualizations.html"><a href="interactive-visualizations.html#crosstalk"><i class="fa fa-check"></i><b>8.4</b> CrossTalk<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="rmarkdown-websites.html"><a href="rmarkdown-websites.html"><i class="fa fa-check"></i><b>9</b> Using RMarkdown to build websites for projects<span></span></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rmarkdown-websites.html"><a href="rmarkdown-websites.html#static-websites"><i class="fa fa-check"></i><b>9.1</b> Static Websites<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="rmarkdown-websites.html"><a href="rmarkdown-websites.html#hosting"><i class="fa fa-check"></i><b>9.2</b> Hosting<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="rmarkdown-websites.html"><a href="rmarkdown-websites.html#associating-a-website-with-an-r-project"><i class="fa fa-check"></i><b>9.3</b> Associating a Website with an R Project<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rmarkdown-dashboards.html"><a href="rmarkdown-dashboards.html"><i class="fa fa-check"></i><b>10</b> Using RMarkdown to build dashboards for projects<span></span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rmarkdown-dashboards.html"><a href="rmarkdown-dashboards.html#what-is-a-dashboard"><i class="fa fa-check"></i><b>10.1</b> What is a dashboard?<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="rmarkdown-dashboards.html"><a href="rmarkdown-dashboards.html#using-flexdashboards-to-arrange-components"><i class="fa fa-check"></i><b>10.2</b> Using flexdashboards to arrange components<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="rmarkdown-dashboards.html"><a href="rmarkdown-dashboards.html#blending-crosstalk-with-flexdashboards"><i class="fa fa-check"></i><b>10.3</b> Blending Crosstalk with Flexdashboards<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="rmarkdown-dashboards.html"><a href="rmarkdown-dashboards.html#basic-dashboard-design"><i class="fa fa-check"></i><b>10.4</b> Basic Dashboard Design<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html"><i class="fa fa-check"></i><b>11</b> Basic usability for interactive visualizations<span></span></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#what-do-users-want-to-do-with-a-dashboard"><i class="fa fa-check"></i><b>11.1</b> What do users want to do with a dashboard<span></span></a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#conducting-an-initial-user-study"><i class="fa fa-check"></i><b>11.1.1</b> Conducting an Initial User Study<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#how-to-test-a-dashboard"><i class="fa fa-check"></i><b>11.2</b> How to Test a Dashboard<span></span></a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#preliminary-questions"><i class="fa fa-check"></i><b>11.2.1</b> Preliminary Questions<span></span></a></li>
+<li class="chapter" data-level="11.2.2" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#second-test-for-first-impressions"><i class="fa fa-check"></i><b>11.2.2</b> 5-second test for first impressions<span></span></a></li>
+<li class="chapter" data-level="11.2.3" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#think-aloud-scenarios"><i class="fa fa-check"></i><b>11.2.3</b> Think-aloud Scenarios<span></span></a></li>
+<li class="chapter" data-level="11.2.4" data-path="usability-for-visualizations.html"><a href="usability-for-visualizations.html#closing-questions"><i class="fa fa-check"></i><b>11.2.4</b> Closing Questions<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="teachers-guide.html"><a href="teachers-guide.html"><i class="fa fa-check"></i><b>12</b> Teacher’s guide<span></span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="teachers-guide.html"><a href="teachers-guide.html#live-coding"><i class="fa fa-check"></i><b>12.1</b> Live Coding<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="teachers-guide.html"><a href="teachers-guide.html#sample-data"><i class="fa fa-check"></i><b>12.2</b> Sample Data<span></span></a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix<span></span></b></span></li>
+<li class="chapter" data-level="A" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>A</b> Datasets<span></span></a>
+<ul>
+<li><a href="datasets.html#duke-enrollment">Duke Enrollment<span></span></a>
+<ul>
+<li><a href="datasets.html#bar-chart-1">Bar Chart<span></span></a></li>
+</ul></li>
+<li><a href="datasets.html#coral-resilience-data">Coral Resilience Data<span></span></a></li>
+<li><a href="datasets.html#git-experience">Git Experience<span></span></a></li>
+<li><a href="datasets.html#inclusiveness-index">Inclusiveness Index<span></span></a></li>
+<li><a href="datasets.html#candidate-demographics">Candidate Demographics<span></span></a></li>
+<li><a href="datasets.html#affinity-spending">Affinity Spending<span></span></a></li>
+<li><a href="datasets.html#vineyards">Vineyards<span></span></a></li>
+</ul></li>
+<li><a href="references.html#references">References<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization for Data Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1 unnumbered hasAnchor">
+<h1>Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>automating graphical output saves time and isn’t too hard</li>
+<li>communicating clearly is worth time &amp; effort</li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reading-visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/amzoss/vis4dsr/edit/main/00-introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["vis4dsr.pdf", "vis4dsr.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

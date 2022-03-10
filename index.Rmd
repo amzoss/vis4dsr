@@ -28,9 +28,11 @@ lapply(c('xfun','tidyverse','readxl','lubridate', 'maps',
 })
 ```
 
-# Proposal {-}
+# About This Book {-}
 
 **Note: This book is a work in progress, with a full draft expected in April of 2022.**
+
+## Proposal {-}
 
 This book combines instruction on writing R code with building basic graphic design skills in a way that is unusual in data science literature. The book will guide readers through a series of projects, each designed to cover both how visualizations work in R and how visualizations can be designed to have the greatest impact. Far more than a “do this, then this” checklist, this book will focus on building understanding, confidence, and the ability to transfer skills to other tools and design contexts. It will avoid technical jargon that our target audience is unlikely to have encountered before. To accommodate learners who don’t have time to work through an entire book, each chapter will operate independently, covering a specific set of tasks that all make sense together as part of a visualization project.  For those who would like extra practice, there will be several types of hands-on exercises, from those that are entirely prescribed to those that allow readers to apply new techniques to problems in their own areas.
 
@@ -40,7 +42,7 @@ The target audience of this book would be professionals who are having to learn 
 
 Increasingly, programs of study with a focus on preparing students for professional careers in under-resourced fields, like public policy and even management, include courses on data analysis and communication using freely available software. This book, while not a textbook, could easily be used for a semester-long course, titled something like “Practical data visualization for the modern workforce.” A chapter could be covered each week, and larger projects could help learners synthesize chapters into a complete set of analyses and communication materials.
 
-## Why read this book {-}
+### Why read this book {-}
 
 This book will be:
 
@@ -50,7 +52,7 @@ This book will be:
 * Focuses on freely available software
 * Combines hands-on exercises with basic graphic design principles
 
-## Structure of the book {-}
+### Structure of the book {-}
 
 * Chapter \@ref(reading-visualizations): Overview of common visualizations and how to read them
 * Chapter \@ref(building-basic-visualizations): Building basic visualizations with ggplot2
@@ -65,7 +67,7 @@ This book will be:
 * Chapter \@ref(usability-for-visualizations): Basic usability for interactive visualizations
 * Chapter \@ref(teachers-guide): Teacher’s guide
 
-## Software information and conventions {-}
+### Software information and conventions {-}
 
 I used the **knitr**\index{knitr} package [@xie2015] and the **bookdown**\index{bookdown} package [@R-bookdown] to compile my book. My R session information is shown below:
 
@@ -75,11 +77,20 @@ xfun::session_info()
 
 Package names are in bold text (e.g., **rmarkdown**), and inline code and filenames are formatted in a typewriter font (e.g., `knitr::knit('foo.Rmd')`). Function names are followed by parentheses (e.g., `bookdown::render_book()`).
 
-<!--## Acknowledgments {-}
+<!--### Acknowledgments {-}
 
 A lot of people helped me when I was writing the book.-->
 
 ```{block2, type='flushright', html.tag='p'}
 Angela Zoss
 ```
+
+## About the Author {-}
+
+```{r knitr-logo, out.width='32.8%', fig.show='hold', fig.cap='Angela M. Zoss, Ph.D.', echo=FALSE}
+knitr::include_graphics('images/angela_zoss.jpg')
+```
+
+Angela is the [Assessment & Data Visualization Analyst](https://library.duke.edu/about/directory/staff/angela.zoss) in the [Assessment & User Experience Department](https://library.duke.edu/about/depts/assessment-user-experience) in the [Duke University Libraries](https://library.duke.edu/). She has many years of experience in teaching and training, predominantly focusing on teaching data visualization to university students, faculty, and staff. She is also active in several open source development projects, including [FOLIO](https://github.com/folio-org/) and [Wax](https://github.com/minicomp/wax).
+
 

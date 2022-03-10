@@ -203,11 +203,15 @@ I'm so grateful for your support.
 }
 \listoffigures
 \listoftables
-\hypertarget{proposal}{%
-\chapter*{Proposal}\label{proposal}}
+\hypertarget{about-this-book}{%
+\chapter*{About This Book}\label{about-this-book}}
 
 
 \textbf{Note: This book is a work in progress, with a full draft expected in April of 2022.}
+
+\hypertarget{proposal}{%
+\section*{Proposal}\label{proposal}}
+
 
 This book combines instruction on writing R code with building basic graphic design skills in a way that is unusual in data science literature. The book will guide readers through a series of projects, each designed to cover both how visualizations work in R and how visualizations can be designed to have the greatest impact. Far more than a ``do this, then this'' checklist, this book will focus on building understanding, confidence, and the ability to transfer skills to other tools and design contexts. It will avoid technical jargon that our target audience is unlikely to have encountered before. To accommodate learners who don't have time to work through an entire book, each chapter will operate independently, covering a specific set of tasks that all make sense together as part of a visualization project. For those who would like extra practice, there will be several types of hands-on exercises, from those that are entirely prescribed to those that allow readers to apply new techniques to problems in their own areas.
 
@@ -218,7 +222,7 @@ The target audience of this book would be professionals who are having to learn 
 Increasingly, programs of study with a focus on preparing students for professional careers in under-resourced fields, like public policy and even management, include courses on data analysis and communication using freely available software. This book, while not a textbook, could easily be used for a semester-long course, titled something like ``Practical data visualization for the modern workforce.'' A chapter could be covered each week, and larger projects could help learners synthesize chapters into a complete set of analyses and communication materials.
 
 \hypertarget{why-read-this-book}{%
-\section*{Why read this book}\label{why-read-this-book}}
+\subsection*{Why read this book}\label{why-read-this-book}}
 
 
 This book will be:
@@ -238,7 +242,7 @@ This book will be:
 \end{itemize}
 
 \hypertarget{structure-of-the-book}{%
-\section*{Structure of the book}\label{structure-of-the-book}}
+\subsection*{Structure of the book}\label{structure-of-the-book}}
 
 
 \begin{itemize}
@@ -270,7 +274,7 @@ This book will be:
 \end{itemize}
 
 \hypertarget{software-information-and-conventions}{%
-\section*{Software information and conventions}\label{software-information-and-conventions}}
+\subsection*{Software information and conventions}\label{software-information-and-conventions}}
 
 
 I used the \textbf{knitr}\index{knitr} package \citep{xie2015} and the \textbf{bookdown}\index{bookdown} package \citep{R-bookdown} to compile my book. My R session information is shown below:
@@ -309,7 +313,7 @@ Angela Zoss
 \end{flushright}
 
 \hypertarget{about-the-author}{%
-\chapter*{About the Author}\label{about-the-author}}
+\section*{About the Author}\label{about-the-author}}
 
 
 \begin{figure}
@@ -317,6 +321,18 @@ Angela Zoss
 \end{figure}
 
 Angela is the \href{https://library.duke.edu/about/directory/staff/angela.zoss}{Assessment \& Data Visualization Analyst} in the \href{https://library.duke.edu/about/depts/assessment-user-experience}{Assessment \& User Experience Department} in the \href{https://library.duke.edu/}{Duke University Libraries}. She has many years of experience in teaching and training, predominantly focusing on teaching data visualization to university students, faculty, and staff. She is also active in several open source development projects, including \href{https://github.com/folio-org/}{FOLIO} and \href{https://github.com/minicomp/wax}{Wax}.
+
+\hypertarget{introduction}{%
+\chapter*{Introduction}\label{introduction}}
+
+
+\begin{itemize}
+\tightlist
+\item
+  automating graphical output saves time and isn't too hard
+\item
+  communicating clearly is worth time \& effort
+\end{itemize}
 
 \mainmatter
 
@@ -985,24 +1001,24 @@ Largely one-variable, one-axis plots
 
 In Chapter \ref{reading-visualizations}, we covered a variety of visualization types
 and how to read them. All
-of those visualizations were created using an R package called \texttt{ggplot2}. This
+of those visualizations were created using an R package called \textbf{ggplot2}. This
 package is a very common way of creating visualizations in R, partly because it is
-so versatile. Once you understand the basics of how to create \texttt{ggplot2} visualizations,
+so versatile. Once you understand the basics of how to create \textbf{ggplot2} visualizations,
 you can use the same techniques to produce an enormous range of visualizations.
 
 In this chapter, we'll focus on the basic components of the R code you need to write
-to create \texttt{ggplot2} visualizations. We'll use the word \emph{syntax} to refer to the
+to create \textbf{ggplot2} visualizations. We'll use the word \emph{syntax} to refer to the
 components you need to create and the way you need to organize those components.
 Instead of trying to create a bunch of different visualizations, we start with one
-simple visualization and keep adding to it to learn more about \texttt{ggplot2} features.
+simple visualization and keep adding to it to learn more about \textbf{ggplot2} features.
 In future chapters we will cover other kinds of visualizations and more advanced
-\texttt{ggplot2} features.
+\textbf{ggplot2} features.
 
 \hypertarget{basic-ggplot2-syntax}{%
 \section{Basic ggplot2 syntax}\label{basic-ggplot2-syntax}}
 
-To learn the syntax of a \texttt{ggplot2} visualization, it helps to understand how
-\texttt{ggplot2} thinks of a visualization (Figure \ref{fig:ggplot-diagram}).
+To learn the syntax of a \textbf{ggplot2} visualization, it helps to understand how
+\textbf{ggplot2} thinks of a visualization (Figure \ref{fig:ggplot-diagram}).
 
 \begin{figure}
 \centering
@@ -1010,7 +1026,7 @@ To learn the syntax of a \texttt{ggplot2} visualization, it helps to understand 
 \caption{\label{fig:ggplot-diagram}The ggplot2 model of a visualization.}
 \end{figure}
 
-In \texttt{ggplot2},
+In \textbf{ggplot2},
 a visualization is called a ``plot.'' Each plot uses one or more visualization types
 like the ones we learned in Chapter \ref{reading-visualizations} (e.g., bar
 chart, scatter plot). The visualization type is called a ``geom,'' which is short
@@ -1027,7 +1043,7 @@ the lengths of those bars. The default visual properties for a bar chart, then,
 are that it has two axes: one that serves to organize the bars, and one that
 serves to measure the lengths.
 
-In \texttt{ggplot2}, the visual properties associated with each geom are called ``aesthetics.''
+In \textbf{ggplot2}, the visual properties associated with each geom are called ``aesthetics.''
 The aesthetics vary a bit from geom to geom, but there are some aesthetics that
 are required for almost all geoms. The most common aesthetics are called ``x'' and ``y'',
 and they stand for the x and y axes. Most geoms use an x axis to organize
@@ -1039,17 +1055,17 @@ size, and a border line type.
 
 I think of a geom's aesthetics as questions on a form that I need to fill out for the
 plot to work correctly. If something is option, like the fill color, I don't really
-have to answer that question on the form. There is a default value \texttt{ggplot2} will
-use if I don't have a specific value in mind. For the x and y axes, though, \texttt{ggplot2}
-does not have a default. Those are required, and \texttt{ggplot2} will give me an error
+have to answer that question on the form. There is a default value \textbf{ggplot2} will
+use if I don't have a specific value in mind. For the x and y axes, though, \textbf{ggplot2}
+does not have a default. Those are required, and \textbf{ggplot2} will give me an error
 if I try to make a plot without providing that information.
 
-How do I tell \texttt{ggplot2} what values to use for the aesthetics, like the x and y
+How do I tell \textbf{ggplot2} what values to use for the aesthetics, like the x and y
 axes? I need to create a ``mapping'' between the dataset I want to visualize and the
 geom's aesthetics. Again, I think if we step back, this is pretty logical. We need
 to get our data into our visualization. Different parts of the data need to be
 associated with different parts of our visualization. That process of creating
-associations between our dataset and our visualization is called mapping. In \texttt{ggplot2},
+associations between our dataset and our visualization is called mapping. In \textbf{ggplot2},
 we will map variables from our dataset to aesthetics in our geom one by one. For
 each aesthetic we want to specify, we will pick a variable and map it to that
 aesthetic. In a bar chart with vertical bars, we would map a categorical variable
@@ -1063,15 +1079,15 @@ A geom determines the required and optional aesthetics for that part of the plot
 To bring data into the visualization, create a mapping between variables in a dataset
 and the (required or options) aesthetics of the geom.
 
-Now that we understand how \texttt{ggplot2} thinks about the structure of a plot, we can
+Now that we understand how \textbf{ggplot2} thinks about the structure of a plot, we can
 turn to the code that we need to write.
 
 \hypertarget{simple-plot-template}{%
 \subsection{Simple Plot Template}\label{simple-plot-template}}
 
 In R, there is often many different ways of writing code to accomplish your goals.
-The same is true in \texttt{ggplot2}. We'll start with learning a template for a simple
-\texttt{ggplot2} plot, and then we will learn some additional ways of writing the code
+The same is true in \textbf{ggplot2}. We'll start with learning a template for a simple
+\textbf{ggplot2} plot, and then we will learn some additional ways of writing the code
 that may be easier or work better for different kinds of visualizations.
 
 \begin{Shaded}

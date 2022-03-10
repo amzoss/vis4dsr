@@ -160,13 +160,17 @@ div.csl-indent {
 <li><a href="./">Visualization for Data Science with R</a></li>
 
 <li class="divider"></li>
+<li><a href="index.html#about-this-book">About This Book<span></span></a>
+<ul>
 <li><a href="index.html#proposal">Proposal<span></span></a>
 <ul>
 <li><a href="index.html#why-read-this-book">Why read this book<span></span></a></li>
 <li><a href="index.html#structure-of-the-book">Structure of the book<span></span></a></li>
 <li><a href="index.html#software-information-and-conventions">Software information and conventions<span></span></a></li>
 </ul></li>
-<li><a href="about-the-author.html#about-the-author">About the Author<span></span></a></li>
+<li><a href="index.html#about-the-author">About the Author<span></span></a></li>
+</ul></li>
+<li><a href="introduction.html#introduction">Introduction<span></span></a></li>
 <li class="chapter" data-level="1" data-path="reading-visualizations.html"><a href="reading-visualizations.html"><i class="fa fa-check"></i><b>1</b> Overview of common visualizations and how to read them<span></span></a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#visualization-components"><i class="fa fa-check"></i><b>1.1</b> Visualization components<span></span></a></li>
@@ -382,28 +386,28 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 2</span> Building basic visualizations with ggplot2<a href="building-basic-visualizations.html#building-basic-visualizations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In Chapter <a href="reading-visualizations.html#reading-visualizations">1</a>, we covered a variety of visualization types
 and how to read them. All
-of those visualizations were created using an R package called <code>ggplot2</code>. This
+of those visualizations were created using an R package called <strong>ggplot2</strong>. This
 package is a very common way of creating visualizations in R, partly because it is
-so versatile. Once you understand the basics of how to create <code>ggplot2</code> visualizations,
+so versatile. Once you understand the basics of how to create <strong>ggplot2</strong> visualizations,
 you can use the same techniques to produce an enormous range of visualizations.</p>
 <p>In this chapter, we’ll focus on the basic components of the R code you need to write
-to create <code>ggplot2</code> visualizations. We’ll use the word <em>syntax</em> to refer to the
+to create <strong>ggplot2</strong> visualizations. We’ll use the word <em>syntax</em> to refer to the
 components you need to create and the way you need to organize those components.
 Instead of trying to create a bunch of different visualizations, we start with one
-simple visualization and keep adding to it to learn more about <code>ggplot2</code> features.
+simple visualization and keep adding to it to learn more about <strong>ggplot2</strong> features.
 In future chapters we will cover other kinds of visualizations and more advanced
-<code>ggplot2</code> features.</p>
+<strong>ggplot2</strong> features.</p>
 <div id="basic-ggplot2-syntax" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Basic ggplot2 syntax<a href="building-basic-visualizations.html#basic-ggplot2-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To learn the syntax of a <code>ggplot2</code> visualization, it helps to understand how
-<code>ggplot2</code> thinks of a visualization (Figure <a href="building-basic-visualizations.html#fig:ggplot-diagram">2.1</a>).</p>
+<p>To learn the syntax of a <strong>ggplot2</strong> visualization, it helps to understand how
+<strong>ggplot2</strong> thinks of a visualization (Figure <a href="building-basic-visualizations.html#fig:ggplot-diagram">2.1</a>).</p>
 <div class="figure"><span style="display:block;" id="fig:ggplot-diagram"></span>
 <img src="vis4dsr_files/figure-html/ggplot-diagram-1.png" alt="The ggplot2 model of a visualization." width="672" />
 <p class="caption">
 FIGURE 2.1: The ggplot2 model of a visualization.
 </p>
 </div>
-<p>In <code>ggplot2</code>,
+<p>In <strong>ggplot2</strong>,
 a visualization is called a “plot.” Each plot uses one or more visualization types
 like the ones we learned in Chapter <a href="reading-visualizations.html#reading-visualizations">1</a> (e.g., bar
 chart, scatter plot). The visualization type is called a “geom,” which is short
@@ -418,7 +422,7 @@ or more bars lined up along one axis, and the other axis allows you to compare
 the lengths of those bars. The default visual properties for a bar chart, then,
 are that it has two axes: one that serves to organize the bars, and one that
 serves to measure the lengths.</p>
-<p>In <code>ggplot2</code>, the visual properties associated with each geom are called “aesthetics.”
+<p>In <strong>ggplot2</strong>, the visual properties associated with each geom are called “aesthetics.”
 The aesthetics vary a bit from geom to geom, but there are some aesthetics that
 are required for almost all geoms. The most common aesthetics are called “x” and “y”,
 and they stand for the x and y axes. Most geoms use an x axis to organize
@@ -429,16 +433,16 @@ They also have a fill color, a fill transparency value, a border color, a border
 size, and a border line type.</p>
 <p>I think of a geom’s aesthetics as questions on a form that I need to fill out for the
 plot to work correctly. If something is option, like the fill color, I don’t really
-have to answer that question on the form. There is a default value <code>ggplot2</code> will
-use if I don’t have a specific value in mind. For the x and y axes, though, <code>ggplot2</code>
-does not have a default. Those are required, and <code>ggplot2</code> will give me an error
+have to answer that question on the form. There is a default value <strong>ggplot2</strong> will
+use if I don’t have a specific value in mind. For the x and y axes, though, <strong>ggplot2</strong>
+does not have a default. Those are required, and <strong>ggplot2</strong> will give me an error
 if I try to make a plot without providing that information.</p>
-<p>How do I tell <code>ggplot2</code> what values to use for the aesthetics, like the x and y
+<p>How do I tell <strong>ggplot2</strong> what values to use for the aesthetics, like the x and y
 axes? I need to create a “mapping” between the dataset I want to visualize and the
 geom’s aesthetics. Again, I think if we step back, this is pretty logical. We need
 to get our data into our visualization. Different parts of the data need to be
 associated with different parts of our visualization. That process of creating
-associations between our dataset and our visualization is called mapping. In <code>ggplot2</code>,
+associations between our dataset and our visualization is called mapping. In <strong>ggplot2</strong>,
 we will map variables from our dataset to aesthetics in our geom one by one. For
 each aesthetic we want to specify, we will pick a variable and map it to that
 aesthetic. In a bar chart with vertical bars, we would map a categorical variable
@@ -450,13 +454,13 @@ it like this. A plot contains one or more geoms that specify the visualization t
 A geom determines the required and optional aesthetics for that part of the plot.
 To bring data into the visualization, create a mapping between variables in a dataset
 and the (required or options) aesthetics of the geom.</p>
-<p>Now that we understand how <code>ggplot2</code> thinks about the structure of a plot, we can
+<p>Now that we understand how <strong>ggplot2</strong> thinks about the structure of a plot, we can
 turn to the code that we need to write.</p>
 <div id="simple-plot-template" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Simple Plot Template<a href="building-basic-visualizations.html#simple-plot-template" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In R, there is often many different ways of writing code to accomplish your goals.
-The same is true in <code>ggplot2</code>. We’ll start with learning a template for a simple
-<code>ggplot2</code> plot, and then we will learn some additional ways of writing the code
+The same is true in <strong>ggplot2</strong>. We’ll start with learning a template for a simple
+<strong>ggplot2</strong> plot, and then we will learn some additional ways of writing the code
 that may be easier or work better for different kinds of visualizations.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="building-basic-visualizations.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start with the main plot function and set the data frame</span></span>
 <span id="cb3-2"><a href="building-basic-visualizations.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_frame) <span class="sc">+</span> </span>

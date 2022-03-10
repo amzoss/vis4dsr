@@ -12,18 +12,18 @@ source('data/vineyards/load_vineyards.R')
 
 In Chapter \@ref(reading-visualizations), we covered a variety of visualization types 
 and how to read them. All
-of those visualizations were created using an R package called `ggplot2`. This
+of those visualizations were created using an R package called **ggplot2**. This
 package is a very common way of creating visualizations in R, partly because it is
-so versatile. Once you understand the basics of how to create `ggplot2` visualizations, 
+so versatile. Once you understand the basics of how to create **ggplot2** visualizations, 
 you can use the same techniques to produce an enormous range of visualizations.
 
 In this chapter, we'll focus on the basic components of the R code you need to write
-to create `ggplot2` visualizations. We'll use the word *syntax* to refer to the 
+to create **ggplot2** visualizations. We'll use the word *syntax* to refer to the 
 components you need to create and the way you need to organize those components.
 Instead of trying to create a bunch of different visualizations, we start with one
-simple visualization and keep adding to it to learn more about `ggplot2` features.
+simple visualization and keep adding to it to learn more about **ggplot2** features.
 In future chapters we will cover other kinds of visualizations and more advanced
-`ggplot2` features.
+**ggplot2** features.
 
 ```{r, eval=FALSE}
 
@@ -35,8 +35,8 @@ ggplot(vineyards, aes(x=Visitors, y=CasePrice, color=Location, size = Acres)) +
 
 ## Basic ggplot2 syntax
 
-To learn the syntax of a `ggplot2` visualization, it helps to understand how
-`ggplot2` thinks of a visualization (Figure \@ref(fig:ggplot-diagram)). 
+To learn the syntax of a **ggplot2** visualization, it helps to understand how
+**ggplot2** thinks of a visualization (Figure \@ref(fig:ggplot-diagram)). 
 
 ```{r ggplot-diagram, echo=FALSE, fig.cap='The ggplot2 model of a visualization.'}
 
@@ -101,7 +101,7 @@ ggplot(tibble()) +
 
 ```
 
-In `ggplot2`, 
+In **ggplot2**, 
 a visualization is called a "plot." Each plot uses one or more visualization types 
 like the ones we learned in Chapter \@ref(reading-visualizations) (e.g., bar 
 chart, scatter plot). The visualization type is called a "geom," which is short
@@ -118,7 +118,7 @@ the lengths of those bars. The default visual properties for a bar chart, then,
 are that it has two axes: one that serves to organize the bars, and one that 
 serves to measure the lengths.
 
-In `ggplot2`, the visual properties associated with each geom are called "aesthetics."
+In **ggplot2**, the visual properties associated with each geom are called "aesthetics."
 The aesthetics vary a bit from geom to geom, but there are some aesthetics that
 are required for almost all geoms. The most common aesthetics are called "x" and "y",
 and they stand for the x and y axes. Most geoms use an x axis to organize
@@ -130,17 +130,17 @@ size, and a border line type.
 
 I think of a geom's aesthetics as questions on a form that I need to fill out for the
 plot to work correctly. If something is option, like the fill color, I don't really
-have to answer that question on the form. There is a default value `ggplot2` will
-use if I don't have a specific value in mind. For the x and y axes, though, `ggplot2`
-does not have a default. Those are required, and `ggplot2` will give me an error
+have to answer that question on the form. There is a default value **ggplot2** will
+use if I don't have a specific value in mind. For the x and y axes, though, **ggplot2**
+does not have a default. Those are required, and **ggplot2** will give me an error
 if I try to make a plot without providing that information.
 
-How do I tell `ggplot2` what values to use for the aesthetics, like the x and y 
+How do I tell **ggplot2** what values to use for the aesthetics, like the x and y 
 axes? I need to create a "mapping" between the dataset I want to visualize and the
 geom's aesthetics. Again, I think if we step back, this is pretty logical. We need
 to get our data into our visualization. Different parts of the data need to be
 associated with different parts of our visualization. That process of creating
-associations between our dataset and our visualization is called mapping. In `ggplot2`,
+associations between our dataset and our visualization is called mapping. In **ggplot2**,
 we will map variables from our dataset to aesthetics in our geom one by one. For
 each aesthetic we want to specify, we will pick a variable and map it to that
 aesthetic. In a bar chart with vertical bars, we would map a categorical variable 
@@ -154,14 +154,14 @@ A geom determines the required and optional aesthetics for that part of the plot
 To bring data into the visualization, create a mapping between variables in a dataset
 and the (required or options) aesthetics of the geom.
 
-Now that we understand how `ggplot2` thinks about the structure of a plot, we can
+Now that we understand how **ggplot2** thinks about the structure of a plot, we can
 turn to the code that we need to write.
 
 ### Simple Plot Template
 
 In R, there is often many different ways of writing code to accomplish your goals.
-The same is true in `ggplot2`. We'll start with learning a template for a simple
-`ggplot2` plot, and then we will learn some additional ways of writing the code
+The same is true in **ggplot2**. We'll start with learning a template for a simple
+**ggplot2** plot, and then we will learn some additional ways of writing the code
 that may be easier or work better for different kinds of visualizations.
 
 ```{r, echo=TRUE, eval=FALSE}
