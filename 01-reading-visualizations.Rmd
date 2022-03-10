@@ -368,7 +368,38 @@ than a diffuse pattern, the stronger the relationship is.
 
 ```{r}
 
-# TODO: series from more diffuse to perfect correlation
+x <- c(1:50)
+
+jitter_1 <- jitter(x, factor = 50)
+
+jitter_2 <- jitter(x, factor = 200)
+
+pos.lin <- tibble(
+  type = "perfect correlation",
+  x = x,
+  y = x
+)
+
+jitter1 <- tibble(
+  type = "somewhat diffuse",
+  x = x,
+  y = jitter_1
+)
+
+jitter2 <- tibble(
+  type = "very diffuse",
+  x = x,
+  y = jitter_2
+)
+
+combined <- bind_rows(pos.lin, jitter1, jitter2) %>%
+  mutate(type = type %>% as_factor() %>% 
+           fct_relevel(c("very diffuse", "somewhat diffuse",
+                         "perfect correlation")))
+
+ggplot(combined, aes(x, y)) +
+  geom_point() +
+  facet_wrap(vars(type))
 
 ```
 
@@ -732,8 +763,6 @@ In this version of the chart, the countries from each continent have been combin
 into a single line using the mean of the countries' values for each year. Another way to
 reduce the number of lines in the line chart would have been to limit the chart to
 the countries from a single continent.
-
-*TODO: this has become about creating visualizations, instead of reading them!!*
 
 Also notice that when you limit the number of lines you use in a line chart, it 
 becomes much easier to identify each line with a label. Not every visualization 
