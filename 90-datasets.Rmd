@@ -7,6 +7,7 @@
 ```{r, include=FALSE}
 
 source('data/load_all_data.R')
+library(patchwork)
 
 ```
 
@@ -85,11 +86,13 @@ ggplot(coral_resilience, aes(x=snails_exp, y=log(tissue_loss), color=treatment))
 #ggplot(git_experience, aes(x=year_vcs)) +
 #  geom_line()
 
-ggplot(git_experience %>% count(year_vcs), aes(x=year_vcs, y=n)) +
+bw <- ggplot(git_experience %>% count(year_vcs) %>% drop_na(year_vcs), aes(x=year_vcs, y=n)) +
   geom_line()
 
-ggplot(git_experience %>% count(year_vcs, first_vcs), aes(x=year_vcs, y=n, color=first_vcs)) +
+color <- ggplot(git_experience %>% count(year_vcs, first_vcs) %>% drop_na(year_vcs), aes(x=year_vcs, y=n, color=first_vcs)) +
   geom_line()
+
+bw / color
 
 ```
 

@@ -23,7 +23,7 @@ options(
 
 # install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
 lapply(c('xfun','tidyverse','readxl','lubridate', 'maps', 
-         'RColorBrewer', 'hexbin'), function(pkg) {
+         'RColorBrewer', 'hexbin', 'patchwork'), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```
