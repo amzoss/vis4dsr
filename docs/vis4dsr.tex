@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2022-03-06}
+\date{2022-03-10}
 
 \begin{document}
 \maketitle
@@ -415,13 +415,14 @@ be the y axis, and the numerical axis will be the x axis.
 \hypertarget{variations}{%
 \subsection{Variations}\label{variations}}
 
-The following charts are variations on a bar chart. They either incorporate
-additional variables, change the basic shape of the chart, or both.
+Sometimes, we may have data that would work well for a bar chart, but we may want to
+explore a variation that would change the basic shape of the chart. There is one main
+variation of a bar chart: the lollipop chart.
 
 \hypertarget{lollipop-plot}{%
 \subsubsection{Lollipop plot}\label{lollipop-plot}}
 
-One quick variation of the bar chart is called the lollipop plot In a lollipop plot,
+The lollipop plot is a simple variation on the bar chart. In a lollipop plot,
 the bars are replace by a long line with a circle at the end, creating something
 that looks like a lollipop. Apart from the different shapes used, the lollipop plot
 works just like a bar chart. The circles draw attention to the data value, but the
@@ -439,8 +440,8 @@ lines extending to the axis reinforce the length comparisons.
 \caption{\label{fig:sample-lolli-neg}A sample lollipop plot with both positive and negative values.}
 \end{figure}
 
-\hypertarget{bar-charts-with-color}{%
-\subsubsection{Bar charts with color}\label{bar-charts-with-color}}
+\hypertarget{add-a-variable-bar-charts-with-color}{%
+\subsection{Add a variable: Bar charts with color}\label{add-a-variable-bar-charts-with-color}}
 
 A simple bar chart includes one categorical variable and one numerical variable.
 Sometimes, however, it is useful to explore the patterns in relation to a second
@@ -615,8 +616,8 @@ like a cloud than the straight line of the linear model.
 \hypertarget{variations-1}{%
 \subsection{Variations}\label{variations-1}}
 
-The following charts are variations on a scatter plot. They either summarize the
-patterns in the data or incorporate additional variables.
+The following charts are variations on a scatter plot. They build on a basic
+scatter plot by summarizing the data and making it easier to see patterns.
 
 \hypertarget{contour-or-density-plot}{%
 \subsubsection{Contour or density plot}\label{contour-or-density-plot}}
@@ -655,8 +656,8 @@ plot up using a grid of interlocking hexagons).
 \caption{\label{fig:sample-hex}A sample scatter plot binned with a hexagonal grid.}
 \end{figure}
 
-\hypertarget{scatter-plot-with-color}{%
-\subsubsection{Scatter plot with color}\label{scatter-plot-with-color}}
+\hypertarget{add-a-variable-scatter-plot-with-color}{%
+\subsection{Add a variable: Scatter plot with color}\label{add-a-variable-scatter-plot-with-color}}
 
 So far, our scatter plots have still only been used to visualize the relationship
 between two numerical variables. In some datasets, it can be helpful to consider
@@ -703,8 +704,8 @@ a strong relationship between the strength of the color values and either of the
 If colors are not concentrating in a particular region of the plot, adding a third
 variable may not be necessary for this chart.
 
-\hypertarget{bubble-chart}{%
-\subsubsection{Bubble chart}\label{bubble-chart}}
+\hypertarget{add-a-variable-bubble-chart}{%
+\subsection{Add a variable: Bubble chart}\label{add-a-variable-bubble-chart}}
 
 A bubble chart is another way of adding a third variable to a scatter plot. Unlike
 adding color to the chart, however, a bubble plot works best when you are adding a
@@ -752,30 +753,125 @@ way of a pattern that does exist.
 \hypertarget{line-chart}{%
 \section{Line Chart}\label{line-chart}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-4-1.pdf}
+A line chart is typically used to explore the change in a numerical variable over time.
+The variable is measured over a series of time points (for example, years, days, seconds).
+The time variable is associated with the x axis of the chart, and the numerical variable
+is associated with the y axis. Instead of placing a circle for each record in the
+data set, like you would see in a scatter plot, the chart uses a line that travels
+through all of the correct data points. Connecting related points with a line
+gives the data a sense of continuity and motion. Line charts are often used to look
+for dramatic increases or decreases in the numerical value at particular points in time.
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-5-1.pdf}
 
+Line charts can show change over time for one entity or for many entities. In the example
+above, there is a single line representing a country. You can also use a line chart
+to show multiple lines at once. For example, if each line is a country, you can display
+many countries on the same chart to allow for comparisons between countries as well as
+over time.
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+As with the other visualizations we've looked at, it is easy to create a line chart
+with so much data that it is hard to see patterns. The goal of the line chart is to
+show trends over time, but if all of the lines look flat, or if there are so many
+lines that you cannot detect the variations that are there, it may be useful to include
+only a small number of the lines at once, or to combine groups of the lines together.
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-7-1.pdf}
 
+In this version of the chart, the countries from each continent have been combined
+into a single line using the mean of the countries' values for each year. Another way to
+reduce the number of lines in the line chart would have been to limit the chart to
+the countries from a single continent.
+
+\emph{TODO: this has become about creating visualizations, instead of reading them!!}
+
+Also notice that when you limit the number of lines you use in a line chart, it
+becomes much easier to identify each line with a label. Not every visualization
+includes labels for every data point. For example, in a scatter plot, you may not
+label the points if the important information is the overall trend. You may have
+the same situation in a line chart if all of the lines are moving in a similar
+direction, or they all experience a dramatic change at the same point. If it is
+important to identify specific lines in your chart, however, it is best to use only
+a few lines so that it is possible to identify each line directly and trace it
+individually across the entire chart.
+
+\hypertarget{using-circles-to-highlight-the-position-of-the-data-points}{%
+\subsubsection{Using circles to highlight the position of the data points}\label{using-circles-to-highlight-the-position-of-the-data-points}}
+
+Some line charts include circles along the lines. These circles indicate that the
+data set included a value at that point in the line. This can be especially useful
+if lines travel through data at irregular time intervals. For example, if the data
+is collected every year except that there was a gap of three years in the middle,
+the circles would clearly indicate which years are included in the dataset and which
+are not. Normally the lines on a line chart will connect straight from one point in
+time to the next point in time, and unless the line turns up or down, it can be
+hard to know exactly where the real data values are.
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-1.pdf}
+\hypertarget{dual-encoding-names-with-color}{%
+\subsubsection{Dual encoding names with color}\label{dual-encoding-names-with-color}}
+
+Sometimes line charts use color to differentiate the lines from each other. Each line
+gets its own color, and the color legend clarifies the name of the line. Even for
+charts where it is important to individually identify the lines, it can quickly
+become overwhelming to see a separate color for each line. Even a small number of
+lines can require a set of colors that include colors that are difficult to tell
+apart from each other. In additional, it can be confusing and time consuming to have
+to consult a legend to identify an individual line. While color may be a nice
+complement to a simple line chart, it is easier to read a line chart when the lines
+are labeled directly instead of relying on a legend.
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-9-3.pdf}
 
 \hypertarget{variations-2}{%
 \subsection{Variations}\label{variations-2}}
 
+There is one primary variation of the line chart: the area chart.
+
 \hypertarget{area-chart}{%
 \subsubsection{Area chart}\label{area-chart}}
 
+An area chart looks like a line chart where everything under the line, down to the
+x axis, has been colored in. If you took a typical line chart and color everything
+in under each line, though, you would have overlapping colors for much of the chart.
+It is more common to see a stacked area chart, which follows the same principles as
+a stacked bar chart. One line is chosen as the bottom line, and the values for
+each additional line are stacked on top of that line. The top most line shows the
+overall total of the data in the chart. For this reason, area charts should be used
+to show data points that can be added together, like counts.
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+Stacked area charts raise concerns that are similar to the ones raised by stacked
+bar charts. The values for the lowest line and the overall total are easy to
+read, but the inner areas do not have a consistent baseline. It can be very difficult
+to see if an area has its own decrease at a particular year or if it is just
+reacting to a decrease in one of the lines below it.
+
+\hypertarget{add-a-variable-line-chart-with-color}{%
+\subsection{Add a variable: Line chart with color}\label{add-a-variable-line-chart-with-color}}
+
+\begin{itemize}
+\tightlist
+\item
+  alternately, you can use color to layer an additional variable on top of the lines
+\item
+  usually a way to create groups of lines that are all part of the same category
+\item
+  or that are showing similar data patterns
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 \hypertarget{pie-chart}{%
 \section{Pie Chart}\label{pie-chart}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 \hypertarget{variations-3}{%
 \subsection{Variations}\label{variations-3}}
@@ -783,41 +879,40 @@ way of a pattern that does exist.
 \hypertarget{donut-chart}{%
 \subsubsection{Donut chart}\label{donut-chart}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\hypertarget{waffle-chart}{%
+\subsubsection{Waffle chart}\label{waffle-chart}}
+
+\hypertarget{add-a-variable-small-multiples}{%
+\subsection{Add a variable: Small multiples}\label{add-a-variable-small-multiples}}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \hypertarget{heat-map}{%
 \section{Heat Map}\label{heat-map}}
 
-\begin{verbatim}
-## `summarise()` has grouped output by
-## 'Index.categories.2020'. You can override using the
-## `.groups` argument.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Unknown levels in `f`:
-## Inclusiveness.index.2020
-\end{verbatim}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \hypertarget{variations-4}{%
 \subsection{Variations}\label{variations-4}}
 
-\hypertarget{matrix-circles-with-color-and-size}{%
-\subsubsection{Matrix / circles with color and size}\label{matrix-circles-with-color-and-size}}
+\hypertarget{circle-matrix}{%
+\subsubsection{Circle matrix}\label{circle-matrix}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-14-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\hypertarget{add-a-variable-bubble-matrix}{%
+\subsection{Add a variable: Bubble matrix}\label{add-a-variable-bubble-matrix}}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \hypertarget{histogram}{%
 \section{Histogram}\label{histogram}}
 
-\begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value
-## with `binwidth`.
-\end{verbatim}
+Largely one-variable, one-axis plots
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \hypertarget{variations-5}{%
 \subsection{Variations}\label{variations-5}}
@@ -825,56 +920,52 @@ way of a pattern that does exist.
 \hypertarget{dot-plot}{%
 \subsubsection{Dot plot}\label{dot-plot}}
 
-\begin{verbatim}
-## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
-\end{verbatim}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \hypertarget{frequency-polygon}{%
 \subsubsection{Frequency Polygon}\label{frequency-polygon}}
 
-\begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value
-## with `binwidth`.
-\end{verbatim}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-1.pdf}
-
-\begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value
-## with `binwidth`.
-\end{verbatim}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-18-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \hypertarget{density}{%
 \subsubsection{Density}\label{density}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-19-1.pdf}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \hypertarget{box-plot}{%
 \subsubsection{Box Plot}\label{box-plot}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-22-1.pdf}
-
-\hypertarget{dot-plot-bee-swarm}{%
-\subsubsection{Dot plot / Bee swarm}\label{dot-plot-bee-swarm}}
-
-\begin{verbatim}
-## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
-\end{verbatim}
-
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\hypertarget{centered-dot-plot-bee-swarm}{%
+\subsubsection{Centered dot plot / Bee swarm}\label{centered-dot-plot-bee-swarm}}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{violin-plot}{%
 \subsubsection{Violin plot}\label{violin-plot}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\hypertarget{add-a-variable-separate-groups-on-x-axis}{%
+\subsection{Add a variable: Separate groups on x axis}\label{add-a-variable-separate-groups-on-x-axis}}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+\hypertarget{add-a-variable-separate-groups-with-color}{%
+\subsection{Add a variable: Separate groups with color}\label{add-a-variable-separate-groups-with-color}}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 \hypertarget{maps}{%
 \section{Maps}\label{maps}}
@@ -882,17 +973,12 @@ way of a pattern that does exist.
 \hypertarget{choropleth}{%
 \subsection{Choropleth}\label{choropleth}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-33-1.pdf}
 
 \hypertarget{proportional-symbol-map}{%
 \subsection{Proportional Symbol Map}\label{proportional-symbol-map}}
 
-\begin{verbatim}
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
-\end{verbatim}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 \hypertarget{building-basic-visualizations}{%
 \chapter{Building basic visualizations with ggplot2}\label{building-basic-visualizations}}
@@ -1114,7 +1200,7 @@ Now, we'll add a third variable. We'll also map the Location variable to the \te
 \hypertarget{inheritance}{%
 \section{Inheritance}\label{inheritance}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-38-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-38-2.pdf}
 
 \hypertarget{how-to-debug-code}{%
 \section{How to Debug Code}\label{how-to-debug-code}}
@@ -1765,75 +1851,75 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_path).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 row(s) containing missing values
 ## (geom_path).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-33-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-41-2.pdf}
 
 \begin{verbatim}
 ## Joining, by = "system"
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-6.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-36-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-36-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'year_vcs'. You
 ## can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 9 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-3.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-3.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-4.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-4.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-5.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-5.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-6.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_tile).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-7.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-38-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-1.pdf}
 
 \hypertarget{inclusiveness-index}{%
 \section*{Inclusiveness Index}\label{inclusiveness-index}}
@@ -1855,7 +1941,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1871,7 +1957,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-2.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1887,7 +1973,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-3.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-3.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1903,7 +1989,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-4.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-4.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1916,7 +2002,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-5.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-5.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1932,7 +2018,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-6.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1945,7 +2031,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-7.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1958,16 +2044,16 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-8.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-8.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-9.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-9.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 \hypertarget{candidate-demographics}{%
 \section*{Candidate Demographics}\label{candidate-demographics}}
@@ -1983,13 +2069,13 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 \href{https://github.com/OpportunityInsights/EconomicTracker}{Affinity Spending}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-41-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-50-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-52-1.pdf}
 
 \hypertarget{vineyards}{%
 \section*{Vineyards}\label{vineyards}}
@@ -1997,7 +2083,7 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 \href{https://dasl.datadescription.com/datafile/vineyards/}{Vineyards}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-13.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-13.pdf}
 
   \bibliography{book.bib,packages.bib}
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Angela M. Zoss, Ph.D." />
 
 
-<meta name="date" content="2022-03-06" />
+<meta name="date" content="2022-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,26 +173,34 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#bar-chart"><i class="fa fa-check"></i><b>1.2</b> Bar Chart<span></span></a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations"><i class="fa fa-check"></i><b>1.2.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.2.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-bar-charts-with-color"><i class="fa fa-check"></i><b>1.2.2</b> Add a variable: Bar charts with color<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot<span></span></a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-1"><i class="fa fa-check"></i><b>1.3.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-scatter-plot-with-color"><i class="fa fa-check"></i><b>1.3.2</b> Add a variable: Scatter plot with color<span></span></a></li>
+<li class="chapter" data-level="1.3.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-bubble-chart"><i class="fa fa-check"></i><b>1.3.3</b> Add a variable: Bubble chart<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#line-chart"><i class="fa fa-check"></i><b>1.4</b> Line Chart<span></span></a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-2"><i class="fa fa-check"></i><b>1.4.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-line-chart-with-color"><i class="fa fa-check"></i><b>1.4.2</b> Add a variable: Line chart with color<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="reading-visualizations.html"><a href="reading-visualizations.html#pie-chart"><i class="fa fa-check"></i><b>1.5</b> Pie Chart<span></span></a>
 <ul>
 <li class="chapter" data-level="1.5.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-3"><i class="fa fa-check"></i><b>1.5.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.5.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-small-multiples"><i class="fa fa-check"></i><b>1.5.2</b> Add a variable: Small multiples<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="reading-visualizations.html"><a href="reading-visualizations.html#heat-map"><i class="fa fa-check"></i><b>1.6</b> Heat Map<span></span></a>
 <ul>
 <li class="chapter" data-level="1.6.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-4"><i class="fa fa-check"></i><b>1.6.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.6.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-bubble-matrix"><i class="fa fa-check"></i><b>1.6.2</b> Add a variable: Bubble matrix<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="reading-visualizations.html"><a href="reading-visualizations.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram<span></span></a>
 <ul>
 <li class="chapter" data-level="1.7.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-5"><i class="fa fa-check"></i><b>1.7.1</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.7.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis"><i class="fa fa-check"></i><b>1.7.2</b> Add a variable: Separate groups on x axis<span></span></a></li>
+<li class="chapter" data-level="1.7.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-with-color"><i class="fa fa-check"></i><b>1.7.3</b> Add a variable: Separate groups with color<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.8" data-path="reading-visualizations.html"><a href="reading-visualizations.html#maps"><i class="fa fa-check"></i><b>1.8</b> Maps<span></span></a>
 <ul>
@@ -452,11 +460,12 @@ FIGURE 1.4: A sample bar chart, with the bars oriented horizonally.
 </div>
 <div id="variations" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Variations<a href="reading-visualizations.html#variations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following charts are variations on a bar chart. They either incorporate
-additional variables, change the basic shape of the chart, or both.</p>
+<p>Sometimes, we may have data that would work well for a bar chart, but we may want to
+explore a variation that would change the basic shape of the chart. There is one main
+variation of a bar chart: the lollipop chart.</p>
 <div id="lollipop-plot" class="section level4 hasAnchor" number="1.2.1.1">
 <h4><span class="header-section-number">1.2.1.1</span> Lollipop plot<a href="reading-visualizations.html#lollipop-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>One quick variation of the bar chart is called the lollipop plot In a lollipop plot,
+<p>The lollipop plot is a simple variation on the bar chart. In a lollipop plot,
 the bars are replace by a long line with a circle at the end, creating something
 that looks like a lollipop. Apart from the different shapes used, the lollipop plot
 works just like a bar chart. The circles draw attention to the data value, but the
@@ -474,8 +483,9 @@ FIGURE 1.6: A sample lollipop plot with both positive and negative values.
 </p>
 </div>
 </div>
-<div id="bar-charts-with-color" class="section level4 hasAnchor" number="1.2.1.2">
-<h4><span class="header-section-number">1.2.1.2</span> Bar charts with color<a href="reading-visualizations.html#bar-charts-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="add-a-variable-bar-charts-with-color" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Add a variable: Bar charts with color<a href="reading-visualizations.html#add-a-variable-bar-charts-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A simple bar chart includes one categorical variable and one numerical variable.
 Sometimes, however, it is useful to explore the patterns in relation to a second
 categorical variable. Adding another categorical variable to a bar chart usually
@@ -520,9 +530,8 @@ group of bars, and each option of the Inclusiveness Index is a separate bar.</p>
 FIGURE 1.9: A sample grouped bar chart.
 </p>
 </div>
-</div>
-<div id="dumbbell-plot" class="section level4 hasAnchor" number="1.2.1.3">
-<h4><span class="header-section-number">1.2.1.3</span> Dumbbell plot<a href="reading-visualizations.html#dumbbell-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="dumbbell-plot" class="section level4 hasAnchor" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Dumbbell plot<a href="reading-visualizations.html#dumbbell-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Stacked and grouped bar charts show some of the limitations of bar charts for
 making complex comparisons. The rectangles in the bar chart take up a large amount
 of space. Think back to the lollipop plot, where it’s the circles that directly
@@ -631,8 +640,8 @@ the relationship between the variables is not very strong, so the points look mo
 like a cloud than the straight line of the linear model.</p>
 <div id="variations-1" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Variations<a href="reading-visualizations.html#variations-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following charts are variations on a scatter plot. They either summarize the
-patterns in the data or incorporate additional variables.</p>
+<p>The following charts are variations on a scatter plot. They build on a basic
+scatter plot by summarizing the data and making it easier to see patterns.</p>
 <div id="contour-or-density-plot" class="section level4 hasAnchor" number="1.3.1.1">
 <h4><span class="header-section-number">1.3.1.1</span> Contour or density plot<a href="reading-visualizations.html#contour-or-density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Sometimes a dataset is too large for a scatter plot to be effective. With a large
@@ -668,8 +677,9 @@ FIGURE 1.18: A sample scatter plot binned with a hexagonal grid.
 </p>
 </div>
 </div>
-<div id="scatter-plot-with-color" class="section level4 hasAnchor" number="1.3.1.3">
-<h4><span class="header-section-number">1.3.1.3</span> Scatter plot with color<a href="reading-visualizations.html#scatter-plot-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="add-a-variable-scatter-plot-with-color" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Add a variable: Scatter plot with color<a href="reading-visualizations.html#add-a-variable-scatter-plot-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So far, our scatter plots have still only been used to visualize the relationship
 between two numerical variables. In some datasets, it can be helpful to consider
 how an additional variable interacts with the scatter plot pattern. One way to
@@ -711,8 +721,8 @@ a strong relationship between the strength of the color values and either of the
 If colors are not concentrating in a particular region of the plot, adding a third
 variable may not be necessary for this chart.</p>
 </div>
-<div id="bubble-chart" class="section level4 hasAnchor" number="1.3.1.4">
-<h4><span class="header-section-number">1.3.1.4</span> Bubble chart<a href="reading-visualizations.html#bubble-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="add-a-variable-bubble-chart" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Add a variable: Bubble chart<a href="reading-visualizations.html#add-a-variable-bubble-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A bubble chart is another way of adding a third variable to a scatter plot. Unlike
 adding color to the chart, however, a bubble plot works best when you are adding a
 third numerical variable. That’s because in a bubble plot, the additional variable
@@ -753,103 +763,187 @@ a variable doesn’t reveal anything new about the data, it is probably getting 
 way of a pattern that does exist.</p>
 </div>
 </div>
-</div>
 <div id="line-chart" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Line Chart<a href="reading-visualizations.html#line-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>A line chart is typically used to explore the change in a numerical variable over time.
+The variable is measured over a series of time points (for example, years, days, seconds).
+The time variable is associated with the x axis of the chart, and the numerical variable
+is associated with the y axis. Instead of placing a circle for each record in the
+data set, like you would see in a scatter plot, the chart uses a line that travels
+through all of the correct data points. Connecting related points with a line
+gives the data a sense of continuity and motion. Line charts are often used to look
+for dramatic increases or decreases in the numerical value at particular points in time.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Line charts can show change over time for one entity or for many entities. In the example
+above, there is a single line representing a country. You can also use a line chart
+to show multiple lines at once. For example, if each line is a country, you can display
+many countries on the same chart to allow for comparisons between countries as well as
+over time.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>As with the other visualizations we’ve looked at, it is easy to create a line chart
+with so much data that it is hard to see patterns. The goal of the line chart is to
+show trends over time, but if all of the lines look flat, or if there are so many
+lines that you cannot detect the variations that are there, it may be useful to include
+only a small number of the lines at once, or to combine groups of the lines together.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>In this version of the chart, the countries from each continent have been combined
+into a single line using the mean of the countries’ values for each year. Another way to
+reduce the number of lines in the line chart would have been to limit the chart to
+the countries from a single continent.</p>
+<p><em>TODO: this has become about creating visualizations, instead of reading them!!</em></p>
+<p>Also notice that when you limit the number of lines you use in a line chart, it
+becomes much easier to identify each line with a label. Not every visualization
+includes labels for every data point. For example, in a scatter plot, you may not
+label the points if the important information is the overall trend. You may have
+the same situation in a line chart if all of the lines are moving in a similar
+direction, or they all experience a dramatic change at the same point. If it is
+important to identify specific lines in your chart, however, it is best to use only
+a few lines so that it is possible to identify each line directly and trace it
+individually across the entire chart.</p>
+<div id="using-circles-to-highlight-the-position-of-the-data-points" class="section level4 hasAnchor" number="1.4.0.1">
+<h4><span class="header-section-number">1.4.0.1</span> Using circles to highlight the position of the data points<a href="reading-visualizations.html#using-circles-to-highlight-the-position-of-the-data-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Some line charts include circles along the lines. These circles indicate that the
+data set included a value at that point in the line. This can be especially useful
+if lines travel through data at irregular time intervals. For example, if the data
+is collected every year except that there was a gap of three years in the middle,
+the circles would clearly indicate which years are included in the dataset and which
+are not. Normally the lines on a line chart will connect straight from one point in
+time to the next point in time, and unless the line turns up or down, it can be
+hard to know exactly where the real data values are.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="dual-encoding-names-with-color" class="section level4 hasAnchor" number="1.4.0.2">
+<h4><span class="header-section-number">1.4.0.2</span> Dual encoding names with color<a href="reading-visualizations.html#dual-encoding-names-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sometimes line charts use color to differentiate the lines from each other. Each line
+gets its own color, and the color legend clarifies the name of the line. Even for
+charts where it is important to individually identify the lines, it can quickly
+become overwhelming to see a separate color for each line. Even a small number of
+lines can require a set of colors that include colors that are difficult to tell
+apart from each other. In additional, it can be confusing and time consuming to have
+to consult a legend to identify an individual line. While color may be a nice
+complement to a simple line chart, it is easier to read a line chart when the lines
+are labeled directly instead of relying on a legend.</p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-9-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-9-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+</div>
 <div id="variations-2" class="section level3 hasAnchor" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Variations<a href="reading-visualizations.html#variations-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There is one primary variation of the line chart: the area chart.</p>
 <div id="area-chart" class="section level4 hasAnchor" number="1.4.1.1">
 <h4><span class="header-section-number">1.4.1.1</span> Area chart<a href="reading-visualizations.html#area-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>An area chart looks like a line chart where everything under the line, down to the
+x axis, has been colored in. If you took a typical line chart and color everything
+in under each line, though, you would have overlapping colors for much of the chart.
+It is more common to see a stacked area chart, which follows the same principles as
+a stacked bar chart. One line is chosen as the bottom line, and the values for
+each additional line are stacked on top of that line. The top most line shows the
+overall total of the data in the chart. For this reason, area charts should be used
+to show data points that can be added together, like counts.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Stacked area charts raise concerns that are similar to the ones raised by stacked
+bar charts. The values for the lowest line and the overall total are easy to
+read, but the inner areas do not have a consistent baseline. It can be very difficult
+to see if an area has its own decrease at a particular year or if it is just
+reacting to a decrease in one of the lines below it.</p>
 </div>
+</div>
+<div id="add-a-variable-line-chart-with-color" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Add a variable: Line chart with color<a href="reading-visualizations.html#add-a-variable-line-chart-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>alternately, you can use color to layer an additional variable on top of the lines</li>
+<li>usually a way to create groups of lines that are all part of the same category</li>
+<li>or that are showing similar data patterns</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 </div>
 <div id="pie-chart" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Pie Chart<a href="reading-visualizations.html#pie-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <div id="variations-3" class="section level3 hasAnchor" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> Variations<a href="reading-visualizations.html#variations-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="donut-chart" class="section level4 hasAnchor" number="1.5.1.1">
 <h4><span class="header-section-number">1.5.1.1</span> Donut chart<a href="reading-visualizations.html#donut-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
+<div id="waffle-chart" class="section level4 hasAnchor" number="1.5.1.2">
+<h4><span class="header-section-number">1.5.1.2</span> Waffle chart<a href="reading-visualizations.html#waffle-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="add-a-variable-small-multiples" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Add a variable: Small multiples<a href="reading-visualizations.html#add-a-variable-small-multiples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 </div>
 <div id="heat-map" class="section level2 hasAnchor" number="1.6">
 <h2><span class="header-section-number">1.6</span> Heat Map<a href="reading-visualizations.html#heat-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## `summarise()` has grouped output by
-## &#39;Index.categories.2020&#39;. You can override using the
-## `.groups` argument.</code></pre>
-<pre><code>## Warning: Unknown levels in `f`:
-## Inclusiveness.index.2020</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <div id="variations-4" class="section level3 hasAnchor" number="1.6.1">
 <h3><span class="header-section-number">1.6.1</span> Variations<a href="reading-visualizations.html#variations-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="matrix-circles-with-color-and-size" class="section level4 hasAnchor" number="1.6.1.1">
-<h4><span class="header-section-number">1.6.1.1</span> Matrix / circles with color and size<a href="reading-visualizations.html#matrix-circles-with-color-and-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div id="circle-matrix" class="section level4 hasAnchor" number="1.6.1.1">
+<h4><span class="header-section-number">1.6.1.1</span> Circle matrix<a href="reading-visualizations.html#circle-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
+</div>
+<div id="add-a-variable-bubble-matrix" class="section level3 hasAnchor" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Add a variable: Bubble matrix<a href="reading-visualizations.html#add-a-variable-bubble-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>
 <div id="histogram" class="section level2 hasAnchor" number="1.7">
 <h2><span class="header-section-number">1.7</span> Histogram<a href="reading-visualizations.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value
-## with `binwidth`.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Largely one-variable, one-axis plots</p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <div id="variations-5" class="section level3 hasAnchor" number="1.7.1">
 <h3><span class="header-section-number">1.7.1</span> Variations<a href="reading-visualizations.html#variations-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="dot-plot" class="section level4 hasAnchor" number="1.7.1.1">
 <h4><span class="header-section-number">1.7.1.1</span> Dot plot<a href="reading-visualizations.html#dot-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 <div id="frequency-polygon" class="section level4 hasAnchor" number="1.7.1.2">
 <h4><span class="header-section-number">1.7.1.2</span> Frequency Polygon<a href="reading-visualizations.html#frequency-polygon" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value
-## with `binwidth`.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value
-## with `binwidth`.</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="density" class="section level4 hasAnchor" number="1.7.1.3">
 <h4><span class="header-section-number">1.7.1.3</span> Density<a href="reading-visualizations.html#density" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="box-plot" class="section level4 hasAnchor" number="1.7.1.4">
 <h4><span class="header-section-number">1.7.1.4</span> Box Plot<a href="reading-visualizations.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-</div>
-<div id="dot-plot-bee-swarm" class="section level4 hasAnchor" number="1.7.1.5">
-<h4><span class="header-section-number">1.7.1.5</span> Dot plot / Bee swarm<a href="reading-visualizations.html#dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="centered-dot-plot-bee-swarm" class="section level4 hasAnchor" number="1.7.1.5">
+<h4><span class="header-section-number">1.7.1.5</span> Centered dot plot / Bee swarm<a href="reading-visualizations.html#centered-dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="violin-plot" class="section level4 hasAnchor" number="1.7.1.6">
 <h4><span class="header-section-number">1.7.1.6</span> Violin plot<a href="reading-visualizations.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
+</div>
+<div id="add-a-variable-separate-groups-on-x-axis" class="section level3 hasAnchor" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Add a variable: Separate groups on x axis<a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+</div>
+<div id="add-a-variable-separate-groups-with-color" class="section level3 hasAnchor" number="1.7.3">
+<h3><span class="header-section-number">1.7.3</span> Add a variable: Separate groups with color<a href="reading-visualizations.html#add-a-variable-separate-groups-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
 </div>
 <div id="maps" class="section level2 hasAnchor" number="1.8">
 <h2><span class="header-section-number">1.8</span> Maps<a href="reading-visualizations.html#maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="choropleth" class="section level3 hasAnchor" number="1.8.1">
 <h3><span class="header-section-number">1.8.1</span> Choropleth<a href="reading-visualizations.html#choropleth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="proportional-symbol-map" class="section level3 hasAnchor" number="1.8.2">
 <h3><span class="header-section-number">1.8.2</span> Proportional Symbol Map<a href="reading-visualizations.html#proportional-symbol-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>## Warning: Removed 1 rows containing missing values
-## (geom_point).</code></pre>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 
 </div>
 </div>

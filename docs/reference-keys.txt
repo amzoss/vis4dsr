@@ -30,13 +30,13 @@ bar-chart
 variations
 scatter-plot
 variations-1
-bubble-chart
 line-chart
 variations-2
 area-chart
 pie-chart
 variations-3
 donut-chart
+waffle-chart
 heat-map
 variations-4
 histogram

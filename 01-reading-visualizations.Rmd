@@ -155,12 +155,13 @@ ggplot(mapping = aes(y = Continent, x = `Mean Inclusiveness Index`)) +
 
 ### Variations
 
-The following charts are variations on a bar chart. They either incorporate
-additional variables, change the basic shape of the chart, or both.
+Sometimes, we may have data that would work well for a bar chart, but we may want to
+explore a variation that would change the basic shape of the chart. There is one main
+variation of a bar chart: the lollipop chart. 
 
 #### Lollipop plot
 
-One quick variation of the bar chart is called the lollipop plot In a lollipop plot,
+The lollipop plot is a simple variation on the bar chart. In a lollipop plot,
 the bars are replace by a long line with a circle at the end, creating something
 that looks like a lollipop. Apart from the different shapes used, the lollipop plot 
 works just like a bar chart. The circles draw attention to the data value, but the
@@ -192,7 +193,7 @@ ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
 
 ```
 
-#### Bar charts with color
+### Add a variable: Bar charts with color
 
 A simple bar chart includes one categorical variable and one numerical variable.
 Sometimes, however, it is useful to explore the patterns in relation to a second
@@ -364,6 +365,14 @@ plot as a diagonal pattern of circles, from the bottom left corner of the chart 
 the upper right corner of the chart. The closer it looks to a straight line, rather 
 than a diffuse pattern, the stronger the relationship is.
 
+
+```{r}
+
+# TODO: series from more diffuse to perfect correlation
+
+```
+
+
 There are a few types of patterns that might show up when looking at a scatter plot.
 Instead of a positive correlation, the variables could have a negative correlation:
 high values of one variable are associated with low values of the other variable. This
@@ -450,8 +459,8 @@ like a cloud than the straight line of the linear model.
 
 ### Variations
 
-The following charts are variations on a scatter plot. They either summarize the 
-patterns in the data or incorporate additional variables.
+The following charts are variations on a scatter plot. They build on a basic
+scatter plot by summarizing the data and making it easier to see patterns.
 
 #### Contour or density plot
 
@@ -463,14 +472,15 @@ the points. This is called a contour or density plot.
 
 ```{r sample-contour, fig.cap='A sample contour plot with scatter plot points on top.'}
 
-inclusiveness_index %>%
-  drop_na(Z.score.Religion, Inclusiveness.index.2020) %>%
+inclusiveness_index_annual %>%
+  drop_na(Z.score.Religion, Inclusiveness.index) %>%
   ggplot(aes(x = Z.score.Religion, 
-             y = Inclusiveness.index.2020)) +
+             y = Inclusiveness.index)) +
     geom_density_2d_filled(contour_var = "count") +
     geom_point(color="white") +
   labs(x = "Z-score, Religion",
-       y = "Overall Inclusiveness")
+       y = "Overall Inclusiveness") +
+  coord_equal()
 
 ```
 
@@ -485,31 +495,33 @@ plot up using a grid of interlocking hexagons).
 
 ```{r sample-bin2d, fig.cap='A sample scatter plot binned with a rectangular grid.'}
 
-inclusiveness_index %>%
-  drop_na(Z.score.Religion, Inclusiveness.index.2020) %>%
+inclusiveness_index_annual %>%
+  drop_na(Z.score.Religion, Inclusiveness.index) %>%
   ggplot(aes(x = Z.score.Religion, 
-             y = Inclusiveness.index.2020)) +
+             y = Inclusiveness.index)) +
     geom_bin2d(binwidth = c(.25,.25)) +
     geom_point(color="white") +
   labs(x = "Z-score, Religion",
-       y = "Overall Inclusiveness")
+       y = "Overall Inclusiveness") +
+  coord_equal()
 
 ```
 
 ```{r sample-hex, fig.cap='A sample scatter plot binned with a hexagonal grid.'}
 
-inclusiveness_index %>%
-  drop_na(Z.score.Religion, Inclusiveness.index.2020) %>%
+inclusiveness_index_annual %>%
+  drop_na(Z.score.Religion, Inclusiveness.index) %>%
   ggplot(aes(x = Z.score.Religion, 
-             y = Inclusiveness.index.2020)) +
+             y = Inclusiveness.index)) +
     geom_hex(binwidth=.25) +
     geom_point(color="white") +
   labs(x = "Z-score, Religion",
-       y = "Overall Inclusiveness")
+       y = "Overall Inclusiveness") +
+  coord_equal()
 
 ```
 
-#### Scatter plot with color 
+### Add a variable: Scatter plot with color 
 
 So far, our scatter plots have still only been used to visualize the relationship
 between two numerical variables. In some datasets, it can be helpful to consider
@@ -577,7 +589,7 @@ a strong relationship between the strength of the color values and either of the
 If colors are not concentrating in a particular region of the plot, adding a third
 variable may not be necessary for this chart.
 
-#### Bubble chart
+### Add a variable: Bubble chart
 
 A bubble chart is another way of adding a third variable to a scatter plot. Unlike
 adding color to the chart, however, a bubble plot works best when you are adding a
@@ -650,64 +662,33 @@ way of a pattern that does exist.
 
 ## Line Chart
 
-
-```{r}
-inclusiveness_index_annual %>%
-  group_by(Year, Continent) %>%
-  summarise(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE), .groups = "drop") %>%
-  dplyr::filter(Continent == "Europe") %>%
-ggplot(aes(x = Year, 
-           y = mean_incl_ind)) +
-  geom_line()
-
-```
-
-```{r}
-inclusiveness_index_annual %>%
-  dplyr::filter(Continent == "Africa", !is.na(Inclusiveness.index)) %>%
-  count(Year) %>%
-ggplot(aes(x = Year, 
-           y = n)) +
-  geom_line()
-
-```
-
-```{r}
-inclusiveness_index_annual %>%
-  dplyr::filter(!is.na(Inclusiveness.index)) %>%
-  count(Continent, Year) %>%
-ggplot(aes(x = Year, 
-           y = n,
-           group = Continent)) +
-  geom_line()
-
-```
+A line chart is typically used to explore the change in a numerical variable over time.
+The variable is measured over a series of time points (for example, years, days, seconds).
+The time variable is associated with the x axis of the chart, and the numerical variable
+is associated with the y axis. Instead of placing a circle for each record in the
+data set, like you would see in a scatter plot, the chart uses a line that travels
+through all of the correct data points. Connecting related points with a line
+gives the data a sense of continuity and motion. Line charts are often used to look 
+for dramatic increases or decreases in the numerical value at particular points in time.
 
 
 ```{r}
+
+
 inclusiveness_index_annual %>%
-  dplyr::filter(!is.na(Inclusiveness.index)) %>%
-  count(Continent, Year) %>%
+  dplyr::filter(Country == "Rwanda") %>%
 ggplot(aes(x = Year, 
-           y = n,
-           color = Continent)) +
+           y = Inclusiveness.index)) +
   geom_line() +
-  scale_color_manual(values=continent.colors)
+  labs(title = "Rwanda")
 
 ```
 
-
-```{r}
-inclusiveness_index_annual %>%
-  group_by(Year, Continent) %>%
-  summarise(mean_incl_ind = mean(Inclusiveness.index, na.rm = TRUE), .groups = "drop") %>%
-  ggplot(aes(x = Year, 
-             y = mean_incl_ind,
-             color = Continent)) +
-    geom_line() +
-  scale_color_manual(values=continent.colors)
-
-```
+Line charts can show change over time for one entity or for many entities. In the example
+above, there is a single line representing a country. You can also use a line chart
+to show multiple lines at once. For example, if each line is a country, you can display
+many countries on the same chart to allow for comparisons between countries as well as
+over time.
 
 
 ```{r}
@@ -716,28 +697,153 @@ inclusiveness_index_annual %>%
   drop_na(Inclusiveness.index) %>%
 ggplot(aes(x = Year, 
            y = Inclusiveness.index,
-           group = Country,
+           group = Country)) +
+  geom_line() +
+  labs(title = "All Countries")
+
+```
+
+As with the other visualizations we've looked at, it is easy to create a line chart
+with so much data that it is hard to see patterns. The goal of the line chart is to
+show trends over time, but if all of the lines look flat, or if there are so many
+lines that you cannot detect the variations that are there, it may be useful to include
+only a small number of the lines at once, or to combine groups of the lines together. 
+
+
+```{r}
+
+inclusiveness_index_annual %>%
+  group_by(Continent, Year) %>%
+  summarise(mean.incl.ind = mean(Inclusiveness.index, na.rm=T), .groups="drop") %>%
+ggplot(aes(x = Year, 
+           y = mean.incl.ind,
+           group = Continent)) +
+  geom_line() +
+  geom_text(data = . %>% dplyr::filter(Year == 2020), 
+            aes(label = Continent),
+            nudge_y = .03,
+            hjust = 0) +
+  labs(title = "Average by Continent") +
+  scale_x_continuous(limits = c(2016, 2020.3))
+
+```
+
+In this version of the chart, the countries from each continent have been combined
+into a single line using the mean of the countries' values for each year. Another way to
+reduce the number of lines in the line chart would have been to limit the chart to
+the countries from a single continent.
+
+*TODO: this has become about creating visualizations, instead of reading them!!*
+
+Also notice that when you limit the number of lines you use in a line chart, it 
+becomes much easier to identify each line with a label. Not every visualization 
+includes labels for every data point. For example, in a scatter plot, you may not
+label the points if the important information is the overall trend. You may have
+the same situation in a line chart if all of the lines are moving in a similar 
+direction, or they all experience a dramatic change at the same point. If it is
+important to identify specific lines in your chart, however, it is best to use only
+a few lines so that it is possible to identify each line directly and trace it
+individually across the entire chart.
+
+#### Using circles to highlight the position of the data points
+
+Some line charts include circles along the lines. These circles indicate that the
+data set included a value at that point in the line. This can be especially useful
+if lines travel through data at irregular time intervals. For example, if the data
+is collected every year except that there was a gap of three years in the middle, 
+the circles would clearly indicate which years are included in the dataset and which
+are not. Normally the lines on a line chart will connect straight from one point in
+time to the next point in time, and unless the line turns up or down, it can be
+hard to know exactly where the real data values are.
+
+```{r}
+
+inclusiveness_index_annual %>%
+  group_by(Continent, Year) %>%
+  summarise(mean.incl.ind = mean(Inclusiveness.index, na.rm=T), .groups="drop") %>%
+ggplot(aes(x = Year, 
+           y = mean.incl.ind,
+           group = Continent)) +
+  geom_line() +
+  geom_point() + 
+  geom_text(data = . %>% dplyr::filter(Year == 2020), 
+            aes(label = Continent),
+            nudge_y = .03,
+            hjust = 0) +
+  labs(title = "Average by Continent") +
+  scale_x_continuous(limits = c(2016, 2020.3))
+
+```
+
+#### Dual encoding names with color
+
+Sometimes line charts use color to differentiate the lines from each other. Each line
+gets its own color, and the color legend clarifies the name of the line. Even for
+charts where it is important to individually identify the lines, it can quickly
+become overwhelming to see a separate color for each line. Even a small number of 
+lines can require a set of colors that include colors that are difficult to tell
+apart from each other. In additional, it can be confusing and time consuming to have
+to consult a legend to identify an individual line. While color may be a nice 
+complement to a simple line chart, it is easier to read a line chart when the lines
+are labeled directly instead of relying on a legend.
+
+```{r}
+
+inclusiveness_index_annual %>%
+  group_by(Continent, Year) %>%
+  summarise(mean.incl.ind = mean(Inclusiveness.index, na.rm=T), .groups="drop") %>%
+ggplot(aes(x = Year, 
+           y = mean.incl.ind,
+           group = Continent)) +
+  geom_line() +
+  geom_text(data = . %>% dplyr::filter(Year == 2020), 
+            aes(label = Continent),
+            nudge_y = .03,
+            hjust = 0) +
+  labs(title = "Average by Continent") +
+  scale_x_continuous(limits = c(2016, 2020.3))
+
+inclusiveness_index_annual %>%
+  group_by(Continent, Year) %>%
+  summarise(mean.incl.ind = mean(Inclusiveness.index, na.rm=T), .groups="drop") %>%
+ggplot(aes(x = Year, 
+           y = mean.incl.ind,
            color = Continent)) +
-  geom_line(alpha = .75) +
-  geom_line(
-    data = inclusiveness_index_annual %>% 
-      group_by(Continent, Year) %>%
-      summarise(med_incl = median(Inclusiveness.index, na.rm = TRUE), .groups = "drop"),
-      aes(x = Year, y = med_incl, group = Continent), size = 3, color = "#555555"
-  ) +
-  geom_line(
-    data = inclusiveness_index_annual %>% 
-      group_by(Continent, Year) %>%
-      summarise(med_incl = median(Inclusiveness.index, na.rm = TRUE), .groups = "drop"),
-      aes(x = Year, y = med_incl, color = Continent, group = NULL), size = 2
-  ) +
-  scale_color_manual(values=continent.colors)
+  geom_line() +
+  labs(title = "Average by Continent")
+
+
+inclusiveness_index_annual %>%
+  group_by(Continent, Year) %>%
+  summarise(mean.incl.ind = mean(Inclusiveness.index, na.rm=T), .groups="drop") %>%
+ggplot(aes(x = Year, 
+           y = mean.incl.ind,
+           color = Continent)) +
+  geom_line(show.legend = FALSE) +
+  geom_text(data = . %>% dplyr::filter(Year == 2020), 
+            aes(label = Continent),
+            nudge_y = .03,
+            hjust = 0,
+            show.legend = FALSE) +
+  labs(title = "Average by Continent") +
+  scale_x_continuous(limits = c(2016, 2020.4))
 
 ```
 
 ### Variations
 
+There is one primary variation of the line chart: the area chart. 
+
 #### Area chart
+
+An area chart looks like a line chart where everything under the line, down to the
+x axis, has been colored in. If you took a typical line chart and color everything
+in under each line, though, you would have overlapping colors for much of the chart.
+It is more common to see a stacked area chart, which follows the same principles as
+a stacked bar chart. One line is chosen as the bottom line, and the values for
+each additional line are stacked on top of that line. The top most line shows the
+overall total of the data in the chart. For this reason, area charts should be used
+to show data points that can be added together, like counts.
 
 ```{r}
 inclusiveness_index_annual %>%
@@ -753,6 +859,63 @@ ggplot(aes(x = Year,
 
 ```
 
+Stacked area charts raise concerns that are similar to the ones raised by stacked
+bar charts. The values for the lowest line and the overall total are easy to 
+read, but the inner areas do not have a consistent baseline. It can be very difficult
+to see if an area has its own decrease at a particular year or if it is just
+reacting to a decrease in one of the lines below it.
+
+### Add a variable: Line chart with color
+
+* alternately, you can use color to layer an additional variable on top of the lines
+* usually a way to create groups of lines that are all part of the same category
+* or that are showing similar data patterns
+
+
+```{r}
+
+inclusiveness_index_annual %>%
+  drop_na(Inclusiveness.index) %>%
+ggplot(aes(x = Year, 
+           y = Inclusiveness.index,
+           group = Country,
+           color = Continent)) +
+  geom_line(alpha = .75) +
+  #geom_line(
+  #  data = inclusiveness_index_annual %>% 
+  #    group_by(Continent, Year) %>%
+  #    summarise(med_incl = median(Inclusiveness.index, na.rm = TRUE), .groups = "drop"),
+  #    aes(x = Year, y = med_incl, group = Continent), size = 3, color = "#555555"
+  #) +
+  #geom_line(
+  #  data = inclusiveness_index_annual %>% 
+  #    group_by(Continent, Year) %>%
+  #    summarise(med_incl = median(Inclusiveness.index, na.rm = TRUE), .groups = "drop"),
+  #    aes(x = Year, y = med_incl, color = Continent, group = NULL), size = 2
+  #) +
+  scale_color_manual(values=continent.colors)
+
+```
+
+```{r}
+
+inclusiveness_index_annual %>%
+  drop_na(Inclusiveness.index) %>%
+ggplot(aes(x = Year, 
+           y = Inclusiveness.index,
+           group = Country)) +
+  geom_line(alpha = .75, color = "#bbbbbb") +
+  geom_line(
+    data = . %>%
+      dplyr::filter(Continent == "Americas"),
+      aes(color = Continent),
+    size = 1
+  ) +
+  scale_color_manual(values=continent.colors, breaks = c("Americas")) +
+  theme_bw()
+
+```
+
 ## Pie Chart
 
 ```{r}
@@ -762,8 +925,7 @@ inclusiveness_index %>%
     geom_bar(position=position_fill()) +
     coord_polar(direction = -1) +
     scale_fill_manual(values = inclusive.colors) +
-    theme_void() +
-    facet_wrap(vars(Continent))
+    theme_void()
 
 ```
 
@@ -780,6 +942,22 @@ inclusiveness_index %>%
     coord_polar(theta="y", direction = -1) +
     xlim(c(2.5, 4.5)) +
     scale_fill_manual(values = inclusive.colors) +
+    theme_void()
+
+
+```
+
+#### Waffle chart
+
+### Add a variable: Small multiples
+
+```{r}
+
+inclusiveness_index %>%
+  ggplot(aes(y = "", fill = Index.categories.2020)) +
+    geom_bar(position=position_fill()) +
+    coord_polar(direction = -1) +
+    scale_fill_manual(values = inclusive.colors) +
     theme_void() +
     facet_wrap(vars(Continent))
 
@@ -787,7 +965,7 @@ inclusiveness_index %>%
 
 ## Heat Map
 
-```{r}
+```{r, warning=FALSE}
 
 inclusiveness_index %>%
   pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
@@ -795,7 +973,7 @@ inclusiveness_index %>%
                values_to = "index_values",
                values_drop_na = TRUE) %>%
   group_by(Index.categories.2020, index_name) %>%
-  summarise(mean_incl_ind = mean(index_values)) %>%
+  summarise(mean_incl_ind = mean(index_values), .groups="drop") %>%
   mutate(index_name = index_name %>%
            as_factor() %>%
            fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
@@ -814,7 +992,7 @@ inclusiveness_index %>%
 
 ### Variations
 
-#### Matrix / circles with color and size
+#### Circle matrix
 
 ```{r}
 
@@ -841,14 +1019,44 @@ inclusiveness_index %>%
 
 ```
 
+### Add a variable: Bubble matrix
+
+```{r}
+
+inclusiveness_index %>%
+  pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
+               names_to = "index_name",
+               values_to = "index_values",
+               values_drop_na = TRUE) %>%
+  group_by(Index.categories.2020, index_name) %>%
+  summarise(mean_incl_ind = mean(index_values), n=n(), .groups="drop") %>%
+  mutate(index_name = index_name %>%
+           as_factor() %>%
+           fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
+                         "Z.score.Sexual.Orientation", "Z.score.Religion", 
+                         "Z.score.Disability", "Inclusiveness.index.2020")) %>%
+           fct_rev()) %>%
+  #View() %>%
+  ggplot(aes(y = index_name, x = Index.categories.2020, fill = mean_incl_ind, size=n)) +
+    geom_point(shape=21) +
+    scale_fill_distiller(type="div", palette = 3, 
+                         limits=c(-1.2,1.2), 
+                         direction = -1) +
+    scale_size_continuous(range = c(3,11)) + 
+  theme_bw()
+
+```
+
 ## Histogram
+
+Largely one-variable, one-axis plots
 
 ```{r}
 
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020)) +
-    geom_histogram()
+    geom_histogram(binwidth=.09)
 
 ```
 
@@ -862,7 +1070,7 @@ inclusiveness_index %>%
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020)) +
-    geom_dotplot()
+    geom_dotplot(binwidth=.09)
 
 ```
 
@@ -873,17 +1081,7 @@ inclusiveness_index %>%
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020)) +
-    geom_freqpoly()
-
-```
-
-```{r}
-
-inclusiveness_index %>%
-  drop_na(Inclusiveness.index.2020) %>%
-  ggplot(aes(x = Inclusiveness.index.2020, color = Continent)) +
-    geom_freqpoly() +
-    scale_color_manual(values = continent.colors)
+    geom_freqpoly(binwidth=.09)
 
 ```
 
@@ -895,16 +1093,6 @@ inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020)) +
     geom_density()
-
-```
-
-```{r}
-
-inclusiveness_index %>%
-  drop_na(Inclusiveness.index.2020) %>%
-  ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
-    geom_density(alpha = .25) +
-  scale_fill_manual(values = continent.colors)
 
 ```
 
@@ -920,24 +1108,16 @@ inclusiveness_index %>%
 
 ```
 
-```{r}
-
-inclusiveness_index %>%
-  drop_na(Inclusiveness.index.2020) %>%
-  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
-    geom_boxplot()
-
-```
-
-#### Dot plot / Bee swarm
+#### Centered dot plot / Bee swarm
 
 
 ```{r}
 
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
-  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
-    geom_dotplot(binaxis = "y", stackdir = "center")
+  ggplot(aes(x=0, y = Inclusiveness.index.2020)) +
+    geom_dotplot(binaxis = "y", stackdir = "center", binwidth=.09) +
+    scale_x_continuous(limits = c(-2,2))
 
 ```
 
@@ -947,8 +1127,82 @@ inclusiveness_index %>%
 
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x=0, y = Inclusiveness.index.2020)) +
+    geom_violin() +
+    scale_x_continuous(limits = c(-2,2))
+
+```
+
+### Add a variable: Separate groups on x axis
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_boxplot()
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_dotplot(binaxis = "y", stackdir = "center", binwidth=.09)
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
     geom_violin()
+
+```
+
+### Add a variable: Separate groups with color
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
+    geom_histogram(binwidth=.09) +
+    scale_color_manual(values = continent.colors)
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
+    geom_histogram(binwidth=.09, position="dodge") +
+    scale_color_manual(values = continent.colors)
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, color = Continent)) +
+    geom_freqpoly(binwidth=.09) +
+    scale_color_manual(values = continent.colors)
+
+```
+
+
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
+    geom_density(alpha = .25) +
+  scale_fill_manual(values = continent.colors)
 
 ```
 
@@ -1017,7 +1271,7 @@ map_incl_ind %>%
 
 ### Proportional Symbol Map
 
-```{r}
+```{r, warning=FALSE}
 
 map_incl_ind %>%
   drop_na(Inclusiveness.index.2020) %>%
