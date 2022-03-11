@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2022-03-10}
+\date{2022-03-11}
 
 \begin{document}
 \maketitle
@@ -326,12 +326,70 @@ Angela is the \href{https://library.duke.edu/about/directory/staff/angela.zoss}{
 \chapter*{Introduction}\label{introduction}}
 
 
+\hypertarget{outline}{%
+\section*{Outline}\label{outline}}
+
+
 \begin{itemize}
 \tightlist
 \item
-  automating graphical output saves time and isn't too hard
+  Intro to visualization in data science
+
+  \begin{itemize}
+  \tightlist
+  \item
+    communicating clearly is worth time \& effort
+  \item
+    automating graphical output saves time and isn't too hard
+  \end{itemize}
 \item
-  communicating clearly is worth time \& effort
+  What is this book trying to accomplish
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Written for non-academics, beginning programmers;
+
+    \begin{itemize}
+    \tightlist
+    \item
+      The target audience of this book would be professionals who are having to learn data science techniques on the job, likely at an under-resourced organization or company. These newly minted data professionals may feel comfortable in Excel but have only just started to learn R for processing data. They have never used a programming language to build a visualization before, and even creating charts in Excel has often been a frustrating and mystifying process. They appreciate that R is freely available and are able to get started on a data science project, but the idea of creating publication-quality visualizations using only code is daunting.
+    \end{itemize}
+  \item
+    Focuses on freely available software
+  \item
+    Combines hands-on exercises with basic graphic design principles
+
+    \begin{itemize}
+    \tightlist
+    \item
+      This book combines instruction on writing R code with building basic graphic design skills in a way that is unusual in data science literature. The book will guide readers through a series of projects, each designed to cover both how visualizations work in R and how visualizations can be designed to have the greatest impact. Far more than a ``do this, then this'' checklist, this book will focus on building understanding, confidence, and the ability to transfer skills to other tools and design contexts. It will avoid technical jargon that our target audience is unlikely to have encountered before. To accommodate learners who don't have time to work through an entire book, each chapter will operate independently, covering a specific set of tasks that all make sense together as part of a visualization project. For those who would like extra practice, there will be several types of hands-on exercises, from those that are entirely prescribed to those that allow readers to apply new techniques to problems in their own areas.
+    \end{itemize}
+  \end{itemize}
+\item
+  What this book covers (table of contents)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Covers pressing modern issues, like accessibility and ethics
+  \end{itemize}
+\item
+  How to use this book
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Each chapter stands alone
+  \item
+    The book will have solutions (in the form of completed code and sample output) for all exercises.
+  \item
+    The book will also have a website, including links to Open Access content, solutions, and related resources like video tutorials.
+  \item
+    Increasingly, programs of study with a focus on preparing students for professional careers in under-resourced fields, like public policy and even management, include courses on data analysis and communication using freely available software. This book, while not a textbook, could easily be used for a semester-long course, titled something like ``Practical data visualization for the modern workforce.'' A chapter could be covered each week, and larger projects could help learners synthesize chapters into a complete set of analyses and communication materials.
+  \item
+    While not a textbook, the book will also include a brief teacher's guide for courses that might want to use one or more chapters to structure lessons in a course.
+  \end{itemize}
 \end{itemize}
 
 \mainmatter
@@ -827,8 +885,8 @@ hard to know exactly where the real data values are.
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-1.pdf}
 
-\hypertarget{dual-encoding-names-with-color}{%
-\subsubsection{Dual encoding names with color}\label{dual-encoding-names-with-color}}
+\hypertarget{using-colors-to-distinguish-individual-lines}{%
+\subsubsection{Using colors to distinguish individual lines}\label{using-colors-to-distinguish-individual-lines}}
 
 Sometimes line charts use color to differentiate the lines from each other. Each line
 gets its own color, and the color legend clarifies the name of the line. Even for
@@ -870,65 +928,168 @@ reacting to a decrease in one of the lines below it.
 \hypertarget{add-a-variable-line-chart-with-color}{%
 \subsection{Add a variable: Line chart with color}\label{add-a-variable-line-chart-with-color}}
 
-\begin{itemize}
-\tightlist
-\item
-  alternately, you can use color to layer an additional variable on top of the lines
-\item
-  usually a way to create groups of lines that are all part of the same category
-\item
-  or that are showing similar data patterns
-\end{itemize}
+A common way to add a third variable to a line chart is to use color to represent
+a categorical variable, grouping the lines into different categories. This third
+variable could be unrelated to the variables already in the line chart, or it
+could be generated from the patterns in the chart -- for example, creating a
+categorical variable that indicates whether the values are increasing or decreasing
+over time.
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+In the above chart, the individual country lines are colored by their continent.
+While this does reveal some general patterns for the continents, it also adds
+complexity to an already busy chart. Instead of using a different color
+for all possible continents, it may be easier to read a chart that focuses on a
+single continent and uses color to highlight just those countries.
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 \hypertarget{pie-chart}{%
 \section{Pie Chart}\label{pie-chart}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  same data as a bar chart - categorical variable and numerical variable
+\item
+  unlike a bar chart, the form of the pie chart means that only certain kinds
+  of data make sense - categories that combine together to form a whole, numbers that
+  are positive and make sense as a percentage of a whole
+\item
+  hard to compare the size of wedges that are about the same size, especially
+  when they're rotated in space
+\item
+  typically the wedges ``start'' at the top, and then usually the order goes around
+  clockwise or counter-clockwise
+\item
+  order matters (like bar chart)
+\item
+  typical way of telling pie wedges apart is by color, but you can leave them all
+  the same color and label them directly, like a line chart
+\item
+  what are you looking for in a pie chart? You are looking for how the data are
+  distributed between the wedges - are they mostly equal? Is one much larger than
+  you would expect? Much smaller? How much of the total goes to each category?
+\item
+  these comparisons become more complicated when you have a lot of wedges. If it's
+  important to understand small changes between the wedges, that can be difficult
+  in a pie chart.
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-13-3.pdf}
 
 \hypertarget{variations-3}{%
 \subsection{Variations}\label{variations-3}}
 
+\begin{itemize}
+\tightlist
+\item
+  primary variation is donut chart
+\end{itemize}
+
 \hypertarget{donut-chart}{%
 \subsubsection{Donut chart}\label{donut-chart}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-14-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  just like pie chart, but the center is missing
+\end{itemize}
 
-\hypertarget{waffle-chart}{%
-\subsubsection{Waffle chart}\label{waffle-chart}}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 \hypertarget{add-a-variable-small-multiples}{%
 \subsection{Add a variable: Small multiples}\label{add-a-variable-small-multiples}}
+
+\begin{itemize}
+\tightlist
+\item
+  It is very difficult - and likely inadvisable - to try to visualize an additional
+  variable inside a basic pie chart.
+\item
+  Instead, if you have a third categorical variable that relates to the data in
+  the pie chart, you could try creating a separate pie chart for each category in
+  that variable. we call that technique using ``small multiples.'' Small multiples
+  are actually useful for a variety of visualizations, especially if the visualization
+  is already complex and you don't want to add to the complexity by including an
+  additional variable.
+\end{itemize}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \hypertarget{heat-map}{%
 \section{Heat Map}\label{heat-map}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-16-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  two categorical variables and a numerical variable
+\item
+  sort of like a stacked bar chart, but instead of showing the numerical
+  variable as the size of the bar segment, you show it as a change in color.
+\item
+  for example, longer segments -\textgreater{} darker colors in the grid
+\item
+  bonus - no moving baseline problem
+\item
+  problem - still hard to precisely compare values because just trying to compare
+  color shades
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-16-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-16-2.pdf}
+* additional bonus, though - possibly better for negative values, since it can be
+hard to represent negative values in a stacked bar where totals matter, or where
+it doesn't make sense to be adding the data together at all
+* order only stays consistent if you are using all positive numbers; if there are
+negative values, those get pulled out and appear under the axis.
+* introduce diverging color
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-3.pdf}
 
 \hypertarget{variations-4}{%
 \subsection{Variations}\label{variations-4}}
 
+\begin{itemize}
+\tightlist
+\item
+  main variation is to keep the matrix format but maybe change the shape
+\end{itemize}
+
 \hypertarget{circle-matrix}{%
 \subsubsection{Circle matrix}\label{circle-matrix}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-17-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \hypertarget{add-a-variable-bubble-matrix}{%
 \subsection{Add a variable: Bubble matrix}\label{add-a-variable-bubble-matrix}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-18-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  by using a circle, you can also modulate the size
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \hypertarget{histogram}{%
 \section{Histogram}\label{histogram}}
 
-Largely one-variable, one-axis plots
+\begin{itemize}
+\tightlist
+\item
+  Largely one-variable, one-axis plots
+\item
+  goal is to look at the distribution of a numerical variable
+\item
+  tend to look for a few common patterns - bell curve (with or without skew),
+  pareto plot, bimodal distribution, etc.
+\item
+  shape will depend on binning, whether the numerical variable is an integer or
+  floating point, etc.
+\end{itemize}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \hypertarget{variations-5}{%
 \subsection{Variations}\label{variations-5}}
@@ -936,46 +1097,44 @@ Largely one-variable, one-axis plots
 \hypertarget{dot-plot}{%
 \subsubsection{Dot plot}\label{dot-plot}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \hypertarget{frequency-polygon}{%
 \subsubsection{Frequency Polygon}\label{frequency-polygon}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \hypertarget{density}{%
 \subsubsection{Density}\label{density}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \hypertarget{box-plot}{%
 \subsubsection{Box Plot}\label{box-plot}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-23-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{centered-dot-plot-bee-swarm}{%
 \subsubsection{Centered dot plot / Bee swarm}\label{centered-dot-plot-bee-swarm}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 \hypertarget{violin-plot}{%
 \subsubsection{Violin plot}\label{violin-plot}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 \hypertarget{add-a-variable-separate-groups-on-x-axis}{%
 \subsection{Add a variable: Separate groups on x axis}\label{add-a-variable-separate-groups-on-x-axis}}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-1.pdf}
 
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-1.pdf}
+
 \hypertarget{add-a-variable-separate-groups-with-color}{%
 \subsection{Add a variable: Separate groups with color}\label{add-a-variable-separate-groups-with-color}}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-1.pdf}
 
@@ -983,18 +1142,20 @@ Largely one-variable, one-axis plots
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-32-1.pdf}
 
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-33-1.pdf}
+
 \hypertarget{maps}{%
 \section{Maps}\label{maps}}
 
 \hypertarget{choropleth}{%
 \subsection{Choropleth}\label{choropleth}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 \hypertarget{proportional-symbol-map}{%
 \subsection{Proportional Symbol Map}\label{proportional-symbol-map}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 \hypertarget{building-basic-visualizations}{%
 \chapter{Building basic visualizations with ggplot2}\label{building-basic-visualizations}}
@@ -1216,7 +1377,7 @@ Now, we'll add a third variable. We'll also map the Location variable to the \te
 \hypertarget{inheritance}{%
 \section{Inheritance}\label{inheritance}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-38-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-38-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-2.pdf}
 
 \hypertarget{how-to-debug-code}{%
 \section{How to Debug Code}\label{how-to-debug-code}}
@@ -1862,68 +2023,68 @@ Figure \ref{fig:coral-resilience-point}.
 
 \href{https://osf.io/57tb8/}{A Behavioral Approach to Understanding the Git Experience}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-41-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \begin{verbatim}
 ## Joining, by = "system"
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-6.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-1.pdf}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'year_vcs'. You
 ## can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 9 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-3.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-3.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-4.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-4.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-5.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-5.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-6.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_tile).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-7.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \hypertarget{inclusiveness-index}{%
 \section*{Inclusiveness Index}\label{inclusiveness-index}}
@@ -1945,7 +2106,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1961,7 +2122,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-2.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1977,7 +2138,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-3.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-3.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -1993,7 +2154,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-4.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-4.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2006,7 +2167,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-5.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-5.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2022,7 +2183,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-6.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2035,7 +2196,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-7.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2048,16 +2209,16 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-8.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-8.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-9.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-9.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 \hypertarget{candidate-demographics}{%
 \section*{Candidate Demographics}\label{candidate-demographics}}
@@ -2073,13 +2234,13 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 \href{https://github.com/OpportunityInsights/EconomicTracker}{Affinity Spending}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-1.pdf}
-
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-50-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 \hypertarget{vineyards}{%
 \section*{Vineyards}\label{vineyards}}
@@ -2087,7 +2248,7 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 \href{https://dasl.datadescription.com/datafile/vineyards/}{Vineyards}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-13.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-13.pdf}
 
   \bibliography{book.bib,packages.bib}
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Angela M. Zoss, Ph.D." />
 
 
-<meta name="date" content="2022-03-10" />
+<meta name="date" content="2022-03-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,7 +170,10 @@ div.csl-indent {
 </ul></li>
 <li><a href="index.html#about-the-author">About the Author<span></span></a></li>
 </ul></li>
-<li><a href="introduction.html#introduction">Introduction<span></span></a></li>
+<li><a href="introduction.html#introduction">Introduction<span></span></a>
+<ul>
+<li><a href="introduction.html#outline">Outline<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="reading-visualizations.html"><a href="reading-visualizations.html"><i class="fa fa-check"></i><b>1</b> Overview of common visualizations and how to read them<span></span></a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#visualization-components"><i class="fa fa-check"></i><b>1.1</b> Visualization components<span></span></a></li>
@@ -816,8 +819,8 @@ time to the next point in time, and unless the line turns up or down, it can be
 hard to know exactly where the real data values are.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div id="dual-encoding-names-with-color" class="section level4 hasAnchor" number="1.4.0.2">
-<h4><span class="header-section-number">1.4.0.2</span> Dual encoding names with color<a href="reading-visualizations.html#dual-encoding-names-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="using-colors-to-distinguish-individual-lines" class="section level4 hasAnchor" number="1.4.0.2">
+<h4><span class="header-section-number">1.4.0.2</span> Using colors to distinguish individual lines<a href="reading-visualizations.html#using-colors-to-distinguish-individual-lines" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Sometimes line charts use color to differentiate the lines from each other. Each line
 gets its own color, and the color legend clarifies the name of the line. Even for
 charts where it is important to individually identify the lines, it can quickly
@@ -852,102 +855,169 @@ reacting to a decrease in one of the lines below it.</p>
 </div>
 <div id="add-a-variable-line-chart-with-color" class="section level3 hasAnchor" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Add a variable: Line chart with color<a href="reading-visualizations.html#add-a-variable-line-chart-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>alternately, you can use color to layer an additional variable on top of the lines</li>
-<li>usually a way to create groups of lines that are all part of the same category</li>
-<li>or that are showing similar data patterns</li>
-</ul>
+<p>A common way to add a third variable to a line chart is to use color to represent
+a categorical variable, grouping the lines into different categories. This third
+variable could be unrelated to the variables already in the line chart, or it
+could be generated from the patterns in the chart – for example, creating a
+categorical variable that indicates whether the values are increasing or decreasing
+over time.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>In the above chart, the individual country lines are colored by their continent.
+While this does reveal some general patterns for the continents, it also adds
+complexity to an already busy chart. Instead of using a different color
+for all possible continents, it may be easier to read a chart that focuses on a
+single continent and uses color to highlight just those countries.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 </div>
 <div id="pie-chart" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Pie Chart<a href="reading-visualizations.html#pie-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<ul>
+<li>same data as a bar chart - categorical variable and numerical variable</li>
+<li>unlike a bar chart, the form of the pie chart means that only certain kinds
+of data make sense - categories that combine together to form a whole, numbers that
+are positive and make sense as a percentage of a whole</li>
+<li>hard to compare the size of wedges that are about the same size, especially
+when they’re rotated in space</li>
+<li>typically the wedges “start” at the top, and then usually the order goes around
+clockwise or counter-clockwise</li>
+<li>order matters (like bar chart)</li>
+<li>typical way of telling pie wedges apart is by color, but you can leave them all
+the same color and label them directly, like a line chart</li>
+<li>what are you looking for in a pie chart? You are looking for how the data are
+distributed between the wedges - are they mostly equal? Is one much larger than
+you would expect? Much smaller? How much of the total goes to each category?</li>
+<li>these comparisons become more complicated when you have a lot of wedges. If it’s
+important to understand small changes between the wedges, that can be difficult
+in a pie chart.</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-13-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-13-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
 <div id="variations-3" class="section level3 hasAnchor" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> Variations<a href="reading-visualizations.html#variations-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>primary variation is donut chart</li>
+</ul>
 <div id="donut-chart" class="section level4 hasAnchor" number="1.5.1.1">
 <h4><span class="header-section-number">1.5.1.1</span> Donut chart<a href="reading-visualizations.html#donut-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>just like pie chart, but the center is missing</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-</div>
-<div id="waffle-chart" class="section level4 hasAnchor" number="1.5.1.2">
-<h4><span class="header-section-number">1.5.1.2</span> Waffle chart<a href="reading-visualizations.html#waffle-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
 </div>
 <div id="add-a-variable-small-multiples" class="section level3 hasAnchor" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> Add a variable: Small multiples<a href="reading-visualizations.html#add-a-variable-small-multiples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>It is very difficult - and likely inadvisable - to try to visualize an additional
+variable inside a basic pie chart.</li>
+<li>Instead, if you have a third categorical variable that relates to the data in
+the pie chart, you could try creating a separate pie chart for each category in
+that variable. we call that technique using “small multiples.” Small multiples
+are actually useful for a variety of visualizations, especially if the visualization
+is already complex and you don’t want to add to the complexity by including an
+additional variable.</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 </div>
 <div id="heat-map" class="section level2 hasAnchor" number="1.6">
 <h2><span class="header-section-number">1.6</span> Heat Map<a href="reading-visualizations.html#heat-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<ul>
+<li>two categorical variables and a numerical variable</li>
+<li>sort of like a stacked bar chart, but instead of showing the numerical
+variable as the size of the bar segment, you show it as a change in color.</li>
+<li>for example, longer segments -&gt; darker colors in the grid</li>
+<li>bonus - no moving baseline problem</li>
+<li>problem - still hard to precisely compare values because just trying to compare
+color shades</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+* additional bonus, though - possibly better for negative values, since it can be
+hard to represent negative values in a stacked bar where totals matter, or where
+it doesn’t make sense to be adding the data together at all
+* order only stays consistent if you are using all positive numbers; if there are
+negative values, those get pulled out and appear under the axis.
+* introduce diverging color</p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-17-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-17-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-17-3.png" width="672" /></p>
 <div id="variations-4" class="section level3 hasAnchor" number="1.6.1">
 <h3><span class="header-section-number">1.6.1</span> Variations<a href="reading-visualizations.html#variations-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>main variation is to keep the matrix format but maybe change the shape</li>
+</ul>
 <div id="circle-matrix" class="section level4 hasAnchor" number="1.6.1.1">
 <h4><span class="header-section-number">1.6.1.1</span> Circle matrix<a href="reading-visualizations.html#circle-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>
 <div id="add-a-variable-bubble-matrix" class="section level3 hasAnchor" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> Add a variable: Bubble matrix<a href="reading-visualizations.html#add-a-variable-bubble-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<ul>
+<li>by using a circle, you can also modulate the size</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 </div>
 <div id="histogram" class="section level2 hasAnchor" number="1.7">
 <h2><span class="header-section-number">1.7</span> Histogram<a href="reading-visualizations.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Largely one-variable, one-axis plots</p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<ul>
+<li>Largely one-variable, one-axis plots</li>
+<li>goal is to look at the distribution of a numerical variable</li>
+<li>tend to look for a few common patterns - bell curve (with or without skew),
+pareto plot, bimodal distribution, etc.</li>
+<li>shape will depend on binning, whether the numerical variable is an integer or
+floating point, etc.</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <div id="variations-5" class="section level3 hasAnchor" number="1.7.1">
 <h3><span class="header-section-number">1.7.1</span> Variations<a href="reading-visualizations.html#variations-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="dot-plot" class="section level4 hasAnchor" number="1.7.1.1">
 <h4><span class="header-section-number">1.7.1.1</span> Dot plot<a href="reading-visualizations.html#dot-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="frequency-polygon" class="section level4 hasAnchor" number="1.7.1.2">
 <h4><span class="header-section-number">1.7.1.2</span> Frequency Polygon<a href="reading-visualizations.html#frequency-polygon" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="density" class="section level4 hasAnchor" number="1.7.1.3">
 <h4><span class="header-section-number">1.7.1.3</span> Density<a href="reading-visualizations.html#density" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="box-plot" class="section level4 hasAnchor" number="1.7.1.4">
 <h4><span class="header-section-number">1.7.1.4</span> Box Plot<a href="reading-visualizations.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="centered-dot-plot-bee-swarm" class="section level4 hasAnchor" number="1.7.1.5">
 <h4><span class="header-section-number">1.7.1.5</span> Centered dot plot / Bee swarm<a href="reading-visualizations.html#centered-dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="violin-plot" class="section level4 hasAnchor" number="1.7.1.6">
 <h4><span class="header-section-number">1.7.1.6</span> Violin plot<a href="reading-visualizations.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
 <div id="add-a-variable-separate-groups-on-x-axis" class="section level3 hasAnchor" number="1.7.2">
 <h3><span class="header-section-number">1.7.2</span> Add a variable: Separate groups on x axis<a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="add-a-variable-separate-groups-with-color" class="section level3 hasAnchor" number="1.7.3">
 <h3><span class="header-section-number">1.7.3</span> Add a variable: Separate groups with color<a href="reading-visualizations.html#add-a-variable-separate-groups-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 </div>
 <div id="maps" class="section level2 hasAnchor" number="1.8">
 <h2><span class="header-section-number">1.8</span> Maps<a href="reading-visualizations.html#maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="choropleth" class="section level3 hasAnchor" number="1.8.1">
 <h3><span class="header-section-number">1.8.1</span> Choropleth<a href="reading-visualizations.html#choropleth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 <div id="proportional-symbol-map" class="section level3 hasAnchor" number="1.8.2">
 <h3><span class="header-section-number">1.8.2</span> Proportional Symbol Map<a href="reading-visualizations.html#proportional-symbol-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 
 </div>
 </div>
