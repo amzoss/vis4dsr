@@ -9,6 +9,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r, include=FALSE}
 
 source('data/inclusiveness_index/load_inclusiveness_index.R')
+source('style/load_style.R')
+
+theme_set(theme_ch_1())
 
 inclusive.levels <- c("High", "Medium-High", "Medium", "Medium-Low", "Low", "No data")
 
@@ -97,8 +100,12 @@ ggplot(
   inclusiveness_index %>% 
     mutate(Continent = Continent %>% as_factor() %>% fct_infreq()),
   mapping = aes(x = Continent)) +
-  geom_bar() +
-  labs(y="Number of Records")
+  geom_bar(fill = "grey50", width = .75) +
+  labs(y="Number of Records") +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  scale_y_continuous(expand = expansion(add = c(0, 2)))
 
 ```
 
@@ -127,7 +134,12 @@ inclusiveness_index %>%
   summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`, .desc = TRUE)) %>% 
 ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
-  geom_col()
+  geom_col(fill = "grey50", width = .75) +
+  labs(y="Number of Records") +
+  theme(#panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  geom_hline(yintercept = 0)
 
 ```
 
@@ -149,7 +161,12 @@ inclusiveness_index %>%
   summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`)) %>% 
 ggplot(mapping = aes(y = Continent, x = `Mean Inclusiveness Index`)) +
-  geom_col()
+  geom_col(fill = "grey50", width = .75) +
+  labs(y="Number of Records") +
+  theme(#panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  geom_vline(xintercept = 0)
 
 ```
 
@@ -176,7 +193,13 @@ ggplot(
   mapping = aes(x = Continent, y=n)) +
   geom_col(width=.03) +
   geom_point(size=4) +
-  labs(y="Number of Records")
+  labs(y="Number of Records") +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  scale_y_continuous(expand = expansion(add = c(0, 2)))
+
+# TODO: get rid of x ticks?
 
 ```
 
@@ -949,8 +972,7 @@ ggplot(aes(x = Year,
       aes(color = Continent),
     size = 1
   ) +
-  scale_color_manual(values=continent.colors, breaks = c("Americas")) +
-  theme_bw()
+  scale_color_manual(values=continent.colors, breaks = c("Americas"))
 
 ```
 
@@ -1371,7 +1393,7 @@ inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
     geom_histogram(binwidth=.09, position="dodge") +
-    scale_color_manual(values = continent.colors)
+    scale_fill_manual(values = continent.colors)
 
 ```
 
