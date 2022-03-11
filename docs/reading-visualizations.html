@@ -206,8 +206,9 @@ div.csl-indent {
 <li class="chapter" data-level="1.7" data-path="reading-visualizations.html"><a href="reading-visualizations.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram<span></span></a>
 <ul>
 <li class="chapter" data-level="1.7.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-5"><i class="fa fa-check"></i><b>1.7.1</b> Variations<span></span></a></li>
-<li class="chapter" data-level="1.7.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis"><i class="fa fa-check"></i><b>1.7.2</b> Add a variable: Separate groups on x axis<span></span></a></li>
-<li class="chapter" data-level="1.7.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-with-color"><i class="fa fa-check"></i><b>1.7.3</b> Add a variable: Separate groups with color<span></span></a></li>
+<li class="chapter" data-level="1.7.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#box-plot"><i class="fa fa-check"></i><b>1.7.2</b> Box Plot<span></span></a></li>
+<li class="chapter" data-level="1.7.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis"><i class="fa fa-check"></i><b>1.7.3</b> Add a variable: Separate groups on x axis<span></span></a></li>
+<li class="chapter" data-level="1.7.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-with-color"><i class="fa fa-check"></i><b>1.7.4</b> Add a variable: Separate groups with color<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.8" data-path="reading-visualizations.html"><a href="reading-visualizations.html#maps"><i class="fa fa-check"></i><b>1.8</b> Maps<span></span></a>
 <ul>
@@ -960,64 +961,160 @@ negative values, those get pulled out and appear under the axis.
 <div id="histogram" class="section level2 hasAnchor" number="1.7">
 <h2><span class="header-section-number">1.7</span> Histogram<a href="reading-visualizations.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Largely one-variable, one-axis plots</li>
+<li>Largely “one-variable” plots - that is, you pick a variable, and then the chart
+shows how the different values of that variable are distributed along the axis range</li>
+<li>most common example is the traditional bell curve</li>
 <li>goal is to look at the distribution of a numerical variable</li>
 <li>tend to look for a few common patterns - bell curve (with or without skew),
 pareto plot, bimodal distribution, etc.</li>
-<li>shape will depend on binning, whether the numerical variable is an integer or
+<li>shape (and y axis values) will depend on binning, whether the numerical variable is an integer or
 floating point, etc.</li>
 </ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-21-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-21-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
 <div id="variations-5" class="section level3 hasAnchor" number="1.7.1">
 <h3><span class="header-section-number">1.7.1</span> Variations<a href="reading-visualizations.html#variations-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>a bunch of variations, some of which continue to use the x axis as a baseline and
+others center around an arbitrary value</li>
+</ul>
 <div id="dot-plot" class="section level4 hasAnchor" number="1.7.1.1">
 <h4><span class="header-section-number">1.7.1.1</span> Dot plot<a href="reading-visualizations.html#dot-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="frequency-polygon" class="section level4 hasAnchor" number="1.7.1.2">
 <h4><span class="header-section-number">1.7.1.2</span> Frequency Polygon<a href="reading-visualizations.html#frequency-polygon" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="density" class="section level4 hasAnchor" number="1.7.1.3">
 <h4><span class="header-section-number">1.7.1.3</span> Density<a href="reading-visualizations.html#density" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-</div>
-<div id="box-plot" class="section level4 hasAnchor" number="1.7.1.4">
-<h4><span class="header-section-number">1.7.1.4</span> Box Plot<a href="reading-visualizations.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>intensely smoothed</li>
+<li>algorithm *kernal density estimation)</li>
+<li>area under the curve adds up 1, so the y axis is just fractions of that, not
+really meaningful</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div id="centered-dot-plot-bee-swarm" class="section level5 hasAnchor" number="1.7.1.3.1">
+<h5><span class="header-section-number">1.7.1.3.1</span> Centered dot plot / Bee swarm<a href="reading-visualizations.html#centered-dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li>first of the “centered” distribution charts</li>
+<li>the variable we’re exploring is not on the x axis anymore. It’s now vertical,
+and instead of having a flat side, the shape is centered on an arbitrary x value (here, 0)</li>
+<li>bee swarm is like our previous dot plot, just turned and centered</li>
+<li>concerns - maybe harder to estimate change when things are centered? we may unintentionally
+only look at half of the shape and make changes seem smaller</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-25-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-25-3.png" width="672" /></p>
 </div>
-<div id="centered-dot-plot-bee-swarm" class="section level4 hasAnchor" number="1.7.1.5">
-<h4><span class="header-section-number">1.7.1.5</span> Centered dot plot / Bee swarm<a href="reading-visualizations.html#centered-dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
-<div id="violin-plot" class="section level4 hasAnchor" number="1.7.1.6">
-<h4><span class="header-section-number">1.7.1.6</span> Violin plot<a href="reading-visualizations.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="violin-plot" class="section level4 hasAnchor" number="1.7.1.4">
+<h4><span class="header-section-number">1.7.1.4</span> Violin plot<a href="reading-visualizations.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>like density, but turned and centered</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
-<div id="add-a-variable-separate-groups-on-x-axis" class="section level3 hasAnchor" number="1.7.2">
-<h3><span class="header-section-number">1.7.2</span> Add a variable: Separate groups on x axis<a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="box-plot" class="section level3 hasAnchor" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Box Plot<a href="reading-visualizations.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Instead of showing the complete pattern of the data, have calculated additional
+statistics about the data and are visualizing those instead</li>
+<li>(clarify which ones)</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="add-a-variable-separate-groups-on-x-axis" class="section level3 hasAnchor" number="1.7.3">
+<h3><span class="header-section-number">1.7.3</span> Add a variable: Separate groups on x axis<a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>because the data have been pulled away from the axis, we can now combine multiple
+distributions in the same chart.</li>
+<li>could split the data into subsets and show one distribution per subset</li>
+<li>could explore the distributions of different variables in the data, if they
+are all comparable</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-</div>
-<div id="add-a-variable-separate-groups-with-color" class="section level3 hasAnchor" number="1.7.3">
-<h3><span class="header-section-number">1.7.3</span> Add a variable: Separate groups with color<a href="reading-visualizations.html#add-a-variable-separate-groups-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>compare violin to dotplot for Oceania - one looks like there’s a tiny amount of data,
+the other looks about the same as the others.</li>
+<li>can combine some of these summary plots with a scatterplot of the actual data</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="add-a-variable-separate-groups-with-color" class="section level3 hasAnchor" number="1.7.4">
+<h3><span class="header-section-number">1.7.4</span> Add a variable: Separate groups with color<a href="reading-visualizations.html#add-a-variable-separate-groups-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>when using the on-the-axis versions, can be hard to add a third variable. they
+will all compete for space on the same axis.</li>
+<li>technically can add color to a histogram to get counts for a third variable,
+like a stacked bar chart</li>
+<li>can be very hard to interpret</li>
+</ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<ul>
+<li>grouped bar chart even worse</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<ul>
+<li>freqpoly is a bit better, but can still be very choppy, and the fewer data
+points in a subset, the less smooth the patter will be</li>
+<li>maybe increase bin size?</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-35-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
+<ul>
+<li>possible exception is density. often see this because it smooths the data nicely.</li>
+<li>tend to see the density curves filled in with a mostly transparent color, instead
+of just coloring the lines.</li>
+<li>important to remember that the number of data points in each group could be very
+different. Each curve has a density value of 1 under the curvey, no matter how many
+data points went into the group.</li>
+<li>a high peak on a density curve doesn’t mean more data points at that point, necessarily.
+it means a high proportion of data in that range, within that particular subset.</li>
+<li>if counts are important, you could create a small multiple version of histograms.</li>
+<li>example: compare Africa and Americas below - density pretty close, histogram shows
+there are many more data points for Africa</li>
+<li>also, Oceania looks comparable, but really only has 4 data points</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-36-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-36-2.png" width="672" /></p>
 </div>
 </div>
 <div id="maps" class="section level2 hasAnchor" number="1.8">
 <h2><span class="header-section-number">1.8</span> Maps<a href="reading-visualizations.html#maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Won’t be dealing with maps much in this book, but here are two classic map
+types and how to read them</p>
 <div id="choropleth" class="section level3 hasAnchor" number="1.8.1">
 <h3><span class="header-section-number">1.8.1</span> Choropleth<a href="reading-visualizations.html#choropleth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<ul>
+<li>data visualized is really just the name of the country or other location, and
+either one categorical variable or one numerical variable.</li>
+<li>Reading these is tricky, because you sort of have to ignore the size of the
+country. big countries can have low data values, and small countries can have high
+values. also, if you look across the map and see a lot of one color, that could be
+many countries or just one big one.</li>
+<li>true of any map: if the data do not have a strongly spacial pattern, displaying
+the data on a map may just look like a splatter painting</li>
+<li>one benefit, however, is that each country stays within its boundaries; the
+data never overlap</li>
+<li>also, country shape can be recognizeable and help people make sense of some of
+the specific patterns in the data</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="proportional-symbol-map" class="section level3 hasAnchor" number="1.8.2">
 <h3><span class="header-section-number">1.8.2</span> Proportional Symbol Map<a href="reading-visualizations.html#proportional-symbol-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="vis4dsr_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<ul>
+<li>instead of using country boundaries as the shape for the visualizations, those
+can be used just to locate the data, and the visualization can actually use a different
+shape. most common shape is a circle, turning the map into a scatter plot or bubble chart.</li>
+<li>bubble charts can use both color and size to display data, so that makes this kind
+of map a bit more powerful than a choropleth</li>
+<li>but, can get a lot of overlap, can be hard to associate a bubble with a country</li>
+</ul>
+<p><img src="vis4dsr_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 
 </div>
 </div>

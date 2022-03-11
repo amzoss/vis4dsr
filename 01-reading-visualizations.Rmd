@@ -1257,24 +1257,58 @@ inclusiveness_index %>%
 
 ## Histogram
 
-* Largely one-variable, one-axis plots
+* Largely "one-variable" plots - that is, you pick a variable, and then the chart
+shows how the different values of that variable are distributed along the axis range
+* most common example is the traditional bell curve
 * goal is to look at the distribution of a numerical variable
 * tend to look for a few common patterns - bell curve (with or without skew),
 pareto plot, bimodal distribution, etc.
-* shape will depend on binning, whether the numerical variable is an integer or
+* shape (and y axis values) will depend on binning, whether the numerical variable is an integer or
 floating point, etc.
 
 ```{r}
 
+
+ggplot(tibble(x = rnorm(10000000)), aes(x = x))+
+  geom_density() +
+  theme(axis.line = NULL)
+
+```
+
+
+```{r, warning=FALSE}
+
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020)) +
-    geom_histogram(binwidth=.09)
+    geom_histogram(binwidth=.04) +
+  scale_x_continuous(limits = c(min(inclusiveness_index$Inclusiveness.index.2020, na.rm = TRUE),
+                                max(inclusiveness_index$Inclusiveness.index.2020, na.rm = TRUE)))
+
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_histogram(binwidth=.09) +
+  scale_x_continuous(limits = c(min(inclusiveness_index$Inclusiveness.index.2020, na.rm = TRUE),
+                                max(inclusiveness_index$Inclusiveness.index.2020, na.rm = TRUE)))
+
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_histogram(binwidth=.14) +
+  scale_x_continuous(limits = c(min(inclusiveness_index$Inclusiveness.index.2020, na.rm = TRUE),
+                                max(inclusiveness_index$Inclusiveness.index.2020, na.rm = TRUE)))
+
 
 ```
 
 
 ### Variations
+
+* a bunch of variations, some of which continue to use the x axis as a baseline and
+others center around an arbitrary value
 
 #### Dot plot
 
@@ -1300,6 +1334,11 @@ inclusiveness_index %>%
 
 #### Density
 
+* intensely smoothed
+* algorithm *kernal density estimation)
+* area under the curve adds up 1, so the y axis is just fractions of that, not 
+really meaningful
+
 ```{r}
 
 inclusiveness_index %>%
@@ -1309,22 +1348,27 @@ inclusiveness_index %>%
 
 ```
 
-#### Box Plot
+##### Centered dot plot / Bee swarm
+
+* first of the "centered" distribution charts
+* the variable we're exploring is not on the x axis anymore. It's now vertical,
+and instead of having a flat side, the shape is centered on an arbitrary x value (here, 0)
+* bee swarm is like our previous dot plot, just turned and centered
+* concerns - maybe harder to estimate change when things are centered? we may unintentionally
+only look at half of the shape and make changes seem smaller
 
 ```{r}
 
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
-  ggplot(aes(y = Inclusiveness.index.2020)) +
-    geom_boxplot() +
-    scale_x_continuous(limits = c(-2,2))
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_dotplot(binwidth=.09)
 
-```
-
-#### Centered dot plot / Bee swarm
-
-
-```{r}
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_dotplot(binwidth=.09) +
+  coord_flip()
 
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
@@ -1336,6 +1380,8 @@ inclusiveness_index %>%
 
 #### Violin plot
 
+* like density, but turned and centered
+
 ```{r}
 
 inclusiveness_index %>%
@@ -1346,16 +1392,30 @@ inclusiveness_index %>%
 
 ```
 
-### Add a variable: Separate groups on x axis
+### Box Plot
+
+* Instead of showing the complete pattern of the data, have calculated additional
+statistics about the data and are visualizing those instead
+* (clarify which ones)
 
 ```{r}
 
 inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
-  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
-    geom_boxplot()
+  ggplot(aes(y = Inclusiveness.index.2020)) +
+    geom_boxplot() +
+    scale_x_continuous(limits = c(-2,2))
 
 ```
+
+### Add a variable: Separate groups on x axis
+
+* because the data have been pulled away from the axis, we can now combine multiple
+distributions in the same chart. 
+* could split the data into subsets and show one distribution per subset
+* could explore the distributions of different variables in the data, if they 
+are all comparable
+
 
 ```{r}
 
@@ -1375,7 +1435,72 @@ inclusiveness_index %>%
 
 ```
 
+* compare violin to dotplot for Oceania - one looks like there's a tiny amount of data, 
+the other looks about the same as the others.
+* can combine some of these summary plots with a scatterplot of the actual data
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_violin() +
+  geom_jitter(width = .1, shape = 21, fill = "#cccccc", color = "#000000")
+
+
+```
+
+```{r}
+
+inclusiveness_index %>%
+  pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
+               names_to = "index_name",
+               values_to = "index_values",
+               values_drop_na = TRUE) %>%
+  mutate(index_name = index_name %>%
+           as_factor() %>%
+           fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
+                         "Z.score.Sexual.Orientation", "Z.score.Religion", 
+                         "Z.score.Disability", "Inclusiveness.index.2020")) %>%
+           fct_rev()) %>%
+  ggplot(aes(x = index_name, y = index_values)) +
+  geom_violin()
+
+inclusiveness_index %>%
+  pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
+               names_to = "index_name",
+               values_to = "index_values",
+               values_drop_na = TRUE) %>%
+  mutate(index_name = index_name %>%
+           as_factor() %>%
+           fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
+                         "Z.score.Sexual.Orientation", "Z.score.Religion", 
+                         "Z.score.Disability", "Inclusiveness.index.2020")) %>%
+           fct_rev()) %>%
+  ggplot(aes(y = index_name, x = index_values)) +
+  geom_violin()
+
+
+```
+
+
+```{r}
+
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Continent, y = Inclusiveness.index.2020)) +
+    geom_boxplot()
+
+```
+
+
 ### Add a variable: Separate groups with color
+
+* when using the on-the-axis versions, can be hard to add a third variable. they
+will all compete for space on the same axis.
+* technically can add color to a histogram to get counts for a third variable,
+like a stacked bar chart
+* can be very hard to interpret
 
 ```{r}
 
@@ -1383,9 +1508,11 @@ inclusiveness_index %>%
   drop_na(Inclusiveness.index.2020) %>%
   ggplot(aes(x = Inclusiveness.index.2020, fill = Continent)) +
     geom_histogram(binwidth=.09) +
-    scale_color_manual(values = continent.colors)
+    scale_fill_manual(values = continent.colors)
 
 ```
+
+* grouped bar chart even worse
 
 ```{r}
 
@@ -1397,6 +1524,10 @@ inclusiveness_index %>%
 
 ```
 
+* freqpoly is a bit better, but can still be very choppy, and the fewer data
+points in a subset, the less smooth the patter will be
+* maybe increase bin size?
+
 ```{r}
 
 inclusiveness_index %>%
@@ -1405,9 +1536,26 @@ inclusiveness_index %>%
     geom_freqpoly(binwidth=.09) +
     scale_color_manual(values = continent.colors)
 
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020, color = Continent)) +
+    geom_freqpoly(binwidth=.15) +
+    scale_color_manual(values = continent.colors)
+
 ```
 
-
+* possible exception is density. often see this because it smooths the data nicely.
+* tend to see the density curves filled in with a mostly transparent color, instead
+of just coloring the lines.
+* important to remember that the number of data points in each group could be very
+different. Each curve has a density value of 1 under the curvey, no matter how many
+data points went into the group.
+* a high peak on a density curve doesn't mean more data points at that point, necessarily.
+it means a high proportion of data in that range, within that particular subset.
+* if counts are important, you could create a small multiple version of histograms.
+* example: compare Africa and Americas below - density pretty close, histogram shows
+there are many more data points for Africa
+* also, Oceania looks comparable, but really only has 4 data points
 
 ```{r}
 
@@ -1417,12 +1565,36 @@ inclusiveness_index %>%
     geom_density(alpha = .25) +
   scale_fill_manual(values = continent.colors)
 
+inclusiveness_index %>%
+  drop_na(Inclusiveness.index.2020) %>%
+  ggplot(aes(x = Inclusiveness.index.2020)) +
+    geom_histogram(binwidth = .09) +
+  scale_y_continuous(breaks = c(2,4,6,8)) + 
+  facet_wrap(vars(Continent))
+
+
 ```
 
 
 ## Maps
 
+Won't be dealing with maps much in this book, but here are two classic map
+types and how to read them
+
 ### Choropleth 
+
+* data visualized is really just the name of the country or other location, and 
+either one categorical variable or one numerical variable. 
+* Reading these is tricky, because you sort of have to ignore the size of the
+country. big countries can have low data values, and small countries can have high
+values. also, if you look across the map and see a lot of one color, that could be
+many countries or just one big one.
+* true of any map: if the data do not have a strongly spacial pattern, displaying
+the data on a map may just look like a splatter painting
+* one benefit, however, is that each country stays within its boundaries; the 
+data never overlap
+* also, country shape can be recognizeable and help people make sense of some of
+the specific patterns in the data
 
 ```{r}
 
@@ -1473,7 +1645,7 @@ map_incl_ind %>%
                      y = lat,
                      group=group,
                      fill=Inclusiveness.index.2020)) +
-    coord_map() +
+    coord_map(clip = "off") +
     scale_fill_distiller(type="div", palette = 3, 
                          limits=c(-1.2,1.2), 
                          direction = 1)
@@ -1484,7 +1656,16 @@ map_incl_ind %>%
 
 ### Proportional Symbol Map
 
+* instead of using country boundaries as the shape for the visualizations, those
+can be used just to locate the data, and the visualization can actually use a different
+shape. most common shape is a circle, turning the map into a scatter plot or bubble chart.
+* bubble charts can use both color and size to display data, so that makes this kind
+of map a bit more powerful than a choropleth
+* but, can get a lot of overlap, can be hard to associate a bubble with a country
+
 ```{r, warning=FALSE}
+
+# TODO: fix map orientations
 
 map_incl_ind %>%
   drop_na(Inclusiveness.index.2020) %>%
@@ -1495,20 +1676,22 @@ map_incl_ind %>%
                 y = mean(lat)), 
     by = c("Country" = "region")) %>%
   ggplot() +
-    geom_polygon(
-      data = map_data("world2"),
+    geom_path(
+    #geom_polygon(
+      data = map_data("world"),
       aes(x = long,
           y = lat,
           group=group),
-      fill = "grey85",
+      #fill = "grey85",
       color = "grey70") +
-    coord_map() +
+    coord_map(xlim = c(-170, 200)) +
     geom_point(aes(x = x, y = y, 
                    fill = Index.categories.2020, 
                    size = Inclusiveness.index.2020),
                shape = 21,
                alpha = .75) +
     scale_fill_manual(values = inclusive.colors[names(inclusive.colors) != "No data"]) +
-    scale_y_continuous(limits = c(-360,360))
+    scale_y_continuous(limits = c(-360,360)) +
+  theme(axis.title = element_blank(), axis.text = element_blank())
 
 ```

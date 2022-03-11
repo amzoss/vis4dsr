@@ -1078,84 +1078,248 @@ negative values, those get pulled out and appear under the axis.
 \begin{itemize}
 \tightlist
 \item
-  Largely one-variable, one-axis plots
+  Largely ``one-variable'' plots - that is, you pick a variable, and then the chart
+  shows how the different values of that variable are distributed along the axis range
+\item
+  most common example is the traditional bell curve
 \item
   goal is to look at the distribution of a numerical variable
 \item
   tend to look for a few common patterns - bell curve (with or without skew),
   pareto plot, bimodal distribution, etc.
 \item
-  shape will depend on binning, whether the numerical variable is an integer or
+  shape (and y axis values) will depend on binning, whether the numerical variable is an integer or
   floating point, etc.
 \end{itemize}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-20-1.pdf}
 
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-3.pdf}
+
 \hypertarget{variations-5}{%
 \subsection{Variations}\label{variations-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  a bunch of variations, some of which continue to use the x axis as a baseline and
+  others center around an arbitrary value
+\end{itemize}
 
 \hypertarget{dot-plot}{%
 \subsubsection{Dot plot}\label{dot-plot}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \hypertarget{frequency-polygon}{%
 \subsubsection{Frequency Polygon}\label{frequency-polygon}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \hypertarget{density}{%
 \subsubsection{Density}\label{density}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-23-1.pdf}
-
-\hypertarget{box-plot}{%
-\subsubsection{Box Plot}\label{box-plot}}
+\begin{itemize}
+\tightlist
+\item
+  intensely smoothed
+\item
+  algorithm *kernal density estimation)
+\item
+  area under the curve adds up 1, so the y axis is just fractions of that, not
+  really meaningful
+\end{itemize}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{centered-dot-plot-bee-swarm}{%
-\subsubsection{Centered dot plot / Bee swarm}\label{centered-dot-plot-bee-swarm}}
+\paragraph{Centered dot plot / Bee swarm}\label{centered-dot-plot-bee-swarm}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  first of the ``centered'' distribution charts
+\item
+  the variable we're exploring is not on the x axis anymore. It's now vertical,
+  and instead of having a flat side, the shape is centered on an arbitrary x value (here, 0)
+\item
+  bee swarm is like our previous dot plot, just turned and centered
+\item
+  concerns - maybe harder to estimate change when things are centered? we may unintentionally
+  only look at half of the shape and make changes seem smaller
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-25-3.pdf}
 
 \hypertarget{violin-plot}{%
 \subsubsection{Violin plot}\label{violin-plot}}
 
+\begin{itemize}
+\tightlist
+\item
+  like density, but turned and centered
+\end{itemize}
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\hypertarget{box-plot}{%
+\subsection{Box Plot}\label{box-plot}}
+
+\begin{itemize}
+\tightlist
+\item
+  Instead of showing the complete pattern of the data, have calculated additional
+  statistics about the data and are visualizing those instead
+\item
+  (clarify which ones)
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 \hypertarget{add-a-variable-separate-groups-on-x-axis}{%
 \subsection{Add a variable: Separate groups on x axis}\label{add-a-variable-separate-groups-on-x-axis}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-27-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  because the data have been pulled away from the axis, we can now combine multiple
+  distributions in the same chart.
+\item
+  could split the data into subsets and show one distribution per subset
+\item
+  could explore the distributions of different variables in the data, if they
+  are all comparable
+\end{itemize}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-28-1.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-29-1.pdf}
 
-\hypertarget{add-a-variable-separate-groups-with-color}{%
-\subsection{Add a variable: Separate groups with color}\label{add-a-variable-separate-groups-with-color}}
+\begin{itemize}
+\tightlist
+\item
+  compare violin to dotplot for Oceania - one looks like there's a tiny amount of data,
+  the other looks about the same as the others.
+\item
+  can combine some of these summary plots with a scatterplot of the actual data
+\end{itemize}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-30-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-31-2.pdf}
 
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-32-1.pdf}
 
+\hypertarget{add-a-variable-separate-groups-with-color}{%
+\subsection{Add a variable: Separate groups with color}\label{add-a-variable-separate-groups-with-color}}
+
+\begin{itemize}
+\tightlist
+\item
+  when using the on-the-axis versions, can be hard to add a third variable. they
+  will all compete for space on the same axis.
+\item
+  technically can add color to a histogram to get counts for a third variable,
+  like a stacked bar chart
+\item
+  can be very hard to interpret
+\end{itemize}
+
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  grouped bar chart even worse
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  freqpoly is a bit better, but can still be very choppy, and the fewer data
+  points in a subset, the less smooth the patter will be
+\item
+  maybe increase bin size?
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-2.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  possible exception is density. often see this because it smooths the data nicely.
+\item
+  tend to see the density curves filled in with a mostly transparent color, instead
+  of just coloring the lines.
+\item
+  important to remember that the number of data points in each group could be very
+  different. Each curve has a density value of 1 under the curvey, no matter how many
+  data points went into the group.
+\item
+  a high peak on a density curve doesn't mean more data points at that point, necessarily.
+  it means a high proportion of data in that range, within that particular subset.
+\item
+  if counts are important, you could create a small multiple version of histograms.
+\item
+  example: compare Africa and Americas below - density pretty close, histogram shows
+  there are many more data points for Africa
+\item
+  also, Oceania looks comparable, but really only has 4 data points
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-36-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-36-2.pdf}
 
 \hypertarget{maps}{%
 \section{Maps}\label{maps}}
 
+Won't be dealing with maps much in this book, but here are two classic map
+types and how to read them
+
 \hypertarget{choropleth}{%
 \subsection{Choropleth}\label{choropleth}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-34-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  data visualized is really just the name of the country or other location, and
+  either one categorical variable or one numerical variable.
+\item
+  Reading these is tricky, because you sort of have to ignore the size of the
+  country. big countries can have low data values, and small countries can have high
+  values. also, if you look across the map and see a lot of one color, that could be
+  many countries or just one big one.
+\item
+  true of any map: if the data do not have a strongly spacial pattern, displaying
+  the data on a map may just look like a splatter painting
+\item
+  one benefit, however, is that each country stays within its boundaries; the
+  data never overlap
+\item
+  also, country shape can be recognizeable and help people make sense of some of
+  the specific patterns in the data
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \hypertarget{proportional-symbol-map}{%
 \subsection{Proportional Symbol Map}\label{proportional-symbol-map}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-35-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  instead of using country boundaries as the shape for the visualizations, those
+  can be used just to locate the data, and the visualization can actually use a different
+  shape. most common shape is a circle, turning the map into a scatter plot or bubble chart.
+\item
+  bubble charts can use both color and size to display data, so that makes this kind
+  of map a bit more powerful than a choropleth
+\item
+  but, can get a lot of overlap, can be hard to associate a bubble with a country
+\end{itemize}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{building-basic-visualizations}{%
 \chapter{Building basic visualizations with ggplot2}\label{building-basic-visualizations}}
@@ -1377,7 +1541,7 @@ Now, we'll add a third variable. We'll also map the Location variable to the \te
 \hypertarget{inheritance}{%
 \section{Inheritance}\label{inheritance}}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-39-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-2.pdf}
 
 \hypertarget{how-to-debug-code}{%
 \section{How to Debug Code}\label{how-to-debug-code}}
@@ -2023,68 +2187,68 @@ Figure \ref{fig:coral-resilience-point}.
 
 \href{https://osf.io/57tb8/}{A Behavioral Approach to Understanding the Git Experience}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 \begin{verbatim}
 ## Joining, by = "system"
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-1.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-44-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-6.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-45-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 \begin{verbatim}
 ## `summarise()` has grouped output by 'year_vcs'. You
 ## can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-2.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 9 rows containing non-finite values
 ## (stat_sum).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-3.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-3.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-4.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-4.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-5.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-5.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 15 rows containing missing values
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-6.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 3 rows containing missing values
 ## (geom_tile).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-46-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-7.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-50-1.pdf}
 
 \hypertarget{inclusiveness-index}{%
 \section*{Inclusiveness Index}\label{inclusiveness-index}}
@@ -2106,7 +2270,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-1.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2122,7 +2286,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-2.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-2.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2138,7 +2302,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-3.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-3.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2154,7 +2318,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-4.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-4.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2167,7 +2331,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-5.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-5.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2183,7 +2347,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-6.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-6.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2196,7 +2360,7 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-7.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-7.pdf}
 
 \begin{verbatim}
 ## `geom_smooth()` using formula 'y ~ x'
@@ -2209,16 +2373,16 @@ Figure \ref{fig:coral-resilience-point}.
 ## (geom_point).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-8.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-8.pdf}
 
 \begin{verbatim}
 ## Warning: Removed 113 rows containing non-finite values
 ## (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-48-9.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-9.pdf}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-49-1.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-52-1.pdf}
 
 \hypertarget{candidate-demographics}{%
 \section*{Candidate Demographics}\label{candidate-demographics}}
@@ -2234,13 +2398,13 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 \href{https://github.com/OpportunityInsights/EconomicTracker}{Affinity Spending}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-50-1.pdf}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-51-1.pdf}
-
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-52-1.pdf}
-
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \hypertarget{vineyards}{%
 \section*{Vineyards}\label{vineyards}}
@@ -2248,7 +2412,7 @@ Includes State, Candidate Name, Candidate Party, Office Name, White/Non-White, R
 
 \href{https://dasl.datadescription.com/datafile/vineyards/}{Vineyards}
 
-\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-54-13.pdf}
+\includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-1.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-2.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-3.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-4.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-5.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-6.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-7.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-8.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-9.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-10.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-11.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-12.pdf} \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-57-13.pdf}
 
   \bibliography{book.bib,packages.bib}
 

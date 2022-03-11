@@ -42,8 +42,8 @@ histogram
 variations-5
 dot-plot
 density
-box-plot
 violin-plot
+box-plot
 maps
 choropleth
 inheritance
