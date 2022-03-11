@@ -1,4 +1,21 @@
 # Introduction {-}
 
-* automating graphical output saves time and isn't too hard
-* communicating clearly is worth time & effort
+## Outline {-}
+
+* Intro to visualization in data science
+  * communicating clearly is worth time & effort
+  * automating graphical output saves time and isn't too hard
+* What is this book trying to accomplish
+  * Written for non-academics, beginning programmers;
+    * The target audience of this book would be professionals who are having to learn data science techniques on the job, likely at an under-resourced organization or company. These newly minted data professionals may feel comfortable in Excel but have only just started to learn R for processing data. They have never used a programming language to build a visualization before, and even creating charts in Excel has often been a frustrating and mystifying process. They appreciate that R is freely available and are able to get started on a data science project, but the idea of creating publication-quality visualizations using only code is daunting. 
+  * Focuses on freely available software
+  * Combines hands-on exercises with basic graphic design principles
+    * This book combines instruction on writing R code with building basic graphic design skills in a way that is unusual in data science literature. The book will guide readers through a series of projects, each designed to cover both how visualizations work in R and how visualizations can be designed to have the greatest impact. Far more than a “do this, then this” checklist, this book will focus on building understanding, confidence, and the ability to transfer skills to other tools and design contexts. It will avoid technical jargon that our target audience is unlikely to have encountered before. To accommodate learners who don’t have time to work through an entire book, each chapter will operate independently, covering a specific set of tasks that all make sense together as part of a visualization project.  For those who would like extra practice, there will be several types of hands-on exercises, from those that are entirely prescribed to those that allow readers to apply new techniques to problems in their own areas.
+* What this book covers (table of contents)
+  * Covers pressing modern issues, like accessibility and ethics
+* How to use this book
+  * Each chapter stands alone
+  * The book will have solutions (in the form of completed code and sample output) for all exercises. 
+  * The book will also have a website, including links to Open Access content, solutions, and related resources like video tutorials.
+  * Increasingly, programs of study with a focus on preparing students for professional careers in under-resourced fields, like public policy and even management, include courses on data analysis and communication using freely available software. This book, while not a textbook, could easily be used for a semester-long course, titled something like “Practical data visualization for the modern workforce.” A chapter could be covered each week, and larger projects could help learners synthesize chapters into a complete set of analyses and communication materials.
+  * While not a textbook, the book will also include a brief teacher’s guide for courses that might want to use one or more chapters to structure lessons in a course. 
