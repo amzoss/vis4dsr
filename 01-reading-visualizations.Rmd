@@ -804,7 +804,7 @@ ggplot(aes(x = Year,
 
 ```
 
-#### Dual encoding names with color
+#### Using colors to distinguish individual lines
 
 Sometimes line charts use color to differentiate the lines from each other. Each line
 gets its own color, and the color legend clarifies the name of the line. Even for
@@ -896,10 +896,12 @@ reacting to a decrease in one of the lines below it.
 
 ### Add a variable: Line chart with color
 
-* alternately, you can use color to layer an additional variable on top of the lines
-* usually a way to create groups of lines that are all part of the same category
-* or that are showing similar data patterns
-
+A common way to add a third variable to a line chart is to use color to represent
+a categorical variable, grouping the lines into different categories. This third 
+variable could be unrelated to the variables already in the line chart, or it 
+could be generated from the patterns in the chart -- for example, creating a 
+categorical variable that indicates whether the values are increasing or decreasing
+over time.
 
 ```{r}
 
@@ -926,6 +928,13 @@ ggplot(aes(x = Year,
 
 ```
 
+In the above chart, the individual country lines are colored by their continent. 
+While this does reveal some general patterns for the continents, it also adds
+complexity to an already busy chart. Instead of using a different color 
+for all possible continents, it may be easier to read a chart that focuses on a
+single continent and uses color to highlight just those countries.
+
+
 ```{r}
 
 inclusiveness_index_annual %>%
@@ -947,20 +956,67 @@ ggplot(aes(x = Year,
 
 ## Pie Chart
 
+* same data as a bar chart - categorical variable and numerical variable
+* unlike a bar chart, the form of the pie chart means that only certain kinds
+of data make sense - categories that combine together to form a whole, numbers that
+are positive and make sense as a percentage of a whole
+* hard to compare the size of wedges that are about the same size, especially 
+when they're rotated in space
+* typically the wedges "start" at the top, and then usually the order goes around
+clockwise or counter-clockwise
+* order matters (like bar chart)
+* typical way of telling pie wedges apart is by color, but you can leave them all
+the same color and label them directly, like a line chart
+* what are you looking for in a pie chart? You are looking for how the data are
+distributed between the wedges - are they mostly equal? Is one much larger than 
+you would expect? Much smaller? How much of the total goes to each category?
+* these comparisons become more complicated when you have a lot of wedges. If it's 
+important to understand small changes between the wedges, that can be difficult
+in a pie chart.
+
 ```{r}
 
 inclusiveness_index %>%
   ggplot(aes(y = "", fill = Index.categories.2020)) +
-    geom_bar(position=position_fill()) +
+    geom_bar(position=position_fill(), color="#cccccc") +
     coord_polar(direction = -1) +
-    scale_fill_manual(values = inclusive.colors) +
+    scale_fill_grey(start = 0.3, end=0.8) +
     theme_void()
+
+inclusiveness_index %>%
+  count(Index.categories.2020) %>%
+  mutate(Index.categories.2020 = fct_rev(Index.categories.2020),
+         cum_n = cumsum(n)) %>%
+  ggplot(aes(x=n, y = "", group = Index.categories.2020)) +
+    geom_col(fill="#666666", color="#aaaaaa") +
+    coord_polar() +
+    geom_text(aes(x=cum_n-n/2, y=1.2, label = Index.categories.2020),
+              color = "#ffffff") +
+    theme_void()
+
+inclusiveness_index %>%
+  count(Index.categories.2020) %>%
+  mutate(Index.categories.2020 = fct_rev(Index.categories.2020),
+         cum_n = cumsum(n)) %>%
+  ggplot(aes(x=n, y = "", group = Index.categories.2020, 
+             fill = Index.categories.2020 == "High")) +
+    geom_col(color="#aaaaaa", show.legend = FALSE) +
+    coord_polar() +
+    geom_text(aes(x=cum_n-n/2, y=1.2, label = Index.categories.2020),
+              color = "#ffffff") +
+    scale_fill_manual(values = c("#666666", "#999999")) +
+    theme_void()
+
 
 ```
 
 ### Variations
 
+* primary variation is donut chart
+
 #### Donut chart
+
+* just like pie chart, but the center is missing
 
 ```{r}
 
@@ -976,9 +1032,16 @@ inclusiveness_index %>%
 
 ```
 
-#### Waffle chart
-
 ### Add a variable: Small multiples
+
+* It is very difficult - and likely inadvisable - to try to visualize an additional
+variable inside a basic pie chart. 
+* Instead, if you have a third categorical variable that relates to the data in
+the pie chart, you could try creating a separate pie chart for each category in
+that variable. we call that technique using "small multiples." Small multiples
+are actually useful for a variety of visualizations, especially if the visualization
+is already complex and you don't want to add to the complexity by including an
+additional variable.
 
 ```{r}
 
@@ -994,7 +1057,43 @@ inclusiveness_index %>%
 
 ## Heat Map
 
+* two categorical variables and a numerical variable
+* sort of like a stacked bar chart, but instead of showing the numerical
+variable as the size of the bar segment, you show it as a change in color.
+* for example, longer segments -> darker colors in the grid
+* bonus - no moving baseline problem
+* problem - still hard to precisely compare values because just trying to compare
+color shades
+
 ```{r, warning=FALSE}
+
+ggplot(
+  inclusiveness_index %>% 
+    count(Continent, Index.categories.2020) %>%
+    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)),
+  mapping = aes(x = Continent, y = n, fill = Index.categories.2020)) +
+  geom_col() +
+  labs(y="Number of Records", fill="Inclusiveness Index") +
+  scale_fill_manual(values=inclusive.colors)
+
+inclusiveness_index %>% 
+    count(Continent, Index.categories.2020) %>%
+    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE),
+           Index.categories.2020 = fct_rev(Index.categories.2020)) %>%
+  ggplot(aes(x = Continent, y = Index.categories.2020, fill = n)) +
+    geom_tile() +
+    scale_fill_gradient(low="grey90", high="grey10") +
+  theme_bw()
+
+```
+* additional bonus, though - possibly better for negative values, since it can be 
+hard to represent negative values in a stacked bar where totals matter, or where
+it doesn't make sense to be adding the data together at all
+* order only stays consistent if you are using all positive numbers; if there are 
+negative values, those get pulled out and appear under the axis. 
+* introduce diverging color
+
+```{r}
 
 inclusiveness_index %>%
   pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
@@ -1010,16 +1109,72 @@ inclusiveness_index %>%
                          "Z.score.Disability", "Inclusiveness.index.2020")) %>%
            fct_rev()) %>%
   #View() %>%
-  ggplot(aes(y = index_name, x = Index.categories.2020, fill = mean_incl_ind)) +
-    geom_tile() +
+  ggplot(aes(y = index_name, groups = Index.categories.2020, x = mean_incl_ind, fill = mean_incl_ind)) +
+    geom_col() +
     scale_fill_distiller(type="div", palette = 3, 
                          limits=c(-1.2,1.2), 
                          direction = -1) +
   theme_bw()
 
+highlight <- "Medium"
+
+inclusiveness_index %>%
+  pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
+               names_to = "index_name",
+               values_to = "index_values",
+               values_drop_na = TRUE) %>%
+  group_by(Index.categories.2020, index_name) %>%
+  summarise(mean_incl_ind = mean(index_values), .groups="drop") %>%
+  mutate(index_name = index_name %>%
+           as_factor() %>%
+           fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
+                         "Z.score.Sexual.Orientation", "Z.score.Religion", 
+                         "Z.score.Disability", "Inclusiveness.index.2020")) %>%
+           fct_rev()) %>%
+  #View() %>%
+  ggplot(aes(y = index_name, groups = Index.categories.2020, x = mean_incl_ind, fill = mean_incl_ind)) +
+    geom_col() +
+    geom_col(data = . %>% dplyr::filter(Index.categories.2020 == highlight), 
+             aes(fill=NULL), color = "#000000", fill=NA) +
+    #geom_text(data = . %>% dplyr::filter(Index.categories.2020 == highlight), aes(label=Index.categories.2020),
+    #          position = position_stack(vjust = .5)) + 
+    #geom_point(data = . %>% dplyr::filter(Index.categories.2020 == highlight), 
+    #          position = position_stack(vjust = .5)) + 
+    scale_fill_distiller(type="div", palette = 3, 
+                         limits=c(-1.2,1.2), 
+                         direction = -1) +
+  theme_bw()
+
+
+inclusiveness_index %>%
+  pivot_longer(cols = c(Inclusiveness.index.2020, starts_with("Z")), 
+               names_to = "index_name",
+               values_to = "index_values",
+               values_drop_na = TRUE) %>%
+  group_by(Index.categories.2020, index_name) %>%
+  summarise(mean_incl_ind = mean(index_values), .groups="drop") %>%
+  mutate(index_name = index_name %>%
+           as_factor() %>%
+           fct_relevel(c("Z.score.General.Population", "Z.score.Race", "Z.score.Gender", 
+                         "Z.score.Sexual.Orientation", "Z.score.Religion", 
+                         "Z.score.Disability", "Inclusiveness.index.2020")) %>%
+           fct_rev(),
+         Index.categories.2020 = fct_rev(Index.categories.2020)) %>%
+  #View() %>%
+  ggplot(aes(y = index_name, x = Index.categories.2020, fill = mean_incl_ind)) +
+    geom_tile() +
+    scale_fill_distiller(type="div", palette = 3, 
+                         limits=c(-1.2,1.2), 
+                         direction = -1) +
+    geom_tile(data = . %>% dplyr::filter(Index.categories.2020 == highlight),
+              color="#000000", size=.5) +
+  theme_bw()
+
 ```
 
 ### Variations
+
+* main variation is to keep the matrix format but maybe change the shape
 
 #### Circle matrix
 
@@ -1050,6 +1205,8 @@ inclusiveness_index %>%
 
 ### Add a variable: Bubble matrix
 
+* by using a circle, you can also modulate the size
+
 ```{r}
 
 inclusiveness_index %>%
@@ -1078,7 +1235,12 @@ inclusiveness_index %>%
 
 ## Histogram
 
-Largely one-variable, one-axis plots
+* Largely one-variable, one-axis plots
+* goal is to look at the distribution of a numerical variable
+* tend to look for a few common patterns - bell curve (with or without skew),
+pareto plot, bimodal distribution, etc.
+* shape will depend on binning, whether the numerical variable is an integer or
+floating point, etc.
 
 ```{r}
 
