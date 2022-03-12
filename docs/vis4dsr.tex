@@ -174,7 +174,7 @@
 
 \title{Visualization for Data Science with R}
 \author{Angela M. Zoss, Ph.D.}
-\date{2022-03-11}
+\date{2022-03-12}
 
 \begin{document}
 \maketitle
@@ -441,13 +441,7 @@ data and one column that contains numerical data. A common way to create these t
 is to start with one categorical data column and count the number of records for each
 category to create the numerical column.
 
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-bar-1.pdf}
-\caption{\label{fig:sample-bar}A sample bar chart.}
-\end{figure}
-
-In the sample bar chart above, the categorical variable is displayed on the
+In figure \ref{fig:bar-panel} part A, the categorical variable is displayed on the
 x axis and the numerical variable is displayed on the y axis. This results in a
 classic style of bar chart where each bar has the same width and the heights are
 proportionate to a data value. Each bar has a starting value of zero on the y axis.
@@ -464,26 +458,21 @@ lengths appear close to each other. In the above chart, this is accomplished by
 arranging the bars so they appear with the highest data values on the left and
 the lowest data values on the right.
 
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-bar-neg-1.pdf}
-\caption{\label{fig:sample-bar-neg}A sample bar chart with both positive and negative values.}
-\end{figure}
-
-Here is another example of a bar chart where the data values include both positive
+In figure \ref{fig:bar-panel} part B, the data values include both positive
 and negative values. For data values that are negative, the bar travels downward
 from zero and stops at the correct data value. The x axis title and labels appear
 at the bottom of the panel, below the lowest data values.
 
 For stylistic reasons, bar charts may also appear with the bars oriented horizontally
-instead of vertically. In that case, each bar will have the same height, and the widths
-of the bars will vary based on the data values. The text (or categorical) axis will then
-be the y axis, and the numerical axis will be the x axis.
+instead of vertically (figure \ref{fig:bar-panel} part C). In that case, each bar will
+have the same height, and the widths of the bars will vary based on the data values.
+The text (or categorical) axis will then be the y axis, and the numerical axis
+will be the x axis.
 
 \begin{figure}
 \centering
-\includegraphics{vis4dsr_files/figure-latex/sample-bar-horizontal-1.pdf}
-\caption{\label{fig:sample-bar-horizontal}A sample bar chart, with the bars oriented horizonally.}
+\includegraphics{vis4dsr_files/figure-latex/bar-panel-1.pdf}
+\caption{\label{fig:bar-panel}Three sample bar charts. A: A sample bar chart with vertical bars. B: A sample bar chart with both positive and negative values. C: A sample bar chart, with the bars oriented horizonally.}
 \end{figure}
 
 \hypertarget{variations}{%
@@ -496,22 +485,16 @@ variation of a bar chart: the lollipop chart.
 \hypertarget{lollipop-plot}{%
 \subsubsection{Lollipop plot}\label{lollipop-plot}}
 
-The lollipop plot is a simple variation on the bar chart. In a lollipop plot,
-the bars are replace by a long line with a circle at the end, creating something
-that looks like a lollipop. Apart from the different shapes used, the lollipop plot
-works just like a bar chart. The circles draw attention to the data value, but the
-lines extending to the axis reinforce the length comparisons.
+The lollipop plot is a simple variation on the bar chart. In a lollipop plot
+(figure \ref{fig:lolli-panel}), the bars are replace by a long line with a circle
+at the end, creating something that looks like a lollipop. Apart from the different
+shapes used, the lollipop plotworks just like a bar chart. The circles draw attention
+to the data value, but the lines extending to the axis reinforce the length comparisons.
 
 \begin{figure}
 \centering
-\includegraphics{vis4dsr_files/figure-latex/sample-lollipop-1.pdf}
-\caption{\label{fig:sample-lollipop}A sample lollipop plot.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-lolli-neg-1.pdf}
-\caption{\label{fig:sample-lolli-neg}A sample lollipop plot with both positive and negative values.}
+\includegraphics{vis4dsr_files/figure-latex/lolli-panel-1.pdf}
+\caption{\label{fig:lolli-panel}Two sample lollipop plots. A: A sample lollipop plot. B: A sample lollipop plot with both positive and negative values.}
 \end{figure}
 
 \hypertarget{add-a-variable-bar-charts-with-color}{%
@@ -523,14 +506,8 @@ categorical variable. Adding another categorical variable to a bar chart usually
 means using color to represent the extra variable.
 
 With a stacked bar chart, the additional variable is used to segment the bars into
-separate, colored regions. In this example, the bar for each continent is subdivided
-into groups of countries based on their values for Inclusive Index.
-
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-stacked-bar-1.pdf}
-\caption{\label{fig:sample-stacked-bar}A sample stacked bar chart.}
-\end{figure}
+separate, colored regions. In figure \ref{fig:bar-color-panel} part A, the bar for each continent
+is subdivided into groups of countries based on their values for Inclusive Index.
 
 With this stacked bar chart, you can still see the total number of records for each Continent,
 but what happens when you try to compare the different segments inside the
@@ -542,32 +519,29 @@ a group of segments that aren't lined up with each other, we have to try to gues
 how tall the bar is in comparison to the other bars in the group. The farther
 apart the segments are, the harder it is to make that comparison.
 
-Another variation of the stacked bar chart is the ``filled'' stacked bar chart.
-Instead of using the raw counts to determine the lengths of the bars, in the
-filled stacked bar chart, the full bars are all stretched to have the same height,
-and each segment becomes the percentage of the records in each bar. (Notice how
-the y axis changes from ``Number'' to ``Percentage.'') This is useful if the percentages
-matter more than the raw counts, but it doesn't fix any of the concerns with
-comparing different segments without a common baseline.
+Another variation of the stacked bar chart is the ``filled'' stacked bar chart (figure
+\ref{fig:bar-color-panel} part B). Instead of using the raw counts to determine the
+lengths of the bars, in the filled stacked bar chart, the full bars are all stretched
+to have the same height, and each segment becomes the percentage of the records
+in each bar. (Notice how the y axis changes from ``Number'' to ``Percentage.'') This
+is useful if the percentagesmatter more than the raw counts, but it doesn't fix
+any of the concerns with comparing different segments without a common baseline.
+
+An alternative to the stacked bar chart is called the grouped bar chart (figure
+\ref{fig:bar-color-panel} part C). In the grouped bar chart, every segment starts
+from the x axis. Each continent forms a group of bars, and each option of the
+Inclusiveness Index is a separate bar. While it's easier to see the length of
+each bar, it can now be difficult to look at the trend within a single color group
+because the segments are separated by long distances.
 
 \begin{figure}
 \centering
-\includegraphics{vis4dsr_files/figure-latex/sample-filled-stacked-bar-1.pdf}
-\caption{\label{fig:sample-filled-stacked-bar}A sample filled stacked bar chart.}
+\includegraphics{vis4dsr_files/figure-latex/bar-color-panel-1.pdf}
+\caption{\label{fig:bar-color-panel}Three bar charts with color. A: A sample stacked bar chart. B: A sample filled stacked bar chart. C: A sample grouped bar chart.}
 \end{figure}
 
-An alternative to the stacked bar chart is called the grouped bar chart. In the
-grouped bar chart, every segment starts from the x axis. Each continent forms a
-group of bars, and each option of the Inclusiveness Index is a separate bar.
-
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-grouped-bar-1.pdf}
-\caption{\label{fig:sample-grouped-bar}A sample grouped bar chart.}
-\end{figure}
-
-\hypertarget{dumbbell-plot}{%
-\subsubsection{Dumbbell plot}\label{dumbbell-plot}}
+\hypertarget{variation-dumbbell-plot}{%
+\subsubsection{Variation: Dumbbell plot}\label{variation-dumbbell-plot}}
 
 Stacked and grouped bar charts show some of the limitations of bar charts for
 making complex comparisons. The rectangles in the bar chart take up a large amount
@@ -577,28 +551,16 @@ ability to make more direct comparisons.
 
 For example, let's say we want to compare two continents more directly: Asia and Europe.
 
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-grouped-bar-2-cont-1.pdf}
-\caption{\label{fig:sample-grouped-bar-2-cont}A grouped bar chart focusing on two continents.}
-\end{figure}
-
-This chart groups all of the segments by continent, which makes it easy to compare
-different Index categories within a single continent. What if we want to bring more
-attention to the difference between continents for each category? We could always
-switch which category is the primary division on the x axis and which is
-represented by color.
-
-\begin{figure}
-\centering
-\includegraphics{vis4dsr_files/figure-latex/sample-grouped-bar-2-cont-switched-1.pdf}
-\caption{\label{fig:sample-grouped-bar-2-cont-switched}The same grouped bar chart with a different arrangement of the categorical variables.}
-\end{figure}
+Figure \ref{fig:dumbbell-panel} part A groups all of the segments by continent,
+which makes it easy to compare different Index categories within a single continent.
+What if we want to bring more attention to the difference between continents for
+each category? We could always switch which category is the primary division on
+the x axis and which is represented by color (figure \ref{fig:dumbbell-panel} part B).
 
 This improves our ability to compare the continents directly because the bars are
 directly next to each other. The amount of space the bars take up is still pretty
 large, though. If we combine this chart with something like a lollipop plot, we
-get one last variation: a dumbbell plot.
+get one last variation: a dumbbell plot (figure \ref{fig:dumbbell-panel} part C).
 
 With a dumbbell plot, we use a circle to represent the data values, just like the
 lollipop. Instead of having a line that extends all the way to the axis, though,
@@ -606,15 +568,15 @@ we use a line to connect the two dots in each category of Inclusiveness Index.
 
 \begin{figure}
 \centering
-\includegraphics{vis4dsr_files/figure-latex/sample-dumbbell-1.pdf}
-\caption{\label{fig:sample-dumbbell}A dumbbell plot comparing two continents.}
+\includegraphics{vis4dsr_files/figure-latex/dumbbell-panel-1.pdf}
+\caption{\label{fig:dumbbell-panel}A: A grouped bar chart focusing on two continents. B: The same grouped bar chart with a different arrangement of the categorical variables. C: A dumbbell plot comparing two continents.}
 \end{figure}
 
 With a dumbbell plot, there are three main trends we can explore in the chart. We
 can focus on the green circles to see the pattern in the Asia data values. We can
 focus on the blue circles to see the pattern in the Europe data values. Finally,
 we can focus on the lengths of the lines connecting the circles to compare the
-continents at each level of the Inclusiveness Index. This chart time is an efficient
+continents at each level of the Inclusiveness Index. This chart type is an efficient
 way to compare these data values, but remember that it can be difficult to compare
 the lengths of shapes when they don't have the same baseline.
 
@@ -872,7 +834,7 @@ a few lines so that it is possible to identify each line directly and trace it
 individually across the entire chart.
 
 \hypertarget{using-circles-to-highlight-the-position-of-the-data-points}{%
-\subsubsection{Using circles to highlight the position of the data points}\label{using-circles-to-highlight-the-position-of-the-data-points}}
+\subsection{Using circles to highlight the position of the data points}\label{using-circles-to-highlight-the-position-of-the-data-points}}
 
 Some line charts include circles along the lines. These circles indicate that the
 data set included a value at that point in the line. This can be especially useful
@@ -886,7 +848,7 @@ hard to know exactly where the real data values are.
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-8-1.pdf}
 
 \hypertarget{using-colors-to-distinguish-individual-lines}{%
-\subsubsection{Using colors to distinguish individual lines}\label{using-colors-to-distinguish-individual-lines}}
+\subsection{Using colors to distinguish individual lines}\label{using-colors-to-distinguish-individual-lines}}
 
 Sometimes line charts use color to differentiate the lines from each other. Each line
 gets its own color, and the color legend clarifies the name of the line. Even for
@@ -1133,7 +1095,7 @@ negative values, those get pulled out and appear under the axis.
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{centered-dot-plot-bee-swarm}{%
-\paragraph{Centered dot plot / Bee swarm}\label{centered-dot-plot-bee-swarm}}
+\subsubsection{Centered dot plot / Bee swarm}\label{centered-dot-plot-bee-swarm}}
 
 \begin{itemize}
 \tightlist
@@ -1163,7 +1125,7 @@ negative values, those get pulled out and appear under the axis.
 \includegraphics{vis4dsr_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 \hypertarget{box-plot}{%
-\subsection{Box Plot}\label{box-plot}}
+\subsubsection{Box Plot}\label{box-plot}}
 
 \begin{itemize}
 \tightlist

@@ -29,6 +29,7 @@ continent.colors <- setNames(brewer.pal(5, "Set2"), sort(unique(inclusiveness_in
 
 library(hexbin)
 library(mapproj)
+library(patchwork)
 
 ```
 
@@ -94,22 +95,7 @@ data and one column that contains numerical data. A common way to create these t
 is to start with one categorical data column and count the number of records for each 
 category to create the numerical column.
 
-```{r sample-bar, fig.cap='A sample bar chart.'}
-
-ggplot(
-  inclusiveness_index %>% 
-    mutate(Continent = Continent %>% as_factor() %>% fct_infreq()),
-  mapping = aes(x = Continent)) +
-  geom_bar(fill = "grey50", width = .75) +
-  labs(y="Number of Records") +
-  theme(panel.grid.major.x = element_blank(), 
-        axis.line = NULL, 
-        axis.ticks = NULL) +
-  scale_y_continuous(expand = expansion(add = c(0, 2)))
-
-```
-
-In the sample bar chart above, the categorical variable is displayed on the 
+In figure \@ref(fig:bar-panel) part A, the categorical variable is displayed on the 
 x axis and the numerical variable is displayed on the y axis. This results in a 
 classic style of bar chart where each bar has the same width and the heights are 
 proportionate to a data value. Each bar has a starting value of zero on the y axis. 
@@ -126,49 +112,62 @@ lengths appear close to each other. In the above chart, this is accomplished by
 arranging the bars so they appear with the highest data values on the left and 
 the lowest data values on the right.
 
-```{r sample-bar-neg, fig.cap='A sample bar chart with both positive and negative values.'}
+In figure \@ref(fig:bar-panel) part B, the data values include both positive
+and negative values. For data values that are negative, the bar travels downward 
+from zero and stops at the correct data value. The x axis title and labels appear 
+at the bottom of the panel, below the lowest data values.
 
-inclusiveness_index %>% 
+For stylistic reasons, bar charts may also appear with the bars oriented horizontally
+instead of vertically (figure \@ref(fig:bar-panel) part C). In that case, each bar will 
+have the same height, and the widths of the bars will vary based on the data values. 
+The text (or categorical) axis will then be the y axis, and the numerical axis 
+will be the x axis.
+
+
+```{r bar-panel, fig.cap='Three sample bar charts. A: A sample bar chart with vertical bars. B: A sample bar chart with both positive and negative values. C: A sample bar chart, with the bars oriented horizonally.'}
+
+vert_pos <- ggplot(
+  inclusiveness_index %>% 
+    mutate(Continent = Continent %>% as_factor() %>% fct_infreq()),
+  mapping = aes(x = Continent)) +
+  geom_bar(fill = "grey50", width = .75) +
+  labs(y="Number of Records") +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  scale_y_continuous(expand = expansion(add = c(0, 2)))
+
+vert_neg <- inclusiveness_index %>% 
   drop_na(Inclusiveness.index.2020) %>%
   group_by(Continent) %>%
   summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`, .desc = TRUE)) %>% 
 ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
   geom_col(fill = "grey50", width = .75) +
-  labs(y="Number of Records") +
   theme(#panel.grid.major.x = element_blank(), 
         axis.line = NULL, 
         axis.ticks = NULL) +
   geom_hline(yintercept = 0)
 
-```
-
-Here is another example of a bar chart where the data values include both positive
-and negative values. For data values that are negative, the bar travels downward 
-from zero and stops at the correct data value. The x axis title and labels appear 
-at the bottom of the panel, below the lowest data values.
-
-For stylistic reasons, bar charts may also appear with the bars oriented horizontally
-instead of vertically. In that case, each bar will have the same height, and the widths
-of the bars will vary based on the data values. The text (or categorical) axis will then
-be the y axis, and the numerical axis will be the x axis.
-
-```{r sample-bar-horizontal, fig.cap='A sample bar chart, with the bars oriented horizonally.'}
-
-inclusiveness_index %>% 
+hor_neg <- inclusiveness_index %>% 
   drop_na(Inclusiveness.index.2020) %>%
   group_by(Continent) %>%
   summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`)) %>% 
 ggplot(mapping = aes(y = Continent, x = `Mean Inclusiveness Index`)) +
   geom_col(fill = "grey50", width = .75) +
-  labs(y="Number of Records") +
   theme(#panel.grid.major.x = element_blank(), 
         axis.line = NULL, 
         axis.ticks = NULL) +
   geom_vline(xintercept = 0)
 
+
+(vert_pos) + ( vert_neg / hor_neg ) +
+  plot_annotation(tag_levels = 'A')
+
+
 ```
+
 
 ### Variations
 
@@ -178,15 +177,16 @@ variation of a bar chart: the lollipop chart.
 
 #### Lollipop plot
 
-The lollipop plot is a simple variation on the bar chart. In a lollipop plot,
-the bars are replace by a long line with a circle at the end, creating something
-that looks like a lollipop. Apart from the different shapes used, the lollipop plot 
-works just like a bar chart. The circles draw attention to the data value, but the
-lines extending to the axis reinforce the length comparisons.
+The lollipop plot is a simple variation on the bar chart. In a lollipop plot 
+(figure \@ref(fig:lolli-panel)), the bars are replace by a long line with a circle 
+at the end, creating something that looks like a lollipop. Apart from the different 
+shapes used, the lollipop plotworks just like a bar chart. The circles draw attention 
+to the data value, but the lines extending to the axis reinforce the length comparisons. 
 
-```{r sample-lollipop, fig.cap='A sample lollipop plot.'}
 
-ggplot(
+```{r lolli-panel, fig.cap='Two sample lollipop plots. A: A sample lollipop plot. B: A sample lollipop plot with both positive and negative values.'}
+
+lolli_pos <- ggplot(
   inclusiveness_index %>% 
     count(Continent) %>%
     mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .desc = TRUE)),
@@ -196,25 +196,30 @@ ggplot(
   labs(y="Number of Records") +
   theme(panel.grid.major.x = element_blank(), 
         axis.line = NULL, 
-        axis.ticks = NULL) +
+        axis.ticks = NULL,
+        axis.ticks.x = element_blank()) +
   scale_y_continuous(expand = expansion(add = c(0, 2)))
 
-# TODO: get rid of x ticks?
-
-```
-
-```{r sample-lolli-neg, fig.cap='A sample lollipop plot with both positive and negative values.'}
-
-inclusiveness_index %>% 
+lolli_neg <- inclusiveness_index %>% 
   drop_na(Inclusiveness.index.2020) %>%
   group_by(Continent) %>%
   summarize(`Mean Inclusiveness Index` = mean(Inclusiveness.index.2020)) %>%
   mutate(Continent = Continent %>% as_factor() %>% fct_reorder(`Mean Inclusiveness Index`, .desc = TRUE)) %>% 
 ggplot(mapping = aes(x = Continent, y = `Mean Inclusiveness Index`)) +
   geom_col(width=.03) +
-  geom_point(size=4) 
+  geom_point(size=4) +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL,
+        axis.ticks.x = element_blank()) +
+  geom_hline(yintercept = 0) +
+  scale_y_continuous(breaks = c(-.2,0,.2,.4))
+
+(lolli_pos) + ( lolli_neg ) +
+  plot_annotation(tag_levels = 'A')
 
 ```
+
 
 ### Add a variable: Bar charts with color
 
@@ -224,22 +229,8 @@ categorical variable. Adding another categorical variable to a bar chart usually
 means using color to represent the extra variable.
 
 With a stacked bar chart, the additional variable is used to segment the bars into
-separate, colored regions. In this example, the bar for each continent is subdivided
-into groups of countries based on their values for Inclusive Index.
-
-
-```{r sample-stacked-bar, fig.cap='A sample stacked bar chart.'}
-
-ggplot(
-  inclusiveness_index %>% 
-    count(Continent, Index.categories.2020) %>%
-    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)),
-  mapping = aes(x = Continent, y = n, fill = Index.categories.2020)) +
-  geom_col() +
-  labs(y="Number of Records", fill="Inclusiveness Index") +
-  scale_fill_manual(values=inclusive.colors)
-
-```
+separate, colored regions. In figure \@ref(fig:bar-color-panel) part A, the bar for each continent 
+is subdivided into groups of countries based on their values for Inclusive Index.
 
 With this stacked bar chart, you can still see the total number of records for each Continent,
 but what happens when you try to compare the different segments inside the
@@ -251,43 +242,75 @@ a group of segments that aren't lined up with each other, we have to try to gues
 how tall the bar is in comparison to the other bars in the group. The farther
 apart the segments are, the harder it is to make that comparison.
 
-Another variation of the stacked bar chart is the "filled" stacked bar chart.
-Instead of using the raw counts to determine the lengths of the bars, in the
-filled stacked bar chart, the full bars are all stretched to have the same height,
-and each segment becomes the percentage of the records in each bar. (Notice how
-the y axis changes from "Number" to "Percentage.") This is useful if the percentages 
-matter more than the raw counts, but it doesn't fix any of the concerns with 
-comparing different segments without a common baseline.
+Another variation of the stacked bar chart is the "filled" stacked bar chart (figure 
+\@ref(fig:bar-color-panel) part B). Instead of using the raw counts to determine the 
+lengths of the bars, in the filled stacked bar chart, the full bars are all stretched 
+to have the same height, and each segment becomes the percentage of the records 
+in each bar. (Notice how the y axis changes from "Number" to "Percentage.") This 
+is useful if the percentagesmatter more than the raw counts, but it doesn't fix 
+any of the concerns with comparing different segments without a common baseline.
 
-```{r sample-filled-stacked-bar, fig.cap='A sample filled stacked bar chart.'}
+An alternative to the stacked bar chart is called the grouped bar chart (figure 
+\@ref(fig:bar-color-panel) part C). In the grouped bar chart, every segment starts 
+from the x axis. Each continent forms a group of bars, and each option of the 
+Inclusiveness Index is a separate bar. While it's easier to see the length of
+each bar, it can now be difficult to look at the trend within a single color group
+because the segments are separated by long distances.
 
-ggplot(
+```{r bar-color-panel, fig.cap='Three bar charts with color. A: A sample stacked bar chart. B: A sample filled stacked bar chart. C: A sample grouped bar chart.'}
+
+
+bar_stacked <- ggplot(
   inclusiveness_index %>% 
     count(Continent, Index.categories.2020) %>%
     mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)),
   mapping = aes(x = Continent, y = n, fill = Index.categories.2020)) +
-  geom_col(position = "fill") +
+  geom_col(show.legend = FALSE) +
+  labs(y="Number of Records", fill="Inclusiveness Index") +
+  #scale_fill_manual(values=inclusive.colors) +
+  scale_fill_grey(start = 0.3, end=0.8) +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  scale_y_continuous(expand = expansion(add = c(0, 2)))
+
+bar_filled <- ggplot(
+  inclusiveness_index %>% 
+    count(Continent, Index.categories.2020) %>%
+    mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)),
+  mapping = aes(x = Continent, y = n, fill = Index.categories.2020)) +
+  geom_col(position = "fill", show.legend = FALSE) +
   labs(y="Percentage of Records", fill="Inclusiveness Index") +
-  scale_fill_manual(values=inclusive.colors)
+  #scale_fill_manual(values=inclusive.colors) +
+  scale_fill_grey(start = 0.3, end=0.8) +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  scale_y_continuous(expand = expansion(add = c(0, .02)))
 
-```
-
-An alternative to the stacked bar chart is called the grouped bar chart. In the
-grouped bar chart, every segment starts from the x axis. Each continent forms a
-group of bars, and each option of the Inclusiveness Index is a separate bar.
-
-```{r sample-grouped-bar, fig.cap='A sample grouped bar chart.'}
-
-ggplot(
+bar_grouped <- ggplot(
   inclusiveness_index,
   mapping = aes(x = Continent, fill = Index.categories.2020)) +
   geom_bar(position = position_dodge2(preserve="single")) +
   labs(y="Number of Records", fill="Inclusiveness Index") +
-  scale_fill_manual(values=inclusive.colors)
+  #scale_fill_manual(values=inclusive.colors) +
+  scale_fill_grey(start = 0.3, end=0.8) +
+  #theme(legend.position="bottom") +
+  guides(fill = guide_legend(title.position="top", nrow=1, title.hjust = 0.5)) +
+  theme(panel.grid.major.x = element_blank(), 
+        axis.line = NULL, 
+        axis.ticks = NULL) +
+  scale_y_continuous(expand = expansion(add = c(0, 2)))
+
+(bar_stacked + bar_filled) / bar_grouped +
+  plot_annotation(tag_levels = 'A') +
+  plot_layout(guides = 'collect') &
+  theme(legend.position='bottom')
 
 ```
 
-#### Dumbbell plot
+
+#### Variation: Dumbbell plot
 
 Stacked and grouped bar charts show some of the limitations of bar charts for
 making complex comparisons. The rectangles in the bar chart take up a large amount
@@ -297,62 +320,63 @@ ability to make more direct comparisons.
 
 For example, let's say we want to compare two continents more directly: Asia and Europe.
 
-```{r sample-grouped-bar-2-cont, fig.cap='A grouped bar chart focusing on two continents.'}
-
-ggplot(
-  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")),
-  mapping = aes(x = Continent, fill = Index.categories.2020)) +
-  geom_bar(position = position_dodge2(preserve="single")) +
-  labs(y="Number of Records", fill="Inclusiveness Index") +
-  scale_fill_manual(values=inclusive.colors)
-
-```
-
-This chart groups all of the segments by continent, which makes it easy to compare
-different Index categories within a single continent. What if we want to bring more
-attention to the difference between continents for each category? We could always
-switch which category is the primary division on the x axis and which is 
-represented by color.
-
-```{r sample-grouped-bar-2-cont-switched, fig.cap='The same grouped bar chart with a different arrangement of the categorical variables.'}
-
-ggplot(
-  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")),
-  mapping = aes(x = Index.categories.2020, fill = Continent)) +
-  geom_bar(position = position_dodge2(preserve="single")) +
-  labs(y="Number of Records", x="Inclusiveness Index") +
-  scale_fill_manual(values=c(continent.colors["Asia"],continent.colors["Europe"]))
-
-```
+Figure \@ref(fig:dumbbell-panel) part A groups all of the segments by continent, 
+which makes it easy to compare different Index categories within a single continent. 
+What if we want to bring more attention to the difference between continents for 
+each category? We could always switch which category is the primary division on 
+the x axis and which is represented by color (figure \@ref(fig:dumbbell-panel) part B).
 
 This improves our ability to compare the continents directly because the bars are
 directly next to each other. The amount of space the bars take up is still pretty
 large, though. If we combine this chart with something like a lollipop plot, we
-get one last variation: a dumbbell plot.
+get one last variation: a dumbbell plot (figure \@ref(fig:dumbbell-panel) part C).
 
 With a dumbbell plot, we use a circle to represent the data values, just like the
 lollipop. Instead of having a line that extends all the way to the axis, though,
 we use a line to connect the two dots in each category of Inclusiveness Index.
 
 
-```{r sample-dumbbell, fig.cap='A dumbbell plot comparing two continents.'}
+```{r dumbbell-panel, fig.cap='A: A grouped bar chart focusing on two continents. B: The same grouped bar chart with a different arrangement of the categorical variables. C: A dumbbell plot comparing two continents.'}
 
-ggplot(
+# TODO: color or black and white?
+
+grouped_bar_pair <- ggplot(
+  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")),
+  mapping = aes(x = Continent, fill = Index.categories.2020)) +
+  geom_bar(position = position_dodge2(preserve="single")) +
+  labs(y="Number of Records", fill="Inclusiveness Index") +
+  scale_fill_manual(values=inclusive.colors)
+
+grouped_bar_pair_pivot <- ggplot(
+  inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")),
+  mapping = aes(x = Index.categories.2020, fill = Continent)) +
+  geom_bar(position = position_dodge2(preserve="single")) +
+  labs(y="Number of Records", x="Inclusiveness Index") +
+  scale_fill_manual(values=c(continent.colors["Asia"],continent.colors["Europe"]))
+
+dumbbell <- ggplot(
   inclusiveness_index %>% dplyr::filter(Continent %in% c("Asia", "Europe")) %>%
     count(Continent, Index.categories.2020),
   mapping = aes(x = Index.categories.2020, y=n)) +
   geom_line(aes(group=Index.categories.2020), color="#555555", size=1) +
-  geom_point(aes(color = Continent), size=6) +
+  geom_point(aes(color = Continent), size=6, show.legend = FALSE) +
   labs(y="Number of Records", x="Inclusiveness Index") +
   scale_color_manual(values=c(continent.colors["Asia"],continent.colors["Europe"]))
 
+((grouped_bar_pair / grouped_bar_pair_pivot) | dumbbell) +
+  plot_annotation(tag_levels = 'A') +
+  plot_layout(guides = 'keep', widths = c(2,4))
+
+
+
 ```
+
 
 With a dumbbell plot, there are three main trends we can explore in the chart. We
 can focus on the green circles to see the pattern in the Asia data values. We can
 focus on the blue circles to see the pattern in the Europe data values. Finally, 
 we can focus on the lengths of the lines connecting the circles to compare the 
-continents at each level of the Inclusiveness Index. This chart time is an efficient
+continents at each level of the Inclusiveness Index. This chart type is an efficient
 way to compare these data values, but remember that it can be difficult to compare
 the lengths of shapes when they don't have the same baseline.
 
@@ -797,7 +821,7 @@ important to identify specific lines in your chart, however, it is best to use o
 a few lines so that it is possible to identify each line directly and trace it
 individually across the entire chart.
 
-#### Using circles to highlight the position of the data points
+### Using circles to highlight the position of the data points
 
 Some line charts include circles along the lines. These circles indicate that the
 data set included a value at that point in the line. This can be especially useful
@@ -827,7 +851,7 @@ ggplot(aes(x = Year,
 
 ```
 
-#### Using colors to distinguish individual lines
+### Using colors to distinguish individual lines
 
 Sometimes line charts use color to differentiate the lines from each other. Each line
 gets its own color, and the color legend clarifies the name of the line. Even for
@@ -1348,7 +1372,7 @@ inclusiveness_index %>%
 
 ```
 
-##### Centered dot plot / Bee swarm
+#### Centered dot plot / Bee swarm
 
 * first of the "centered" distribution charts
 * the variable we're exploring is not on the x axis anymore. It's now vertical,
@@ -1392,7 +1416,7 @@ inclusiveness_index %>%
 
 ```
 
-### Box Plot
+#### Box Plot
 
 * Instead of showing the complete pattern of the data, have calculated additional
 statistics about the data and are visualizing those instead

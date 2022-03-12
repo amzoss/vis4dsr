@@ -24,7 +24,7 @@
 <meta name="author" content="Angela M. Zoss, Ph.D." />
 
 
-<meta name="date" content="2022-03-11" />
+<meta name="date" content="2022-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,8 +190,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#line-chart"><i class="fa fa-check"></i><b>1.4</b> Line Chart<span></span></a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-2"><i class="fa fa-check"></i><b>1.4.1</b> Variations<span></span></a></li>
-<li class="chapter" data-level="1.4.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-line-chart-with-color"><i class="fa fa-check"></i><b>1.4.2</b> Add a variable: Line chart with color<span></span></a></li>
+<li class="chapter" data-level="1.4.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#using-circles-to-highlight-the-position-of-the-data-points"><i class="fa fa-check"></i><b>1.4.1</b> Using circles to highlight the position of the data points<span></span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#using-colors-to-distinguish-individual-lines"><i class="fa fa-check"></i><b>1.4.2</b> Using colors to distinguish individual lines<span></span></a></li>
+<li class="chapter" data-level="1.4.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-2"><i class="fa fa-check"></i><b>1.4.3</b> Variations<span></span></a></li>
+<li class="chapter" data-level="1.4.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-line-chart-with-color"><i class="fa fa-check"></i><b>1.4.4</b> Add a variable: Line chart with color<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="reading-visualizations.html"><a href="reading-visualizations.html#pie-chart"><i class="fa fa-check"></i><b>1.5</b> Pie Chart<span></span></a>
 <ul>
@@ -206,9 +208,8 @@ div.csl-indent {
 <li class="chapter" data-level="1.7" data-path="reading-visualizations.html"><a href="reading-visualizations.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram<span></span></a>
 <ul>
 <li class="chapter" data-level="1.7.1" data-path="reading-visualizations.html"><a href="reading-visualizations.html#variations-5"><i class="fa fa-check"></i><b>1.7.1</b> Variations<span></span></a></li>
-<li class="chapter" data-level="1.7.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#box-plot"><i class="fa fa-check"></i><b>1.7.2</b> Box Plot<span></span></a></li>
-<li class="chapter" data-level="1.7.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis"><i class="fa fa-check"></i><b>1.7.3</b> Add a variable: Separate groups on x axis<span></span></a></li>
-<li class="chapter" data-level="1.7.4" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-with-color"><i class="fa fa-check"></i><b>1.7.4</b> Add a variable: Separate groups with color<span></span></a></li>
+<li class="chapter" data-level="1.7.2" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis"><i class="fa fa-check"></i><b>1.7.2</b> Add a variable: Separate groups on x axis<span></span></a></li>
+<li class="chapter" data-level="1.7.3" data-path="reading-visualizations.html"><a href="reading-visualizations.html#add-a-variable-separate-groups-with-color"><i class="fa fa-check"></i><b>1.7.3</b> Add a variable: Separate groups with color<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.8" data-path="reading-visualizations.html"><a href="reading-visualizations.html#maps"><i class="fa fa-check"></i><b>1.8</b> Maps<span></span></a>
 <ul>
@@ -426,13 +427,7 @@ bar chart, the data set should have one column that contains textual (or categor
 data and one column that contains numerical data. A common way to create these two columns
 is to start with one categorical data column and count the number of records for each
 category to create the numerical column.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-bar"></span>
-<img src="vis4dsr_files/figure-html/sample-bar-1.png" alt="A sample bar chart." width="672" />
-<p class="caption">
-FIGURE 1.2: A sample bar chart.
-</p>
-</div>
-<p>In the sample bar chart above, the categorical variable is displayed on the
+<p>In figure <a href="reading-visualizations.html#fig:bar-panel">1.2</a> part A, the categorical variable is displayed on the
 x axis and the numerical variable is displayed on the y axis. This results in a
 classic style of bar chart where each bar has the same width and the heights are
 proportionate to a data value. Each bar has a starting value of zero on the y axis.
@@ -446,24 +441,19 @@ when all of the bars start at the same lowest point, or baseline.</p>
 lengths appear close to each other. In the above chart, this is accomplished by
 arranging the bars so they appear with the highest data values on the left and
 the lowest data values on the right.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-bar-neg"></span>
-<img src="vis4dsr_files/figure-html/sample-bar-neg-1.png" alt="A sample bar chart with both positive and negative values." width="672" />
-<p class="caption">
-FIGURE 1.3: A sample bar chart with both positive and negative values.
-</p>
-</div>
-<p>Here is another example of a bar chart where the data values include both positive
+<p>In figure <a href="reading-visualizations.html#fig:bar-panel">1.2</a> part B, the data values include both positive
 and negative values. For data values that are negative, the bar travels downward
 from zero and stops at the correct data value. The x axis title and labels appear
 at the bottom of the panel, below the lowest data values.</p>
 <p>For stylistic reasons, bar charts may also appear with the bars oriented horizontally
-instead of vertically. In that case, each bar will have the same height, and the widths
-of the bars will vary based on the data values. The text (or categorical) axis will then
-be the y axis, and the numerical axis will be the x axis.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-bar-horizontal"></span>
-<img src="vis4dsr_files/figure-html/sample-bar-horizontal-1.png" alt="A sample bar chart, with the bars oriented horizonally." width="672" />
+instead of vertically (figure <a href="reading-visualizations.html#fig:bar-panel">1.2</a> part C). In that case, each bar will
+have the same height, and the widths of the bars will vary based on the data values.
+The text (or categorical) axis will then be the y axis, and the numerical axis
+will be the x axis.</p>
+<div class="figure"><span style="display:block;" id="fig:bar-panel"></span>
+<img src="vis4dsr_files/figure-html/bar-panel-1.png" alt="Three sample bar charts. A: A sample bar chart with vertical bars. B: A sample bar chart with both positive and negative values. C: A sample bar chart, with the bars oriented horizonally." width="672" />
 <p class="caption">
-FIGURE 1.4: A sample bar chart, with the bars oriented horizonally.
+FIGURE 1.2: Three sample bar charts. A: A sample bar chart with vertical bars. B: A sample bar chart with both positive and negative values. C: A sample bar chart, with the bars oriented horizonally.
 </p>
 </div>
 <div id="variations" class="section level3 hasAnchor" number="1.2.1">
@@ -473,21 +463,15 @@ explore a variation that would change the basic shape of the chart. There is one
 variation of a bar chart: the lollipop chart.</p>
 <div id="lollipop-plot" class="section level4 hasAnchor" number="1.2.1.1">
 <h4><span class="header-section-number">1.2.1.1</span> Lollipop plot<a href="reading-visualizations.html#lollipop-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The lollipop plot is a simple variation on the bar chart. In a lollipop plot,
-the bars are replace by a long line with a circle at the end, creating something
-that looks like a lollipop. Apart from the different shapes used, the lollipop plot
-works just like a bar chart. The circles draw attention to the data value, but the
-lines extending to the axis reinforce the length comparisons.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-lollipop"></span>
-<img src="vis4dsr_files/figure-html/sample-lollipop-1.png" alt="A sample lollipop plot." width="672" />
+<p>The lollipop plot is a simple variation on the bar chart. In a lollipop plot
+(figure <a href="reading-visualizations.html#fig:lolli-panel">1.3</a>), the bars are replace by a long line with a circle
+at the end, creating something that looks like a lollipop. Apart from the different
+shapes used, the lollipop plotworks just like a bar chart. The circles draw attention
+to the data value, but the lines extending to the axis reinforce the length comparisons.</p>
+<div class="figure"><span style="display:block;" id="fig:lolli-panel"></span>
+<img src="vis4dsr_files/figure-html/lolli-panel-1.png" alt="Two sample lollipop plots. A: A sample lollipop plot. B: A sample lollipop plot with both positive and negative values." width="672" />
 <p class="caption">
-FIGURE 1.5: A sample lollipop plot.
-</p>
-</div>
-<div class="figure"><span style="display:block;" id="fig:sample-lolli-neg"></span>
-<img src="vis4dsr_files/figure-html/sample-lolli-neg-1.png" alt="A sample lollipop plot with both positive and negative values." width="672" />
-<p class="caption">
-FIGURE 1.6: A sample lollipop plot with both positive and negative values.
+FIGURE 1.3: Two sample lollipop plots. A: A sample lollipop plot. B: A sample lollipop plot with both positive and negative values.
 </p>
 </div>
 </div>
@@ -499,14 +483,8 @@ Sometimes, however, it is useful to explore the patterns in relation to a second
 categorical variable. Adding another categorical variable to a bar chart usually
 means using color to represent the extra variable.</p>
 <p>With a stacked bar chart, the additional variable is used to segment the bars into
-separate, colored regions. In this example, the bar for each continent is subdivided
-into groups of countries based on their values for Inclusive Index.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-stacked-bar"></span>
-<img src="vis4dsr_files/figure-html/sample-stacked-bar-1.png" alt="A sample stacked bar chart." width="672" />
-<p class="caption">
-FIGURE 1.7: A sample stacked bar chart.
-</p>
-</div>
+separate, colored regions. In figure <a href="reading-visualizations.html#fig:bar-color-panel">1.4</a> part A, the bar for each continent
+is subdivided into groups of countries based on their values for Inclusive Index.</p>
 <p>With this stacked bar chart, you can still see the total number of records for each Continent,
 but what happens when you try to compare the different segments inside the
 bar chart? Starting at the bottom, it seems to work out okay. All of the bars
@@ -516,71 +494,56 @@ right above them? And the “Medium-Low” segments above those? Every time we h
 a group of segments that aren’t lined up with each other, we have to try to guess
 how tall the bar is in comparison to the other bars in the group. The farther
 apart the segments are, the harder it is to make that comparison.</p>
-<p>Another variation of the stacked bar chart is the “filled” stacked bar chart.
-Instead of using the raw counts to determine the lengths of the bars, in the
-filled stacked bar chart, the full bars are all stretched to have the same height,
-and each segment becomes the percentage of the records in each bar. (Notice how
-the y axis changes from “Number” to “Percentage.”) This is useful if the percentages
-matter more than the raw counts, but it doesn’t fix any of the concerns with
-comparing different segments without a common baseline.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-filled-stacked-bar"></span>
-<img src="vis4dsr_files/figure-html/sample-filled-stacked-bar-1.png" alt="A sample filled stacked bar chart." width="672" />
+<p>Another variation of the stacked bar chart is the “filled” stacked bar chart (figure
+<a href="reading-visualizations.html#fig:bar-color-panel">1.4</a> part B). Instead of using the raw counts to determine the
+lengths of the bars, in the filled stacked bar chart, the full bars are all stretched
+to have the same height, and each segment becomes the percentage of the records
+in each bar. (Notice how the y axis changes from “Number” to “Percentage.”) This
+is useful if the percentagesmatter more than the raw counts, but it doesn’t fix
+any of the concerns with comparing different segments without a common baseline.</p>
+<p>An alternative to the stacked bar chart is called the grouped bar chart (figure
+<a href="reading-visualizations.html#fig:bar-color-panel">1.4</a> part C). In the grouped bar chart, every segment starts
+from the x axis. Each continent forms a group of bars, and each option of the
+Inclusiveness Index is a separate bar. While it’s easier to see the length of
+each bar, it can now be difficult to look at the trend within a single color group
+because the segments are separated by long distances.</p>
+<div class="figure"><span style="display:block;" id="fig:bar-color-panel"></span>
+<img src="vis4dsr_files/figure-html/bar-color-panel-1.png" alt="Three bar charts with color. A: A sample stacked bar chart. B: A sample filled stacked bar chart. C: A sample grouped bar chart." width="672" />
 <p class="caption">
-FIGURE 1.8: A sample filled stacked bar chart.
+FIGURE 1.4: Three bar charts with color. A: A sample stacked bar chart. B: A sample filled stacked bar chart. C: A sample grouped bar chart.
 </p>
 </div>
-<p>An alternative to the stacked bar chart is called the grouped bar chart. In the
-grouped bar chart, every segment starts from the x axis. Each continent forms a
-group of bars, and each option of the Inclusiveness Index is a separate bar.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-grouped-bar"></span>
-<img src="vis4dsr_files/figure-html/sample-grouped-bar-1.png" alt="A sample grouped bar chart." width="672" />
-<p class="caption">
-FIGURE 1.9: A sample grouped bar chart.
-</p>
-</div>
-<div id="dumbbell-plot" class="section level4 hasAnchor" number="1.2.2.1">
-<h4><span class="header-section-number">1.2.2.1</span> Dumbbell plot<a href="reading-visualizations.html#dumbbell-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="variation-dumbbell-plot" class="section level4 hasAnchor" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Variation: Dumbbell plot<a href="reading-visualizations.html#variation-dumbbell-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Stacked and grouped bar charts show some of the limitations of bar charts for
 making complex comparisons. The rectangles in the bar chart take up a large amount
 of space. Think back to the lollipop plot, where it’s the circles that directly
 represent the data value. Converting bars to something like circles opens up the
 ability to make more direct comparisons.</p>
 <p>For example, let’s say we want to compare two continents more directly: Asia and Europe.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-grouped-bar-2-cont"></span>
-<img src="vis4dsr_files/figure-html/sample-grouped-bar-2-cont-1.png" alt="A grouped bar chart focusing on two continents." width="672" />
-<p class="caption">
-FIGURE 1.10: A grouped bar chart focusing on two continents.
-</p>
-</div>
-<p>This chart groups all of the segments by continent, which makes it easy to compare
-different Index categories within a single continent. What if we want to bring more
-attention to the difference between continents for each category? We could always
-switch which category is the primary division on the x axis and which is
-represented by color.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-grouped-bar-2-cont-switched"></span>
-<img src="vis4dsr_files/figure-html/sample-grouped-bar-2-cont-switched-1.png" alt="The same grouped bar chart with a different arrangement of the categorical variables." width="672" />
-<p class="caption">
-FIGURE 1.11: The same grouped bar chart with a different arrangement of the categorical variables.
-</p>
-</div>
+<p>Figure <a href="reading-visualizations.html#fig:dumbbell-panel">1.5</a> part A groups all of the segments by continent,
+which makes it easy to compare different Index categories within a single continent.
+What if we want to bring more attention to the difference between continents for
+each category? We could always switch which category is the primary division on
+the x axis and which is represented by color (figure <a href="reading-visualizations.html#fig:dumbbell-panel">1.5</a> part B).</p>
 <p>This improves our ability to compare the continents directly because the bars are
 directly next to each other. The amount of space the bars take up is still pretty
 large, though. If we combine this chart with something like a lollipop plot, we
-get one last variation: a dumbbell plot.</p>
+get one last variation: a dumbbell plot (figure <a href="reading-visualizations.html#fig:dumbbell-panel">1.5</a> part C).</p>
 <p>With a dumbbell plot, we use a circle to represent the data values, just like the
 lollipop. Instead of having a line that extends all the way to the axis, though,
 we use a line to connect the two dots in each category of Inclusiveness Index.</p>
-<div class="figure"><span style="display:block;" id="fig:sample-dumbbell"></span>
-<img src="vis4dsr_files/figure-html/sample-dumbbell-1.png" alt="A dumbbell plot comparing two continents." width="672" />
+<div class="figure"><span style="display:block;" id="fig:dumbbell-panel"></span>
+<img src="vis4dsr_files/figure-html/dumbbell-panel-1.png" alt="A: A grouped bar chart focusing on two continents. B: The same grouped bar chart with a different arrangement of the categorical variables. C: A dumbbell plot comparing two continents." width="672" />
 <p class="caption">
-FIGURE 1.12: A dumbbell plot comparing two continents.
+FIGURE 1.5: A: A grouped bar chart focusing on two continents. B: The same grouped bar chart with a different arrangement of the categorical variables. C: A dumbbell plot comparing two continents.
 </p>
 </div>
 <p>With a dumbbell plot, there are three main trends we can explore in the chart. We
 can focus on the green circles to see the pattern in the Asia data values. We can
 focus on the blue circles to see the pattern in the Europe data values. Finally,
 we can focus on the lengths of the lines connecting the circles to compare the
-continents at each level of the Inclusiveness Index. This chart time is an efficient
+continents at each level of the Inclusiveness Index. This chart type is an efficient
 way to compare these data values, but remember that it can be difficult to compare
 the lengths of shapes when they don’t have the same baseline.</p>
 </div>
@@ -595,7 +558,7 @@ with the x axis and the other of which is associated with the y axis.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-scatter"></span>
 <img src="vis4dsr_files/figure-html/sample-scatter-1.png" alt="A sample scatter plot." width="672" />
 <p class="caption">
-FIGURE 1.13: A sample scatter plot.
+FIGURE 1.6: A sample scatter plot.
 </p>
 </div>
 <p>This visualization is a way to show a relationship between the two numerical variables
@@ -625,7 +588,7 @@ might be better represented by other mathematical functions.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-relationships"></span>
 <img src="vis4dsr_files/figure-html/sample-relationships-1.png" alt="Different relationships between numerical variables." width="672" />
 <p class="caption">
-FIGURE 1.14: Different relationships between numerical variables.
+FIGURE 1.7: Different relationships between numerical variables.
 </p>
 </div>
 <p>What does it mean to see a shape in a scatter plot? A detectable shape in a scatter
@@ -640,7 +603,7 @@ combined with a linear model (represented by a straight line drawn on top of the
 <div class="figure"><span style="display:block;" id="fig:sample-scatter-lm"></span>
 <img src="vis4dsr_files/figure-html/sample-scatter-lm-1.png" alt="A sample scatter plot with a linear model overlaid over the points." width="672" />
 <p class="caption">
-FIGURE 1.15: A sample scatter plot with a linear model overlaid over the points.
+FIGURE 1.8: A sample scatter plot with a linear model overlaid over the points.
 </p>
 </div>
 <p>When you see a line on a scatter plot like this, it is showing the linear model
@@ -661,7 +624,7 @@ the points. This is called a contour or density plot.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-contour"></span>
 <img src="vis4dsr_files/figure-html/sample-contour-1.png" alt="A sample contour plot with scatter plot points on top." width="672" />
 <p class="caption">
-FIGURE 1.16: A sample contour plot with scatter plot points on top.
+FIGURE 1.9: A sample contour plot with scatter plot points on top.
 </p>
 </div>
 </div>
@@ -676,13 +639,13 @@ plot up using a grid of interlocking hexagons).</p>
 <div class="figure"><span style="display:block;" id="fig:sample-bin2d"></span>
 <img src="vis4dsr_files/figure-html/sample-bin2d-1.png" alt="A sample scatter plot binned with a rectangular grid." width="672" />
 <p class="caption">
-FIGURE 1.17: A sample scatter plot binned with a rectangular grid.
+FIGURE 1.10: A sample scatter plot binned with a rectangular grid.
 </p>
 </div>
 <div class="figure"><span style="display:block;" id="fig:sample-hex"></span>
 <img src="vis4dsr_files/figure-html/sample-hex-1.png" alt="A sample scatter plot binned with a hexagonal grid." width="672" />
 <p class="caption">
-FIGURE 1.18: A sample scatter plot binned with a hexagonal grid.
+FIGURE 1.11: A sample scatter plot binned with a hexagonal grid.
 </p>
 </div>
 </div>
@@ -699,7 +662,7 @@ of the points cluster in different parts of the graph.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-scatter-color"></span>
 <img src="vis4dsr_files/figure-html/sample-scatter-color-1.png" alt="A sample scatter plot with color categories." width="672" />
 <p class="caption">
-FIGURE 1.19: A sample scatter plot with color categories.
+FIGURE 1.12: A sample scatter plot with color categories.
 </p>
 </div>
 <p>In the above chart, the color represents the continent; that is, each continent shows
@@ -715,7 +678,7 @@ categorical variable.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-scatter-color-grad"></span>
 <img src="vis4dsr_files/figure-html/sample-scatter-color-grad-1.png" alt="A sample scatter plot with a color gradient." width="672" />
 <p class="caption">
-FIGURE 1.20: A sample scatter plot with a color gradient.
+FIGURE 1.13: A sample scatter plot with a color gradient.
 </p>
 </div>
 <p>In this chart, the values in the “Z-score, Gender” variable are associated with
@@ -741,7 +704,7 @@ hard to focus on all of the bubbles of a particular size to try to identify clus
 <div class="figure"><span style="display:block;" id="fig:sample-bubble-cat"></span>
 <img src="vis4dsr_files/figure-html/sample-bubble-cat-1.png" alt="A sample bubble chart with categories." width="672" />
 <p class="caption">
-FIGURE 1.21: A sample bubble chart with categories.
+FIGURE 1.14: A sample bubble chart with categories.
 </p>
 </div>
 <p>If you use a numerical variable to size the bubbles, the goal of the chart becomes
@@ -750,7 +713,7 @@ the sizes of the bubbles changes in a meaningful way in relation to the axes.</p
 <div class="figure"><span style="display:block;" id="fig:sample-bubble-grad"></span>
 <img src="vis4dsr_files/figure-html/sample-bubble-grad-1.png" alt="A sample bubble chart with a size gradient." width="672" />
 <p class="caption">
-FIGURE 1.22: A sample bubble chart with a size gradient.
+FIGURE 1.15: A sample bubble chart with a size gradient.
 </p>
 </div>
 <p>There is one property of bubble charts that is different from scatter plots with
@@ -764,7 +727,7 @@ is anything else that might interact with the three numerical variables.</p>
 <div class="figure"><span style="display:block;" id="fig:sample-bubble-color"></span>
 <img src="vis4dsr_files/figure-html/sample-bubble-color-1.png" alt="A sample bubble chart with color categories." width="672" />
 <p class="caption">
-FIGURE 1.23: A sample bubble chart with color categories.
+FIGURE 1.16: A sample bubble chart with color categories.
 </p>
 </div>
 <p>Be cautious, again, with adding too many variables to a single chart. If adding
@@ -808,8 +771,8 @@ direction, or they all experience a dramatic change at the same point. If it is
 important to identify specific lines in your chart, however, it is best to use only
 a few lines so that it is possible to identify each line directly and trace it
 individually across the entire chart.</p>
-<div id="using-circles-to-highlight-the-position-of-the-data-points" class="section level4 hasAnchor" number="1.4.0.1">
-<h4><span class="header-section-number">1.4.0.1</span> Using circles to highlight the position of the data points<a href="reading-visualizations.html#using-circles-to-highlight-the-position-of-the-data-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="using-circles-to-highlight-the-position-of-the-data-points" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Using circles to highlight the position of the data points<a href="reading-visualizations.html#using-circles-to-highlight-the-position-of-the-data-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Some line charts include circles along the lines. These circles indicate that the
 data set included a value at that point in the line. This can be especially useful
 if lines travel through data at irregular time intervals. For example, if the data
@@ -820,8 +783,8 @@ time to the next point in time, and unless the line turns up or down, it can be
 hard to know exactly where the real data values are.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div id="using-colors-to-distinguish-individual-lines" class="section level4 hasAnchor" number="1.4.0.2">
-<h4><span class="header-section-number">1.4.0.2</span> Using colors to distinguish individual lines<a href="reading-visualizations.html#using-colors-to-distinguish-individual-lines" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="using-colors-to-distinguish-individual-lines" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Using colors to distinguish individual lines<a href="reading-visualizations.html#using-colors-to-distinguish-individual-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes line charts use color to differentiate the lines from each other. Each line
 gets its own color, and the color legend clarifies the name of the line. Even for
 charts where it is important to individually identify the lines, it can quickly
@@ -833,11 +796,11 @@ complement to a simple line chart, it is easier to read a line chart when the li
 are labeled directly instead of relying on a legend.</p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-9-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-9-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
 </div>
-<div id="variations-2" class="section level3 hasAnchor" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Variations<a href="reading-visualizations.html#variations-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="variations-2" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Variations<a href="reading-visualizations.html#variations-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There is one primary variation of the line chart: the area chart.</p>
-<div id="area-chart" class="section level4 hasAnchor" number="1.4.1.1">
-<h4><span class="header-section-number">1.4.1.1</span> Area chart<a href="reading-visualizations.html#area-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="area-chart" class="section level4 hasAnchor" number="1.4.3.1">
+<h4><span class="header-section-number">1.4.3.1</span> Area chart<a href="reading-visualizations.html#area-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>An area chart looks like a line chart where everything under the line, down to the
 x axis, has been colored in. If you took a typical line chart and color everything
 in under each line, though, you would have overlapping colors for much of the chart.
@@ -854,8 +817,8 @@ to see if an area has its own decrease at a particular year or if it is just
 reacting to a decrease in one of the lines below it.</p>
 </div>
 </div>
-<div id="add-a-variable-line-chart-with-color" class="section level3 hasAnchor" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Add a variable: Line chart with color<a href="reading-visualizations.html#add-a-variable-line-chart-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="add-a-variable-line-chart-with-color" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Add a variable: Line chart with color<a href="reading-visualizations.html#add-a-variable-line-chart-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A common way to add a third variable to a line chart is to use color to represent
 a categorical variable, grouping the lines into different categories. This third
 variable could be unrelated to the variables already in the line chart, or it
@@ -995,8 +958,9 @@ others center around an arbitrary value</li>
 really meaningful</li>
 </ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<div id="centered-dot-plot-bee-swarm" class="section level5 hasAnchor" number="1.7.1.3.1">
-<h5><span class="header-section-number">1.7.1.3.1</span> Centered dot plot / Bee swarm<a href="reading-visualizations.html#centered-dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="centered-dot-plot-bee-swarm" class="section level4 hasAnchor" number="1.7.1.4">
+<h4><span class="header-section-number">1.7.1.4</span> Centered dot plot / Bee swarm<a href="reading-visualizations.html#centered-dot-plot-bee-swarm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>first of the “centered” distribution charts</li>
 <li>the variable we’re exploring is not on the x axis anymore. It’s now vertical,
@@ -1007,17 +971,15 @@ only look at half of the shape and make changes seem smaller</li>
 </ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-25-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-25-2.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-25-3.png" width="672" /></p>
 </div>
-</div>
-<div id="violin-plot" class="section level4 hasAnchor" number="1.7.1.4">
-<h4><span class="header-section-number">1.7.1.4</span> Violin plot<a href="reading-visualizations.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="violin-plot" class="section level4 hasAnchor" number="1.7.1.5">
+<h4><span class="header-section-number">1.7.1.5</span> Violin plot<a href="reading-visualizations.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>like density, but turned and centered</li>
 </ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
-</div>
-<div id="box-plot" class="section level3 hasAnchor" number="1.7.2">
-<h3><span class="header-section-number">1.7.2</span> Box Plot<a href="reading-visualizations.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="box-plot" class="section level4 hasAnchor" number="1.7.1.6">
+<h4><span class="header-section-number">1.7.1.6</span> Box Plot<a href="reading-visualizations.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Instead of showing the complete pattern of the data, have calculated additional
 statistics about the data and are visualizing those instead</li>
@@ -1025,8 +987,9 @@ statistics about the data and are visualizing those instead</li>
 </ul>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
-<div id="add-a-variable-separate-groups-on-x-axis" class="section level3 hasAnchor" number="1.7.3">
-<h3><span class="header-section-number">1.7.3</span> Add a variable: Separate groups on x axis<a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="add-a-variable-separate-groups-on-x-axis" class="section level3 hasAnchor" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Add a variable: Separate groups on x axis<a href="reading-visualizations.html#add-a-variable-separate-groups-on-x-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>because the data have been pulled away from the axis, we can now combine multiple
 distributions in the same chart.</li>
@@ -1045,8 +1008,8 @@ the other looks about the same as the others.</li>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-31-1.png" width="672" /><img src="vis4dsr_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
 <p><img src="vis4dsr_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
-<div id="add-a-variable-separate-groups-with-color" class="section level3 hasAnchor" number="1.7.4">
-<h3><span class="header-section-number">1.7.4</span> Add a variable: Separate groups with color<a href="reading-visualizations.html#add-a-variable-separate-groups-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="add-a-variable-separate-groups-with-color" class="section level3 hasAnchor" number="1.7.3">
+<h3><span class="header-section-number">1.7.3</span> Add a variable: Separate groups with color<a href="reading-visualizations.html#add-a-variable-separate-groups-with-color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>when using the on-the-axis versions, can be hard to add a third variable. they
 will all compete for space on the same axis.</li>
