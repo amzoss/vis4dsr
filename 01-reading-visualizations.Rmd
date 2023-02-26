@@ -1002,23 +1002,67 @@ ggplot(aes(x = Year,
 
 ## Pie Chart
 
-* same data as a bar chart - categorical variable and numerical variable
-* unlike a bar chart, the form of the pie chart means that only certain kinds
-of data make sense - categories that combine together to form a whole, numbers that
-are positive and make sense as a percentage of a whole
-* hard to compare the size of wedges that are about the same size, especially 
-when they're rotated in space
-* typically the wedges "start" at the top, and then usually the order goes around
-clockwise or counter-clockwise
-* order matters (like bar chart)
-* typical way of telling pie wedges apart is by color, but you can leave them all
-the same color and label them directly, like a line chart
-* what are you looking for in a pie chart? You are looking for how the data are
-distributed between the wedges - are they mostly equal? Is one much larger than 
-you would expect? Much smaller? How much of the total goes to each category?
-* these comparisons become more complicated when you have a lot of wedges. If it's 
-important to understand small changes between the wedges, that can be difficult
-in a pie chart.
+A pie chart is typically used to explore the components that make up a total. This
+is often called a "part-to-whole" relationship. In a line chart, the line helps
+emphasize change over time by using a shape that has a strong connection to the
+idea of motion or change (a line). With a pie chart, the shape is a circle divided
+up into pie slices or wedges, and that shape has a strong connection to the idea of
+comparison between a fraction and a total.
+
+The kinds of data represented in a pie chart are the same as the kinds of data in
+a bar chart - one categorical variable (the label) and one numerical variable 
+(the size or proportion of the wedges). In the bar chart, the numerical variable
+corresponds to the length of the bars, and negative bars can travel in a different
+direction from the positive bars. In a pie chart, the numerical variable corresponds
+to the area (or angle) of the pie wedge. For each value of the categorical variable, 
+there is one pie wedge, and the percentage of the pie that the wedge takes up is the
+same percentage you get if you compare the numerical value for that category to the
+sum of the numerical values for all of the categories (i.e., the total sum for 
+that variable). That's the same kind of calculation that happens when you have
+a stacked bar chart that is also "filled" to 100%.
+
+Because a pie chart shows the percentage of a total, it tends to be used for numerical
+variables where the values are all positive and it makes sense to group all of the
+data points into a total. Some good data to use with a pie chart might the viewers
+of a TV show divided up by age groups, or the amount of money someone spends in a
+month divided up by different kinds of purchases. Data that would not be as well
+represented by a pie chart include the tax refund amount someone received for the
+previous five years (because there isn't really a need to sum together five
+years of tax refunds), or the average life expectancy of a group of countries 
+(again, you wouldn't generally need to add together life expectancies). Likewise,
+pie charts don't make sense for data where the numerical values can be negative -- 
+it doesn't make sense to try to show a negative value as a percentage of a total.
+
+When reading a pie chart, you will typically compare the sizes of the wedges to
+each other, as well as to the whole pie chart. Comparing the area of two different
+shapes can actually be a bit tricky. In a pie chart, each wedge is rotated at a
+different angle. If all of the wedges were oriented the same way -- for example, 
+they all had one edge starting at the "12:00" position on the pie opened 
+up to the right --  we would only have to compare the tilt of the second edge of 
+the wedge to see which wedge was larger. When comparing wedges that are all rotated
+at different angles and aren't very close to each other, it can be very hard to
+tell the difference between similarly sized wedges. Often a pie chart is not meant
+to be read with great precision. The goal instead may be to show that one wedge
+is much larger than the others, or that all of the wedges are approximately the same,
+or that one wedge is much smaller than expected. The more wedges there are in the
+pie chart, however, the more difficult these comparisons can be. A pie chart that
+has a small number of wedges that are all varying sizes tends to be the easiest
+to read.
+
+If the wedges are connected to categories that have a natural order (for example,
+age groups or days of the week), it works best to put the wedges in that order 
+as they rotate around the circle. If there is no natural order, the pie chart
+might organize the wedges by size, with the largest wedge in the most prominent 
+position -- starting at the "12:00" position. That makes it easy to find the 
+most influential data point and also rank the wedges by size.
+
+You may see pie charts where every wedge is a different color and there is a legend
+that tells you which wedge corresponds to which category. Just like a line chart,
+however, it tends to be easier to read the visualization if each wedge has a nearby
+label that indicates what category it is. If the wedges are directly labeled like
+this, not only is a legend unnecessarily, but the pie chart might not even need
+to use a different color for each wedge. Instead, there could be a simple border
+separating the wedges.
 
 ```{r}
 
@@ -1058,27 +1102,56 @@ inclusiveness_index %>%
 
 ### Variations
 
-* primary variation is donut chart
+The primary variation of a pie chart is a donut chart.
 
 #### Donut chart
 
-* just like pie chart, but the center is missing
+A donut chart uses the same data as a pie chart and is organized the same way. In
+a donut chart, however, the center is removed, leaving just a ring around the edge
+that shows the data. 
 
 ```{r}
 
 inclusiveness_index %>%
-  count(Continent, Index.categories.2020) %>%
+  count(Index.categories.2020) %>%
   ggplot(aes(x = 4, fill = Index.categories.2020, y=n)) +
-    geom_col(position="fill") +
+    geom_col(position="fill", color="#cccccc") +
     coord_polar(theta="y", direction = -1) +
     xlim(c(2.5, 4.5)) +
-    scale_fill_manual(values = inclusive.colors) +
+    scale_fill_grey(start = 0.3, end=0.8) +
     theme_void()
 
 
 ```
 
+### Add a variable: Pie chart with color grouping
+
+One way to add a variable inside a pie chart might be to use color. Instead of 
+giving each wedge a separate color, the color could correspond to a third variable 
+that groups multiple wedges into the same category. For example, a pie chart could
+have separate wedges for different countries, and then it could use a different
+color for each continent to show how the countries group together into continents.
+
+```{r}
+
+inclusiveness_index %>%
+  count(Continent, Country) %>%
+  mutate(Continent = Continent %>% as_factor() %>% fct_reorder(n, .fun = sum, .desc = TRUE)) %>%
+  ggplot(aes(x = 4, fill = Continent, y=n)) +
+    geom_col(position="fill", color="grey50") +
+    coord_polar(theta="y", direction = -1) +
+    #xlim(c(2.5, 4.5)) +
+    scale_fill_grey(start = 0.3, end=0.8) +
+    theme_void()
+
+
+
+
+```
+
 ### Add a variable: Small multiples
+
+
 
 * It is very difficult - and likely inadvisable - to try to visualize an additional
 variable inside a basic pie chart. 
